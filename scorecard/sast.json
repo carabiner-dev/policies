@@ -1,0 +1,27 @@
+{
+    "id": "OSPS-VM-06",
+    "meta": {
+        "enforce": "OFF",
+        "description": "Enforce a policy that defines a threshold for remediation of SAST findings.",
+        "controls": [ { "class": "OSPS", "id": "VM-06" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-scorecard",
+            "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+            "outputs": {
+                "bin_artifacts_checks": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] " }
+            },
+            "predicates": {
+                "types": ["https://scorecard.dev/result/v0.1"]
+            },
+            "assessment": {
+                "message": "Scorecard detected a SAST tool"
+            },
+            "error": {
+                "message": "Scorecard did not detect a SAST tool",
+                "guidance": "Configure a SAST tool like CodeQL in your repo and reattest the scorecard"
+            }
+        }
+    ]
+}

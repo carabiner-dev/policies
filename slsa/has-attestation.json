@@ -1,0 +1,27 @@
+{
+    "id": "OSPS-BR-06",
+    "meta": {
+        "description": "Release MUST be signed or accounted for in a signed manifest",
+        "assert_mode": "AND",
+        "controls": [
+            { "class": "OSPS", "id": "BR-06" }
+        ]
+    },
+    "tenets": [
+        {
+            "id": "slsa",
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": ["https://slsa.dev/provenance/v0.2"]
+            },
+            "error": {
+                "message": "No SLSA attestation found",
+                "guidance": "Capture the build process in a SLSA provenance attestation"
+            },
+            "assessment": {
+                "message": "SLSA provenance attestation found"
+
+            }
+        }
+    ]            
+}

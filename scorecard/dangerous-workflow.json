@@ -1,0 +1,27 @@
+{
+    "id": "OSPS-BR-01",
+    "meta": {
+        "enforce": "OFF",
+        "description": "The project's build and release pipelines MUST NOT permit untrusted input",
+        "controls": [ { "class": "OSPS", "id": "BR-01" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-scorecard",
+            "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+            "outputs": {
+                "bin_artifacts_checks": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Dangerous-Workflow' && has(c.score)) : [] " }
+            },
+            "predicates": {
+                "types": ["https://scorecard.dev/result/v0.1"]
+            },
+            "assessment": {
+                "message": "Scorecard found no dangerous pipelines"
+            },
+            "error": {
+                "message": "Scorecard detected workflows with dangerous patterns",
+                "guidance": "Review your workflow files and look for dangerous patterns"
+            }
+        }
+    ]
+}

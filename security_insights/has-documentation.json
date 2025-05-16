@@ -1,0 +1,44 @@
+{
+    "id": "OSPS-DO-01",
+    "meta": {
+        "description": "The project documentation MUST provide user guides for all basic functionality",
+        "assert_mode": "AND",
+        "controls": [
+            { "class": "OSPS", "id": "DO-01" }
+        ]
+    },
+    "tenets": [
+        {
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "error": {
+                "message": "No Security Insights attestation found",
+                "guidance": "Capture your security insights flile in an attestations at build point"
+            },
+            "assessment": {
+                "message": "Security Insights attestation found"
+
+            }
+        },   
+        {
+            "code": "outputs[\"docs\"] != \"\"",
+            "outputs": {
+                "docs": {
+                    "code": "\"documentation\" in predicates[0].data.project ? (\"detailed-guide\" in predicates[0].data.project.documentation ? predicates[0].data.project.documentation[\"detailed-guide\"] : \"\" ) : \"\" "
+                }
+            },
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "assessment": {
+                "message": "Documentation link found in SECURITY_INSIGHTS.yaml"
+            },
+            "error": {
+                "message": "No documentation link found in SI",
+                "guidance": "Add a security insights file to your repository and define a documentation link"
+            }
+        }
+    ]            
+}

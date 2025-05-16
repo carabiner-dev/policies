@@ -1,0 +1,26 @@
+{
+    "id": "OSPS-QA-03",
+    "meta": {
+        "enforce": "OFF",
+        "description": "automated status checks for commits MUST pass or be manually bypassed.",
+        "controls": [
+            { "class": "OSPS", "id": "QA-03" }
+        ]
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"required_status_checks\") : false",
+            "predicates": {
+                "types": ["http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
+            },
+            "assessment": {
+                "message": "Status checks enforced"
+            },
+            "error": {
+                "message": "Add a branch rule to ensure status checks must pass",
+                "guidance": "Enable \"Require status checks to pass\" in the repository branch rulesets"
+            }
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "id": "OSPS-BR-04",
+    "meta": {
+        "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications.",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "BR-04" } ],
+        "assert_mode": "OR"
+    },
+    "tenets": [
+        {
+            "id": "01-sbom",
+            "code": "size(outputs[\"files\"]) > 0",
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "outputs": {
+                "files": {
+                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' ))"
+                }
+            },
+            "assessment": {
+                "message": "Found a changelog in the project's SBOM."
+            },
+            "error": {
+                "message": "Could not detect a changelog file in the SBOM.",
+                "guidance": "Add a file named CHANGELOG to your project's codebase registering major changes."
+            }
+        }
+    ]            
+}

@@ -1,0 +1,29 @@
+{
+    "id": "OSPS-DO-06",
+    "meta": {
+        "description": "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "DO-06" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-si",
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "code": "outputs.deppolicy != '' ",
+            "outputs": {
+                "deppolicy": {
+                    "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (has(predicates[0].data.repository.documentation.dependency_management_policy) ? predicates[0].data.repository.documentation.dependency_management_policy : '') : '') : '' "
+                }
+            },
+            "assessment": {
+                "message": "Found a link to the projects dependency policy in SECURITY_INSIGHTS.yml"
+            },
+            "error": {
+                "message": "Could not detect a dependency policy in the Security Insights file.",
+                "guidance": "Add a changelog entry to your SI file under repository.documentation.dependency-management-policy."
+            }
+        }
+    ]            
+}

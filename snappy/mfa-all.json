@@ -1,0 +1,29 @@
+{
+    "id": "OSPS-AC-01",
+    "meta": {
+        "description": "The project's version control system MUST require multi-factor authentication that does not include SMS ",
+        "assert_mode": "AND",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "AC-01" } ]
+    },
+    "tenets": [
+        {
+            "code": "outputs.members.all(member, member.hasTwoFactorEnabled) && size(outputs.members) > 0",
+            "predicates": {
+                "types": ["http://github.com/carabiner-dev/snappy/specs/mfa.yaml"]
+            },
+            "outputs": {
+                "members": {
+                    "code": "has(predicates[0].data.values.data.organization.membersWithRole) ? (has(predicates[0].data.values.data.organization.membersWithRole.edges) ? predicates[0].data.values.data.organization.membersWithRole.edges : []) : []"
+                }
+            },
+            "assessment": {
+                "message": "Multi-factor authentication is enabled for all members in the organization"
+            },
+            "error": {
+                "message": "Multifactor authentication is not enabled for some members",
+                "guidance": "Enable MFA in the GitHub organization settings to force all members to turn it on"
+            }
+        }
+    ]            
+}

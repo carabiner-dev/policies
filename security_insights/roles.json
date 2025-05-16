@@ -1,0 +1,30 @@
+{
+    "id": "OSPS-GV-01",
+    "meta": {
+        "description": "Documentation MUST include the roles and responsibilities for members of the project.",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "GV-01" } ],
+        "assert_mode": "OR"
+    },
+    "tenets": [
+        {
+            "id": "01-si",
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "code": "outputs.admins.found ",
+            "outputs": {
+                "admins": {
+                    "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.administrators) ? {'found': true,  'admins': predicates[0].data.project.administrators } : {'found': false,  'admins': [] } ) : {'found': false,  'admins': [] } "
+                }
+            },
+            "assessment": {
+                "message": "Administrators listed in Securty Insights"
+            },
+            "error": {
+                "message": "Security Insights has no project administrators",
+                "guidance": "List the project admins in your SI yaml under repository.administrators"
+            }
+        }
+    ]            
+}

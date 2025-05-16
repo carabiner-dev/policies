@@ -1,0 +1,53 @@
+{
+    "id": "OSPS-VM-04",
+    "meta": {
+        "description": "The project MUST publicly publish data about discovered vulnerabilities",
+        "controls": [ { "class": "OSPS", "id": "VM-04" } ],
+        "assert_mode": "AND",
+        "enforce":"OFF"
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": [ "https://ossf.github.io/osv-schema/results@v1.6.7" ]
+            },
+            "assessment": {
+                "message": "Vulnerability report published"
+            },
+            "error": {
+                "message": "A vulnerability report was found",
+                "guidance": "The artifact was published with an attested OSV results"
+            }
+        },
+        {
+            "id": "02",
+            "code": "outputs.reports > 0 && (size(outputs.vulnerabilities) == 0 || outputs.vexes > 0)",
+            "outputs": {
+                "vulnerabilities": {
+                    "code": "predicates.filter(p, p.predicate_type.contains('osv-schema')).map(p, p.data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()).flatten()"
+                },
+                "vexes": {
+                    "code": "size(predicates.filter(p, p.predicate_type.contains('openvex')))"
+                },
+                "reports": {
+                    "code": "size(predicates.filter(p, p.predicate_type.contains('osv-schema')))"
+                }
+            },
+            "predicates": {
+                "types": [
+                    "https://ossf.github.io/osv-schema/results@v1.6.7",
+                    "https://openvex.dev/ns/v0.2.0", "https://openvex.dev/ns"
+                ]
+            },
+            "assessment": {
+                "message": "No vulnerabilities and/or VEX data found"
+            },
+            "error": {
+                "message": "Unvexed vulnerabilities found",
+                "guidance": "All vulnerabilities must be patched or accounted in VEX documents"
+            }
+        }
+    ]            
+}

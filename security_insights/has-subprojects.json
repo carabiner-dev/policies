@@ -1,0 +1,32 @@
+{
+    "id": "OSPS-QA-04",
+    "meta": {
+        "enforce": "OFF",
+        "description": "subproject code repositories MUST enforce the same security requirements",
+        "assert_mode": "AND",
+        "controls": [
+            { "class": "OSPS", "id": "QA-04" }
+        ]
+    },
+    "tenets": [
+        {
+            "id": "01-si",
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "code": "outputs.subprojects.found",
+            "outputs": {
+                "subprojects": {
+                    "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.repositories) ? {'found': true, 'subprojects': predicates[0].data.project.repositories } : {'found': false, 'subprojects': [] } ) : {'found': false, 'subprojects': [] }"
+                }
+            },
+            "assessment": {
+                "message": "Found a changelog entry in the project's security insights file."
+            },
+            "error": {
+                "message": "Could not find subprojects in security insights.",
+                "guidance": "Add a subprojects list (empty will do) to SI YAML under project.repositories"
+            }
+        }
+    ]
+}

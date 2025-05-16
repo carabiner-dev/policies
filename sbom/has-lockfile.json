@@ -1,0 +1,29 @@
+{
+    "id": "OSPS-BR-05",
+    "meta": {
+        "description": "Dependencies, MUST use standardized tooling where available.",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "BR-05" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-lockfile",
+            "code": "size(outputs[\"files\"]) > 0",
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "outputs": {
+                "files": {
+                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'requirements.txt' || n.name == 'poetry.lock' || n.name == 'go.mod' || n.name == 'package.lock' || n.name == 'Gemfile.lock' ))"
+                }
+            },
+            "assessment": {
+                "message": "Found a package lock file"
+            },
+            "error": {
+                "message": "Could not detect a package lock file",
+                "guidance": "Ensure your project uses go, pypy, npm or ruby gems tooling o handle dependencies"
+            }
+        }
+    ]            
+}

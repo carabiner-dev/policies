@@ -1,0 +1,27 @@
+{
+    "id": "OSPS-AC-04",
+    "meta": {
+        "enforce": "OFF",
+        "description": "CI/CD pipelines MUST follow the principle of least privilege",
+        "controls": [ { "class": "OSPS", "id": "AC-04" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-scorecard",
+            "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+            "outputs": {
+                "bin_artifacts_checks": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] " }
+            },
+            "predicates": {
+                "types": ["https://scorecard.dev/result/v0.1"]
+            },
+            "assessment": {
+                "message": "Scorecard reports workflows are configured with least privileges"
+            },
+            "error": {
+                "message": "Scorecard detected workflows with excessivce permissions",
+                "guidance": "Ensure workflows drop all privileges and only escalte when needed"
+            }
+        }
+    ]
+}

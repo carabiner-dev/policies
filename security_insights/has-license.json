@@ -1,0 +1,30 @@
+{
+    "id": "OSPS-LE-03",
+    "meta": {
+        "description": "Locate a license file in the projects files",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "LE-03" } ],
+        "assert_mode": "OR"
+    },
+    "tenets": [
+        {
+            "id": "01-si",
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "code": "outputs.license != '' ",
+            "outputs": {
+                "license": {
+                    "code": "has(predicates[0].repository) ? (has(predicates[0].repository.license) ? (has(predicates[0].repository.license.expression) ? predicates[0].repository.license.expression : '' ) : '' ) : '' "
+                }
+            },
+            "assessment": {
+                "message": "Found a license entry in the project's security insights file."
+            },
+            "error": {
+                "message": "Could not detect a license entry in the security insights file.",
+                "guidance": "Add a license entry to your SI file under repository.release.license"
+            }
+        }
+    ]            
+}

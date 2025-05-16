@@ -1,0 +1,30 @@
+{
+    "id": "OSPS-BR-04",
+    "meta": {
+        "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications.",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "BR-04" } ],
+        "assert_mode": "OR"
+    },
+    "tenets": [
+        {
+            "id": "01-si",
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "code": "outputs.changelog != '' ",
+            "outputs": {
+                "changelog": {
+                    "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.release) ? (has(predicates[0].data.repository.release.changelog) ? predicates[0].data.repository.release.changelog : '') : '') : '' "
+                }
+            },
+            "assessment": {
+                "message": "Found a changelog entry in the project's security insights file."
+            },
+            "error": {
+                "message": "Could not detect a changelog file in the security insights file.",
+                "guidance": "Add a changelog entry to your SI file under repository.release.changelog"
+            }
+        }
+    ]            
+}

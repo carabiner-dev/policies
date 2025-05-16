@@ -1,0 +1,40 @@
+{
+    "id": "OSPS-GV-02",
+    "meta": {
+        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
+        "assert_mode": "AND",
+        "controls": [
+            { "class": "OSPS", "id": "GV-02" }
+        ]
+    },
+    "tenets": [
+        {
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": ["http://github.com/carabiner-dev/snappy/specs/repo.yaml"]
+            },
+            "assessment": {
+                "message": "Found attested repository data"
+            }
+        },
+        {
+            "id": "01",
+            "code": "outputs[\"issues\"]",
+            "predicates": {
+                "types": ["http://github.com/carabiner-dev/snappy/specs/repo.yaml"]
+            },
+            "outputs": {
+                "issues": {
+                    "code": "has(predicates[0].data.values.has_issues) ? predicates[0].data.values.has_issues : false"
+                }
+            },
+            "assessment": {
+                "message": "Issues feature is enabled in the repository"
+            },
+            "error": {
+                "message": "Issues are not enabled in the repo",
+                "guidance": "Turn on the issues setting in the repository"
+            }
+        }
+    ]            
+}

@@ -1,0 +1,32 @@
+{
+    "id": "OSPS-DO-03",
+    "meta": {
+        "description": "Instructions to verify the integrity and authenticity of the release assets",
+        "assert_mode": "AND",
+        "enforce": "OFF",
+        "controls": [
+            { "class": "OSPS", "id": "DO-03" }
+        ]
+    },
+    "tenets": [
+        {
+            "id": "01-si",
+            "code": "outputs['verify'] != '' ",
+            "outputs": {
+                "verify": {
+                    "code": "has(predicates[0].project) ? (has(predicates[0].project.documentation) ? ('signature-verification' in predicates[0].project.documentation ? predicates[0].project.documentation['signature-verification'] : '' ) : '' ) : '' "
+                }
+            },
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "assessment": {
+                "message": "Signature verification instructions found in SECURITY_INSIGHTS.yml"
+            },
+            "error": {
+                "message": "No verification instructions found in SI",
+                "guidance": "Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml"
+            }
+        }
+    ]
+}

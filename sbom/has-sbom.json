@@ -1,0 +1,38 @@
+{
+    "id": "OSPS-QA-02",
+    "meta": {
+        "description": "The source code repository MUST contain a dependency list (direct)",
+        "assert_mode": "OR",
+        "controls": [
+            { "class": "OSPS", "id": "QA-02" }
+        ]
+    },
+    "tenets": [
+        {
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": ["https://spdx.dev/Document"]
+            },
+            "assessment": {
+                "message": "Found attested SBOM (SPDX)"
+            },
+            "error": {
+                "message": "No SPDX SBOM found",
+                "guidance": "Generate an SPDX SBOM from your code"
+            }
+        },
+        {
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": ["https://cyclonedx.org/bom"]
+            },
+            "assessment": {
+                "message": "Found attested SBOM (CycloneDX)"
+            },
+            "error": {
+                "message": "No CycloneDX SBOM found",
+                "guidance": "Generate a CycloneDX SBOM from your code"
+            }
+        }
+    ]            
+}

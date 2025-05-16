@@ -1,0 +1,41 @@
+{
+    "id": "OSPS-QA-06",
+    "meta": {
+        "enforce": "OFF",
+        "description": " the project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
+        "controls": [ { "class": "OSPS", "id": "QA-06" } ]
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": ["https://in-toto.io/attestation/test-result/v0.1"]
+            },
+            "assessment": {
+                "message": "Attested test run found"
+            },
+            "error": {
+                "message": "No attested test runs found",
+                "guidance": "Generate a test-run attestation to capture your unit tests"
+            }
+        },
+        {
+            "id": "01b",
+            "code": "outputs.status == 'pass' ",
+            "outputs": {
+                "status": { "code": "has(predicates[0].data.passed) ? predicates[0].data.passed : '' " }
+            },
+            "predicates": {
+                "types": ["https://in-toto.io/attestation/test-result/v0.1"]
+            },
+            "assessment": {
+                "message": "Tests are not passing"
+            },
+            "error": {
+                "message": "Some of the attested test runs failed",
+                "guidance": "Ensure the project's tests are passing before releasing"
+            }
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "id": "OSPS-QA-05",
+    "meta": {
+        "enforce": "OFF",
+        "description": "The version control system MUST NOT contain generated executable artifacts",
+        "controls": [ { "class": "OSPS", "id": "QA-05" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-scorecard",
+            "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+            "outputs": {
+                "bin_artifacts_checks": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Binary-Artifacts' && has(c.score)) : [] " }
+            },
+            "predicates": {
+                "types": ["https://scorecard.dev/result/v0.1"]
+            },
+            "assessment": {
+                "message": "Scorecard did not detect any binaries in the repo"
+            },
+            "error": {
+                "message": "Scorecard detected binaries in the repository",
+                "guidance": "Check your codebase and remove any checked-in executables"
+            }
+        }
+    ]
+}

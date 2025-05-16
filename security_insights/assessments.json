@@ -1,0 +1,29 @@
+{
+    "id": "OSPS-SA-03",
+    "meta": {
+        "enforce": "OFF",
+        "description": "The project MUST assess the security posture of all software assets",
+        "controls": [ { "class": "OSPS", "id": "SA-03" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-si",
+            "predicates": {
+                "types": ["https://github.com/ossf/security-insights-spec"]
+            },
+            "code": "size(outputs.assessments) > 0",
+            "outputs": {
+                "assessments": {
+                    "code": "has(predicates[0].data.security) ? (has(predicates[0].data.security.assessments) ? predicates[0].data.security.assessments : {} ) : {} "
+                }
+            },
+            "assessment": {
+                "message": "Found at least one security assessment listed in security insights."
+            },
+            "error": {
+                "message": "No assessments found in security insights",
+                "guidance": "Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml"
+            }
+        }
+    ]
+}

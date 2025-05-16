@@ -1,0 +1,31 @@
+{
+    "id": "OSPS-GV-03",
+    "meta": {
+        "description": "The project documentation MUST include an explanation of the contribution process.",
+        "enforce": "OFF",
+        "controls": [
+            { "class": "OSPS", "id": "GV-03" }
+        ]
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "code": "size(outputs['files']) > 0",
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "outputs": {
+                "files": {
+                    "code": "sboms[0].get_node_list().get_nodes().filter(n, n.name == \"CONTRIBUTING.md\")"
+                }
+            },
+            "assessment": {
+                "message": "Found a CONTRIBUTING.md file"
+            },
+            "error": {
+                "message": "Repository has no CONTRIBUTING.md file",
+                "guidance": "Write up the project's contribution process into a CONTRIBUTING.md file and check it into the repository."
+            }
+        }
+    ]            
+}

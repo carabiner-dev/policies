@@ -1,0 +1,30 @@
+{
+    "id": "OSPS-VM-01",
+    "meta": {
+        "description": "policy for coordinated vulnerability disclosure",
+        "assert_mode": "AND",
+        "controls": [ { "class": "OSPS", "id": "VM-01" } ],
+        "enforce":"OFF"
+    },
+    "tenets": [               
+        {
+            "id": "01-sbom",
+            "code": "size(outputs[\"files\"]) > 0",
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "outputs": {
+                "files": {
+                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'SECURITY.md' ))"
+                }
+            },
+            "assessment": {
+                "message": "Found a SECURITY.md file in the project's SBOM."
+            },
+            "error": {
+                "message": "Could not detect a SECURITY.md file in the SBOM.",
+                "guidance": "Add a file named SECURITY.md to your project's vulnerability disclosure policy"
+            }
+        }
+    ]
+}

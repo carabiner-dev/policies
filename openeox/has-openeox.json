@@ -1,0 +1,24 @@
+{
+    "id": "OSPS-DO-04",
+    "meta": {
+        "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
+        "enforce": "OFF",
+        "controls": [ { "class": "OSPS", "id": "DO-04" } ]
+    },
+    "tenets": [
+        {
+            "id": "01-openeox",
+            "predicates": {
+                "types": ["https://docs.oasis-open.org/openeox/core/v1.0"]
+            },
+            "code": "size(predicates) > 0",
+            "assessment": {
+                "message": "Found an OpenEoX statement with the artifact's EOS."
+            },
+            "error": {
+                "message": "No OpenEOX data found.",
+                "guidance": "Capture the project End of Support in an OpenEOX file."
+            }
+        }
+    ]            
+}
