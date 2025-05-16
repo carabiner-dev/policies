@@ -1,7 +1,7 @@
 {
     "id": "SNAPPY-MFA-ALL",
     "meta": {
-        "description": "Check that muiltifactor auth is enabled for al members in a GitHub organization",
+        "description": "Check that muiltifactor auth is enabled for al members in a GitHub organization"
     },
     "tenets": [
         {
