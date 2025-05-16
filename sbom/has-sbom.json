@@ -1,11 +1,7 @@
 {
-    "id": "OSPS-QA-02",
+    "id": "SBOM-EXISTS",
     "meta": {
-        "description": "The source code repository MUST contain a dependency list (direct)",
-        "assert_mode": "OR",
-        "controls": [
-            { "class": "OSPS", "id": "QA-02" }
-        ]
+        "description": "SBOM data found"
     },
     "tenets": [
         {

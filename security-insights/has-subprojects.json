@@ -1,12 +1,7 @@
 {
-    "id": "OSPS-QA-04",
+    "id": "SI-HAS-SUBPROJECTS",
     "meta": {
-        "enforce": "OFF",
-        "description": "subproject code repositories MUST enforce the same security requirements",
-        "assert_mode": "AND",
-        "controls": [
-            { "class": "OSPS", "id": "QA-04" }
-        ]
+        "description": "project has subprojects defined in Security Insights"
     },
     "tenets": [
         {

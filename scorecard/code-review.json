@@ -1,16 +1,14 @@
 {
-    "id": "OSPS-QA-07",
+    "id": "SCORECARD-CODE-REVIEW",
     "meta": {
-        "enforce": "OFF",
-        "description": "VCS MUST require at least one non-author approval of changes to the primary branch.",
-        "controls": [ { "class": "OSPS", "id": "QA-07" } ]
+        "description": "VCS MUST require at least one non-author approval of changes to the primary branch."
     },
     "tenets": [
         {
             "id": "01-scorecard",
-            "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+            "code": "outputs.codereview.all(c, c.score == 10)",
             "outputs": {
-                "bin_artifacts_checks": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] " }
+                "codereview": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] " }
             },
             "predicates": {
                 "types": ["https://scorecard.dev/result/v0.1"]

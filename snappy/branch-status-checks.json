@@ -1,11 +1,7 @@
 {
-    "id": "OSPS-QA-03",
+    "id": "SNAPPY-BRANCH-STATUS-CHECKS",
     "meta": {
-        "enforce": "OFF",
-        "description": "automated status checks for commits MUST pass or be manually bypassed.",
-        "controls": [
-            { "class": "OSPS", "id": "QA-03" }
-        ]
+        "description": "Checks for a branch rule requiring PR status checks to pass"
     },
     "tenets": [
         {

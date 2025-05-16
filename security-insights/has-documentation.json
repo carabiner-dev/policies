@@ -1,11 +1,7 @@
 {
-    "id": "OSPS-DO-01",
+    "id": "SI-HAS-DOCUMENTATION",
     "meta": {
-        "description": "The project documentation MUST provide user guides for all basic functionality",
-        "assert_mode": "AND",
-        "controls": [
-            { "class": "OSPS", "id": "DO-01" }
-        ]
+        "description": "Ensure the detailed-guide field in SI is populated"
     },
     "tenets": [
         {

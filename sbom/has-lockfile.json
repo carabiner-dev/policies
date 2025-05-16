@@ -1,9 +1,7 @@
 {
-    "id": "OSPS-BR-05",
+    "id": "SBOM-LOCKFILE",
     "meta": {
-        "description": "Dependencies, MUST use standardized tooling where available.",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "BR-05" } ]
+        "description": "Checks for a language dependency lockfile among the SBOM files"
     },
     "tenets": [
         {

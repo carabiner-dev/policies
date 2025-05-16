@@ -1,22 +1,9 @@
 {
-    "id": "OSPS-QA-01",
+    "id": "SNAPPY-REPO-PUBLIC-GIT",
     "meta": {
-        "description": "The project's source code and change history MUST be publicly readable at a static URL",
-        "assert_mode": "AND",
-        "controls": [
-            { "class": "OSPS", "id": "QA-01" }
-        ]
+        "description": "The repository is public and uses git as VCS."
     },
     "tenets": [
-        {
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": ["http://github.com/carabiner-dev/snappy/specs/repo.yaml"]
-            },
-            "assessment": {
-                "message": "Found attested repository data"
-            }
-        },
         {
             "id": "01",
             "code": "outputs[\"public\"]",

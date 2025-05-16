@@ -1,9 +1,7 @@
 {
-    "id": "OSPS-QA-05",
+    "id": "SCORECARD-BINARY-ARTIFACTS",
     "meta": {
-        "enforce": "OFF",
-        "description": "The version control system MUST NOT contain generated executable artifacts",
-        "controls": [ { "class": "OSPS", "id": "QA-05" } ]
+        "description": "Checks for binary artifacts in the repository"
     },
     "tenets": [
         {

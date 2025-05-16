@@ -1,11 +1,7 @@
 {
-    "id": "OSPS-GV-03",
+    "id": "SBOM-CONTRIBUTING-MD",
     "meta": {
-        "description": "The project documentation MUST include an explanation of the contribution process.",
-        "enforce": "OFF",
-        "controls": [
-            { "class": "OSPS", "id": "GV-03" }
-        ]
+        "description": "Checks for a CONTRIBUTING.md file in the SBOM"
     },
     "tenets": [
         {

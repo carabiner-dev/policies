@@ -1,9 +1,7 @@
 {
-    "id": "OSPS-QA-06",
+    "id": "TEST-RESULTS-PASS",
     "meta": {
-        "enforce": "OFF",
-        "description": " the project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
-        "controls": [ { "class": "OSPS", "id": "QA-06" } ]
+        "description": " the project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations"
     },
     "tenets": [
         {

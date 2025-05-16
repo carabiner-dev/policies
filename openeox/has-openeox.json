@@ -1,9 +1,7 @@
 {
-    "id": "OSPS-DO-04",
+    "id": "OPENEOX-EXISTS",
     "meta": {
-        "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "DO-04" } ]
+        "description": "Ensures there is an openeox attestation"
     },
     "tenets": [
         {

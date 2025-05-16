@@ -1,10 +1,7 @@
 {
-    "id": "OSPS-LE-03",
+    "id": "SBOM-HAS-LICENSE-FILE",
     "meta": {
-        "description": "Locate a license file in the projects files",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "LE-03" } ],
-        "assert_mode": "OR"
+        "description": "Locate a license file in the project files"
     },
     "tenets": [
         {

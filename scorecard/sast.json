@@ -1,16 +1,14 @@
 {
-    "id": "OSPS-VM-06",
+    "id": "SCORECARD-SAST",
     "meta": {
-        "enforce": "OFF",
-        "description": "Enforce a policy that defines a threshold for remediation of SAST findings.",
-        "controls": [ { "class": "OSPS", "id": "VM-06" } ]
+        "description": "Checks the SAST score in a scorecard attestation",
     },
     "tenets": [
         {
             "id": "01-scorecard",
-            "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+            "code": "outputs.sast.all(c, c.score == 10)",
             "outputs": {
-                "bin_artifacts_checks": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] " }
+                "sast": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] " }
             },
             "predicates": {
                 "types": ["https://scorecard.dev/result/v0.1"]

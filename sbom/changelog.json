@@ -1,10 +1,7 @@
 {
-    "id": "OSPS-BR-04",
+    "id": "SBOM-CHANGELOG",
     "meta": {
-        "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications.",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "BR-04" } ],
-        "assert_mode": "OR"
+        "description": "Checks an SBOM to locate a Changelog in the file lists"
     },
     "tenets": [
         {

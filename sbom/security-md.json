@@ -1,10 +1,7 @@
 {
-    "id": "OSPS-VM-01",
+    "id": "SBOM-SECURITY-MD",
     "meta": {
-        "description": "policy for coordinated vulnerability disclosure",
-        "assert_mode": "AND",
-        "controls": [ { "class": "OSPS", "id": "VM-01" } ],
-        "enforce":"OFF"
+        "description": "Checks an SBOM's files for a SECURITY.md file"
     },
     "tenets": [               
         {

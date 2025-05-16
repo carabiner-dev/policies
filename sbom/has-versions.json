@@ -1,10 +1,7 @@
 {
-    "id": "OSPS-BR-02",
+    "id": "SBOM-HAS-VERSIONS",
     "meta": {
-        "description": "Releases and released software assets MUST be assigned a unique version identifier",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "BR-02" } ],
-        "assert_mode": "OR"
+        "description": "Checks an SBOMs top level components to ensure versions are set"
     },
     "tenets": [
         {

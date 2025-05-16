@@ -1,7 +1,7 @@
 {
     "id": "SI-ROLES",
     "meta": {
-        "description": "Documentation MUST include the roles and responsibilities for members of the project."
+        "description": "Check the security insights file to ensure administrators are set"
     },
     "tenets": [
         {

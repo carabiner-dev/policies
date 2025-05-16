@@ -1,10 +1,7 @@
 {
-    "id": "OSPS-LE-02",
+    "id": "SBOM-LICENSE-IS-OSS",
     "meta": {
-        "description": "All licenses for the project MUST meet the OSI Open Source Definition",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "LE-02" } ],
-        "assert_mode": "OR"
+        "description": "License of the top-level components is OSI/FSF approved"
     },
     "tenets": [
         {

@@ -1,9 +1,7 @@
 {
-    "id": "OSPS-BR-01",
+    "id": "SCORECARD-DANGEROURS-WF",
     "meta": {
-        "enforce": "OFF",
-        "description": "The project's build and release pipelines MUST NOT permit untrusted input",
-        "controls": [ { "class": "OSPS", "id": "BR-01" } ]
+        "description": "The project's build and release pipelines MUST NOT permit untrusted input"
     },
     "tenets": [
         {

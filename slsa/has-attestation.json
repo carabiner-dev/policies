@@ -1,11 +1,7 @@
 {
-    "id": "OSPS-BR-06",
+    "id": "SLSA-HAS-ATTESTATION",
     "meta": {
-        "description": "Release MUST be signed or accounted for in a signed manifest",
-        "assert_mode": "AND",
-        "controls": [
-            { "class": "OSPS", "id": "BR-06" }
-        ]
+        "description": "Checks if a SLSA provenance attestation is available"
     },
     "tenets": [
         {

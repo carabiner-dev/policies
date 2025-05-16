@@ -1,10 +1,7 @@
 {
-    "id": "OSPS-LE-02",
+    "id": "SI-LICENSE-IS-OSS",
     "meta": {
-        "description": "All licenses for the project MUST meet the OSI Open Source Definition",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "LE-02" } ],
-        "assert_mode": "OR"
+        "description": "Licenses in security insights are OSI/FSF approved"
     },
     "tenets": [
         {

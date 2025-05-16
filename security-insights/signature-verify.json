@@ -1,12 +1,7 @@
 {
-    "id": "OSPS-DO-03",
+    "id": "SI-SIGNATURE-VERIFY",
     "meta": {
-        "description": "Instructions to verify the integrity and authenticity of the release assets",
-        "assert_mode": "AND",
-        "enforce": "OFF",
-        "controls": [
-            { "class": "OSPS", "id": "DO-03" }
-        ]
+        "description": "Ensures the security insights file links a signature verification document"
     },
     "tenets": [
         {

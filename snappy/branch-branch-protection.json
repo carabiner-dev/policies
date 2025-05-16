@@ -1,5 +1,5 @@
 {
-    "id": "SNAPPY-BRANCH-BRANCH-PROTECTION",
+    "id": "SNAPPY-BRANCH-PROTECTION",
     "meta": {
         "description": "VCS MUST prevent unintentional modification of the primary branch.",
         "assert_mode": "AND"
