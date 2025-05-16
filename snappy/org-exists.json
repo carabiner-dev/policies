@@ -1,16 +1,14 @@
 {
-    "id": "OSPS-AC-02",
+    "id": "SNAPPY-ORG-EXISTS",
     "meta": {
-        "enforce": "OFF",
-        "description": "VCS MUST restrict collaborator permissions to the lowest available privileges by defaul",
-        "controls": [ { "class": "OSPS", "id": "AC-02" } ]
+        "description": "Attested GitHub organization data available"
     },
     "tenets": [
         {
             "id": "01",
             "predicates": { "types": ["http://github.com/carabiner-dev/snappy/specs/org.yaml"] },
             "code": "true",
-            "assessment": { "message": "GitHub organization found" }
+            "assessment": { "message": "Attested GitHub organization data found" }
         }
     ]
 }

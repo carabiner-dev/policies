@@ -1,10 +1,7 @@
 {
-    "id": "OSPS-GV-01",
+    "id": "SI-ROLES",
     "meta": {
-        "description": "Documentation MUST include the roles and responsibilities for members of the project.",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "GV-01" } ],
-        "assert_mode": "OR"
+        "description": "Documentation MUST include the roles and responsibilities for members of the project."
     },
     "tenets": [
         {

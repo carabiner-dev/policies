@@ -1,10 +1,8 @@
 {
-    "id": "OSPS-AC-03",
+    "id": "SNAPPY-BRANCH-BRANCH-PROTECTION",
     "meta": {
         "description": "VCS MUST prevent unintentional modification of the primary branch.",
-        "assert_mode": "AND",
-        "controls": [ { "class": "OSPS", "id": "AC-03" } ],
-        "enforce": "OFF"
+        "assert_mode": "AND"
     },
     "tenets": [
         {

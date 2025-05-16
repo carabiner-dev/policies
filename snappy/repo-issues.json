@@ -1,11 +1,7 @@
 {
-    "id": "OSPS-GV-02",
+    "id": "SNAPPY-REPO-HAS-ISSUES",
     "meta": {
-        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
-        "assert_mode": "AND",
-        "controls": [
-            { "class": "OSPS", "id": "GV-02" }
-        ]
+        "description": "Checks if a repository has issues enabled"
     },
     "tenets": [
         {
