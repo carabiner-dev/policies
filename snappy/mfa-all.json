@@ -1,17 +1,12 @@
 {
-    "id": "OSPS-AC-01",
+    "id": "SNAPPY-MFA-ALL",
     "meta": {
-        "description": "The project's version control system MUST require multi-factor authentication that does not include SMS ",
-        "assert_mode": "AND",
-        "enforce": "OFF",
-        "controls": [ { "class": "OSPS", "id": "AC-01" } ]
+        "description": "Check that muiltifactor auth is enabled for al members in a GitHub organization",
     },
     "tenets": [
         {
             "code": "outputs.members.all(member, member.hasTwoFactorEnabled) && size(outputs.members) > 0",
-            "predicates": {
-                "types": ["http://github.com/carabiner-dev/snappy/specs/mfa.yaml"]
-            },
+            "predicates": { "types": ["http://github.com/carabiner-dev/snappy/specs/mfa.yaml"] },
             "outputs": {
                 "members": {
                     "code": "has(predicates[0].data.values.data.organization.membersWithRole) ? (has(predicates[0].data.values.data.organization.membersWithRole.edges) ? predicates[0].data.values.data.organization.membersWithRole.edges : []) : []"
