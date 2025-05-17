@@ -1,7 +1,7 @@
 {
     "id": "SCORECARD-SAST",
     "meta": {
-        "description": "Checks the SAST score in a scorecard attestation",
+        "description": "Checks the SAST score in a scorecard attestation"
     },
     "tenets": [
         {
