@@ -9,37 +9,37 @@
     "policies": [
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#snappy/mfa-all.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/mfa-all.json" }
             },
             "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-01" } ] }
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#snappy/org-exists.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/org-exists.json" }
             },
             "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-02" } ] }
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#snappy/branch-branch-protection.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/branch-branch-protection.json" }
             },
             "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-03" } ] }
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#scorecard/token-permissions.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/token-permissions.json" }
             },
             "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-04" } ] }
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/roles.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/roles.json" }
             },
             "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-GV-01" } ] }
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#snappy/repo-issues.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/repo-issues.json" }
             },
             "meta": {
                 "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
@@ -48,7 +48,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/contributing-md.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/contributing-md.json" }
             },
             "meta": {
                 "description": "The project documentation MUST include an explanation of the contribution process.",
@@ -76,7 +76,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/license-is-oss.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/license-is-oss.json" }
             },
             "meta": {
                 "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition",
@@ -85,7 +85,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/license-file.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/license-file.json" }
             },
             "meta": {
                 "description": "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
@@ -94,7 +94,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#snappy/repo-public-git.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/repo-public-git.json" }
             },
             "meta": {
                 "description": "The project's source code and change history MUST be publicly readable at a static URL",
@@ -103,7 +103,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/has-sbom.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-sbom.json" }
             },
             "meta": {
                 "description": "The project MUST provide a list of dependencies used in the software",
@@ -112,7 +112,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/has-sbom.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-sbom.json" }
             },
             "meta": {
                 "description": "Automated status checks for commits MUST pass or be manually bypassed.",
@@ -121,7 +121,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/has-subprojects.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-subprojects.json" }
             },
             "meta": {
                 "description": "subproject code repositories MUST enforce the same security requirements",
@@ -130,7 +130,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#scorecard/binary-artifacts.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/binary-artifacts.json" }
             },
             "meta": {
                 "description": "The version control system MUST NOT contain generated executable artifacts",
@@ -139,7 +139,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#test-results/tests-pass.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#test-results/tests-pass.json" }
             },
             "meta": {
                 "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
@@ -148,7 +148,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#scorecard/code-review.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/code-review.json" }
             },
             "meta": {
                 "description": "VCS MUST require at least one non-author approval of changes to the primary branch",
@@ -195,7 +195,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/assessments.json:" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/assessments.json" }
             },
             "meta": {
                 "description": "The project MUST assess the security posture of all software assets",
@@ -204,7 +204,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#scorecard/dangerous-workflow.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/dangerous-workflow.json" }
             },
             "meta": {
                 "description": "The project's build and release pipelines MUST NOT permit untrusted input",
@@ -213,7 +213,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/has-versions.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-versions.json" }
             },
             "meta": {
                 "description": "Releases and released software assets MUST be assigned a unique version identifier",
@@ -222,7 +222,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/changelog.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/changelog.json" }
             },
             "meta": {
                 "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
@@ -231,7 +231,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/has-lockfile.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-lockfile.json" }
             },
             "meta": {
                 "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time",
@@ -240,7 +240,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#slsa/has-attestation.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#slsa/has-attestation.json" }
             },
             "meta": {
                 "description": "Release MUST be signed or accounted for in a signed manifest",
@@ -249,7 +249,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/has-documentation.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-documentation.json" }
             },
             "meta": {
                 "description": "The project documentation MUST provide user guides for all basic functionality",
@@ -258,7 +258,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/vulnerability-reporting.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/vulnerability-reporting.json" }
             },
             "meta": {
                 "description": "The project MUST provide a mechanism for reporting defects",
@@ -267,7 +267,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/signature-verify.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/signature-verify.json" }
             },
             "meta": {
                 "description": "Instructions to verify the integrity and authenticity of the release assets",
@@ -276,7 +276,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#openeox/has-openeox.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
             },
             "meta": {
                 "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
@@ -285,7 +285,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#openeox/has-openeox.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
             },
             "meta": {
                 "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
@@ -294,7 +294,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/dependency-policy.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/dependency-policy.json" }
             },
             "meta": {
                 "description": "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
@@ -303,7 +303,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#sbom/security-md.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/security-md.json" }
             },
             "meta": {
                 "description": "Policy for coordinated vulnerability disclosure",
@@ -312,7 +312,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#security-insights/vulnerability-reporting-contact.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/vulnerability-reporting-contact.json" }
             },
             "meta": {
                 "description": "The project MUST publish contacts and process for reporting vulnerabilities",
@@ -321,7 +321,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#openvex/project-is-vexing.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openvex/project-is-vexing.json" }
             },
             "meta": {
                 "description": "The project MUST publicly publish data about discovered vulnerabilities",
@@ -330,7 +330,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#openvex/no-exploitable-vulns-osv.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@b35570d519bbb7f58fb04d5d3b10f093bc9fd649#openvex/no-exploitable-vulns-osv.json" }
             },
             "meta": {
                 "description": "Ensure the project has no exploitable vulnerabilities",
@@ -339,7 +339,7 @@
         },
         {
             "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@643a62238295ff4d3a62344d92e5dade595296ee#scorecard/sast.json" }
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies@b35570d519bbb7f58fb04d5d3b10f093bc9fd649#scorecard/sast.json" }
             },
             "meta": {
                 "description": "Enforce a policy that defines a threshold for remediation of SAST findings",
