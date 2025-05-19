@@ -1,9 +1,8 @@
 {
     "id": "OSPS",
-    "meta": {},
-    "common": {
-        "references": [
-            
+    "meta": {
+        "frameworks": [
+            { "id": "OSPS", "name": "OSPS Security Baseline" }
         ]
     },
     "policies": [
@@ -11,31 +10,31 @@
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/mfa-all.json" }
             },
-            "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-01" } ] }
+            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "01" } ] }
         },
         {
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/org-exists.json" }
             },
-            "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-02" } ] }
+            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "02" } ] }
         },
         {
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/branch-branch-protection.json" }
             },
-            "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-03" } ] }
+            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "03" } ] }
         },
         {
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/token-permissions.json" }
             },
-            "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-AC-04" } ] }
+            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "04" } ] }
         },
         {
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/roles.json" }
             },
-            "meta": { "controls": [ { "class": "OSPS", "id": "OSPS-GV-01" } ] }
+            "meta": { "controls": [ { "framework": "OSPS", "class": "GV", "id": "01" } ] }
         },
         {
             "source": {
@@ -43,7 +42,7 @@
             },
             "meta": {
                 "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
-                "controls": [ { "class": "OSPS", "id": "OSPS-GV-02" } ]
+                "controls": [ { "framework": "OSPS", "class": "GV", "id": "02" } ]
             }
         },
         {
@@ -52,7 +51,7 @@
             },
             "meta": {
                 "description": "The project documentation MUST include an explanation of the contribution process.",
-                "controls": [ { "class": "OSPS", "id": "OSPS-GV-03" } ]
+                "controls": [ { "framework": "OSPS", "class": "GV", "id": "03" } ]
             }
         },
         {
@@ -60,7 +59,7 @@
             "meta": {
                 "enforce": "OFF",
                 "description": "Policy that code contributors are reviewed prior to granting escalated permissions",
-                "controls": [ { "class": "OSPS", "id": "OSPS-GV-04" } ]
+                "controls": [ { "framework": "OSPS", "class": "GV", "id": "04" } ]
             },
             "tenets": [
                 {
@@ -80,7 +79,7 @@
             },
             "meta": {
                 "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition",
-                "controls": [ { "class": "OSPS", "id": "OSPS-LE-02" } ]
+                "controls": [ { "framework": "OSPS", "class": "LE", "id": "02" } ]
             }
         },
         {
@@ -89,7 +88,7 @@
             },
             "meta": {
                 "description": "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
-                "controls": [ { "class": "OSPS", "id": "OSPS-LE-03" } ]
+                "controls": [ { "framework": "OSPS", "class": "LE", "id": "03" } ]
             }
         },
         {
@@ -98,7 +97,7 @@
             },
             "meta": {
                 "description": "The project's source code and change history MUST be publicly readable at a static URL",
-                "controls": [ { "class": "OSPS", "id": "OSPS-QA-01" } ]
+                "controls": [ { "framework": "OSPS", "class": "QA", "id": "01" } ]
             }
         },
         {
@@ -107,7 +106,7 @@
             },
             "meta": {
                 "description": "The project MUST provide a list of dependencies used in the software",
-                "controls": [ { "class": "OSPS", "id": "OSPS-QA-02" } ]
+                "controls": [ { "framework": "OSPS", "class": "QA", "id": "02" } ]
             }
         },
         {
@@ -116,7 +115,7 @@
             },
             "meta": {
                 "description": "Automated status checks for commits MUST pass or be manually bypassed.",
-                "controls": [ { "class": "OSPS", "id": "OSPS-QA-03" } ]
+                "controls": [ { "framework": "OSPS", "class": "QA", "id": "03" } ]
             }
         },
         {
@@ -125,7 +124,7 @@
             },
             "meta": {
                 "description": "subproject code repositories MUST enforce the same security requirements",
-                "controls": [ { "class": "OSPS", "id": "OSPS-QA-04" } ]
+                "controls": [ { "framework": "OSPS", "class": "QA", "id": "04" } ]
             }
         },
         {
@@ -134,7 +133,7 @@
             },
             "meta": {
                 "description": "The version control system MUST NOT contain generated executable artifacts",
-                "controls": [ { "class": "OSPS", "id": "OSPS-QA-05" } ]
+                "controls": [ { "framework": "OSPS", "class": "QA", "id": "05" } ]
             }
         },
         {
@@ -143,7 +142,7 @@
             },
             "meta": {
                 "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
-                "controls": [ { "class": "OSPS", "id": "OSPS-QA-06" } ]
+                "controls": [ { "framework": "OSPS", "class": "QA", "id": "06" } ]
             }
         },
         {
@@ -152,7 +151,7 @@
             },
             "meta": {
                 "description": "VCS MUST require at least one non-author approval of changes to the primary branch",
-                "controls": [ { "class": "OSPS", "id": "OSPS-QA-07" } ]
+                "controls": [ { "framework": "OSPS", "class": "QA", "id": "07" } ]
             }
         },
         {
@@ -160,7 +159,7 @@
             "meta": {
                 "enforce": "OFF",
                 "description": "design documentation demonstrating all actions and actors within the system",
-                "controls": [ { "class": "OSPS", "id": "SA-01" } ]
+                "controls": [ { "framework": "OSPS", "class": "SA", "id": "01" } ]
             },
             "tenets": [
                 {
@@ -179,7 +178,7 @@
             "meta": {
                 "enforce": "OFF",
                 "description": "descriptions of all external software interfaces",
-                "controls": [ { "class": "OSPS", "id": "SA-02" } ]
+                "controls": [ { "framework": "OSPS", "class": "SA", "id": "02" } ]
             },
             "tenets": [
                 {
@@ -199,7 +198,7 @@
             },
             "meta": {
                 "description": "The project MUST assess the security posture of all software assets",
-                "controls": [ { "class": "OSPS", "id": "OSPS-SA-03" } ]
+                "controls": [ { "framework": "OSPS", "class": "SA", "id": "03" } ]
             }
         },
         {
@@ -208,7 +207,7 @@
             },
             "meta": {
                 "description": "The project's build and release pipelines MUST NOT permit untrusted input",
-                "controls": [ { "class": "OSPS", "id": "OSPS-BR-01" } ]
+                "controls": [ { "framework": "OSPS", "class": "BR", "id": "01" } ]
             }
         },
         {
@@ -217,7 +216,7 @@
             },
             "meta": {
                 "description": "Releases and released software assets MUST be assigned a unique version identifier",
-                "controls": [ { "class": "OSPS", "id": "OSPS-BR-02" } ]
+                "controls": [ { "framework": "OSPS", "class": "BR", "id": "02" } ]
             }
         },
         {
@@ -226,7 +225,7 @@
             },
             "meta": {
                 "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
-                "controls": [ { "class": "OSPS", "id": "OSPS-BR-04" } ]
+                "controls": [ { "framework": "OSPS", "class": "BR", "id": "04" } ]
             }
         },
         {
@@ -235,7 +234,7 @@
             },
             "meta": {
                 "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time",
-                "controls": [ { "class": "OSPS", "id": "OSPS-BR-05" } ]
+                "controls": [ { "framework": "OSPS", "class": "BR", "id": "05" } ]
             }
         },
         {
@@ -244,7 +243,7 @@
             },
             "meta": {
                 "description": "Release MUST be signed or accounted for in a signed manifest",
-                "controls": [ { "class": "OSPS", "id": "OSPS-BR-06" } ]
+                "controls": [ { "framework": "OSPS", "class": "BR", "id": "06" } ]
             }
         },
         {
@@ -253,7 +252,7 @@
             },
             "meta": {
                 "description": "The project documentation MUST provide user guides for all basic functionality",
-                "controls": [ { "class": "OSPS", "id": "OSPS-DO-01" } ]
+                "controls": [ { "framework": "OSPS", "class": "DO", "id": "01" } ]
             }
         },
         {
@@ -262,7 +261,7 @@
             },
             "meta": {
                 "description": "The project MUST provide a mechanism for reporting defects",
-                "controls": [ { "class": "OSPS", "id": "OSPS-DO-02" } ]
+                "controls": [ { "framework": "OSPS", "class": "DO", "id": "02" } ]
             }
         },
         {
@@ -271,7 +270,7 @@
             },
             "meta": {
                 "description": "Instructions to verify the integrity and authenticity of the release assets",
-                "controls": [ { "class": "OSPS", "id": "OSPS-DO-03" } ]
+                "controls": [ { "framework": "OSPS", "class": "DO", "id": "03" } ]
             }
         },
         {
@@ -280,7 +279,7 @@
             },
             "meta": {
                 "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
-                "controls": [ { "class": "OSPS", "id": "OSPS-DO-04" } ]
+                "controls": [ { "framework": "OSPS", "class": "DO", "id": "04" } ]
             }
         },
         {
@@ -289,7 +288,7 @@
             },
             "meta": {
                 "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
-                "controls": [ { "class": "OSPS", "id": "OSPS-DO-05" } ]
+                "controls": [ { "framework": "OSPS", "class": "DO", "id": "05" } ]
             }
         },
         {
@@ -298,7 +297,7 @@
             },
             "meta": {
                 "description": "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
-                "controls": [ { "class": "OSPS", "id": "OSPS-DO-06" } ]
+                "controls": [ { "framework": "OSPS", "class": "DO", "id": "06" } ]
             }
         },
         {
@@ -307,7 +306,7 @@
             },
             "meta": {
                 "description": "Policy for coordinated vulnerability disclosure",
-                "controls": [ { "class": "OSPS", "id": "OSPS-VM-01" } ]
+                "controls": [ { "framework": "OSPS", "class": "VM", "id": "01" } ]
             }
         },
         {
@@ -316,7 +315,7 @@
             },
             "meta": {
                 "description": "The project MUST publish contacts and process for reporting vulnerabilities",
-                "controls": [ { "class": "OSPS", "id": "OSPS-VM-02" } ]
+                "controls": [ { "framework": "OSPS", "class": "VM", "id": "02" } ]
             }
         },
         {
@@ -325,7 +324,7 @@
             },
             "meta": {
                 "description": "The project MUST publicly publish data about discovered vulnerabilities",
-                "controls": [ { "class": "OSPS", "id": "OSPS-VM-04" } ]
+                "controls": [ { "framework": "OSPS", "class": "VM", "id": "04" } ]
             }
         },
         {
@@ -334,7 +333,7 @@
             },
             "meta": {
                 "description": "Ensure the project has no exploitable vulnerabilities",
-                "controls": [ { "class": "OSPS", "id": "OSPS-VM-05" } ]
+                "controls": [ { "framework": "OSPS", "class": "VM", "id": "05" } ]
             }
         },
         {
@@ -343,7 +342,7 @@
             },
             "meta": {
                 "description": "Enforce a policy that defines a threshold for remediation of SAST findings",
-                "controls": [ { "class": "OSPS", "id": "OSPS-VM-06" } ]
+                "controls": [ { "framework": "OSPS", "class": "VM", "id": "VM-06" } ]
             }
         }
     ]
