@@ -7,36 +7,42 @@
     },
     "policies": [
         {
+            "id": "OSPS-AC-01",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/mfa-all.json" }
             },
             "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "01" } ] }
         },
         {
+            "id": "OSPS-AC-02",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/org-exists.json" }
             },
             "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "02" } ] }
         },
         {
+            "id": "OSPS-AC-03",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/branch-branch-protection.json" }
             },
             "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "03" } ] }
         },
         {
+            "id": "OSPS-AC-04",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/token-permissions.json" }
             },
             "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "04" } ] }
         },
         {
+            "id": "OSPS-GV-01",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/roles.json" }
             },
             "meta": { "controls": [ { "framework": "OSPS", "class": "GV", "id": "01" } ] }
         },
         {
+            "id": "OSPS-GV-02",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/repo-issues.json" }
             },
@@ -46,6 +52,7 @@
             }
         },
         {
+            "id": "OSPS-GV-03",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/contributing-md.json" }
             },
@@ -74,6 +81,7 @@
             ]
         },
         {
+            "id": "OSPS-LE-02",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/license-is-oss.json" }
             },
@@ -83,6 +91,7 @@
             }
         },
         {
+            "id": "OSPS-LE-03",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/license-file.json" }
             },
@@ -92,6 +101,7 @@
             }
         },
         {
+            "id": "OSPS-QA-01",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/repo-public-git.json" }
             },
@@ -101,6 +111,7 @@
             }
         },
         {
+            "id": "OSPS-QA-02",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-sbom.json" }
             },
@@ -110,6 +121,7 @@
             }
         },
         {
+            "id": "OSPS-QA-03",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-sbom.json" }
             },
@@ -119,6 +131,7 @@
             }
         },
         {
+            "id": "OSPS-QA-04",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-subprojects.json" }
             },
@@ -128,6 +141,7 @@
             }
         },
         {
+            "id": "OSPS-QA-05",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/binary-artifacts.json" }
             },
@@ -137,6 +151,7 @@
             }
         },
         {
+            "id": "OSPS-QA-06",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#test-results/tests-pass.json" }
             },
@@ -146,6 +161,7 @@
             }
         },
         {
+            "id": "OSPS-QA-07",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/code-review.json" }
             },
@@ -203,6 +219,7 @@
             }
         },
         {
+            "id": "OSPS-BR-01",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/dangerous-workflow.json" }
             },
@@ -212,6 +229,7 @@
             }
         },
         {
+            "id": "OSPS-BR-02",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-versions.json" }
             },
@@ -221,6 +239,7 @@
             }
         },
         {
+            "id": "OSPS-BR-04",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/changelog.json" }
             },
@@ -230,6 +249,7 @@
             }
         },
         {
+            "id": "OSPS-BR-05",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-lockfile.json" }
             },
@@ -239,6 +259,7 @@
             }
         },
         {
+            "id": "OSPS-BR-06",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#slsa/has-attestation.json" }
             },
@@ -248,6 +269,7 @@
             }
         },
         {
+            "id": "OSPS-DO-01",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-documentation.json" }
             },
@@ -257,6 +279,7 @@
             }
         },
         {
+            "id": "OSPS-DO-02",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/vulnerability-reporting.json" }
             },
@@ -266,6 +289,7 @@
             }
         },
         {
+            "id": "OSPS-DO-03",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/signature-verify.json" }
             },
@@ -275,6 +299,7 @@
             }
         },
         {
+            "id": "OSPS-DO-04",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
             },
@@ -284,6 +309,7 @@
             }
         },
         {
+            "id": "OSPS-DO-05",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
             },
@@ -293,6 +319,7 @@
             }
         },
         {
+            "id": "OSPS-DO-06",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/dependency-policy.json" }
             },
@@ -302,6 +329,7 @@
             }
         },
         {
+            "id": "OSPS-VM-01",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/security-md.json" }
             },
@@ -311,6 +339,7 @@
             }
         },
         {
+            "id": "OSPS-VM-02",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/vulnerability-reporting-contact.json" }
             },
@@ -320,6 +349,7 @@
             }
         },
         {
+            "id": "OSPS-VM-04",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openvex/project-is-vexing.json" }
             },
@@ -329,6 +359,7 @@
             }
         },
         {
+            "id": "OSPS-VM-05",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@b35570d519bbb7f58fb04d5d3b10f093bc9fd649#openvex/no-exploitable-vulns-osv.json" }
             },
@@ -338,6 +369,7 @@
             }
         },
         {
+            "id": "OSPS-VM-06",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies@b35570d519bbb7f58fb04d5d3b10f093bc9fd649#scorecard/sast.json" }
             },
