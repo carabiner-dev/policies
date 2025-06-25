@@ -1,0 +1,139 @@
+{
+    "id": "NIST-SBOM-ME",
+    "meta": {
+        "description": "Ensure a Software Bill of Materials meets the The Minimum Elements For a Software Bill of Materials as defined by NIST"
+    },
+    "policies": [
+        {
+            "id": "NIST-ME-AUTHOR",
+            "meta": {
+                "description": "Author of the SBOM data"
+            },
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "tenets": [
+                {
+                    "outputs": {
+                        "authors": { "code": "size(sboms) > 0 ? sboms[0].get_authors() : []" } 
+                    },
+                    "code": "size(outputs.authors) > 0",
+                    "assessment": { "message": "SBOM author defined" },
+                    "error": {
+                        "message": "SBOM document has no authors defined",
+                        "guidance": "Ensure the document has author information set in its metadata"
+                    }
+                }
+            ]            
+        },
+        {
+            "id": "NIST-ME-TIMESTAMP",
+            "meta": {
+                "description": "Timestamp of the SBOM"
+            },
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "tenets": [
+                {
+                    "outputs": {
+                        "date": { "code": "size(sboms) > 0 ? sboms[0].get_metadata().date : null" } 
+                    },
+                    "code": "int(outputs.date) > 0",
+                    "assessment": { "message": "SBOM contains a timestamp" }
+                }
+            ]            
+        },
+        {
+            "id": "NIST-ME-SUPPLIER",
+            "meta": {
+                "description": "Supplier"
+            },
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "tenets": [
+                {
+                    "outputs": {
+                        "suppliers": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)" } 
+                    },
+                    "code": "outputs.suppliers.all(s, size(s) > 0)",
+                    "assessment": {  "message": "All top level components have supplier info" }
+                }
+            ]            
+        },
+        {
+            "id": "NIST-ME-VERSION",
+            "meta": {
+                "description": "Version of the component"
+            },
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "tenets": [
+                {
+                    "outputs": {
+                        "versions": { "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)" } 
+                    },
+                    "code": "outputs.versions.all(s, s != \"\")",
+                    "assessment": {  "message": "All top level components have versions" }
+                }
+            ]            
+        },
+        {
+            "id": "NIST-ME-IDENTIFIERS",
+            "meta": {
+                "description": "Software identifiers"
+            },
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "tenets": [
+                {
+                    "outputs": {
+                        "identifiers": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)" } 
+                    },
+                    "code": "outputs.identifiers.all(s, size(s) > 0)",
+                    "assessment": {  "message": "Top level components have software identifiers" }
+                }
+            ]            
+        },
+        {
+            "id": "NIST-ME-NAME",
+            "meta": {
+                "description": "Top level component names"
+            },
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "tenets": [
+                {
+                    "outputs": {
+                        "names": { "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.name)" } 
+                    },
+                    "code": "outputs.names.all(s, s != \"\")",
+                    "assessment": {  "message": "Top level components have their name set" }
+                }
+            ]            
+        },
+        {
+            "id": "NIST-ME-RELATONSHIPS",
+            "meta": {
+                "enforce": "OFF",
+                "description": "Dependency relationships"
+            },
+            "predicates": {
+                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+            },
+            "tenets": [
+                {
+                    "outputs": {
+                        "descendants": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))" } 
+                    },
+                    "code": "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
+                    "assessment": {  "message": "All top level components have depedency relationships" }
+                }
+            ]            
+        }
+    ]
+}
