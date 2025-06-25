@@ -1,0 +1,17 @@
+{
+    "id": "SLSA-SRC-GHORG",
+    "meta": {
+        "description": "Evaluates if athe repository is hosted in GitHub"
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "predicates": { "types": ["https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"] },
+            "outputs": {
+                "org": { "code":"github.orgDescriptorFromURI(predicate.data.repo_uri)" }
+            },
+            "code": "outputs.org.name.indexOf('github.com') == 0 ",
+            "assessment": { "message": "GitHub organization found in SLSA provenance" }
+        }
+    ]
+}

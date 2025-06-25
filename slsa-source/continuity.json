@@ -1,0 +1,17 @@
+{
+    "id": "SLSA-SRC-CONTINUITY",
+    "meta": {
+        "description": "Evaluates if the repository has CONTINUITY_ENFORCED"
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "predicates": { "types": ["https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"] },
+            "outputs": {
+                "controls": { "code":"predicates[0].data.controls.map(c, c.name)" }
+            },
+            "code": "outputs.controls.one(c, c == 'CONTINUITY_ENFORCED')",
+            "assessment": { "message": "Repository has continous enforcement of branch protection" }
+        }
+    ]
+}

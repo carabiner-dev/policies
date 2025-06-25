@@ -1,0 +1,17 @@
+{
+    "id": "SLSA-SRC-REVIEW",
+    "meta": {
+        "description": "Evaluates if the repository requires code review"
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "predicates": { "types": ["https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"] },
+            "outputs": {
+                "controls": { "code":"predicates[0].data.controls.map(c, c.name)" }
+            },
+            "code": "outputs.controls.one(c, c == 'REVIEW_ENFORCED')",
+            "assessment": { "message": "Repository enforces code review" }
+        }
+    ]
+}

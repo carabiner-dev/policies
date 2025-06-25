@@ -1,0 +1,18 @@
+{
+    "id": "SLSA-SRC-LEVEL-3",
+    "meta": {
+        "description": "Checks for SLSA_SOURCE Level 3 compliance in a VSA"
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "predicates": { "types": ["https://slsa.dev/verification_summary/v1"] },
+            "outputs": {
+                "pass": { "code": "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false" },
+                "levels": { "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] " }
+            },
+            "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_SOURCE_LEVEL_3' || v == 'SLSA_SOURCE_LEVEL_4') )",
+            "assessment": { "message": "VSA attesting SLSA_SOURCE L3 compliance checks" }
+        }
+    ]
+}
