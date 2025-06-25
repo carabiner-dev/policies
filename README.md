@@ -22,3 +22,9 @@ and formats:
 - [test-results](test-results): In-toto test results predicate
 - [VSA](slsa): Verification Suymmary Attestation
 
+Additionally we are also in the process of creating a community driven
+collection of policy sets, modeling popular frameworks and best practices. Here
+are some early examples:
+
+- [OSPS Baseline](sets/baseline): OpenSSF's Open Source Porject Security Baseline
+- [NTIA Minimum Elements]: NTIA's Minium Elements for Software Bill of Materials
