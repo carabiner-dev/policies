@@ -4,8 +4,8 @@
         "description": "Ensures an artifact was built by a builder with a specific ID"
     },
     "context": {
-        "builderId" : {
-            
+        "builderid" : {
+            "required": true,
             "type": "string"
         }
     },
@@ -13,11 +13,11 @@
         {
             "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
             "outputs": {
-                "builderId": {
+                "builderid": {
                     "code": "has(predicates[0].data.runDetails) ? (has(predicates[0].data.runDetails.builder) ? predicates[0].data.runDetails.builder.id : '' ) : '' "
                 }
             },
-            "code": "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')",
+            "code": "outputs.builderid == context.builderid || outputs.builderId.startsWith(context.builderid + '@')",
             "assessment": { "message": "Authorized builder ID detected" },
             "error": {
                 "message": "Builder identifier mismatch",
