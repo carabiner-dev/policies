@@ -1,0 +1,18 @@
+{
+    "id": "PROTOBOM-SBOM-VERSIONS",
+    "meta": {
+        "description": "Top level elements of the SBOM have version information set"
+    },
+    "predicates": {
+        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+    },
+    "tenets": [
+        {
+            "outputs": {
+                "versions": { "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)" } 
+            },
+            "code": "outputs.versions.all(s, s != \"\")",
+            "assessment": { "message": "All top level components have versions" }
+        }
+    ]            
+}

@@ -1,0 +1,18 @@
+{
+    "id": "PROTOBOM-TIMESTAMP",
+    "meta": {
+        "description": "SBOM has a timestamp"
+    },
+    "predicates": {
+        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+    },
+    "tenets": [
+        {
+            "outputs": {
+                "date": { "code": "size(sboms) > 0 ? sboms[0].get_metadata().date : null" } 
+            },
+            "code": "int(outputs.date) > 0",
+            "assessment": { "message": "SBOM contains a timestamp" }
+        }
+    ]            
+}

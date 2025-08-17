@@ -1,0 +1,18 @@
+{
+    "id": "PROTOBOM-IDENTIFIERS",
+    "meta": {
+        "description": "Software identifiers"
+    },
+    "predicates": {
+        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+    },
+    "tenets": [
+        {
+            "outputs": {
+                "identifiers": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)" } 
+            },
+            "code": "outputs.identifiers.all(s, size(s) > 0)",
+            "assessment": {  "message": "Top level components have software identifiers" }
+        }
+    ]            
+}

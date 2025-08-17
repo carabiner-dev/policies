@@ -1,0 +1,18 @@
+{
+    "id": "PROTOBOM-NAME",
+    "meta": {
+        "description": "Top level component names"
+    },
+    "predicates": {
+        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+    },
+    "tenets": [
+        {
+            "outputs": {
+                "names": { "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.name)" } 
+            },
+            "code": "outputs.names.all(s, s != \"\")",
+            "assessment": {  "message": "Top level components have their name set" }
+        }
+    ]            
+}

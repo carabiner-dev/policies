@@ -1,0 +1,18 @@
+{
+    "id": "PROTOBOM-SUPPLIERS",
+    "meta": {
+        "description": "SBOM top level elements have suppliers set"
+    },
+    "predicates": {
+        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+    },
+    "tenets": [
+        {
+            "outputs": {
+                "suppliers": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)" } 
+            },
+            "code": "outputs.suppliers.all(s, size(s) > 0)",
+            "assessment": {  "message": "All top level components have supplier info" }
+        }
+    ]            
+}

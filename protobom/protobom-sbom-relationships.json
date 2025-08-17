@@ -1,0 +1,19 @@
+{
+    "id": "PROTOBOM-RELATONSHIPS",
+    "meta": {
+        "enforce": "OFF",
+        "description": "Dependency relationships"
+    },
+    "predicates": {
+        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+    },
+    "tenets": [
+        {
+            "outputs": {
+                "descendants": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))" } 
+            },
+            "code": "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
+            "assessment": {  "message": "All top level components have depedency relationships" }
+        }
+    ]
+}

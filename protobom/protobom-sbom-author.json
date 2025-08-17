@@ -1,0 +1,18 @@
+{
+  "id": "PROTOBOM-AUTHOR",
+  "meta": {
+      "description": "SBOM has author data"
+  },
+  "predicates": {
+      "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+  },
+  "tenets": [
+      {
+          "outputs": {
+              "authors": { "code": "size(sboms) > 0 ? sboms[0].get_authors() : []" } 
+          },
+          "code": "size(outputs.authors) > 0",
+          "assessment": {  "message": "SBOM author defined" }
+      }
+  ]            
+}
