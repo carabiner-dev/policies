@@ -21,7 +21,7 @@
             "assessment": { "message": "Authorized builder ID detected" },
             "error": {
                 "message": "Builder identifier mismatch",
-                "guidance": "The attestation builder does not match the context defined builder"
+                "guidance": "The attestation builder does not match the context defined builder (want {{ .Context.builderId }} got {{ .Outputs.builderId }})"
             }
         }
     ]
