@@ -1,7 +1,7 @@
 {
     "id": "slsa-build-2",
     "meta": {
-        "description": "verifies an artifact to check if it was build in a SLSA_BUILD_2 build system",
+        "description": "verifies an artifact to check if it was built in a SLSA_BUILD_2 build system",
         "frameworks": [
             {
                 "id": "SLSA",
