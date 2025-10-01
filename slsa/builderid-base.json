@@ -1,7 +1,7 @@
 {
     "id": "SLSA-BUILDER-BASE",
     "meta": {
-        "description": "Ensures an artifact was built by a builder with a specific ID"
+        "description": "(This policy is deprecated, use slsa/slsa-builder-id.json instead)"
     },
     "context": {
         "builderId" : {

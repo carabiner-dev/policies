@@ -1,5 +1,5 @@
 {
-    "id": "SLSA-HAS-ATTESTATION",
+    "id": "slsa-has-attestation",
     "meta": {
         "description": "Checks if a SLSA provenance attestation is available"
     },
@@ -8,7 +8,7 @@
             "id": "slsa",
             "code": "size(predicates) > 0",
             "predicates": {
-                "types": ["https://slsa.dev/provenance/v0.2"]
+                "types": ["https://slsa.dev/provenance/v0.2", "https://slsa.dev/provenance/v1"]
             },
             "error": {
                 "message": "No SLSA attestation found",
@@ -19,5 +19,5 @@
 
             }
         }
-    ]            
+    ]
 }
