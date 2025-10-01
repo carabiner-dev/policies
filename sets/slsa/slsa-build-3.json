@@ -1,0 +1,35 @@
+{
+    "id": "slsa-build-3",
+    "meta": {
+        "description": "Verifies an artifact to check if it was build in a SLSA_BUILD_3 build system",
+        "frameworks": [
+            {
+                "id": "SLSA",
+                "name": "Supply-Chain Levels for Software Artifacts"
+            }
+        ]
+    },
+    "policies": [
+        {
+            "id": "slsa-builder-id",
+            "source": {
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json" }
+            },
+            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "3" } ] }
+        },
+        {
+            "id": "slsa-build-type",
+            "source": {
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json" }
+            },
+            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "3" } ] }
+        },
+        {
+            "id": "slsa-build-point",
+            "source": {
+                "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json" }
+            },
+            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "3" } ] }
+        }
+    ]
+}
