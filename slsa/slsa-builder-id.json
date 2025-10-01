@@ -6,8 +6,7 @@
     "context": {
         "builderId" : {
             "required": true,
-            "type": "string",
-            "decription": "Versioned URI identifier of a build system. If non-versioned, it will match any version of the same family"
+            "type": "string"
         }
     },
     "tenets": [

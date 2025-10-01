@@ -6,14 +6,12 @@
     "context": {
         "buildPoint" : {
             "required": true,
-            "type": "string",
-            "description": "VCS locator of the repo + commit of the primary code base from where the build ran"
+            "type": "string"
         },
         "buildPointAllowRepo" : {
             "required": false,
             "type": "bool",
-            "default": true,
-            "description": "When true, allows the build point to be only the repository VCS locator (without commit)"
+            "default": true
         }
     },
     "tenets": [

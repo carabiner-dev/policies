@@ -6,8 +6,7 @@
     "context": {
         "buildPoint" : {
             "required": true,
-            "type": "string",
-            "description": "Build identifier URI, versioned with @. When unversioned will match any version of the same id"
+            "type": "string"
         }
     },
     "tenets": [
