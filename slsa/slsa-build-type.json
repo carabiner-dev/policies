@@ -4,7 +4,7 @@
         "description": "Ensures an artifact was built from a specified repository and commit"
     },
     "context": {
-        "buildPoint" : {
+        "buildType" : {
             "required": true,
             "type": "string"
         }
