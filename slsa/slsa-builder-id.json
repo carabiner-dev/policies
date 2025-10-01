@@ -1,0 +1,29 @@
+{
+    "id": "slsa-builder-id",
+    "meta": {
+        "description": "Ensures an artifact was built by a specific builder"
+    },
+    "context": {
+        "builderId" : {
+            "required": true,
+            "type": "string",
+            "decription": "Versioned URI identifier of a build system. If non-versioned, it will match any version of the same family"
+        }
+    },
+    "tenets": [
+        {
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "outputs": {
+                "builderId": {
+                    "code": "has(predicates[0].data.runDetails) ? (has(predicates[0].data.runDetails.builder) ? predicates[0].data.runDetails.builder.id : '' ) : '' "
+                }
+            },
+            "code": "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')",
+            "assessment": { "message": "Authorized builder ID detected" },
+            "error": {
+                "message": "Builder identifier mismatch",
+                "guidance": "The attestation builder does not match the context defined builder"
+            }
+        }
+    ]
+}

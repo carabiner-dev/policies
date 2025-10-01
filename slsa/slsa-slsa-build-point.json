@@ -1,0 +1,38 @@
+{
+    "id": "slsa-build-point",
+    "meta": {
+        "description": "Ensures an artifact was built from a specific repository and commit"
+    },
+    "context": {
+        "buildPoint" : {
+            "required": true,
+            "type": "string",
+            "description": "VCS locator of the repo + commit of the primary code base from where the build ran"
+        },
+        "buildPointAllowRepo" : {
+            "required": false,
+            "type": "bool",
+            "default": true,
+            "description": "When true, allows the build point to be only the repository VCS locator (without commit)"
+        }
+    },
+    "tenets": [
+        {
+            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
+            "outputs": {
+                "externalParamSource": {
+                    "code": "has(predicates[0].data.buildDefinition) ? (has(predicates[0].data.buildDefinition.externalParameters) ? ('source' in predicates[0].data.buildDefinition.externalParameters ? predicates[0].data.buildDefinition.externalParameters['source'] : '') : '' ) : '' "
+                },
+                "foundInResolvedDependencies": {
+                    "code": "has(predicate.data.buildDefinition) ? ( has(predicate.data.buildDefinition.resolvedDependencies) ? ( size(predicate.data.buildDefinition.resolvedDependencies.filter(dep, has(dep.uri) && (dep.uri == context.buildPoint || (dep.uri.startsWith(context.buildPoint + '@') && context.buildPointAllowRepo ) ) )) > 0 ) : false) : false"
+                }
+            },
+            "code": "(outputs.externalParamSource == context.buildPoint || (outputs.externalParamSource.startsWith(context.buildPoint + '@') && context.buildPointAllowRepo) ) || outputs.foundInResolvedDependencies ",
+            "assessment": { "message": "Expected build point found: {{ .Context.buildPoint  }}" },
+            "error": {
+                "message": "Build point mismatch",
+                "guidance": "The attested build point does not match the expected commit"
+            }
+        }
+    ]
+}
