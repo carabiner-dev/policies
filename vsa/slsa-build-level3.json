@@ -12,7 +12,10 @@
                 "levels": { "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] " }
             },
             "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
-            "assessment": { "message": "VSA attesting a SLSA_BUILD_3 compliance verification" }
+            "assessment": { "message": "VSA attesting a SLSA_BUILD_3 compliance verification" },
+            "error": {
+                "message": "SLSA Build L3 not recored in verification summary"
+            }
         }
     ]
 }
