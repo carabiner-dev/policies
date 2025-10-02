@@ -1,11 +1,11 @@
 {
-    "id": "TEST-RESULTS-PASS",
+    "id": "test-results-pass",
     "meta": {
-        "description": " the project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations"
+        "description": "Verify that test results recored in an attestation pass"
     },
     "tenets": [
         {
-            "id": "01",
+            "id": "01a",
             "code": "size(predicates) > 0",
             "predicates": {
                 "types": ["https://in-toto.io/attestation/test-result/v0.1"]
@@ -15,24 +15,24 @@
             },
             "error": {
                 "message": "No attested test runs found",
-                "guidance": "Generate a test-run attestation to capture your unit tests"
+                "guidance": "Generate a test-run attestation to capture the results of your unit tests"
             }
         },
         {
             "id": "01b",
-            "code": "outputs.status == 'pass' ",
+            "code": "outputs.result == 'pass' ",
             "outputs": {
-                "status": { "code": "has(predicates[0].data.passed) ? predicates[0].data.passed : '' " }
+                "result": { "code": "has(predicates[0].data.result) ? predicates[0].data.result : '' " }
             },
             "predicates": {
                 "types": ["https://in-toto.io/attestation/test-result/v0.1"]
             },
             "assessment": {
-                "message": "Tests are not passing"
+                "message": "All attested tests are passing"
             },
             "error": {
                 "message": "Some of the attested test runs failed",
-                "guidance": "Ensure the project's tests are passing before releasing"
+                "guidance": "Check the output of your unit tests, ensure they are passing"
             }
         }
     ]
