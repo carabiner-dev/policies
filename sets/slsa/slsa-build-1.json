@@ -1,7 +1,7 @@
 {
     "id": "slsa-build-1",
     "meta": {
-        "description": "verifies an artifact to check if it was built in a SLSA_BUILD_1 build system",
+        "description": "verifies an artifact to check if it was built in a SLSA_BUILD_LEVEL_1 build system",
         "frameworks": [
             {
                 "id": "SLSA",
@@ -15,21 +15,21 @@
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json" }
             },
-            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "1" } ] }
+            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_1" } ] }
         },
         {
             "id": "slsa-build-type",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json" }
             },
-            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "1" } ] }
+            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_1" } ] }
         },
         {
             "id": "slsa-build-point",
             "source": {
                 "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json" }
             },
-            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "1" } ] }
+            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_1" } ] }
         }
     ]
 }

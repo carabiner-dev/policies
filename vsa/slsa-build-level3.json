@@ -2,7 +2,7 @@
     "id": "slsa-build-level-3",
     "meta": {
         "description": "Checks for SLSA Build level 3+ compliance in a VSA",
-        "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "3" } ]
+        "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_3" } ]
     },
     "tenets": [
         {
