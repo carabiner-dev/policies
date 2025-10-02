@@ -1,7 +1,8 @@
 {
-    "id": "SBOM-EXISTS",
+    "id": "sbom-exists",
     "meta": {
-        "description": "SBOM data found"
+        "description": "SBOM data found",
+        "assert_mode":"OR"
     },
     "tenets": [
         {

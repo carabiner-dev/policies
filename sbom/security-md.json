@@ -1,5 +1,5 @@
 {
-    "id": "SBOM-SECURITY-MD",
+    "id": "sbom-contains-security-md",
     "meta": {
         "description": "Checks an SBOM's files for a SECURITY.md file"
     },

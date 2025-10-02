@@ -1,5 +1,5 @@
 {
-    "id": "SBOM-LOCKFILE",
+    "id": "sbom-contains-lockfile",
     "meta": {
         "description": "Checks for a language dependency lockfile among the SBOM files"
     },

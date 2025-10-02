@@ -1,5 +1,5 @@
 {
-    "id": "SBOM-HAS-VERSIONS",
+    "id": "sbom-has-versions",
     "meta": {
         "description": "Checks an SBOMs top level components to ensure versions are set"
     },

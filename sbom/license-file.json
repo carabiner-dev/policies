@@ -1,5 +1,5 @@
 {
-    "id": "SBOM-HAS-LICENSE-FILE",
+    "id": "sbom-contains-license-file",
     "meta": {
         "description": "Locate a license file in the project files"
     },

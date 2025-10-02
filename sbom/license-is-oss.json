@@ -1,5 +1,5 @@
 {
-    "id": "SBOM-LICENSE-IS-OSS",
+    "id": "sbom-licenses-are-foss",
     "meta": {
         "description": "License of the top-level components is OSI/FSF approved"
     },

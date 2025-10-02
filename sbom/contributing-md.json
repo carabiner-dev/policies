@@ -1,5 +1,5 @@
 {
-    "id": "SBOM-CONTRIBUTING-MD",
+    "id": "sbom-contains-contributing-md",
     "meta": {
         "description": "Checks for a CONTRIBUTING.md file in the SBOM"
     },

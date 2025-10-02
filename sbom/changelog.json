@@ -1,5 +1,5 @@
 {
-    "id": "SBOM-CHANGELOG",
+    "id": "sbom-contains-changelog",
     "meta": {
         "description": "Checks an SBOM to locate a Changelog in the file lists"
     },
