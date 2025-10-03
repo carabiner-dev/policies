@@ -1,0 +1,31 @@
+{
+    "id": "vsa-verify-verifier",
+    "meta": {
+        "description": "Checks if the VSA was issued by the expected verifier"
+    },
+    "context": {
+        "verifier": {
+            "required": true,
+            "description": "URI identifier of the system performing the verification"
+        },
+        "matchUnversionedVerifier": {
+            "required": true,
+            "default": true,
+            "description": "Allow matching the verifier URI without version"
+        }
+    },
+    "tenets": [
+        {
+            "predicates": { "types": ["https://slsa.dev/verification_summary/v1"] },
+            "outputs": {
+                "verifier": { "code": "has(predicates[0].data.verifier) ? ( has(predicates[0].data.verifier.id) ? predicates[0].data.verifier.id : '' ) : '' " }
+            },
+            "code": "outputs.verifier == context.verifier || (outputs.verifier.startsWith(context.verifier + '@') && context.matchUnversionedVerifier == 'true' )",
+            "assessment": { "message": "Attestation was issued by trusted verifier" },
+            "error": {
+                "message": "Attestation NOT issued by trusted verifier",
+                "guidance": "Expecting {{ .Context.verifier }} got {{ .Outputs.verifier }}"
+            }
+        }
+    ]
+}
