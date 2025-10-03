@@ -20,7 +20,7 @@
             "outputs": {
                 "verifier": { "code": "has(predicates[0].data.verifier) ? ( has(predicates[0].data.verifier.id) ? predicates[0].data.verifier.id : '' ) : '' " }
             },
-            "code": "outputs.verifier == context.verifier || (outputs.verifier.startsWith(context.verifier + '@') && context.matchUnversionedVerifier == 'true' )",
+            "code": "outputs.verifier == context.verifier || (outputs.verifier.startsWith(context.verifier + '@') && context.matchUnversionedVerifier )",
             "assessment": { "message": "Attestation was issued by trusted verifier" },
             "error": {
                 "message": "Attestation NOT issued by trusted verifier",
