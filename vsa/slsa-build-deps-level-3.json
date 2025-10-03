@@ -1,0 +1,20 @@
+{
+    "id": "slsa-build-deps-level-3",
+    "meta": {
+        "description": "Checks for SLSA Build Level 3+ compliance the verified dependencies",
+        "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_3" } ]
+    },
+    "tenets": [
+        {
+            "predicates": { "types": ["https://slsa.dev/verification_summary/v1"] },
+            "outputs": {
+                "levels": { "code": "has(predicates[0].data.dependencyLevels) ? predicates[0].data.dependencyLevels : {} " }
+            },
+            "code": "outputs.levels.filter(level, (outputs.levels[level] != '0' && (level == 'SLSA_BUILD_LEVEL_1' || level == 'SLSA_BUILD_LEVEL_2') )).size() == 0",
+            "assessment": { "message": "All verified dependencies are SLSA_BUILD_LEVEL_3+" },
+            "error": {
+                "message": "Some verified dependencies don't meet SLSA_BUILD_LEVEL_3"
+            }
+        }
+    ]
+}
