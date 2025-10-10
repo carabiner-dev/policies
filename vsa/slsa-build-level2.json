@@ -1,0 +1,21 @@
+{
+    "id": "slsa-build-level-2",
+    "meta": {
+        "description": "Checks for SLSA Build Level 2+ compliance in a VSA",
+        "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_2" } ]
+    },
+    "tenets": [
+        {
+            "predicates": { "types": ["https://slsa.dev/verification_summary/v1"] },
+            "outputs": {
+                "pass": { "code": "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false" },
+                "levels": { "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] " }
+            },
+            "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_2' || v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
+            "assessment": { "message": "VSA attesting a SLSA_BUILD_2+ compliance verification" },
+            "error": {
+                "message": "SLSA Build L2+ not recored in verification summary"
+            }
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 {
     "id": "slsa-build-level-3",
     "meta": {
-        "description": "Checks for SLSA Build level 3+ compliance in a VSA",
+        "description": "Checks for SLSA Build Level 3+ compliance in a VSA",
         "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_3" } ]
     },
     "tenets": [
@@ -12,9 +12,9 @@
                 "levels": { "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] " }
             },
             "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
-            "assessment": { "message": "VSA attesting a SLSA_BUILD_3 compliance verification" },
+            "assessment": { "message": "VSA attesting a SLSA_BUILD_3+ compliance verification" },
             "error": {
-                "message": "SLSA Build L3 not recored in verification summary"
+                "message": "SLSA Build L3+ not recored in verification summary"
             }
         }
     ]
