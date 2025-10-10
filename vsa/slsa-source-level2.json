@@ -1,5 +1,5 @@
 {
-    "id": "SLSA-SRC-LEVEL-2",
+    "id": "slsa-source-level-2",
     "meta": {
         "description": "Checks for SLSA_SOURCE Level 2 or higher compliance in a VSA"
     },
@@ -12,7 +12,10 @@
                 "levels": { "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] " }
             },
             "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_SOURCE_LEVEL_2' || v == 'SLSA_SOURCE_LEVEL_3' || v == 'SLSA_SOURCE_LEVEL_4'))",
-            "assessment": { "message": "VSA attesting SLSA_SOURCE L2 compliance checks" }
+            "assessment": { "message": "VSA attesting SLSA_SOURCE L2 compliance checks" },
+            "error" : {
+                "message": "SLSA Source L2+ not recored in verification summary"
+            }
         }
     ]
 }
