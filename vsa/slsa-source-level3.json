@@ -14,7 +14,7 @@
             "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_SOURCE_LEVEL_3' || v == 'SLSA_SOURCE_LEVEL_4') )",
             "assessment": { "message": "VSA attesting SLSA_SOURCE L3 compliance checks" },
             "error" : {
-                "message": "SLSA Source L3+ not recored in verification summary"
+                "message": "SLSA Source L3+ not recorded in verification summary"
             }
         }
     ]
