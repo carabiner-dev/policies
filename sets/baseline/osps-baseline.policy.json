@@ -5,378 +5,42 @@
             { "id": "OSPS", "name": "OSPS Security Baseline" }
         ]
     },
-    "policies": [
-        {
-            "id": "OSPS-AC-01",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/mfa-all.json" }
-            },
-            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "01" } ] }
-        },
-        {
-            "id": "OSPS-AC-02",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/org-exists.json" }
-            },
-            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "02" } ] }
-        },
-        {
-            "id": "OSPS-AC-03",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/branch-branch-protection.json" }
-            },
-            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "03" } ] }
-        },
-        {
-            "id": "OSPS-AC-04",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/token-permissions.json" }
-            },
-            "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "04" } ] }
-        },
-        {
-            "id": "OSPS-GV-01",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/roles.json" }
-            },
-            "meta": { "controls": [ { "framework": "OSPS", "class": "GV", "id": "01" } ] }
-        },
-        {
-            "id": "OSPS-GV-02",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/repo-issues.json" }
-            },
-            "meta": {
-                "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
-                "controls": [ { "framework": "OSPS", "class": "GV", "id": "02" } ]
-            }
-        },
-        {
-            "id": "OSPS-GV-03",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/contributing-md.json" }
-            },
-            "meta": {
-                "description": "The project documentation MUST include an explanation of the contribution process.",
-                "controls": [ { "framework": "OSPS", "class": "GV", "id": "03" } ]
-            }
-        },
-        {
-            "id": "OSPS-GV-04",
-            "meta": {
-                "enforce": "OFF",
-                "description": "Policy that code contributors are reviewed prior to granting escalated permissions",
-                "controls": [ { "framework": "OSPS", "class": "GV", "id": "04" } ]
-            },
-            "tenets": [
-                {
-                    "id": "01",
-                    "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
-                    "code": "false",
-                    "error": {
-                        "message": "Not implemented yet",
-                        "guidance": "We don't have a way to detect if contributors are reviewed"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "OSPS-LE-02",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/license-is-oss.json" }
-            },
-            "meta": {
-                "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition",
-                "controls": [ { "framework": "OSPS", "class": "LE", "id": "02" } ]
-            }
-        },
-        {
-            "id": "OSPS-LE-03",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/license-file.json" }
-            },
-            "meta": {
-                "description": "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
-                "controls": [ { "framework": "OSPS", "class": "LE", "id": "03" } ]
-            }
-        },
-        {
-            "id": "OSPS-QA-01",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/repo-public-git.json" }
-            },
-            "meta": {
-                "description": "The project's source code and change history MUST be publicly readable at a static URL",
-                "controls": [ { "framework": "OSPS", "class": "QA", "id": "01" } ]
-            }
-        },
-        {
-            "id": "OSPS-QA-02",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-sbom.json" }
-            },
-            "meta": {
-                "description": "The project MUST provide a list of dependencies used in the software",
-                "controls": [ { "framework": "OSPS", "class": "QA", "id": "02" } ]
-            }
-        },
-        {
-            "id": "OSPS-QA-03",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/branch-status-checks.json" }
-            },
-            "meta": {
-                "description": "Automated status checks for commits MUST pass or be manually bypassed.",
-                "controls": [ { "framework": "OSPS", "class": "QA", "id": "03" } ]
-            }
-        },
-        {
-            "id": "OSPS-QA-04",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-subprojects.json" }
-            },
-            "meta": {
-                "description": "subproject code repositories MUST enforce the same security requirements",
-                "controls": [ { "framework": "OSPS", "class": "QA", "id": "04" } ]
-            }
-        },
-        {
-            "id": "OSPS-QA-05",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/binary-artifacts.json" }
-            },
-            "meta": {
-                "description": "The version control system MUST NOT contain generated executable artifacts",
-                "controls": [ { "framework": "OSPS", "class": "QA", "id": "05" } ]
-            }
-        },
-        {
-            "id": "OSPS-QA-06",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#test-results/tests-pass.json" }
-            },
-            "meta": {
-                "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
-                "controls": [ { "framework": "OSPS", "class": "QA", "id": "06" } ]
-            }
-        },
-        {
-            "id": "OSPS-QA-07",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/code-review.json" }
-            },
-            "meta": {
-                "description": "VCS MUST require at least one non-author approval of changes to the primary branch",
-                "controls": [ { "framework": "OSPS", "class": "QA", "id": "07" } ]
-            }
-        },
-        {
-            "id": "OSPS-SA-01",
-            "meta": {
-                "enforce": "OFF",
-                "description": "design documentation demonstrating all actions and actors within the system",
-                "controls": [ { "framework": "OSPS", "class": "SA", "id": "01" } ]
-            },
-            "tenets": [
-                {
-                    "id": "01",
-                    "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
-                    "code": "false",
-                    "error": {
-                        "message": "Not implemented yet",
-                        "guidance": "We don't have a way to detect documentation about actors and actions in the system"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "OSPS-SA-02",
-            "meta": {
-                "enforce": "OFF",
-                "description": "descriptions of all external software interfaces",
-                "controls": [ { "framework": "OSPS", "class": "SA", "id": "02" } ]
-            },
-            "tenets": [
-                {
-                    "id": "01",
-                    "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
-                    "code": "false",
-                    "error": {
-                        "message": "Not implemented yet",
-                        "guidance": "We don't have a way to detect documentation about the external interfaces"
-                    }
-                }
-            ]
-        },
-        {
-            "id": "OSPS-SA-03",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/assessments.json" }
-            },
-            "meta": {
-                "description": "The project MUST assess the security posture of all software assets",
-                "controls": [ { "framework": "OSPS", "class": "SA", "id": "03" } ]
-            }
-        },
-        {
-            "id": "OSPS-BR-01",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/dangerous-workflow.json" }
-            },
-            "meta": {
-                "description": "The project's build and release pipelines MUST NOT permit untrusted input",
-                "controls": [ { "framework": "OSPS", "class": "BR", "id": "01" } ]
-            }
-        },
-        {
-            "id": "OSPS-BR-02",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-versions.json" }
-            },
-            "meta": {
-                "description": "Releases and released software assets MUST be assigned a unique version identifier",
-                "controls": [ { "framework": "OSPS", "class": "BR", "id": "02" } ]
-            }
-        },
-        {
-            "id": "OSPS-BR-04",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/changelog.json" }
-            },
-            "meta": {
-                "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
-                "controls": [ { "framework": "OSPS", "class": "BR", "id": "04" } ]
-            }
-        },
-        {
-            "id": "OSPS-BR-05",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-lockfile.json" }
-            },
-            "meta": {
-                "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time",
-                "controls": [ { "framework": "OSPS", "class": "BR", "id": "05" } ]
-            }
-        },
-        {
-            "id": "OSPS-BR-06",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#slsa/has-attestation.json" }
-            },
-            "meta": {
-                "description": "Release MUST be signed or accounted for in a signed manifest",
-                "controls": [ { "framework": "OSPS", "class": "BR", "id": "06" } ]
-            }
-        },
-        {
-            "id": "OSPS-DO-01",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-documentation.json" }
-            },
-            "meta": {
-                "description": "The project documentation MUST provide user guides for all basic functionality",
-                "controls": [ { "framework": "OSPS", "class": "DO", "id": "01" } ]
-            }
-        },
-        {
-            "id": "OSPS-DO-02",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/vulnerability-reporting.json" }
-            },
-            "meta": {
-                "description": "The project MUST provide a mechanism for reporting defects",
-                "controls": [ { "framework": "OSPS", "class": "DO", "id": "02" } ]
-            }
-        },
-        {
-            "id": "OSPS-DO-03",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/signature-verify.json" }
-            },
-            "meta": {
-                "description": "Instructions to verify the integrity and authenticity of the release assets",
-                "controls": [ { "framework": "OSPS", "class": "DO", "id": "03" } ]
-            }
-        },
-        {
-            "id": "OSPS-DO-04",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
-            },
-            "meta": {
-                "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
-                "controls": [ { "framework": "OSPS", "class": "DO", "id": "04" } ]
-            }
-        },
-        {
-            "id": "OSPS-DO-05",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
-            },
-            "meta": {
-                "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
-                "controls": [ { "framework": "OSPS", "class": "DO", "id": "05" } ]
-            }
-        },
-        {
-            "id": "OSPS-DO-06",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/dependency-policy.json" }
-            },
-            "meta": {
-                "description": "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
-                "controls": [ { "framework": "OSPS", "class": "DO", "id": "06" } ]
-            }
-        },
-        {
-            "id": "OSPS-VM-01",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/security-md.json" }
-            },
-            "meta": {
-                "description": "Policy for coordinated vulnerability disclosure",
-                "controls": [ { "framework": "OSPS", "class": "VM", "id": "01" } ]
-            }
-        },
-        {
-            "id": "OSPS-VM-02",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/vulnerability-reporting-contact.json" }
-            },
-            "meta": {
-                "description": "The project MUST publish contacts and process for reporting vulnerabilities",
-                "controls": [ { "framework": "OSPS", "class": "VM", "id": "02" } ]
-            }
-        },
-        {
-            "id": "OSPS-VM-04",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openvex/project-is-vexing.json" }
-            },
-            "meta": {
-                "description": "The project MUST publicly publish data about discovered vulnerabilities",
-                "controls": [ { "framework": "OSPS", "class": "VM", "id": "04" } ]
-            }
-        },
-        {
-            "id": "OSPS-VM-05",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@b35570d519bbb7f58fb04d5d3b10f093bc9fd649#openvex/no-exploitable-vulns-osv.json" }
-            },
-            "meta": {
-                "description": "Ensure the project has no exploitable vulnerabilities",
-                "controls": [ { "framework": "OSPS", "class": "VM", "id": "05" } ]
-            }
-        },
-        {
-            "id": "OSPS-VM-06",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies@b35570d519bbb7f58fb04d5d3b10f093bc9fd649#scorecard/sast.json" }
-            },
-            "meta": {
-                "description": "Enforce a policy that defines a threshold for remediation of SAST findings",
-                "controls": [ { "framework": "OSPS", "class": "VM", "id": "VM-06" } ]
-            }
-        }
+    "groups": [
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-ac-01.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-ac-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-ac-03.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-ac-04.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-br-01.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-br-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-br-04.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-br-05.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-br-06.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-do-01.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-do-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-do-03.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-do-04.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-do-05.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-do-06.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-gv-01.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-gv-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-gv-03.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-gv-04.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-le-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-le-03.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-qa-01.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-qa-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-qa-03.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-qa-04.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-qa-05.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-qa-06.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-qa-07.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-sa-01.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-sa-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-sa-03.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-vm-01.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-vm-02.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-vm-04.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-vm-05.hjson" } } },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-vm-06.hjson" } } }
     ]
 }
