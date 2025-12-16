@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-LE-03",
+    "meta": {
+        "description": "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
+        "controls": [ { "framework": "OSPS", "class": "LE", "id": "03" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/license-file.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

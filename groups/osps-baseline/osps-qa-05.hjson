@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-QA-05",
+    "meta": {
+        "description": "The version control system MUST NOT contain generated executable artifacts",
+        "controls": [ { "framework": "OSPS", "class": "QA", "id": "05" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#scorecard/binary-artifacts.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

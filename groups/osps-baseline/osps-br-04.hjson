@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-BR-04",
+    "meta": {
+        "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
+        "controls": [ { "framework": "OSPS", "class": "BR", "id": "04" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/changelog.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-QA-03",
+    "meta": {
+        "description": "Automated status checks for commits MUST pass or be manually bypassed.",
+        "controls": [ { "framework": "OSPS", "class": "QA", "id": "03" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/branch-status-checks.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

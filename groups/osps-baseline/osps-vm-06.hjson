@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-VM-06",
+    "meta": {
+        "description": "Enforce a policy that defines a threshold for remediation of SAST findings",
+        "controls": [ { "framework": "OSPS", "class": "VM", "id": "VM-06" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@b35570d519bbb7f58fb04d5d3b10f093bc9fd649#scorecard/sast.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

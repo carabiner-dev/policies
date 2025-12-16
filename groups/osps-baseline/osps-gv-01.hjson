@@ -1,0 +1,15 @@
+{
+    "id": "OSPS-GV-01",
+    "meta": { "controls": [ { "framework": "OSPS", "class": "GV", "id": "01" } ] },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/roles.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

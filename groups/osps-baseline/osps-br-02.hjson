@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-BR-02",
+    "meta": {
+        "description": "Releases and released software assets MUST be assigned a unique version identifier",
+        "controls": [ { "framework": "OSPS", "class": "BR", "id": "02" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-versions.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

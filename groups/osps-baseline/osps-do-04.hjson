@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-DO-04",
+    "meta": {
+        "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
+        "controls": [ { "framework": "OSPS", "class": "DO", "id": "04" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}
