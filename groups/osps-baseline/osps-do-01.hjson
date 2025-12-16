@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-DO-01",
+    "meta": {
+        "description": "The project documentation MUST provide user guides for all basic functionality",
+        "controls": [ { "framework": "OSPS", "class": "DO", "id": "01" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-documentation.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

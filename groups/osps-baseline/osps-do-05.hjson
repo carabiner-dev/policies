@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-DO-05",
+    "meta": {
+        "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
+        "controls": [ { "framework": "OSPS", "class": "DO", "id": "05" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openeox/has-openeox.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

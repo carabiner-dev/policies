@@ -1,0 +1,27 @@
+{
+    "id": "OSPS-SA-01",
+    "meta": {
+        "enforce": "OFF",
+        "description": "design documentation demonstrating all actions and actors within the system",
+        "controls": [ { "framework": "OSPS", "class": "SA", "id": "01" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "tenets": [
+                        {
+                            "id": "01",
+                            "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
+                            "code": "false",
+                            "error": {
+                                "message": "Not implemented yet",
+                                "guidance": "We don't have a way to detect documentation about actors and actions in the system"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

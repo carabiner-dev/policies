@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-QA-02",
+    "meta": {
+        "description": "The project MUST provide a list of dependencies used in the software",
+        "controls": [ { "framework": "OSPS", "class": "QA", "id": "02" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/has-sbom.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

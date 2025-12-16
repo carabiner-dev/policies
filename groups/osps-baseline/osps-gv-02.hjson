@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-GV-02",
+    "meta": {
+        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
+        "controls": [ { "framework": "OSPS", "class": "GV", "id": "02" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/repo-issues.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

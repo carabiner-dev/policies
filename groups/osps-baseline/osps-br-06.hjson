@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-BR-06",
+    "meta": {
+        "description": "Release MUST be signed or accounted for in a signed manifest",
+        "controls": [ { "framework": "OSPS", "class": "BR", "id": "06" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#slsa/has-attestation.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

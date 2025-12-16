@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-QA-04",
+    "meta": {
+        "description": "subproject code repositories MUST enforce the same security requirements",
+        "controls": [ { "framework": "OSPS", "class": "QA", "id": "04" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#security-insights/has-subprojects.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

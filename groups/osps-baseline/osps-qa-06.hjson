@@ -1,0 +1,18 @@
+{
+    "id": "OSPS-QA-06",
+    "meta": {
+        "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
+        "controls": [ { "framework": "OSPS", "class": "QA", "id": "06" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#test-results/tests-pass.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}

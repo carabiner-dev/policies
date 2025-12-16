@@ -1,0 +1,27 @@
+{
+    "id": "OSPS-GV-04",
+    "meta": {
+        "enforce": "OFF",
+        "description": "Policy that code contributors are reviewed prior to granting escalated permissions",
+        "controls": [ { "framework": "OSPS", "class": "GV", "id": "04" } ]
+    },
+    "blocks": [
+        {
+            "policies": [
+                {
+                    "tenets": [
+                        {
+                            "id": "01",
+                            "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
+                            "code": "false",
+                            "error": {
+                                "message": "Not implemented yet",
+                                "guidance": "We don't have a way to detect if contributors are reviewed"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
