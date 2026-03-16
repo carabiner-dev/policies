@@ -1,0 +1,22 @@
+{
+    "id": "detached-signature",
+    "meta": {
+        "description": "Verifies an artifact with a detached signature or sigstore bundle"
+    },
+    "tenets": [
+        {
+            "id": "signature-check",
+            "code": "size(predicates) > 0",
+            "predicates": {
+                "types": ["https://carabiner.dev/ampel/signature/v1"]
+            },
+            "error": {
+                "message": "No detached signature found",
+                "guidance": "No signature found or unkown key"
+            },
+            "assessment": {
+                "message": "Signature verfiied"
+            }
+        }
+    ]
+}
