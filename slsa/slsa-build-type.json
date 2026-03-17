@@ -1,7 +1,8 @@
 {
     "id": "slsa-build-type",
     "meta": {
-        "description": "Ensures an artifact was built from a specified repository and commit"
+        "description": "Ensures an artifact was built from a specified repository and commit",
+        "assert_mode": "OR"
     },
     "context": {
         "buildType" : {
@@ -15,6 +16,20 @@
             "outputs": {
                 "buildType": {
                     "code": "has(predicates[0].data.buildDefinition) ? (has(predicates[0].data.buildDefinition.buildType) ? predicates[0].data.buildDefinition.buildType : '' ) : '' "
+                }
+            },
+            "code": "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
+            "assessment": { "message": "Expected buildType found: {{ .Outputs.buildType  }}" },
+            "error": {
+                "message": "BuildType mismatch",
+                "guidance": "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
+            }
+        },
+        {
+            "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
+            "outputs": {
+                "buildType": {
+                    "code": "has(predicates[0].data.buildType) ? predicates[0].data.buildType : '' "
                 }
             },
             "code": "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
