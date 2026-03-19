@@ -1,0 +1,54 @@
+{
+  "predicateType": "https://slsa.dev/provenance/v1",
+  "predicate": {
+    "buildDefinition": {
+      "buildType": "https://actions.github.io/buildtypes/workflow/v1",
+      "externalParameters": {
+        "workflow": {
+          "path": ".github/workflows/build-push.yaml",
+          "ref": "refs/heads/main",
+          "repository": "https://github.com/puerco/mild-to-wild-samples"
+        }
+      },
+      "internalParameters": {
+        "github": {
+          "event_name": "push",
+          "repository_id": "1182521618",
+          "repository_owner_id": "3935899",
+          "runner_environment": "github-hosted"
+        }
+      },
+      "resolvedDependencies": [
+        {
+          "digest": {
+            "gitCommit": "c647c7e15e7e1c469cd587066c664c3d99208bba"
+          },
+          "uri": "git+https://github.com/puerco/mild-to-wild-samples@refs/heads/main"
+        },
+        {
+          "digest": {
+            "sha256": "3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+          },
+          "uri": "registry.access.redhat.com/ubi10/ubi-minimal:latest"
+        }
+      ]
+    },
+    "runDetails": {
+      "builder": {
+        "id": "https://github.com/puerco/mild-to-wild-samples/.github/workflows/build-push.yaml@refs/heads/main"
+      },
+      "metadata": {
+        "invocationId": "https://github.com/puerco/mild-to-wild-samples/actions/runs/23232906217/attempts/1"
+      }
+    }
+  },
+  "_type": "https://in-toto.io/Statement/v0.1",
+  "subject": [
+    {
+      "name": "ghcr.io/puerco/mild-to-wild-samples",
+      "digest": {
+        "sha256": "54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+      }
+    }
+  ]
+}
