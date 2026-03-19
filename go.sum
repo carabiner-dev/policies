@@ -106,10 +106,10 @@ github.com/carabiner-dev/hasher v0.2.3 h1:678/FKyUJexzDznoIomnW/Z71hoL6Ehz99W2ZP
 github.com/carabiner-dev/hasher v0.2.3/go.mod h1:TRannDvJs5eL61xA/K/whtYbZLQPb/CGFXtDnx4h37M=
 github.com/carabiner-dev/jsonl v0.2.1 h1:2cBv4mGoqWfVkeQO1krIGds9WUm9Jet89QdqWLodlfo=
 github.com/carabiner-dev/jsonl v0.2.1/go.mod h1:fTypVHMYsAnn6LlW0SqER6XUaI9Wlc/Kv6uyMF+NmKo=
-github.com/carabiner-dev/lexecutor v0.0.0-20260318235519-bc85a57dcc00 h1:aVuhV7+tuq5qZSctDyoH4zFmnlaCuKu3q/lkGuuHtNE=
-github.com/carabiner-dev/lexecutor v0.0.0-20260318235519-bc85a57dcc00/go.mod h1:7kEUNVCzko7zKkBWKvc9i3P7/3fv7pqeM7x+nB4MX+c=
 github.com/carabiner-dev/lexecutor v0.0.0-20260319001112-64919fb00e7f h1:ywjpvflguqVdpjOnmv6RyR2EoJSqSOulNAD/HzbCiu4=
 github.com/carabiner-dev/lexecutor v0.0.0-20260319001112-64919fb00e7f/go.mod h1:7kEUNVCzko7zKkBWKvc9i3P7/3fv7pqeM7x+nB4MX+c=
+github.com/carabiner-dev/lexecutor v0.0.0-20260319004551-497daff98953 h1:G5Yj/IIz5AfrJFbOq0fE7o9rjYoaAfEO0XglnM1cWpY=
+github.com/carabiner-dev/lexecutor v0.0.0-20260319004551-497daff98953/go.mod h1:7kEUNVCzko7zKkBWKvc9i3P7/3fv7pqeM7x+nB4MX+c=
 github.com/carabiner-dev/openeox v0.0.0-20260302211234-88fe8a305401 h1:fexoMxtBCeYSxNJcd0wTAO3rYyq77wv7AqnNrEyo0JI=
 github.com/carabiner-dev/openeox v0.0.0-20260302211234-88fe8a305401/go.mod h1:YDuJw950hcWHl/WWJTpmyAMfRRY3rNXgy4NxnTtRTIY=
 github.com/carabiner-dev/osv v0.0.0-20250124012120-b8ce4531cd92 h1:BJ9+OCNezZGkU8SrGC3oB7Tj+J0JsonwfZztcgUav6c=
