@@ -2,7 +2,7 @@ module github.com/carabiner-dev/policies
 
 go 1.26.1
 
-require github.com/carabiner-dev/lexecutor v0.0.0-20260318235519-bc85a57dcc00
+require github.com/carabiner-dev/lexecutor v0.0.0-20260319001112-64919fb00e7f
 
 require (
 	cel.dev/expr v0.25.1 // indirect

@@ -1,0 +1,176 @@
+tests:
+  # SLSAv1 tests
+  - name: v1-exact-uri-commit-match
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/puerco/mild-to-wild-samples@refs/heads/main"
+      - name: buildPointCommit
+        value: "sha1:c647c7e15e7e1c469cd587066c664c3d99208bba"
+      - name: buildPointAllowRepo
+        value: false
+
+  - name: v1-repo-only-match
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/puerco/mild-to-wild-samples"
+      - name: buildPointCommit
+        value: "sha1:c647c7e15e7e1c469cd587066c664c3d99208bba"
+
+  - name: v1-repo-only-without-commit
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/puerco/mild-to-wild-samples@refs/heads/main"
+
+  - name: v1-commit-without-algo-prefix
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/puerco/mild-to-wild-samples@refs/heads/main"
+      - name: buildPointCommit
+        value: "c647c7e15e7e1c469cd587066c664c3d99208bba"
+
+  - name: v1-wrong-commit-fails
+    policy: slsa-build-point.json
+    expect: FAIL
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/puerco/mild-to-wild-samples@refs/heads/main"
+      - name: buildPointCommit
+        value: "sha1:0000000000000000000000000000000000000000"
+
+  - name: v1-wrong-repo-fails
+    policy: slsa-build-point.json
+    expect: FAIL
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/someone/other-repo@refs/heads/main"
+
+  - name: v1-ref-mismatch-fails-with-allowrepo-false
+    policy: slsa-build-point.json
+    expect: FAIL
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/puerco/mild-to-wild-samples@refs/heads/develop"
+      - name: buildPointAllowRepo
+        value: false
+
+  - name: v1-ref-mismatch-passes-with-allowrepo-true
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:54ec7ddd81576363e4aeb3e71bf24f3ad09807e89cc6389ef56c803f2cf51fef"
+    attestations:
+      - ../testdata/slsa/slsa-buildv1.json
+    context:
+      - name: buildPoint
+        value: "git+https://github.com/puerco/mild-to-wild-samples@refs/heads/develop"
+
+  # SLSAv0.2 tests
+  - name: v02-exact-uri-commit-match
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+    attestations:
+      - ../testdata/slsa/slsa-buildv02.json
+    context:
+      - name: buildPoint
+        value: "git+https://gitlab.com/redhat/rhel/containers/tekton-pipelines.git"
+      - name: buildPointCommit
+        value: "sha1:626bba8a7c01810c0e659db8bb8a52943ef22279"
+      - name: buildPointAllowRepo
+        value: false
+
+  - name: v02-repo-only-with-ref-in-buildpoint
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+    attestations:
+      - ../testdata/slsa/slsa-buildv02.json
+    context:
+      - name: buildPoint
+        value: "git+https://gitlab.com/redhat/rhel/containers/tekton-pipelines.git@refs/heads/main"
+      - name: buildPointCommit
+        value: "sha1:626bba8a7c01810c0e659db8bb8a52943ef22279"
+
+  - name: v02-uri-match-without-commit
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+    attestations:
+      - ../testdata/slsa/slsa-buildv02.json
+    context:
+      - name: buildPoint
+        value: "git+https://gitlab.com/redhat/rhel/containers/tekton-pipelines.git"
+
+  - name: v02-commit-without-algo-prefix
+    policy: slsa-build-point.json
+    expect: PASS
+    subject: "sha256:3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+    attestations:
+      - ../testdata/slsa/slsa-buildv02.json
+    context:
+      - name: buildPoint
+        value: "git+https://gitlab.com/redhat/rhel/containers/tekton-pipelines.git"
+      - name: buildPointCommit
+        value: "626bba8a7c01810c0e659db8bb8a52943ef22279"
+
+  - name: v02-wrong-commit-fails
+    policy: slsa-build-point.json
+    expect: FAIL
+    subject: "sha256:3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+    attestations:
+      - ../testdata/slsa/slsa-buildv02.json
+    context:
+      - name: buildPoint
+        value: "git+https://gitlab.com/redhat/rhel/containers/tekton-pipelines.git"
+      - name: buildPointCommit
+        value: "sha1:0000000000000000000000000000000000000000"
+
+  - name: v02-wrong-repo-fails
+    policy: slsa-build-point.json
+    expect: FAIL
+    subject: "sha256:3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+    attestations:
+      - ../testdata/slsa/slsa-buildv02.json
+    context:
+      - name: buildPoint
+        value: "git+https://gitlab.com/someone/other-repo.git"
+
+  - name: v02-exact-match-fails-with-no-ref-and-allowrepo-false
+    policy: slsa-build-point.json
+    expect: FAIL
+    subject: "sha256:3d6e80bd0a359ba9cc7117118ca4a53d1f53d87e6df5c06d9d0778690f571917"
+    attestations:
+      - ../testdata/slsa/slsa-buildv02.json
+    context:
+      - name: buildPoint
+        value: "git+https://gitlab.com/redhat/rhel/containers/tekton-pipelines.git@refs/heads/main"
+      - name: buildPointAllowRepo
+        value: false
