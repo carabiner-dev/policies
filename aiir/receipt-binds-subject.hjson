@@ -1,0 +1,38 @@
+{
+  "id": "aiir-receipt-binds-subject",
+  "meta": {
+    "description": "Ensures the AIIR receipt predicate binds the same git commit as the attested subject"
+  },
+  "tenets": [
+    {
+      "id": "git-commit-binding",
+      // Support both the legacy v1 URI and the current wrapped v2 URI.
+      "predicates": {
+        "types": [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      "outputs": {
+        "subjectCommit": {
+          // Prefer AIIR's public gitCommit digest and fall back to sha1 so the
+          // same fixtures verify on HEAD, stable, and eol AMPEL runners.
+          "code": "has(subject.digest) ? (has(subject.digest.gitCommit) ? subject.digest.gitCommit : (has(subject.digest.sha1) ? subject.digest.sha1 : '')) : ''"
+        },
+        "receiptCommit": {
+          "code": "has(predicate.data.commit) && has(predicate.data.commit.sha) ? predicate.data.commit.sha : ''"
+        }
+      },
+      // This only checks subject/predicate commit binding. It does not re-run
+      // AIIR's inner receipt verification.
+      "code": "outputs.subjectCommit != '' && outputs.receiptCommit != '' && outputs.subjectCommit == outputs.receiptCommit",
+      "assessment": {
+        "message": "AIIR receipt commit {{ .Outputs.receiptCommit }} matches the attested subject"
+      },
+      "error": {
+        "message": "AIIR receipt commit does not match the attested subject",
+        "guidance": "Wrap the AIIR receipt in an in-toto Statement whose subject digest.gitCommit matches predicate.commit.sha"
+      }
+    }
+  ]
+}

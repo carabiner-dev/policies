@@ -1,0 +1,52 @@
+# Use sha1 subjects in the harness so the same fixtures pass on HEAD, stable,
+# and eol AMPEL runners. The wrapped statement fixtures still keep AIIR's
+# public subject.digest.gitCommit shape.
+tests:
+  - name: v2-attestation-present
+    policy: has-attestation.hjson
+    expect: PASS
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+
+  - name: v1-attestation-present
+    policy: has-attestation.hjson
+    expect: PASS
+    subject: "sha1:4444444444444444444444444444444444444444"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v1-human.json
+
+  - name: no-matching-attestation-for-subject
+    policy: has-attestation.hjson
+    expect: FAIL
+    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+
+  - name: unsupported-predicate-type-fails
+    policy: has-attestation.hjson
+    expect: FAIL
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-unsupported-predicate-type.json
+
+  - name: receipt-binds-subject-v2
+    policy: receipt-binds-subject.hjson
+    expect: PASS
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+
+  - name: receipt-binds-subject-v1
+    policy: receipt-binds-subject.hjson
+    expect: PASS
+    subject: "sha1:4444444444444444444444444444444444444444"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v1-human.json
+
+  - name: receipt-binding-mismatch-fails
+    policy: receipt-binds-subject.hjson
+    expect: FAIL
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-mismatched-binding.json

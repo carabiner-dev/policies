@@ -1,0 +1,63 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "https://github.com/invariant-systems-ai/aiir@1111111111111111111111111111111111111111",
+      "digest": {
+        "gitCommit": "1111111111111111111111111111111111111111",
+        "sha1": "1111111111111111111111111111111111111111"
+      }
+    }
+  ],
+  "predicateType": "https://invariantsystems.io/predicates/aiir/commit_receipt/v2",
+  "predicate": {
+    "type": "aiir.commit_receipt",
+    "schema": "aiir/commit_receipt.v2",
+    "version": "1.3.0",
+    "commit": {
+      "sha": "9999999999999999999999999999999999999999",
+      "tree_sha": "2222222222222222222222222222222222222222",
+      "parent_shas": [
+        "3333333333333333333333333333333333333333"
+      ],
+      "author": {
+        "name": "Example Author",
+        "email": "dev@example.com",
+        "date": "2026-04-01T12:00:00Z"
+      },
+      "committer": {
+        "name": "Example Author",
+        "email": "dev@example.com",
+        "date": "2026-04-01T12:00:00Z"
+      },
+      "subject": "feat: add AMPEL AIIR policy examples",
+      "message_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "diff_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "files_changed": 3,
+      "files": [
+        "aiir/has-attestation.hjson",
+        "aiir/receipt-binds-subject.hjson",
+        "testdata/aiir/commit-receipt-v2-mismatched-binding.json"
+      ]
+    },
+    "ai_attestation": {
+      "is_ai_authored": true,
+      "signals_detected": [
+        "co-authored-by: github copilot",
+        "agent_attestation: copilot"
+      ],
+      "signal_count": 2,
+      "authorship_class": "ai_assisted",
+      "detection_method": "heuristic_v2"
+    },
+    "provenance": {
+      "repository": "https://github.com/invariant-systems-ai/aiir",
+      "tool": "https://github.com/invariant-systems-ai/aiir@v1.3.0",
+      "generator": "aiir.cli"
+    },
+    "receipt_id": "g1-fedcba9876543210fedcba9876543210",
+    "content_hash": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "timestamp": "2026-04-01T12:00:00Z",
+    "extensions": {}
+  }
+}

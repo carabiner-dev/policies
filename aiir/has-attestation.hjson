@@ -1,0 +1,28 @@
+{
+  "id": "aiir-has-attestation",
+  "meta": {
+    "description": "Checks if an AIIR commit receipt attestation is available"
+  },
+  "tenets": [
+    {
+      "id": "aiir",
+      "code": "size(predicates) > 0",
+      // Support both the legacy v1 URI and the current wrapped v2 URI.
+      "predicates": {
+        "types": [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      // This only checks for a matching wrapped AIIR predicate for the
+      // evaluated subject. It does not re-run AIIR's inner receipt verifier.
+      "error": {
+        "message": "No AIIR commit receipt attestation found",
+        "guidance": "Emit an AIIR commit receipt in a standard in-toto Statement envelope for the commit under evaluation"
+      },
+      "assessment": {
+        "message": "AIIR commit receipt attestation found"
+      }
+    }
+  ]
+}

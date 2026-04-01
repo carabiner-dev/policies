@@ -1,0 +1,55 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "https://github.com/invariant-systems-ai/aiir@4444444444444444444444444444444444444444",
+      "digest": {
+        "gitCommit": "4444444444444444444444444444444444444444",
+        "sha1": "4444444444444444444444444444444444444444"
+      }
+    }
+  ],
+  "predicateType": "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+  "predicate": {
+    "type": "aiir.commit_receipt",
+    "schema": "aiir/commit_receipt.v1",
+    "version": "1.2.0",
+    "commit": {
+      "sha": "4444444444444444444444444444444444444444",
+      "author": {
+        "name": "Example Human",
+        "email": "human@example.com",
+        "date": "2026-03-01T08:30:00Z"
+      },
+      "committer": {
+        "name": "Example Human",
+        "email": "human@example.com",
+        "date": "2026-03-01T08:30:00Z"
+      },
+      "subject": "docs: add AMPEL integration notes",
+      "message_hash": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "diff_hash": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "files_changed": 2,
+      "files": [
+        "README.md",
+        "SPEC.md"
+      ]
+    },
+    "ai_attestation": {
+      "is_ai_authored": false,
+      "signals_detected": [],
+      "signal_count": 0,
+      "authorship_class": "human",
+      "detection_method": "heuristic_v2"
+    },
+    "provenance": {
+      "repository": "https://github.com/invariant-systems-ai/aiir",
+      "tool": "https://github.com/invariant-systems-ai/aiir@v1.2.0",
+      "generator": "aiir.cli"
+    },
+    "receipt_id": "g1-00112233445566778899aabbccddeeff",
+    "content_hash": "sha256:abababababababababababababababababababababababababababababababab",
+    "timestamp": "2026-03-01T08:30:00Z",
+    "extensions": {}
+  }
+}
