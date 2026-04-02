@@ -1,0 +1,37 @@
+{
+  "id": "aiir-authorship-class-allowed",
+  "meta": {
+    "description": "Ensures the AIIR attestation authorship class is in an allowed set"
+  },
+  "context": {
+    "allowedAuthorshipClasses": {
+      "required": true,
+      "type": "string",
+      "description": "Pipe-separated list of allowed AIIR authorship_class values"
+    }
+  },
+  "tenets": [
+    {
+      // Support both the legacy v1 URI and the current wrapped v2 URI.
+      "predicates": {
+        "types": [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      "outputs": {
+        "authorshipClass": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.authorship_class) ? predicate.data.ai_attestation.authorship_class : ''"
+        }
+      },
+      "code": "outputs.authorshipClass != '' && context.allowedAuthorshipClasses.split('|').exists(authorshipClass, authorshipClass == outputs.authorshipClass)",
+      "assessment": {
+        "message": "AIIR authorship class {{ .Outputs.authorshipClass }} is allowed"
+      },
+      "error": {
+        "message": "AIIR authorship class is not allowed",
+        "guidance": "Set allowedAuthorshipClasses to a pipe-separated list that includes {{ .Outputs.authorshipClass }}"
+      }
+    }
+  ]
+}

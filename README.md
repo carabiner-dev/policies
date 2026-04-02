@@ -1,7 +1,7 @@
 # AMPEL Community Policies
 
-This repository contains a reusable collection of reusable polcies to use with
-the [AMPEL Policy Engine](https://github.com/carabiner-dev/ampel).
+This repository contains a reusable collection of reusable policies to use with
+the 🔴🟡🟢 [AMPEL Policy Engine](https://github.com/carabiner-dev/ampel).
 
 The policies contained here are free to use and we always welcome patches and
 contributions!
@@ -12,7 +12,7 @@ The repository contains policies for the following supply chain technologies
 and formats:
 
 - [AIIR](aiir/): Policies for AIIR commit receipt attestations
-- [OpenEoX](openeox/): Policies to work with end of life/end of support data  
+- [OpenEoX](openeox/): Policies to work with end of life/end of support data
 - [OpenVEX](openvex/): Policies for OpenVEX exploitability data
 - [SBOM](sbom/): Software Bill of Materials
 - [Scorecard](scorecard): OpenSSF Scorecard
@@ -34,5 +34,5 @@ are some early examples:
 
 ## Contributing
 
-This is a community project and as such, we are happy to get contributions, issues, new policies, 
-and PolicySets! Feel free to open issues or pull requests to this repo to makes things better for everyone!
+This is a community project and as such, we are happy to get contributions, issues, new policies,
+and PolicySets! Feel free to open issues or pull requests to this repo to make things better for everyone!

@@ -1,0 +1,36 @@
+{
+  "id": "aiir-ai-authored-disallowed",
+  "meta": {
+    "description": "Fails when an AIIR receipt marks the attested commit as AI-authored or omits authorship status"
+  },
+  "tenets": [
+    {
+      // Support both the legacy v1 URI and the current wrapped v2 URI.
+      "predicates": {
+        "types": [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      "outputs": {
+        "hasAiAuthoredStatus": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.is_ai_authored)"
+        },
+        "isAiAuthored": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.is_ai_authored) ? predicate.data.ai_attestation.is_ai_authored : false"
+        },
+        "authorshipClass": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.authorship_class) ? predicate.data.ai_attestation.authorship_class : ''"
+        }
+      },
+      "code": "outputs.hasAiAuthoredStatus && !outputs.isAiAuthored",
+      "assessment": {
+        "message": "AIIR receipt reports no AI-authored content"
+      },
+      "error": {
+        "message": "AI-authored content detected by AIIR or authorship status is missing",
+        "guidance": "Emit ai_attestation.is_ai_authored in the AIIR receipt, or use a more permissive policy if authorship class {{ .Outputs.authorshipClass }} is acceptable for this project"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "aiir-detection-method-allowed",
+  "meta": {
+    "description": "Ensures the AIIR attestation detection method is in an allowed set"
+  },
+  "context": {
+    "allowedDetectionMethods": {
+      "required": true,
+      "type": "string",
+      "description": "Pipe-separated list of allowed AIIR detection_method values"
+    }
+  },
+  "tenets": [
+    {
+      // Support both the legacy v1 URI and the current wrapped v2 URI.
+      "predicates": {
+        "types": [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      "outputs": {
+        "detectionMethod": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.detection_method) ? predicate.data.ai_attestation.detection_method : ''"
+        }
+      },
+      "code": "outputs.detectionMethod != '' && context.allowedDetectionMethods.split('|').exists(detectionMethod, detectionMethod == outputs.detectionMethod)",
+      "assessment": {
+        "message": "AIIR detection method {{ .Outputs.detectionMethod }} is allowed"
+      },
+      "error": {
+        "message": "AIIR detection method is not allowed",
+        "guidance": "Set allowedDetectionMethods to a pipe-separated list that includes {{ .Outputs.detectionMethod }}"
+      }
+    }
+  ]
+}

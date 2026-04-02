@@ -33,10 +33,12 @@
       "subject": "feat: add AMPEL AIIR policy examples",
       "message_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       "diff_hash": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-      "files_changed": 3,
+      "files_changed": 5,
       "files": [
-        "aiir/has-attestation.hjson",
-        "aiir/receipt-binds-subject.hjson",
+        "aiir/ai-authored-disallowed.hjson",
+        "aiir/authorship-class-allowed.hjson",
+        "aiir/detection-method-allowed.hjson",
+        "aiir/signal-detected.hjson",
         "testdata/aiir/commit-receipt-v2-ai-assisted.json"
       ]
     },
