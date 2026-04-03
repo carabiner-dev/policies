@@ -29,7 +29,7 @@
       },
       "error": {
         "message": "AI-authored content detected by AIIR or authorship status is missing",
-        "guidance": "Emit ai_attestation.is_ai_authored in the AIIR receipt, or use a more permissive policy if authorship class {{ .Outputs.authorshipClass }} is acceptable for this project"
+        "guidance": "This repo only accepts revisions whose AIIR receipt reports a non-AI authorship status"
       }
     }
   ]

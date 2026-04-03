@@ -30,7 +30,7 @@
       },
       "error": {
         "message": "AIIR detection method is not allowed",
-        "guidance": "Set allowedDetectionMethods to a pipe-separated list that includes {{ .Outputs.detectionMethod }}"
+        "guidance": "This repo does not accept revisions whose AIIR receipt uses detection method {{ .Outputs.detectionMethod }}"
       }
     }
   ]

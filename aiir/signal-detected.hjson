@@ -30,7 +30,7 @@
       },
       "error": {
         "message": "Required AIIR signal was not detected",
-        "guidance": "Set requiredSignal to a signal that must be present in ai_attestation.signals_detected"
+        "guidance": "This repo requires the AIIR receipt to include the detection signal expected by the verifier policy"
       }
     }
   ]
