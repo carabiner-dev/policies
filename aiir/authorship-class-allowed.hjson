@@ -30,7 +30,7 @@
       },
       "error": {
         "message": "AIIR authorship class is not allowed",
-        "guidance": "Set allowedAuthorshipClasses to a pipe-separated list that includes {{ .Outputs.authorshipClass }}"
+        "guidance": "AuthorshipClass {{ .Outputs.authorshipClass }} is not allowed for revisions in this repo"
       }
     }
   ]
