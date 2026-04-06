@@ -1,0 +1,37 @@
+{
+  "id": "aiir-signal-detected",
+  "meta": {
+    "description": "Ensures an AIIR attestation includes a required detection signal"
+  },
+  "context": {
+    "requiredSignal": {
+      "required": true,
+      "type": "string",
+      "description": "AIIR detection signal that must be present in ai_attestation.signals_detected"
+    }
+  },
+  "tenets": [
+    {
+      // Support both the legacy v1 URI and the current wrapped v2 URI.
+      "predicates": {
+        "types": [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      "outputs": {
+        "matchedSignal": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.signals_detected) && predicate.data.ai_attestation.signals_detected.exists(signal, signal == context.requiredSignal) ? context.requiredSignal : ''"
+        }
+      },
+      "code": "outputs.matchedSignal != ''",
+      "assessment": {
+        "message": "AIIR signal {{ .Outputs.matchedSignal }} was detected"
+      },
+      "error": {
+        "message": "Required AIIR signal was not detected",
+        "guidance": "This repo requires the AIIR receipt to include the detection signal expected by the verifier policy"
+      }
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+# Use sha1 subjects in the harness so the same fixtures pass on HEAD, stable,
+# and eol AMPEL runners. The wrapped statement fixtures still keep AIIR's
+# public subject.digest.gitCommit shape.
+tests:
+  - name: human-authorship-passes-when-ai-is-disallowed
+    policy: ai-authored-disallowed.hjson
+    expect: PASS
+    subject: "sha1:4444444444444444444444444444444444444444"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v1-human.json
+
+  - name: ai-assisted-authorship-fails-when-ai-is-disallowed
+    policy: ai-authored-disallowed.hjson
+    expect: FAIL
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+
+  - name: missing-ai-authorship-status-fails-when-ai-is-disallowed
+    policy: ai-authored-disallowed.hjson
+    expect: FAIL
+    subject: "sha1:5555555555555555555555555555555555555555"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-missing-ai-authored-flag.json
+
+  - name: authorship-class-human-is-allowed
+    policy: authorship-class-allowed.hjson
+    expect: PASS
+    subject: "sha1:4444444444444444444444444444444444444444"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v1-human.json
+    context:
+      - name: allowedAuthorshipClasses
+        value: "human|ai_assisted"
+
+  - name: authorship-class-ai-assisted-is-allowed
+    policy: authorship-class-allowed.hjson
+    expect: PASS
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+    context:
+      - name: allowedAuthorshipClasses
+        value: "human|ai_assisted"
+
+  - name: authorship-class-ai-assisted-fails-when-not-allowed
+    policy: authorship-class-allowed.hjson
+    expect: FAIL
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+    context:
+      - name: allowedAuthorshipClasses
+        value: "human"
+
+  - name: authorship-class-human-fails-when-not-allowed
+    policy: authorship-class-allowed.hjson
+    expect: FAIL
+    subject: "sha1:4444444444444444444444444444444444444444"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v1-human.json
+    context:
+      - name: allowedAuthorshipClasses
+        value: "ai_assisted"
+
+  - name: detection-method-heuristic-v2-is-allowed
+    policy: detection-method-allowed.hjson
+    expect: PASS
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+    context:
+      - name: allowedDetectionMethods
+        value: "heuristic_v2"
+
+  - name: detection-method-heuristic-v2-is-allowed-in-multi-value-list
+    policy: detection-method-allowed.hjson
+    expect: PASS
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+    context:
+      - name: allowedDetectionMethods
+        value: "tr39|heuristic_v2"
+
+  - name: detection-method-fails-when-not-allowed
+    policy: detection-method-allowed.hjson
+    expect: FAIL
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+    context:
+      - name: allowedDetectionMethods
+        value: "tr39"
+
+  - name: expected-signal-is-detected
+    policy: signal-detected.hjson
+    expect: PASS
+    subject: "sha1:1111111111111111111111111111111111111111"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v2-ai-assisted.json
+    context:
+      - name: requiredSignal
+        value: "agent_attestation: copilot"
+
+  - name: expected-signal-fails-when-missing
+    policy: signal-detected.hjson
+    expect: FAIL
+    subject: "sha1:4444444444444444444444444444444444444444"
+    attestations:
+      - ../testdata/aiir/commit-receipt-v1-human.json
+    context:
+      - name: requiredSignal
+        value: "agent_attestation: copilot"

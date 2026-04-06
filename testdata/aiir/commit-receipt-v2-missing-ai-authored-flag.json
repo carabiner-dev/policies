@@ -1,0 +1,59 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "https://github.com/invariant-systems-ai/aiir@5555555555555555555555555555555555555555",
+      "digest": {
+        "gitCommit": "5555555555555555555555555555555555555555",
+        "sha1": "5555555555555555555555555555555555555555"
+      }
+    }
+  ],
+  "predicateType": "https://invariantsystems.io/predicates/aiir/commit_receipt/v2",
+  "predicate": {
+    "type": "aiir.commit_receipt",
+    "schema": "aiir/commit_receipt.v2",
+    "version": "1.3.0",
+    "commit": {
+      "sha": "5555555555555555555555555555555555555555",
+      "tree_sha": "6666666666666666666666666666666666666666",
+      "parent_shas": [
+        "7777777777777777777777777777777777777777"
+      ],
+      "author": {
+        "name": "Example Author",
+        "email": "dev@example.com",
+        "date": "2026-04-02T09:00:00Z"
+      },
+      "committer": {
+        "name": "Example Author",
+        "email": "dev@example.com",
+        "date": "2026-04-02T09:00:00Z"
+      },
+      "subject": "test: omit AI authorship status in AIIR fixture",
+      "message_hash": "sha256:1212121212121212121212121212121212121212121212121212121212121212",
+      "diff_hash": "sha256:3434343434343434343434343434343434343434343434343434343434343434",
+      "files_changed": 1,
+      "files": [
+        "testdata/aiir/commit-receipt-v2-missing-ai-authored-flag.json"
+      ]
+    },
+    "ai_attestation": {
+      "signals_detected": [
+        "co-authored-by: github copilot"
+      ],
+      "signal_count": 1,
+      "authorship_class": "ai_assisted",
+      "detection_method": "heuristic_v2"
+    },
+    "provenance": {
+      "repository": "https://github.com/invariant-systems-ai/aiir",
+      "tool": "https://github.com/invariant-systems-ai/aiir@v1.3.0",
+      "generator": "aiir.cli"
+    },
+    "receipt_id": "g1-8899aabbccddeeff0011223344556677",
+    "content_hash": "sha256:5656565656565656565656565656565656565656565656565656565656565656",
+    "timestamp": "2026-04-02T09:00:00Z",
+    "extensions": {}
+  }
+}
