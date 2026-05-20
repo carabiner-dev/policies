@@ -1,0 +1,54 @@
+tests:
+  - name: no-vulns-passes-when-report-has-no-matches
+    policy: grype-no-vulns.hjson
+    expect: PASS
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../testdata/grype/none.intoto.json
+
+  - name: no-vulns-fails-when-report-has-matches
+    policy: grype-no-vulns.hjson
+    expect: FAIL
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../testdata/grype/many.intoto.json
+
+  - name: allow-severity-passes-on-empty-report-with-no-allows
+    policy: grype-allow-severity.hjson
+    expect: PASS
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../testdata/grype/none.intoto.json
+
+  - name: allow-severity-fails-with-default-context
+    policy: grype-allow-severity.hjson
+    expect: FAIL
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../testdata/grype/many.intoto.json
+
+  - name: allow-severity-fails-when-only-low-is-allowed
+    policy: grype-allow-severity.hjson
+    expect: FAIL
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../testdata/grype/many.intoto.json
+    context:
+      - name: allowLow
+        value: true
+
+  - name: allow-severity-passes-when-all-present-severities-are-allowed
+    policy: grype-allow-severity.hjson
+    expect: PASS
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../testdata/grype/many.intoto.json
+    context:
+      - name: allowCritical
+        value: true
+      - name: allowHigh
+        value: true
+      - name: allowMedium
+        value: true
+      - name: allowLow
+        value: true
