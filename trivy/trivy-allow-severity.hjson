@@ -1,0 +1,63 @@
+{
+  "id": "trivy-allow-severity",
+  "meta": {
+    "description": "Allows an attested trivy report to pass only when every vulnerability has a severity that the verifier has explicitly enabled"
+  },
+  "context": {
+    "allowCritical": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Critical"
+    },
+    "allowHigh": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity High"
+    },
+    "allowMedium": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Medium"
+    },
+    "allowLow": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Low"
+    },
+    "allowUnknown": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Unknown"
+    }
+  },
+  "tenets": [
+    {
+      "predicates": {
+        "types": [
+          "https://predicates.policylabs.dev/trivy/v1"
+        ]
+      },
+      "outputs": {
+        // Flatten all vulnerabilities across Results, then count those whose
+        // severity is not enabled by any allow* context value. Trivy reports
+        // severities in upper-case (e.g. "HIGH"); lower-case before comparing.
+        "disallowedCount": {
+          "code": "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten().filter(v, !((v.Severity.lowerAscii() == 'critical' && context.allowCritical) || (v.Severity.lowerAscii() == 'high' && context.allowHigh) || (v.Severity.lowerAscii() == 'medium' && context.allowMedium) || (v.Severity.lowerAscii() == 'low' && context.allowLow) || (v.Severity.lowerAscii() == 'unknown' && context.allowUnknown)))) : 0"
+        }
+      },
+      "code": "outputs.disallowedCount == 0",
+      "assessment": {
+        "message": "All attested trivy vulnerabilities have an allowed severity"
+      },
+      "error": {
+        "message": "Attested trivy report has {{ .Outputs.disallowedCount }} vulnerabilities with a disallowed severity",
+        "guidance": "Remediate the vulnerabilities or enable their severity level via the allow* policy context values"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "trivy-no-vulns",
+  "meta": {
+    "description": "Ensures an attested trivy vulnerability report contains no vulnerabilities"
+  },
+  "tenets": [
+    {
+      "predicates": {
+        "types": [
+          "https://predicates.policylabs.dev/trivy/v1"
+        ]
+      },
+      "outputs": {
+        // Trivy reports a list of Results, each of which may carry its own
+        // Vulnerabilities array (omitted entirely when the target has none).
+        "vulnCount": {
+          "code": "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten()) : 0"
+        }
+      },
+      "code": "outputs.vulnCount == 0",
+      "assessment": {
+        "message": "Attested trivy report has no vulnerabilities"
+      },
+      "error": {
+        "message": "Attested trivy report has {{ .Outputs.vulnCount }} vulnerabilities",
+        "guidance": "Remediate or suppress the vulnerabilities reported by trivy before this policy can pass"
+      }
+    }
+  ]
+}
