@@ -1,0 +1,28 @@
+{
+  "id": "grype-no-vulns",
+  "meta": {
+    "description": "Ensures an attested grype vulnerability report contains no vulnerability matches"
+  },
+  "tenets": [
+    {
+      "predicates": {
+        "types": [
+          "https://predicates.policylabs.dev/grype/v1"
+        ]
+      },
+      "outputs": {
+        "vulnCount": {
+          "code": "has(predicate.data.matches) ? size(predicate.data.matches) : 0"
+        }
+      },
+      "code": "outputs.vulnCount == 0",
+      "assessment": {
+        "message": "Attested grype report has no vulnerability matches"
+      },
+      "error": {
+        "message": "Attested grype report has {{ .Outputs.vulnCount }} vulnerability matches",
+        "guidance": "Remediate or suppress the vulnerabilities reported by grype before this policy can pass"
+      }
+    }
+  ]
+}

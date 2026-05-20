@@ -1,0 +1,72 @@
+{
+  "id": "grype-allow-severity",
+  "meta": {
+    "description": '''
+Allows an attested grype report to pass verification only when every vulnerability
+match has a severity level that has been explicitly enabled.
+'''
+  },
+  "context": {
+    "allowCritical": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Critical"
+    },
+    "allowHigh": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity High"
+    },
+    "allowMedium": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Medium"
+    },
+    "allowLow": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Low"
+    },
+    "allowNegligible": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Negligible"
+    },
+    "allowUnknown": {
+      "required": false,
+      "type": "bool",
+      "default": false,
+      "description": "Allow vulnerabilities with severity Unknown"
+    }
+  },
+  "tenets": [
+    {
+      "predicates": {
+        "types": [
+          "https://predicates.policylabs.dev/grype/v1"
+        ]
+      },
+      "outputs": {
+        // Count matches whose severity is not enabled by any allow* context value.
+        // Grype reports severity in title-case (e.g. "High"), so we lower-case
+        // before comparing against the lower-case literals below.
+        "disallowedCount": {
+          "code": "has(predicate.data.matches) ? size(predicate.data.matches.filter(m, !((m.vulnerability.severity.lowerAscii() == 'critical' && context.allowCritical) || (m.vulnerability.severity.lowerAscii() == 'high' && context.allowHigh) || (m.vulnerability.severity.lowerAscii() == 'medium' && context.allowMedium) || (m.vulnerability.severity.lowerAscii() == 'low' && context.allowLow) || (m.vulnerability.severity.lowerAscii() == 'negligible' && context.allowNegligible) || (m.vulnerability.severity.lowerAscii() == 'unknown' && context.allowUnknown)))) : 0"
+        }
+      },
+      "code": "outputs.disallowedCount == 0",
+      "assessment": {
+        "message": "All attested grype matches have an allowed severity"
+      },
+      "error": {
+        "message": "Attested grype report has {{ .Outputs.disallowedCount }} matches with a disallowed severity",
+        "guidance": "Remediate the vulnerabilities or enable their severity level via the allow* policy context values"
+      }
+    }
+  ]
+}
