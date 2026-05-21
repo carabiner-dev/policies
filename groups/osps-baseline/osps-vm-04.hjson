@@ -2,14 +2,33 @@
     "id": "OSPS-VM-04",
     "meta": {
         "description": "The project MUST publicly publish data about discovered vulnerabilities",
-        "controls": [ { "framework": "OSPS", "class": "VM", "id": "04" } ]
+        "controls": [ { "framework": "OSPS", "class": "VM", "id": "04" } ],
+        "assert_mode": "OR"
     },
     "blocks": [
         {
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#openvex/project-is-vexing.json" }
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@68e0a1f773b47aea0411714cb75347a249a90e02#openvex/project-is-vexing.json" }
+                    }
+                }
+            ]
+        },
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@68e0a1f773b47aea0411714cb75347a249a90e02#grype/grype-no-vulns.hjson" }
+                    }
+                }
+            ]
+        },
+        {
+            "policies": [
+                {
+                    "source": {
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@68e0a1f773b47aea0411714cb75347a249a90e02#trivy/trivy-no-vulns.hjson" }
                     }
                 }
             ]
