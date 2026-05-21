@@ -1,0 +1,28 @@
+tests:
+  - name: vm-04-passes-with-attested-grype-no-vulns
+    policy: osps-vm-04.hjson
+    expect: PASS
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../../testdata/grype/none.intoto.json
+
+  - name: vm-04-fails-when-grype-reports-vulnerabilities
+    policy: osps-vm-04.hjson
+    expect: FAIL
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../../testdata/grype/many.intoto.json
+
+  - name: vm-04-passes-with-attested-trivy-no-vulns
+    policy: osps-vm-04.hjson
+    expect: PASS
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../../testdata/trivy/none.intoto.json
+
+  - name: vm-04-fails-when-trivy-reports-vulnerabilities
+    policy: osps-vm-04.hjson
+    expect: FAIL
+    subject: "sha256:90592ae89ed6f72963e72a44ff3670d2a0cb47897c4c6a4fbe8e43b795e568bf"
+    attestations:
+      - ../../testdata/trivy/many.intoto.json
