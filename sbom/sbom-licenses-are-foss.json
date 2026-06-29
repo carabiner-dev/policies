@@ -12,7 +12,7 @@
             },
             "outputs": {
                 "licenses": {
-                    "code": "sboms[0].get_node_list().get_nodes().map(n, size(n.licenses) > 0, n.licenses)"
+                    "code": "sboms[0].get_node_list().get_nodes().filter(n, size(n.licenses) > 0).map(n, n.licenses[0])"
                 },
                 "licenses_test": {
                     "code": "['AFL-2.1', 'Apache-2.0']"

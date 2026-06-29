@@ -12,7 +12,7 @@
             "code": "size(outputs.assessments) > 0",
             "outputs": {
                 "assessments": {
-                    "code": "has(predicates[0].data.security) ? (has(predicates[0].data.security.assessments) ? predicates[0].data.security.assessments : {} ) : {} "
+                    "code": "has(predicates[0].data.repository) && has(predicates[0].data.repository.security) && has(predicates[0].data.repository.security.assessments) ? predicates[0].data.repository.security.assessments : {}"
                 }
             },
             "assessment": {

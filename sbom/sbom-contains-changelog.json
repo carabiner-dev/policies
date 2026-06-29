@@ -12,7 +12,7 @@
             },
             "outputs": {
                 "files": {
-                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' ))"
+                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' || n.name == 'CHANGELOG.md' || n.name == 'CHANGELOG.rst' || n.name == 'CHANGELOG.txt'))"
                 }
             },
             "assessment": {

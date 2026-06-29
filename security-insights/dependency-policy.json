@@ -12,7 +12,7 @@
             "code": "outputs.deppolicy != '' ",
             "outputs": {
                 "deppolicy": {
-                    "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (has(predicates[0].data.repository.documentation.dependency_management_policy) ? predicates[0].data.repository.documentation.dependency_management_policy : '') : '') : '' "
+                    "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (predicates[0].data.repository.documentation.exists(k, k == 'dependency-management-policy') ? predicates[0].data.repository.documentation['dependency-management-policy'] : '') : '') : '' "
                 }
             },
             "assessment": {
