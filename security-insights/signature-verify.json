@@ -9,7 +9,7 @@
             "code": "outputs['verify'] != '' ",
             "outputs": {
                 "verify": {
-                    "code": "has(predicates[0].project) ? (has(predicates[0].project.documentation) ? ('signature-verification' in predicates[0].project.documentation ? predicates[0].project.documentation['signature-verification'] : '' ) : '' ) : '' "
+                    "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.documentation) ? ('signature-verification' in predicates[0].data.project.documentation ? predicates[0].data.project.documentation['signature-verification'] : '' ) : '' ) : '' "
                 }
             },
             "predicates": {
