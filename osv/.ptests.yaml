@@ -1,0 +1,14 @@
+tests:
+  - name: no-critical-passes-when-only-medium-present
+    policy: osv-no-critical.hjson
+    expect: PASS
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/no-critical.intoto.json
+
+  - name: no-critical-fails-when-critical-present
+    policy: osv-no-critical.hjson
+    expect: FAIL
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/critical.intoto.json
