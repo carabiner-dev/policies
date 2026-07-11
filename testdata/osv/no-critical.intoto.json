@@ -1,0 +1,42 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "artifact",
+      "digest": {
+        "sha256": "7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+      }
+    }
+  ],
+  "predicateType": "https://ossf.github.io/osv-schema/results@v1",
+  "predicate": {
+    "date": "2026-07-10T00:00:00Z",
+    "results": [
+      {
+        "source": { "path": "go.mod", "type": "lockfile" },
+        "packages": [
+          {
+            "package": { "name": "github.com/example/two", "ecosystem": "Go" },
+            "vulnerabilities": [
+              {
+                "id": "CVE-2026-2000",
+                "summary": "medium example",
+                "severity": [
+                  { "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N" }
+                ],
+                "affected": [
+                  {
+                    "package": { "name": "github.com/example/two", "ecosystem": "Go", "purl": "pkg:golang/github.com/example/two@2.0.0" },
+                    "ranges": [
+                      { "type": "ECOSYSTEM", "events": [ { "introduced": "0" }, { "fixed": "2.1.0" } ] }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
