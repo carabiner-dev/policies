@@ -1,0 +1,39 @@
+{
+  # osv-no-critical
+  #
+  # Fails when an attested OSV report contains a critical (CVSS >= 9.0)
+  # vulnerability. Showcases the osv CEL plugin: osv.vulns flattens the nested
+  # results -> packages -> vulnerabilities, and osv.cvss reads the numeric CVSS
+  # base score from each finding's severity vector — a threshold that is
+  # impractical to express in raw CEL.
+  id: osv-no-critical
+  meta: {
+    description: "Ensures an attested OSV report contains no critical (CVSS >= 9.0) vulnerabilities"
+    # Requires the osv CEL plugin. Engines that lack it skip this policy
+    # (with --skip-unsupported-runtime) rather than failing to compile it.
+    runtime: "cel@v1?plugin:osv=v1"
+  }
+  tenets: [
+    {
+      predicates: {
+        types: [
+          "https://ossf.github.io/osv-schema/results@v1"
+          "https://ossf.github.io/osv-schema/results@v1.6.7"
+        ]
+      }
+      outputs: {
+        criticalVulns: {
+          code: "osv.vulns(predicate).filter(v, osv.cvss(v) >= 9.0).map(v, v.id)"
+        }
+      }
+      code: "size(outputs.criticalVulns) == 0"
+      assessment: {
+        message: "Attested OSV report has no critical vulnerabilities"
+      }
+      error: {
+        message: "Attested OSV report contains critical vulnerabilities: {{ .Outputs.criticalVulns }}"
+        guidance: "Remediate or suppress the critical (CVSS >= 9.0) vulnerabilities before this policy can pass"
+      }
+    }
+  ]
+}
