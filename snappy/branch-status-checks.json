@@ -8,7 +8,7 @@
             "id": "01",
             "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"required_status_checks\") : false",
             "predicates": {
-                "types": ["http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
+                "types": ["http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml", "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
             },
             "assessment": {
                 "message": "Status checks enforced"
