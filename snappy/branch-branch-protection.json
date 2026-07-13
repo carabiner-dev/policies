@@ -8,7 +8,7 @@
         {
             "code": "size(predicates) > 0",
             "predicates": {
-                "types": ["http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
+                "types": ["http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml", "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
             },
             "assessment": {
                 "message": "Found attested branch protection metadata"
@@ -18,7 +18,7 @@
             "id": "01",
             "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"non_fast_forward\") : false",
             "predicates": {
-                "types": ["http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
+                "types": ["http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml", "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
             },
             "assessment": {
                 "message": "Force pushing is disabled on default branch"
@@ -32,7 +32,7 @@
             "id": "02",
             "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"deletion\") : false",
             "predicates": {
-                "types": ["http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
+                "types": ["http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml", "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
             },
             "assessment": {
                 "message": "Branch deletion is disabled on default branch"
