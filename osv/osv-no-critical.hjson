@@ -1,17 +1,26 @@
 {
   # osv-no-critical
   #
-  # Fails when an attested OSV report contains a critical (CVSS >= 9.0)
-  # vulnerability. Showcases the osv CEL plugin: osv.vulns flattens the nested
-  # results -> packages -> vulnerabilities, and osv.cvss reads the numeric CVSS
-  # base score from each finding's severity vector — a threshold that is
-  # impractical to express in raw CEL.
+  # Fails when an attested OSV report contains a vulnerability whose CVSS base
+  # score is at or above a configurable threshold (the `cvssThreshold` context
+  # value, default 9 — "critical"). Showcases the osv CEL plugin: osv.vulns
+  # flattens the nested results -> packages -> vulnerabilities, and osv.cvss
+  # reads the numeric CVSS base score from each finding's severity vector — a
+  # threshold that is impractical to express in raw CEL.
   id: osv-no-critical
   meta: {
-    description: "Ensures an attested OSV report contains no critical (CVSS >= 9.0) vulnerabilities"
+    description: "Ensures an attested OSV report contains no vulnerability at or above the CVSS threshold (default 9)"
     # Requires the osv CEL plugin. Engines that lack it skip this policy
     # (with --skip-unsupported-runtime) rather than failing to compile it.
     runtime: "cel@v1?plugin:osv=v1"
+  }
+  context: {
+    cvssThreshold: {
+      required: false
+      type: "int"
+      default: 9
+      description: "Minimum CVSS base score (0-10) that counts as a failing vulnerability. Defaults to 9 (critical)."
+    }
   }
   tenets: [
     {
@@ -22,17 +31,17 @@
         ]
       }
       outputs: {
-        criticalVulns: {
-          code: "osv.vulns(predicate).filter(v, osv.cvss(v) >= 9.0).map(v, v.id)"
+        flaggedVulns: {
+          code: "osv.vulns(predicate).filter(v, osv.cvss(v) >= double(context.cvssThreshold)).map(v, v.id)"
         }
       }
-      code: "size(outputs.criticalVulns) == 0"
+      code: "size(outputs.flaggedVulns) == 0"
       assessment: {
-        message: "Attested OSV report has no critical vulnerabilities"
+        message: "Attested OSV report has no vulnerability at or above the CVSS threshold"
       }
       error: {
-        message: "Attested OSV report contains critical vulnerabilities: {{ .Outputs.criticalVulns }}"
-        guidance: "Remediate or suppress the critical (CVSS >= 9.0) vulnerabilities before this policy can pass"
+        message: "Attested OSV report contains vulnerabilities at or above the CVSS threshold: {{ .Outputs.flaggedVulns }}"
+        guidance: "Remediate or suppress the flagged vulnerabilities, or raise the cvssThreshold context value"
       }
     }
   ]
