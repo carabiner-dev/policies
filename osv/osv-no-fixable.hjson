@@ -1,0 +1,37 @@
+{
+  # osv-no-fixable
+  #
+  # Fails when an attested OSV report contains a vulnerability that already has
+  # a fixed version available. Uses the osv CEL plugin's osv.isFixed, which
+  # reports whether a finding's affected ranges declare a `fixed` event.
+  id: osv-no-fixable
+  meta: {
+    description: "Fails when an attested OSV report contains a vulnerability that already has a fix available"
+    # Requires the osv CEL plugin. Engines that lack it skip this policy
+    # (with --skip-unsupported-runtime) rather than failing to compile it.
+    runtime: "cel@v1?plugin:osv=v1"
+  }
+  tenets: [
+    {
+      predicates: {
+        types: [
+          "https://ossf.github.io/osv-schema/results@v1"
+          "https://ossf.github.io/osv-schema/results@v1.6.7"
+        ]
+      }
+      outputs: {
+        fixable: {
+          code: "osv.vulns(predicate).filter(v, osv.isFixed(v)).map(v, v.id)"
+        }
+      }
+      code: "size(outputs.fixable) == 0"
+      assessment: {
+        message: "Attested OSV report contains no vulnerabilities with an available fix"
+      }
+      error: {
+        message: "Attested OSV report contains vulnerabilities with an available fix: {{ .Outputs.fixable }}"
+        guidance: "These vulnerabilities already have fixed versions — upgrade the affected packages to remediate them"
+      }
+    }
+  ]
+}
