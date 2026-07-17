@@ -1,0 +1,38 @@
+tests:
+  - name: bundle-valid-sigstore-signer
+    policy: sigstore-dual-signatures.json
+    expect: PASS
+    subject: "sha256:92012e28dd25ade1615a3d3a125b49d23b00307d7024b72cd624f5b3b0c349b2"
+    collectors: ["fs:../testdata/sigstore/bundle"]
+    signers:
+      - "sigstore::https://token.actions.githubusercontent.com::https://github.com/kubernetes/release/.github/workflows/release.yml@refs/tags/v0.21.1"
+
+  - name: bundle-no-signer-fails
+    policy: sigstore-dual-signatures.json
+    expect: FAIL
+    subject: "sha256:92012e28dd25ade1615a3d3a125b49d23b00307d7024b72cd624f5b3b0c349b2"
+    collectors: ["fs:../testdata/sigstore/bundle"]
+
+  - name: bundle-wrong-signer-fails
+    policy: sigstore-dual-signatures.json
+    expect: FAIL
+    subject: "sha256:92012e28dd25ade1615a3d3a125b49d23b00307d7024b72cd624f5b3b0c349b2"
+    collectors: ["fs:../testdata/sigstore/bundle"]
+    signers:
+      - "sigstore::https://token.actions.githubusercontent.com::https://github.com/evil/repo/.github/workflows/release.yml@refs/tags/v9.9.9"
+
+  - name: detached-valid-sigstore-signer
+    policy: sigstore-dual-signatures.json
+    expect: PASS
+    subject: "sha256:1bd5ad0dbb864a22b08dfbb49c43031a26cac6b019f354bd930980d55405d58e"
+    collectors: ["fs:../testdata/sigstore/sig"]
+    signers:
+      - "sigstore::https://token.actions.githubusercontent.com::https://github.com/kubernetes/release/.github/workflows/release.yml@refs/tags/v0.21.0"
+
+  - name: detached-wrong-signer-fails
+    policy: sigstore-dual-signatures.json
+    expect: FAIL
+    subject: "sha256:1bd5ad0dbb864a22b08dfbb49c43031a26cac6b019f354bd930980d55405d58e"
+    collectors: ["fs:../testdata/sigstore/sig"]
+    signers:
+      - "sigstore::https://token.actions.githubusercontent.com::https://github.com/evil/repo/.github/workflows/release.yml@refs/tags/v9.9.9"
