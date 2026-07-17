@@ -1,0 +1,48 @@
+{
+  # osv-max-epss
+  #
+  # Fails when an attested OSV report contains a vulnerability whose EPSS score
+  # (probability of exploitation in the next 30 days, 0.0-1.0) is at or above a
+  # configurable threshold. Uses the osv CEL plugin's osv.epss, which reads the
+  # `epss` enrichment written by the scanner.
+  id: osv-max-epss
+  meta: {
+    description: "Fails when an attested OSV report contains a vulnerability with an EPSS score at or above the threshold (default 0.5)"
+    # Requires the osv CEL plugin. Engines that lack it skip this policy
+    # (with --skip-unsupported-runtime) rather than failing to compile it.
+    runtime: "cel@v1?plugin:osv=v1"
+  }
+  context: {
+    epssThreshold: {
+      required: false
+      # EPSS is a 0.0-1.0 probability, so it is carried as a string and parsed
+      # with double() below (ampel context values are only bool/string/int).
+      type: "string"
+      default: "0.5"
+      description: "EPSS score (0.0-1.0) at or above which a vulnerability fails the policy. Defaults to 0.5."
+    }
+  }
+  tenets: [
+    {
+      predicates: {
+        types: [
+          "https://ossf.github.io/osv-schema/results@v1"
+          "https://ossf.github.io/osv-schema/results@v1.6.7"
+        ]
+      }
+      outputs: {
+        likelyExploited: {
+          code: "osv.vulns(predicate).filter(v, osv.epss(v) >= double(context.epssThreshold)).map(v, v.id)"
+        }
+      }
+      code: "size(outputs.likelyExploited) == 0"
+      assessment: {
+        message: "Attested OSV report contains no vulnerabilities at or above the EPSS threshold"
+      }
+      error: {
+        message: "Attested OSV report contains vulnerabilities at or above the EPSS threshold: {{ .Outputs.likelyExploited }}"
+        guidance: "These vulnerabilities are likely to be exploited (high EPSS) — prioritize remediation, or raise the epssThreshold context value"
+      }
+    }
+  ]
+}

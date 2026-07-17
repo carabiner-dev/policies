@@ -1,0 +1,51 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "artifact",
+      "digest": {
+        "sha256": "7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+      }
+    }
+  ],
+  "predicateType": "https://ossf.github.io/osv-schema/results@v1",
+  "predicate": {
+    "date": "2026-07-11T00:00:00Z",
+    "results": [
+      {
+        "source": { "path": "go.mod", "type": "lockfile" },
+        "packages": [
+          {
+            "package": { "name": "github.com/example/vuln", "ecosystem": "Go" },
+            "vulnerabilities": [
+              {
+                "id": "CVE-2026-9001",
+                "summary": "known-exploited, fixed, high-EPSS example",
+                "severity": [
+                  { "type": "CVSS_V3", "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H" }
+                ],
+                "affected": [
+                  {
+                    "package": { "name": "github.com/example/vuln", "ecosystem": "Go", "purl": "pkg:golang/github.com/example/vuln@1.0.0" },
+                    "ranges": [
+                      { "type": "ECOSYSTEM", "events": [ { "introduced": "0" }, { "fixed": "2.0.0" } ] }
+                    ]
+                  }
+                ],
+                "references": [
+                  { "type": "ADVISORY", "url": "https://github.com/advisories/GHSA-9001" }
+                ],
+                "database_specific": {
+                  "severity": "CRITICAL",
+                  "epss": 0.9,
+                  "known_exploited": true,
+                  "cwe_ids": [ "CWE-79" ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

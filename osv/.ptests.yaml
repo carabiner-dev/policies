@@ -12,3 +12,72 @@ tests:
     subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
     attestations:
       - ../testdata/osv/critical.intoto.json
+
+  # The same critical report passes once the threshold is raised above its
+  # highest score, proving cvssThreshold is user-configurable.
+  - name: critical-passes-when-threshold-raised
+    policy: osv-no-critical.hjson
+    expect: PASS
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/critical.intoto.json
+    context:
+      - name: cvssThreshold
+        value: 10
+
+  # osv-no-known-exploited: fails on any KEV vulnerability.
+  - name: no-known-exploited-passes-without-kev
+    policy: osv-no-known-exploited.hjson
+    expect: PASS
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/enriched-low-risk.intoto.json
+
+  - name: no-known-exploited-fails-with-kev
+    policy: osv-no-known-exploited.hjson
+    expect: FAIL
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/enriched-high-risk.intoto.json
+
+  # osv-no-fixable: fails when a vulnerability already has a fix available.
+  - name: no-fixable-passes-when-nothing-is-fixed
+    policy: osv-no-fixable.hjson
+    expect: PASS
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/enriched-low-risk.intoto.json
+
+  - name: no-fixable-fails-when-a-fix-is-available
+    policy: osv-no-fixable.hjson
+    expect: FAIL
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/enriched-high-risk.intoto.json
+
+  # osv-max-epss: fails on any vulnerability at or above the EPSS threshold.
+  - name: max-epss-passes-with-low-epss
+    policy: osv-max-epss.hjson
+    expect: PASS
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/enriched-low-risk.intoto.json
+
+  - name: max-epss-fails-with-high-epss
+    policy: osv-max-epss.hjson
+    expect: FAIL
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/enriched-high-risk.intoto.json
+
+  # The high-EPSS report passes once the threshold is raised above its score,
+  # proving epssThreshold is user-configurable.
+  - name: max-epss-passes-when-threshold-raised
+    policy: osv-max-epss.hjson
+    expect: PASS
+    subject: "sha256:7950b24d06407456038435a2a3dfd99531ae8e35940b6fc4dae3cd6f1b504585"
+    attestations:
+      - ../testdata/osv/enriched-high-risk.intoto.json
+    context:
+      - name: epssThreshold
+        value: "0.95"
