@@ -1,0 +1,77 @@
+{
+    id: sigstore-dual-signatures
+
+    meta: {
+        description:
+            '''
+            # Sigstore Signature Verification (dual-style)
+
+            Passes when a release artifact carries a verified sigstore signature
+            from an accepted signer, regardless of whether it was signed the
+            legacy way (a detached Fulcio certificate + signature pair, e.g.
+            `<artifact>.pem` + `<artifact>.sig`) or with a modern sigstore
+            bundle (`<artifact>.sigstore.json` / `.bundle`).
+
+            The carabiner collector normalizes both signing styles into a single
+            signature attestation (`https://carabiner.dev/ampel/signature/v1`):
+            an empty predicate whose only payload is the verified signer
+            identity. AMPEL matches that signer against the identities supplied
+            at verification time (`--signer`) or declared in a policy
+            `identities` block, and only admits attestations from an accepted
+            signer. This tenet then asserts that at least one such attestation is
+            present **and** that its matched signer identity is set and is a
+            sigstore identity — so a signer must be pinned (an empty match, or a
+            key/reference identity, is rejected). A single policy therefore
+            applies to any release no matter how it was signed.
+
+            ## Verifying
+
+            The signer identity is enforced by AMPEL, not by the tenet code, so
+            supply the expected release identity with `--signer`:
+
+            ```
+            ampel verify <artifact> \
+                -c release:github.com/ORG/REPO@vX.Y.Z \
+                -p git+https://github.com/carabiner-dev/policies#sigstore/sigstore-dual-signatures.hjson \
+                --signer 'sigstore::https://token.actions.githubusercontent.com::https://github.com/ORG/REPO/.github/workflows/release.yml@refs/tags/vX.Y.Z'
+            ```
+
+            Alternatively, pin the accepted signer(s) directly in the policy by
+            adding an `identities` block (sigstore `mode: regexp` lets a single
+            entry match a release workflow across every tag).
+            '''
+    }
+
+    tenets: [
+        {
+            // Both signing styles (detached cert + sig, and sigstore bundle)
+            // are collected as the same signature predicate. Require a verified
+            // signature predicate whose matched signer identity (1) is actually
+            // set and (2) is a sigstore identity — this rejects the case where
+            // no accepted identity was supplied (an empty match set still counts
+            // as "verified") and the case where the accepted identity is a key
+            // or reference rather than a sigstore identity.
+            //
+            // The identities exposed here are the ones AMPEL matched against
+            // the policy `identities` / `--signer`, so requiring a non-empty,
+            // sigstore-typed match forces the caller to pin a sigstore signer.
+            id: has-verified-signature
+            predicates: { types: ["https://carabiner.dev/ampel/signature/v1"] }
+
+            code:
+                '''
+                predicates.exists(p,
+                    p.verification.verified &&
+                    size(p.verification.identities) > 0 &&
+                    p.verification.identities.all(i, has(i.sigstore))
+                )
+                '''
+
+            assessment: { message: "A verified sigstore signature from an accepted sigstore signer is present" }
+            error: {
+                message: "No verified sigstore signature from an accepted sigstore signer"
+                guidance: "The release must carry a sigstore signature (detached cert + sig, or a sigstore bundle) whose signer matches an accepted sigstore identity. Pass the expected identity with --signer 'sigstore::<issuer>::<identity>' (or declare it in the policy) — a key or reference identity, or no identity at all, is rejected."
+            }
+        }
+    ]
+}
