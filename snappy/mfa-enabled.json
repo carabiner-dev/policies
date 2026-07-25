@@ -1,0 +1,32 @@
+{
+    "id": "MFA-ENABLED",
+    "meta": {
+        "description": "Verifies that all organization members have two-factor authentication (2FA) enabled",
+        "assert_mode": "AND",
+        "enforce": "ON",
+        "controls": []
+    },
+    "predicates": {
+        "types": [
+            "http://github.com/carabiner-dev/snappy/specs/github/mfa-rest.yaml"
+        ]
+    },
+    "tenets": [
+        {
+            "id": "01",
+            "outputs": {
+                "membersWithout2FA": {
+                    "code": "has(predicates[0].data.values) ? size(predicates[0].data.values) : -1"
+                }
+            },
+            "code": "has(predicates[0].data.values) && size(predicates[0].data.values) == 0",
+            "assessment": {
+                "message": "All organization members have two-factor authentication enabled"
+            },
+            "error": {
+                "message": "Organization has members with two-factor authentication disabled",
+                "guidance": "Review the list of members without 2FA enabled and require them to enable two-factor authentication. In GitHub, navigate to Organization Settings > Authentication security > Require two-factor authentication for everyone in the organization."
+            }
+        }
+    ]
+}
