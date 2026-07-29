@@ -1,0 +1,55 @@
+{
+    id: PROTOBOM-SBOM-GENERATION-CONTEXT
+
+    meta: {
+        description:
+            '''
+            # SBOM Generation Context
+
+            Checks that the SBOM declares the software lifecycle phase it was
+            generated in (before build, build, after build, etc). This
+            implements the _SBOM Generation Context_ element of the CISA 2026
+            SBOM Minimum Elements.
+
+            CycloneDX captures this in `metadata.lifecycles`, which protobom
+            maps to the document types. SPDX 2.x has no equivalent field, so
+            SPDX documents are exempted from the check: the policy passes when
+            the SBOM is SPDX and requires at least one declared lifecycle
+            phase when it is CycloneDX.
+
+            This policy uses the protobom transformer because the lifecycle
+            data is only reachable through the transformed predicate.
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "GENERATION-CONTEXT" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    transformers: [
+        { id: "internal:protobom" }
+    ]
+
+    tenets: [
+        {
+            id: generation-context
+            predicates: {
+                types: [ "application/protobom" ]
+            }
+            outputs: {
+                format: { code: "size(predicates) > 0 && has(predicates[0].data.metadata.sourceData) ? predicates[0].data.metadata.sourceData.format : ''" }
+                lifecycles: { code: "size(predicates) > 0 && has(predicates[0].data.metadata.documentTypes) ? predicates[0].data.metadata.documentTypes : []" }
+            }
+            code: "outputs.format.startsWith('text/spdx') || size(outputs.lifecycles) > 0"
+            assessment: { message: "SBOM declares its generation context" }
+            error: {
+                message: "The SBOM does not declare the lifecycle phase it was generated in"
+                guidance: "Record the generation context in the CycloneDX metadata.lifecycles field (for example: build)"
+            }
+        }
+    ]
+}

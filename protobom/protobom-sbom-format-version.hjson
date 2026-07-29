@@ -1,0 +1,41 @@
+{
+    id: PROTOBOM-SBOM-FORMAT-VERSION
+
+    meta: {
+        description:
+            '''
+            # SBOM Data Format Version
+
+            Checks that the version of the SBOM's data format can be
+            determined. This implements the _SBOM Data Format Version_ element
+            of the CISA 2026 SBOM Minimum Elements.
+
+            The version is read from the format string protobom captures when
+            ingesting the SBOM (for example `text/spdx+json;version=2.3` or
+            `application/vnd.cyclonedx+json;version=1.6`).
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "DATA-FORMAT-VERSION" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    tenets: [
+        {
+            id: format-version
+            outputs: {
+                format: { code: "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''" }
+            }
+            code: "outputs.format.contains(';version=') && !outputs.format.endsWith('=')"
+            assessment: { message: "SBOM data format version identified" }
+            error: {
+                message: "The version of the SBOM's data format could not be determined"
+                guidance: "Generate the SBOM in a versioned release of SPDX or CycloneDX"
+            }
+        }
+    ]
+}

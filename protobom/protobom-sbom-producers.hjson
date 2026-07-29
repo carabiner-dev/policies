@@ -1,0 +1,46 @@
+{
+    id: PROTOBOM-SBOM-PRODUCERS
+
+    meta: {
+        description:
+            '''
+            # Component Producer
+
+            Checks that the top level components of the SBOM identify the
+            entity that created them. This implements the _Component Producer_
+            element of the CISA 2026 SBOM Minimum Elements, which replaces the
+            2021 _Supplier Name_ element.
+
+            The check looks at each root component's originators and falls
+            back to its suppliers, as most SBOM generators record the
+            producing entity in the supplier field.
+
+            Note: protobom does not yet populate supplier data when reading
+            CycloneDX documents, so CycloneDX SBOMs currently fail this check
+            even when the component supplier is set.
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "PRODUCER" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    tenets: [
+        {
+            id: producers
+            outputs: {
+                producers: { code: "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.originators) > 0 ? n.originators : n.suppliers) : []" }
+            }
+            code: "size(outputs.producers) > 0 && outputs.producers.all(p, size(p) > 0 && p.all(e, e.name != ''))"
+            assessment: { message: "All top level components identify their producer" }
+            error: {
+                message: "One or more top level components do not identify the entity that produced them"
+                guidance: "Set the originator (SPDX) or supplier of each top level component, or explicitly mark it as of unknown provenance"
+            }
+        }
+    ]
+}
