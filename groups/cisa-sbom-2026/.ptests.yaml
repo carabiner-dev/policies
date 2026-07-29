@@ -1,0 +1,28 @@
+# Tests for the CISA 2026 SBOM Minimum Elements policy group.
+#
+# Note: the CycloneDX conformance test expects FAIL because protobom does
+# not yet map CycloneDX metadata tools/authors or component suppliers, so
+# the author, tool name, tool version and producer blocks cannot pass for
+# CycloneDX documents. When protobom implements those mappings the
+# expectation should flip to PASS (the fixture carries all the data).
+tests:
+  - name: cisa-minimum-elements-pass-with-complete-spdx
+    policy: cisa-sbom-minimum-elements.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../../testdata/protobom/spdx-complete.intoto.json
+
+  - name: cisa-minimum-elements-fail-with-incomplete-spdx
+    policy: cisa-sbom-minimum-elements.hjson
+    expect: FAIL
+    subject: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../../testdata/protobom/spdx-incomplete.intoto.json
+
+  - name: cisa-minimum-elements-fail-with-cyclonedx-protobom-gaps
+    policy: cisa-sbom-minimum-elements.hjson
+    expect: FAIL
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../../testdata/protobom/cdx-complete.intoto.json
