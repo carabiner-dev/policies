@@ -1,0 +1,90 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "acme-app-1.2.3.tar.gz",
+      "digest": {
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    }
+  ],
+  "predicateType": "https://spdx.dev/Document",
+  "predicate": {
+    "spdxVersion": "SPDX-2.3",
+    "dataLicense": "CC0-1.0",
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "name": "acme-app-1.2.3",
+    "documentNamespace": "https://sboms.acme.example/spdx/acme-app/1.2.3/bd415c04-8d47-49b2-a2f5-6a2c8c1531c0",
+    "creationInfo": {
+      "created": "2026-07-01T12:00:00Z",
+      "creators": [
+        "Organization: ACME Software Inc",
+        "Tool: syft-1.28.0"
+      ]
+    },
+    "packages": [
+      {
+        "SPDXID": "SPDXRef-Package-acme-app",
+        "name": "acme-app",
+        "versionInfo": "1.2.3",
+        "supplier": "Organization: ACME Software Inc",
+        "originator": "Organization: ACME Software Inc",
+        "downloadLocation": "https://releases.acme.example/acme-app/acme-app-1.2.3.tar.gz",
+        "filesAnalyzed": false,
+        "licenseConcluded": "Apache-2.0",
+        "licenseDeclared": "Apache-2.0",
+        "copyrightText": "Copyright 2026 ACME Software Inc",
+        "checksums": [
+          {
+            "algorithm": "SHA256",
+            "checksumValue": "d6c8dd4e5f0a3b7c29e1f57a8b4a44be6072ee1c9138a180d5c1eeb5c15da96f"
+          }
+        ],
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:generic/acme/acme-app@1.2.3"
+          }
+        ]
+      },
+      {
+        "SPDXID": "SPDXRef-Package-libfoo",
+        "name": "libfoo",
+        "versionInfo": "2.0.1",
+        "supplier": "Organization: Libfoo Project",
+        "originator": "Organization: Libfoo Project",
+        "downloadLocation": "https://pkgs.example/libfoo/libfoo-2.0.1.tgz",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "licenseDeclared": "MIT",
+        "copyrightText": "Copyright The Libfoo Authors",
+        "checksums": [
+          {
+            "algorithm": "SHA256",
+            "checksumValue": "88a4552e6f6a3ee6b1f2b16f4a1a4c2a9b2d3e4f5061728394a5b6c7d8e9f001"
+          }
+        ],
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:generic/libfoo/libfoo@2.0.1"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "spdxElementId": "SPDXRef-DOCUMENT",
+        "relationshipType": "DESCRIBES",
+        "relatedSpdxElement": "SPDXRef-Package-acme-app"
+      },
+      {
+        "spdxElementId": "SPDXRef-Package-acme-app",
+        "relationshipType": "DEPENDS_ON",
+        "relatedSpdxElement": "SPDXRef-Package-libfoo"
+      }
+    ]
+  }
+}
