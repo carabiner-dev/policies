@@ -1,0 +1,320 @@
+{
+    id: CISA-SBOM-2026
+
+    meta: {
+        description:
+            '''
+            # CISA 2026 SBOM Minimum Elements
+
+            Checks an SBOM's conformance to the data field elements of the
+            2026 Minimum Elements for a Software Bill of Materials (SBOM),
+            published by CISA and partner agencies on July 29, 2026. The
+            document updates and replaces the 2021 NTIA SBOM Minimum
+            Elements.
+
+            The group defines one block per minimum element, covering the
+            nine SBOM Metadata elements and the eight Component Data
+            elements. Each block can host one or more policies verifying its
+            element; all blocks must pass for the SBOM to conform.
+
+            The Practices and Processes elements of the document describe
+            organizational behavior and are not verifiable against a single
+            SBOM document, so they are not part of this group.
+
+            All blocks reference the standalone policies under protobom/,
+            pinned at commit 3c00b05.
+            '''
+        version: 1
+    }
+
+    blocks: [
+        // ------------------------------------------------------------------
+        // SBOM Metadata elements
+        // ------------------------------------------------------------------
+
+        // SBOM Author: name of the entity that created the SBOM data
+        {
+            id: sbom-author
+            meta: {
+                description: "The SBOM records the entity that created it"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "AUTHOR" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json" }
+                    }
+                }
+            ]
+        }
+
+        // SBOM Author Signature: digital signature attributable to the SBOM
+        // author. The standalone policy enforces the signature; the group
+        // overrides it to advisory (enforce OFF) as most SBOMs are still
+        // distributed unsigned.
+        {
+            id: sbom-author-signature
+            meta: {
+                description: "The SBOM attestation carries a verifiable signature"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "AUTHOR-SIGNATURE" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson" }
+                    }
+                    meta: {
+                        enforce: OFF
+                    }
+                }
+            ]
+        }
+
+        // SBOM Data Format Name
+        {
+            id: sbom-data-format-name
+            meta: {
+                description: "The SBOM is in a widely used machine-processable data format"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "DATA-FORMAT-NAME" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // SBOM Data Format Version
+        {
+            id: sbom-data-format-version
+            meta: {
+                description: "The version of the SBOM's data format can be determined"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "DATA-FORMAT-VERSION" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // SBOM Generation Context: lifecycle phase the SBOM was generated in.
+        // SPDX 2.x cannot express it, so SPDX documents are exempt.
+        {
+            id: sbom-generation-context
+            meta: {
+                description: "The SBOM declares the lifecycle phase it was generated in"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "GENERATION-CONTEXT" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // SBOM Timestamp: date and time of the last update to the SBOM data
+        {
+            id: sbom-timestamp
+            meta: {
+                description: "The SBOM records when it was produced or last updated"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "TIMESTAMP" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json" }
+                    }
+                }
+            ]
+        }
+
+        // SBOM Tool Name
+        {
+            id: sbom-tool-name
+            meta: {
+                description: "The SBOM records the tool used to generate it"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "TOOL-NAME" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // SBOM Tool Version
+        {
+            id: sbom-tool-version
+            meta: {
+                description: "The SBOM records the version of the tool used to generate it"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "TOOL-VERSION" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // SBOM Version: version or unique identifier of the SBOM document
+        // itself.
+        {
+            id: sbom-version
+            meta: {
+                description: "The SBOM document is versioned or uniquely identified"
+                controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "SBOM-VERSION" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // ------------------------------------------------------------------
+        // Component Data elements
+        // ------------------------------------------------------------------
+
+        // Component Producer
+        {
+            id: component-producer
+            meta: {
+                description: "Top level components identify the entity that created them"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "PRODUCER" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // Component Dependency Relationship. The referenced policy ships with
+        // enforce OFF, so this block is advisory until it is enforced.
+        {
+            id: component-dependency-relationship
+            meta: {
+                description: "The SBOM captures the dependency relationships of its components"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "DEPENDENCY-RELATIONSHIP" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json" }
+                    }
+                }
+            ]
+        }
+
+        // Component Hash Value
+        {
+            id: component-hash-value
+            meta: {
+                description: "Top level components carry cryptographic hashes"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "HASH-VALUE" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // Component Hash Algorithm
+        {
+            id: component-hash-algorithm
+            meta: {
+                description: "Component hashes identify the algorithm that produced them"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "HASH-ALGORITHM" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // Component Identifiers: machine-processable identifiers (purl, CPE)
+        {
+            id: component-identifiers
+            meta: {
+                description: "Top level components carry machine-processable software identifiers"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "IDENTIFIERS" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json" }
+                    }
+                }
+            ]
+        }
+
+        // Component License
+        {
+            id: component-license
+            meta: {
+                description: "Top level components carry license information"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "LICENSE" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson" }
+                    }
+                }
+            ]
+        }
+
+        // Component Name
+        {
+            id: component-name
+            meta: {
+                description: "Top level components are named"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "NAME" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json" }
+                    }
+                }
+            ]
+        }
+
+        // Component Version
+        {
+            id: component-version
+            meta: {
+                description: "Top level components are versioned"
+                controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "VERSION" } ]
+            }
+            policies: [
+                {
+                    source: {
+                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json" }
+                    }
+                }
+            ]
+        }
+    ]
+}
