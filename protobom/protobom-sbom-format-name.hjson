@@ -1,0 +1,41 @@
+{
+    id: PROTOBOM-SBOM-FORMAT-NAME
+
+    meta: {
+        description:
+            '''
+            # SBOM Data Format Name
+
+            Checks that the SBOM is expressed in one of the widely used,
+            machine-processable SBOM data formats: SPDX or CycloneDX. This
+            implements the _SBOM Data Format Name_ element of the CISA 2026
+            SBOM Minimum Elements.
+
+            The format is read from the source data protobom captures when
+            ingesting the SBOM (for example `text/spdx+json;version=2.3`).
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "DATA-FORMAT-NAME" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    tenets: [
+        {
+            id: format-name
+            outputs: {
+                format: { code: "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''" }
+            }
+            code: "outputs.format.startsWith('text/spdx') || outputs.format.startsWith('application/vnd.cyclonedx')"
+            assessment: { message: "SBOM data format identified" }
+            error: {
+                message: "No SBOM in a widely used machine-processable data format was found"
+                guidance: "Provide the SBOM as an SPDX or CycloneDX document"
+            }
+        }
+    ]
+}

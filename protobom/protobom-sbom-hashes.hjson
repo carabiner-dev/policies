@@ -1,0 +1,38 @@
+{
+    id: PROTOBOM-SBOM-HASHES
+
+    meta: {
+        description:
+            '''
+            # Component Hash Value
+
+            Checks that the top level components of the SBOM carry at least
+            one cryptographic hash of the component artifact. This implements
+            the _Component Hash Value_ element of the CISA 2026 SBOM Minimum
+            Elements.
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "HASH-VALUE" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    tenets: [
+        {
+            id: hashes
+            outputs: {
+                hashes: { code: "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []" }
+            }
+            code: "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, h[alg] != ''))"
+            assessment: { message: "All top level components have hash values" }
+            error: {
+                message: "One or more top level components have no cryptographic hash of the component artifact"
+                guidance: "Add checksums (SPDX) or hashes (CycloneDX) to each top level component, or explicitly mark the hash as unknown"
+            }
+        }
+    ]
+}

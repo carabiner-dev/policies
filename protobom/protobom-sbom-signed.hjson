@@ -1,0 +1,43 @@
+{
+    id: PROTOBOM-SBOM-SIGNED
+
+    meta: {
+        description:
+            '''
+            # SBOM Author Signature
+
+            Checks that the SBOM was ingested from a signed attestation and that
+            AMPEL verified its signature. This implements the _SBOM Author
+            Signature_ element of the CISA 2026 SBOM Minimum Elements.
+
+            Note that this policy checks the signature on the attestation
+            envelope wrapping the SBOM, not data inside the SBOM document
+            itself (neither SPDX nor CycloneDX embed author signatures).
+
+            This standalone policy enforces the signature requirement. As most
+            SBOMs are still distributed unsigned, the CISA-SBOM-2026 group
+            carries it with enforce OFF to make the check advisory; set
+            `enforce: OFF` (or pin author identities) to match that behavior.
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "AUTHOR-SIGNATURE" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    tenets: [
+        {
+            id: signed
+            code: "size(predicates) > 0 && predicates.all(p, size(p.verification.signers) > 0)"
+            assessment: { message: "SBOM attestation signature verified" }
+            error: {
+                message: "The SBOM attestation is not signed or its signature could not be verified"
+                guidance: "Distribute the SBOM wrapped in a signed attestation (for example a sigstore bundle) attributable to the SBOM author"
+            }
+        }
+    ]
+}

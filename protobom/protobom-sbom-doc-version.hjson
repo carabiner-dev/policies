@@ -1,0 +1,47 @@
+{
+    id: PROTOBOM-SBOM-DOC-VERSION
+
+    meta: {
+        description:
+            '''
+            # SBOM Version
+
+            Checks that the SBOM document itself is versioned, either through
+            a version identifier or through a unique document identifier
+            (serial number). This implements the _SBOM Version_ element of the
+            CISA 2026 SBOM Minimum Elements, which admits both semantic
+            versions and RFC 9562 style unique identifiers.
+
+            CycloneDX captures this in the document `version` and
+            `serialNumber` fields. SPDX conveys it through the unique document
+            namespace.
+
+            Not to be confused with PROTOBOM-SBOM-VERSIONS, which checks the
+            versions of the components listed in the SBOM.
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "SBOM-METADATA", id: "SBOM-VERSION" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    tenets: [
+        {
+            id: doc-version
+            outputs: {
+                version: { code: "size(sboms) > 0 ? sboms[0].get_metadata().version : ''" }
+                identifier: { code: "size(sboms) > 0 ? sboms[0].get_metadata().id : ''" }
+            }
+            code: "(outputs.version != '' && outputs.version != '0') || outputs.identifier != ''"
+            assessment: { message: "SBOM document is versioned" }
+            error: {
+                message: "The SBOM document has no version or unique identifier"
+                guidance: "Set the CycloneDX version/serialNumber or the SPDX document namespace to identify this revision of the SBOM"
+            }
+        }
+    ]
+}

@@ -1,0 +1,97 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "acme-app-1.2.3.tar.gz",
+      "digest": {
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    }
+  ],
+  "predicateType": "https://cyclonedx.org/bom",
+  "predicate": {
+    "bomFormat": "CycloneDX",
+    "specVersion": "1.6",
+    "serialNumber": "urn:uuid:0191a3c1-7c8e-4f7a-9c1d-2f30a1b40c77",
+    "version": 4,
+    "metadata": {
+      "timestamp": "2026-07-01T12:00:00Z",
+      "lifecycles": [
+        {
+          "phase": "build"
+        }
+      ],
+      "authors": [
+        {
+          "name": "ACME Software Inc",
+          "email": "sbom@acme.example"
+        }
+      ],
+      "tools": {
+        "components": [
+          {
+            "type": "application",
+            "name": "acme-sbom-generator",
+            "version": "3.1.4"
+          }
+        ]
+      },
+      "component": {
+        "type": "application",
+        "bom-ref": "pkg:generic/acme/acme-app@1.2.3",
+        "name": "acme-app",
+        "version": "1.2.3",
+        "purl": "pkg:generic/acme/acme-app@1.2.3",
+        "supplier": {
+          "name": "ACME Software Inc"
+        },
+        "hashes": [
+          {
+            "alg": "SHA-256",
+            "content": "d6c8dd4e5f0a3b7c29e1f57a8b4a44be6072ee1c9138a180d5c1eeb5c15da96f"
+          }
+        ],
+        "licenses": [
+          {
+            "license": {
+              "id": "Apache-2.0"
+            }
+          }
+        ]
+      }
+    },
+    "components": [
+      {
+        "type": "library",
+        "bom-ref": "pkg:generic/libfoo/libfoo@2.0.1",
+        "name": "libfoo",
+        "version": "2.0.1",
+        "purl": "pkg:generic/libfoo/libfoo@2.0.1",
+        "supplier": {
+          "name": "Libfoo Project"
+        },
+        "hashes": [
+          {
+            "alg": "SHA-256",
+            "content": "88a4552e6f6a3ee6b1f2b16f4a1a4c2a9b2d3e4f5061728394a5b6c7d8e9f001"
+          }
+        ],
+        "licenses": [
+          {
+            "license": {
+              "id": "MIT"
+            }
+          }
+        ]
+      }
+    ],
+    "dependencies": [
+      {
+        "ref": "pkg:generic/acme/acme-app@1.2.3",
+        "dependsOn": [
+          "pkg:generic/libfoo/libfoo@2.0.1"
+        ]
+      }
+    ]
+  }
+}

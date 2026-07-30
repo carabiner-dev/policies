@@ -1,0 +1,38 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {
+      "name": "mystery-artifact.tar.gz",
+      "digest": {
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    }
+  ],
+  "predicateType": "https://spdx.dev/Document",
+  "predicate": {
+    "spdxVersion": "SPDX-2.3",
+    "dataLicense": "CC0-1.0",
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "name": "mystery-artifact",
+    "documentNamespace": "https://sboms.acme.example/spdx/mystery-artifact/06a3fb18-88ce-4bfe-a382-a73203899d3b",
+    "creationInfo": {
+      "created": "",
+      "creators": []
+    },
+    "packages": [
+      {
+        "SPDXID": "SPDXRef-Package-mystery-lib",
+        "name": "mystery-lib",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false
+      }
+    ],
+    "relationships": [
+      {
+        "spdxElementId": "SPDXRef-DOCUMENT",
+        "relationshipType": "DESCRIBES",
+        "relatedSpdxElement": "SPDXRef-Package-mystery-lib"
+      }
+    ]
+  }
+}

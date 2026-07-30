@@ -1,0 +1,203 @@
+# Tests for the protobom SBOM policies implementing the CISA 2026
+# SBOM Minimum Elements data fields.
+#
+# Fixtures (in ../testdata/protobom):
+#   spdx-complete    - SPDX 2.3 SBOM carrying every minimum element
+#   spdx-incomplete  - SPDX 2.3 SBOM missing author, timestamp, tools and
+#                      all component data except the name
+#   cdx-complete     - CycloneDX 1.6 SBOM carrying every minimum element
+#   cdx-minimal      - CycloneDX 1.6 SBOM without serialNumber, version or
+#                      lifecycles
+#
+# Note: some CycloneDX cases are pinned to the current protobom behavior:
+# the CycloneDX unserializer does not populate metadata tools/authors or
+# component suppliers yet. When protobom implements those mappings the
+# affected expectations below should flip to PASS.
+tests:
+  # SBOM Author Signature: fixtures are unsigned statements, so the strict
+  # standalone policy fails. (The CISA-SBOM-2026 group carries this same
+  # check with enforce OFF, making it advisory there.)
+  - name: sbom-signed-fails-on-unsigned-attestation
+    policy: protobom-sbom-signed.hjson
+    expect: FAIL
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+
+  # SBOM Data Format Name
+  - name: format-name-passes-with-spdx
+    policy: protobom-sbom-format-name.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: format-name-passes-with-cyclonedx
+    policy: protobom-sbom-format-name.hjson
+    expect: PASS
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+
+  # SBOM Data Format Version
+  - name: format-version-passes-with-spdx
+    policy: protobom-sbom-format-version.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: format-version-passes-with-cyclonedx
+    policy: protobom-sbom-format-version.hjson
+    expect: PASS
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+
+  # SBOM Generation Context
+  - name: generation-context-passes-with-cyclonedx-lifecycle
+    policy: protobom-sbom-generation-context.hjson
+    expect: PASS
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+  - name: generation-context-exempts-spdx
+    policy: protobom-sbom-generation-context.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: generation-context-fails-without-lifecycle
+    policy: protobom-sbom-generation-context.hjson
+    expect: FAIL
+    subject: "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    attestations:
+      - ../testdata/protobom/cdx-minimal.intoto.json
+
+  # SBOM Tool Name
+  - name: tool-name-passes-with-spdx-tool-creator
+    policy: protobom-sbom-tool-name.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: tool-name-fails-without-tools
+    policy: protobom-sbom-tool-name.hjson
+    expect: FAIL
+    subject: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/protobom/spdx-incomplete.intoto.json
+  # Pinned protobom behavior: CycloneDX metadata.tools are not mapped yet
+  - name: tool-name-fails-with-cyclonedx-protobom-gap
+    policy: protobom-sbom-tool-name.hjson
+    expect: FAIL
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+
+  # SBOM Tool Version
+  - name: tool-version-passes-with-version-in-spdx-tool-name
+    policy: protobom-sbom-tool-version.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: tool-version-fails-without-tools
+    policy: protobom-sbom-tool-version.hjson
+    expect: FAIL
+    subject: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/protobom/spdx-incomplete.intoto.json
+
+  # SBOM Version (document version)
+  - name: doc-version-passes-with-spdx-namespace
+    policy: protobom-sbom-doc-version.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: doc-version-passes-with-cyclonedx-version-and-serial
+    policy: protobom-sbom-doc-version.hjson
+    expect: PASS
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+  - name: doc-version-fails-without-version-or-serial
+    policy: protobom-sbom-doc-version.hjson
+    expect: FAIL
+    subject: "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    attestations:
+      - ../testdata/protobom/cdx-minimal.intoto.json
+
+  # Component Producer
+  - name: producers-passes-with-originators
+    policy: protobom-sbom-producers.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: producers-fails-without-producer-info
+    policy: protobom-sbom-producers.hjson
+    expect: FAIL
+    subject: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/protobom/spdx-incomplete.intoto.json
+  # Pinned protobom behavior: CycloneDX component suppliers are not mapped yet
+  - name: producers-fails-with-cyclonedx-protobom-gap
+    policy: protobom-sbom-producers.hjson
+    expect: FAIL
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+
+  # Component Hash Value
+  - name: hashes-passes-with-spdx-checksums
+    policy: protobom-sbom-hashes.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: hashes-passes-with-cyclonedx-hashes
+    policy: protobom-sbom-hashes.hjson
+    expect: PASS
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+  - name: hashes-fails-without-checksums
+    policy: protobom-sbom-hashes.hjson
+    expect: FAIL
+    subject: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/protobom/spdx-incomplete.intoto.json
+
+  # Component Hash Algorithm
+  - name: hash-algorithms-passes-with-recognized-algorithms
+    policy: protobom-sbom-hash-algorithms.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: hash-algorithms-fails-without-hashes
+    policy: protobom-sbom-hash-algorithms.hjson
+    expect: FAIL
+    subject: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/protobom/spdx-incomplete.intoto.json
+
+  # Component License
+  - name: licenses-passes-with-spdx-licenses
+    policy: protobom-sbom-licenses.hjson
+    expect: PASS
+    subject: "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/protobom/spdx-complete.intoto.json
+  - name: licenses-passes-with-cyclonedx-licenses
+    policy: protobom-sbom-licenses.hjson
+    expect: PASS
+    subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    attestations:
+      - ../testdata/protobom/cdx-complete.intoto.json
+  - name: licenses-fails-without-license-info
+    policy: protobom-sbom-licenses.hjson
+    expect: FAIL
+    subject: "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/protobom/spdx-incomplete.intoto.json

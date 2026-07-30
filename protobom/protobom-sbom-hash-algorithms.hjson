@@ -1,0 +1,42 @@
+{
+    id: PROTOBOM-SBOM-HASH-ALGORITHMS
+
+    meta: {
+        description:
+            '''
+            # Component Hash Algorithm
+
+            Checks that the hashes of the SBOM's top level components identify
+            the cryptographic algorithm that produced them. This implements
+            the _Component Hash Algorithm_ element of the CISA 2026 SBOM
+            Minimum Elements.
+
+            Protobom normalizes hash algorithm names when ingesting the SBOM,
+            so the check requires every hash entry to be keyed by a recognized
+            algorithm.
+            '''
+        controls: [ { framework: "CISA-SBOM-2026", class: "COMPONENT-DATA", id: "HASH-ALGORITHM" } ]
+    }
+
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+
+    tenets: [
+        {
+            id: hash-algorithms
+            outputs: {
+                hashes: { code: "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []" }
+            }
+            code: "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, alg != 'UNKNOWN'))"
+            assessment: { message: "All top level component hashes identify their algorithm" }
+            error: {
+                message: "One or more top level components have no hash keyed by a recognized cryptographic algorithm"
+                guidance: "Identify the hash algorithm of each component checksum using standard algorithm names (for example SHA256)"
+            }
+        }
+    ]
+}
