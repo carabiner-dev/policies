@@ -6,7 +6,7 @@
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#snappy/mfa-all.json" }
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@ace0401cf4504ef148093911cb25820dc6af1c9a#snappy/mfa-enabled.json" }
                     }
                 }
             ]
