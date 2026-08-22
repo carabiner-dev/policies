@@ -6,18 +6,7 @@
         ]
     },
     "groups": [
-        {
-            "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@refs/heads/main#groups/osps-baseline/osps-ac-01.hjson" } },
-            "chain": [
-                {
-                    "predicate": {
-                        "type": "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
-                        "runtime": "cel@v0",
-                        "selector": "github.orgDescriptorFromURI(predicate.data.repoUri)"
-                    }
-                }
-            ]
-        },
+        { "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@refs/heads/main#slsa-source/ghorg.json" } } },
         {
             "source": { "location": { "uri": "git+https://github.com/carabiner-dev/policies@9ab40e3d0b1d449959fadd1c58c88a0d8f7fb944#groups/osps-baseline/osps-ac-02.hjson" } },
             "chain": [
