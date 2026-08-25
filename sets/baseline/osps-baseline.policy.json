@@ -36,7 +36,7 @@
         { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-br-02.hjson" } } },
         { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-br-04.hjson" } } },
         { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-br-05.hjson" } } },
-        { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-br-06.hjson" } }, "enforce": "OFF" },
+        { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-br-06.hjson" } }, "meta": { "enforce": "OFF" } },
         { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-do-01.hjson" } } },
         { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-do-02.hjson" } } },
         { "source": { "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#groups/osps-baseline/osps-do-03.hjson" } } },
