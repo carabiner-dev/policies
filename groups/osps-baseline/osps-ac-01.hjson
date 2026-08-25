@@ -6,7 +6,7 @@
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@refs/heads/main#slsa-source/ghorg.json" }
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json" }
                     }
                 }
             ]

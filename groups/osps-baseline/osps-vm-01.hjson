@@ -9,7 +9,7 @@
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@dd0b6d76db4048e1938829d46e03d99feba59352#sbom/security-md.json" }
+                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json" }
                     }
                 }
             ]
