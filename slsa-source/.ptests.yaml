@@ -1,0 +1,14 @@
+tests:
+  - name: ghorg-passes-when-repo-is-on-github
+    policy: ghorg.json
+    expect: PASS
+    subject: "sha1:deadbeef00000000000000000000000000000000"
+    attestations:
+      - ../testdata/slsa-source/github-org.intoto.json
+
+  - name: ghorg-fails-when-repo-is-not-on-github
+    policy: ghorg.json
+    expect: FAIL
+    subject: "sha1:deadbeef00000000000000000000000000000000"
+    attestations:
+      - ../testdata/slsa-source/non-github-org.intoto.json

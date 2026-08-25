@@ -8,7 +8,7 @@
             "id": "01",
             "predicates": { "types": ["https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"] },
             "outputs": {
-                "org": { "code":"github.orgDescriptorFromURI(predicate.data.repo_uri)" }
+                "org": { "code":"github.orgDescriptorFromURI(predicate.data.repoUri)" }
             },
             "code": "outputs.org.name.indexOf('github.com') == 0 ",
             "assessment": { "message": "GitHub organization found in SLSA provenance" }
