@@ -9,7 +9,10 @@
             "id": "01",
             "code": "size(predicates) > 0",
             "predicates": {
-                "types": [ "https://ossf.github.io/osv-schema/results@v1.6.7" ]
+                "types": [
+                    "https://ossf.github.io/osv-schema/results@v1",
+                    "https://ossf.github.io/osv-schema/results@v1.6.7"
+                ]
             },
             "assessment": {
                 "message": "Vulnerability report published"
@@ -35,8 +38,10 @@
             },
             "predicates": {
                 "types": [
+                    "https://ossf.github.io/osv-schema/results@v1",
                     "https://ossf.github.io/osv-schema/results@v1.6.7",
-                    "https://openvex.dev/ns/v0.2.0", "https://openvex.dev/ns"
+                    "https://openvex.dev/ns/v0.2.0",
+                    "https://openvex.dev/ns"
                 ]
             },
             "assessment": {

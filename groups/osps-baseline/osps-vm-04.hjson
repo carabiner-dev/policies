@@ -10,7 +10,7 @@
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openvex/project-is-vexing.json" }
+                        "location": { "uri": "git+https://github.com/deobieta/policies@refs/heads/feat/osps-baseline-chains#openvex/project-is-vexing.json" }
                     }
                 }
             ]
