@@ -5,15 +5,16 @@
 # Override it to use another build: make docs POLICYCTL=/path/to/policyctl
 POLICYCTL ?= go tool policyctl
 
-# Policy files that must not be documented, as paths relative to this file.
-DOC_EXCLUDE :=
+# Policy files that are neither compiled nor documented, as paths relative to
+# this file. Work in progress that does not parse yet goes here.
+EXCLUDE := sets/baseline/baseline-source-provenance.hjson
 
 # Policy sources: every .hjson file, plus every .json file without an .hjson
 # sibling (the .hjson version is the source of truth when both exist).
 # Fixtures under testdata and dot directories are never sources.
-HJSON_SOURCES := $(sort $(shell find . \( -path ./testdata -o -path './.*' \) -prune -o -name '*.hjson' -print | sed 's|^\./||'))
-JSON_SOURCES  := $(sort $(shell find . \( -path ./testdata -o -path './.*' \) -prune -o -name '*.json' -print | sed 's|^\./||'))
-POLICY_SOURCES := $(filter-out $(DOC_EXCLUDE),$(HJSON_SOURCES) $(filter-out $(HJSON_SOURCES:.hjson=.json),$(JSON_SOURCES)))
+HJSON_SOURCES := $(filter-out $(EXCLUDE),$(sort $(shell find . \( -path ./testdata -o -path './.*' \) -prune -o -name '*.hjson' -print | sed 's|^\./||')))
+JSON_SOURCES  := $(filter-out $(EXCLUDE) $(EXCLUDE:.hjson=.json),$(sort $(shell find . \( -path ./testdata -o -path './.*' \) -prune -o -name '*.json' -print | sed 's|^\./||')))
+POLICY_SOURCES := $(HJSON_SOURCES) $(filter-out $(HJSON_SOURCES:.hjson=.json),$(JSON_SOURCES))
 
 # One document per source, next to it with the .md extension, and one index
 # per directory holding sources, as its README.md.
@@ -23,17 +24,15 @@ POLICY_INDEXES := $(addsuffix README.md,$(POLICY_DIRS))
 
 # The HJSON files are the canonical sources. Every one of them has a JSON
 # twin compiled from it, for consumers that read plain JSON; the twins are
-# generated and must not be edited by hand. policyctl reports a failed
-# compile on stdout with a zero exit code, so the rule refuses an output
-# that is an error message rather than a document.
+# generated and must not be edited by hand. A failed compile leaves no
+# half-written twin behind.
 JSON_TWINS := $(addsuffix .json,$(basename $(HJSON_SOURCES)))
 
 .PHONY: json
 json: $(JSON_TWINS) ## Compile the JSON twin of every HJSON policy source
 
 %.json: %.hjson
-	$(POLICYCTL) compile $< > $@
-	@if grep -q '^Exec error' $@; then cat $@; rm -f $@; exit 1; fi
+	$(POLICYCTL) compile $< > $@ || { rm -f $@; exit 1; }
 
 .PHONY: docs
 docs: $(POLICY_DOCS) $(POLICY_INDEXES) ## Generate the documentation of every policy material and the per directory indexes

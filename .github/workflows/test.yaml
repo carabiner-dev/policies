@@ -24,3 +24,26 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: go test -v -count=1 ./...
+
+  docs:
+    name: Generated files are up to date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Go
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: stable
+
+      - name: Regenerate the documentation
+        run: make -B docs
+
+      - name: Check for uncommitted changes
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generated documentation is stale. Run 'make docs' and commit the result."
+            git --no-pager diff --stat
+            exit 1
+          fi
