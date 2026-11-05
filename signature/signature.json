@@ -7,11 +7,10 @@
     "origin": {
       "name": "signature.hjson",
       "digest": {
-        "sha256": "8dc2d08cba74ce22ac327a75476463ef3e433b3edb582789ac9e447a4c2bf27b",
-        "sha512": "d3f4c0d8f070ca32540290c8a2fcc150cf714df5b7a6c983c840d4d0fa1de4c2512d8d82e9b1284262c2267bb39ba4c9a6ee5b90a98e317e8b9dd6cb092aa478"
+        "sha256": "7812aff14c8264811d556d2ba5b736c0a6e7ed7d637d257c47729b3422b5d5f8",
+        "sha512": "7fd93bd30ba90d22d6a05716002a2495dd335628ae06f4f76d96cbd52208398f848d3bf140bf17bb3d0ed27bd9b56fb2b94865f956bcf0fd89fb5eb469f1659d"
       }
-    },
-    "name": "Detached Signature Verified"
+    }
   },
   "tenets": [
     {
