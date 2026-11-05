@@ -1,64 +1,64 @@
 {
-  "id":  "OSPS-LE-03",
-  "meta":  {
-    "description":  "All licenses for the project's source code MUST be maintained in a standard location within the project's repository.\n\nChecked through the release SBOM with the `sbom/sbom-contains-license-file` policy, which looks for a license file among the project's files.",
-    "controls":  [
+  "id": "OSPS-LE-03",
+  "meta": {
+    "description": "All licenses for the project's source code MUST be maintained in a standard location within the project's repository.\n\nChecked through the release SBOM with the `sbom/sbom-contains-license-file` policy, which looks for a license file among the project's files.",
+    "controls": [
       {
-        "id":  "03",
-        "framework":  "OSPS",
-        "class":  "LE"
+        "id": "03",
+        "framework": "OSPS",
+        "class": "LE"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-le-03.hjson",
-      "digest":  {
-        "sha256":  "cc3809e8b704c54c85e92de38137402e5ad2df25bdb55585c25c21cd42ecd221",
-        "sha512":  "adec25d8788e0bafdad48ccc3c734696878567b0e3e48c00ef85c4396572772abef58c0901e517fb0634cb2d250ba29c9b01a99240cfe941f192bd3add2614b4"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-le-03.hjson",
+      "digest": {
+        "sha256": "cc3809e8b704c54c85e92de38137402e5ad2df25bdb55585c25c21cd42ecd221",
+        "sha512": "adec25d8788e0bafdad48ccc3c734696878567b0e3e48c00ef85c4396572772abef58c0901e517fb0634cb2d250ba29c9b01a99240cfe941f192bd3add2614b4"
       }
     },
-    "name":  "License in a Well Known Location"
+    "name": "License in a Well Known Location"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "sbom-contains-license-file",
-          "meta":  {
-            "description":  "Locate a license file in the project files",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "sbom-contains-license-file",
-              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
-              "digest":  {
-                "sha256":  "12aa24dd3dc64376e2231fe0e959b4de27bbbad64bdefa84e600f15693c97ed7",
-                "sha512":  "c9eedc7763fc72f7810bd2cec70d606e71d52560507a29ca4ccf70e3741703f8f1b7aa9c4ff56e1fa9ff4e4910da0234b3ba3e9bc3cecdf7ec8de9b17cdb36e0"
+          "id": "sbom-contains-license-file",
+          "meta": {
+            "description": "Locate a license file in the project files",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "sbom-contains-license-file",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
+              "digest": {
+                "sha256": "12aa24dd3dc64376e2231fe0e959b4de27bbbad64bdefa84e600f15693c97ed7",
+                "sha512": "c9eedc7763fc72f7810bd2cec70d606e71d52560507a29ca4ccf70e3741703f8f1b7aa9c4ff56e1fa9ff4e4910da0234b3ba3e9bc3cecdf7ec8de9b17cdb36e0"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "01-sbom",
-              "code":  "size(outputs[\"files\"]) > 0",
-              "predicates":  {
-                "types":  [
+              "id": "01-sbom",
+              "code": "size(outputs[\"files\"]) > 0",
+              "predicates": {
+                "types": [
                   "https://spdx.dev/Document",
                   "https://cyclonedx.org/bom"
                 ]
               },
-              "outputs":  {
-                "files":  {
-                  "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'LICENSE' || n.name == 'LICENSE.txt' ))"
+              "outputs": {
+                "files": {
+                  "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'LICENSE' || n.name == 'LICENSE.txt' ))"
                 }
               },
-              "error":  {
-                "message":  "Could not detect a license file in the SBOM.",
-                "guidance":  "Add a file named LICENSE to your project's codebase."
+              "error": {
+                "message": "Could not detect a license file in the SBOM.",
+                "guidance": "Add a file named LICENSE to your project's codebase."
               },
-              "assessment":  {
-                "message":  "Found a license file in the project's SBOM."
+              "assessment": {
+                "message": "Found a license file in the project's SBOM."
               }
             }
           ]

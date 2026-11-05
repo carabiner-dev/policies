@@ -1,63 +1,63 @@
 {
-  "id":  "OSPS-DO-06",
-  "meta":  {
-    "description":  "The project documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.\n\nChecked through the project's Security Insights data with the `security-insights/dependency-policy` policy.",
-    "controls":  [
+  "id": "OSPS-DO-06",
+  "meta": {
+    "description": "The project documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.\n\nChecked through the project's Security Insights data with the `security-insights/dependency-policy` policy.",
+    "controls": [
       {
-        "id":  "06",
-        "framework":  "OSPS",
-        "class":  "DO"
+        "id": "06",
+        "framework": "OSPS",
+        "class": "DO"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-do-06.hjson",
-      "digest":  {
-        "sha256":  "4de7d2cb60af17e5ffd3177a1f33611f43da6ee383201c7db7076d50a6ec0c82",
-        "sha512":  "301eeb9ebc9663adbb846caea2abd1d4b4a12423fe8d896a6422e306aba7abb1a0e403f7283e5f61d28d6ce7e667109d9898a583b1cada648b192174b3f4cd26"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-do-06.hjson",
+      "digest": {
+        "sha256": "4de7d2cb60af17e5ffd3177a1f33611f43da6ee383201c7db7076d50a6ec0c82",
+        "sha512": "301eeb9ebc9663adbb846caea2abd1d4b4a12423fe8d896a6422e306aba7abb1a0e403f7283e5f61d28d6ce7e667109d9898a583b1cada648b192174b3f4cd26"
       }
     },
-    "name":  "Dependency Management Policy"
+    "name": "Dependency Management Policy"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "SI-DEPENDENCY-POLICY",
-          "meta":  {
-            "description":  "Checks security insights to ensure it links to a dependency policy",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "SI-DEPENDENCY-POLICY",
-              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
-              "digest":  {
-                "sha256":  "5a4f470b74aec32f2610b0c441986c7f69195f8e6e771abb54cf6fe1e835d168",
-                "sha512":  "217cc7aa5bb1946470de2d802a8662523b6e8c8e93cc5e517854d9c3228587c7c9e2bcbf39cd27f3f2cec24e6caf03340779e604bb566a3dceae6ca8610f2a02"
+          "id": "SI-DEPENDENCY-POLICY",
+          "meta": {
+            "description": "Checks security insights to ensure it links to a dependency policy",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SI-DEPENDENCY-POLICY",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
+              "digest": {
+                "sha256": "5a4f470b74aec32f2610b0c441986c7f69195f8e6e771abb54cf6fe1e835d168",
+                "sha512": "217cc7aa5bb1946470de2d802a8662523b6e8c8e93cc5e517854d9c3228587c7c9e2bcbf39cd27f3f2cec24e6caf03340779e604bb566a3dceae6ca8610f2a02"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "01-si",
-              "code":  "outputs.deppolicy != '' ",
-              "predicates":  {
-                "types":  [
+              "id": "01-si",
+              "code": "outputs.deppolicy != '' ",
+              "predicates": {
+                "types": [
                   "https://github.com/ossf/security-insights-spec"
                 ]
               },
-              "outputs":  {
-                "deppolicy":  {
-                  "code":  "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (predicates[0].data.repository.documentation.exists(k, k == 'dependency-management-policy') ? predicates[0].data.repository.documentation['dependency-management-policy'] : '') : '') : '' "
+              "outputs": {
+                "deppolicy": {
+                  "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (predicates[0].data.repository.documentation.exists(k, k == 'dependency-management-policy') ? predicates[0].data.repository.documentation['dependency-management-policy'] : '') : '') : '' "
                 }
               },
-              "error":  {
-                "message":  "Could not detect a dependency policy in the Security Insights file.",
-                "guidance":  "Add a changelog entry to your SI file under repository.documentation.dependency-management-policy."
+              "error": {
+                "message": "Could not detect a dependency policy in the Security Insights file.",
+                "guidance": "Add a changelog entry to your SI file under repository.documentation.dependency-management-policy."
               },
-              "assessment":  {
-                "message":  "Found a link to the projects dependency policy in SECURITY_INSIGHTS.yml"
+              "assessment": {
+                "message": "Found a link to the projects dependency policy in SECURITY_INSIGHTS.yml"
               }
             }
           ]

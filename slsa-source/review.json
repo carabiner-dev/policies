@@ -1,35 +1,35 @@
 {
-  "id":  "SLSA-SRC-REVIEW",
-  "meta":  {
-    "description":  "Checks the repository's SLSA source provenance for the property recording that changes require code review.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "review.hjson",
-      "digest":  {
-        "sha256":  "acaa08c50b4e1404d4a106d4ac2ddd510f2ecf99ed8e37dda48cd45615ba02a4",
-        "sha512":  "0b22e89ea65ef4ab244eae37531fbad083106e46885832fd2f2a8b68b2cc89e89bc52daf65be3fac68274a60676d86ecff943f59aac79dd5fc34a3b905458d4c"
+  "id": "SLSA-SRC-REVIEW",
+  "meta": {
+    "description": "Checks the repository's SLSA source provenance for the property recording that changes require code review.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "review.hjson",
+      "digest": {
+        "sha256": "acaa08c50b4e1404d4a106d4ac2ddd510f2ecf99ed8e37dda48cd45615ba02a4",
+        "sha512": "0b22e89ea65ef4ab244eae37531fbad083106e46885832fd2f2a8b68b2cc89e89bc52daf65be3fac68274a60676d86ecff943f59aac79dd5fc34a3b905458d4c"
       }
     },
-    "name":  "Code Review Required"
+    "name": "Code Review Required"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "01",
-      "code":  "outputs.controls.one(c, c == 'REVIEW_ENFORCED')",
-      "predicates":  {
-        "types":  [
+      "id": "01",
+      "code": "outputs.controls.one(c, c == 'REVIEW_ENFORCED')",
+      "predicates": {
+        "types": [
           "https://github.com/slsa-framework/source-tool/source-provenance/v1",
           "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"
         ]
       },
-      "outputs":  {
-        "controls":  {
-          "code":  "predicates[0].data.controls.map(c, c.name)"
+      "outputs": {
+        "controls": {
+          "code": "predicates[0].data.controls.map(c, c.name)"
         }
       },
-      "assessment":  {
-        "message":  "Repository enforces code review"
+      "assessment": {
+        "message": "Repository enforces code review"
       }
     }
   ]

@@ -1,43 +1,43 @@
 {
-  "id":  "slsa-build-deps-level-3",
-  "meta":  {
-    "description":  "Reads a SLSA Verification Summary Attestation and fails when any of the verified dependencies does not reach SLSA Build Level 3 or higher.",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "slsa-build-deps-level-3",
+  "meta": {
+    "description": "Reads a SLSA Verification Summary Attestation and fails when any of the verified dependencies does not reach SLSA Build Level 3 or higher.",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "LEVEL_3",
-        "framework":  "SLSA",
-        "class":  "BUILD"
+        "id": "LEVEL_3",
+        "framework": "SLSA",
+        "class": "BUILD"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "slsa-build-deps-level-3.hjson",
-      "digest":  {
-        "sha256":  "e8759539d5e3274df1dd8d36309b89c88d420963b336b70e0276884f42229923",
-        "sha512":  "05ed0e905cd8364951c5e578ec6eaa649775f71d47fafc550b2d83447baff79305f157b9290e89c3cabda3f14ffe6ae118bf8d4d476cf0f2886ae5ee024ce824"
+    "enforce": "ON",
+    "origin": {
+      "name": "slsa-build-deps-level-3.hjson",
+      "digest": {
+        "sha256": "e8759539d5e3274df1dd8d36309b89c88d420963b336b70e0276884f42229923",
+        "sha512": "05ed0e905cd8364951c5e578ec6eaa649775f71d47fafc550b2d83447baff79305f157b9290e89c3cabda3f14ffe6ae118bf8d4d476cf0f2886ae5ee024ce824"
       }
     },
-    "name":  "Dependencies at SLSA Build Level 3"
+    "name": "Dependencies at SLSA Build Level 3"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.levels.filter(level, (outputs.levels[level] != '0' && (level == 'SLSA_BUILD_LEVEL_1' || level == 'SLSA_BUILD_LEVEL_2') )).size() == 0",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.levels.filter(level, (outputs.levels[level] != '0' && (level == 'SLSA_BUILD_LEVEL_1' || level == 'SLSA_BUILD_LEVEL_2') )).size() == 0",
+      "predicates": {
+        "types": [
           "https://slsa.dev/verification_summary/v1"
         ]
       },
-      "outputs":  {
-        "levels":  {
-          "code":  "has(predicates[0].data.dependencyLevels) ? predicates[0].data.dependencyLevels : {} "
+      "outputs": {
+        "levels": {
+          "code": "has(predicates[0].data.dependencyLevels) ? predicates[0].data.dependencyLevels : {} "
         }
       },
-      "error":  {
-        "message":  "Some verified dependencies don't meet SLSA_BUILD_LEVEL_3"
+      "error": {
+        "message": "Some verified dependencies don't meet SLSA_BUILD_LEVEL_3"
       },
-      "assessment":  {
-        "message":  "All verified dependencies are SLSA_BUILD_LEVEL_3+"
+      "assessment": {
+        "message": "All verified dependencies are SLSA_BUILD_LEVEL_3+"
       }
     }
   ]

@@ -1,76 +1,76 @@
 {
-  "id":  "OSPS-GV-02",
-  "meta":  {
-    "description":  "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.\n\nChecked through the attested repository data with the `snappy/repo-issues` policy, which requires issues to be enabled.",
-    "controls":  [
+  "id": "OSPS-GV-02",
+  "meta": {
+    "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.\n\nChecked through the attested repository data with the `snappy/repo-issues` policy, which requires issues to be enabled.",
+    "controls": [
       {
-        "id":  "02",
-        "framework":  "OSPS",
-        "class":  "GV"
+        "id": "02",
+        "framework": "OSPS",
+        "class": "GV"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-gv-02.hjson",
-      "digest":  {
-        "sha256":  "802e24785a38618b2cf16c34ab11a3638e6109a109b427ae9ce628b4f5b5aa74",
-        "sha512":  "b58b5247041ab484cb6507793b329efe39181b5be5980c12fd344be922f0b5849f3a97dc7623f5a7756f07705eac7b96865bfb20102da3483ef52fd24456f716"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-gv-02.hjson",
+      "digest": {
+        "sha256": "802e24785a38618b2cf16c34ab11a3638e6109a109b427ae9ce628b4f5b5aa74",
+        "sha512": "b58b5247041ab484cb6507793b329efe39181b5be5980c12fd344be922f0b5849f3a97dc7623f5a7756f07705eac7b96865bfb20102da3483ef52fd24456f716"
       }
     },
-    "name":  "Public Discussion Mechanisms"
+    "name": "Public Discussion Mechanisms"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "SNAPPY-REPO-HAS-ISSUES",
-          "meta":  {
-            "description":  "Checks if a repository has issues enabled",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "SNAPPY-REPO-HAS-ISSUES",
-              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
-              "digest":  {
-                "sha256":  "a682cb176442ee03ce75dbb8431bc7c7f65df42c94b93515b9ddfc2b6618cbcf",
-                "sha512":  "790f86b3d00ab01f9fcbf6b2d844230b903c01a3ccf958f44e8a6345fe3c928d1ebffbd6f23ee5aff127be8a6e7f75395980876eabafa29859f53648d49b0988"
+          "id": "SNAPPY-REPO-HAS-ISSUES",
+          "meta": {
+            "description": "Checks if a repository has issues enabled",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SNAPPY-REPO-HAS-ISSUES",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
+              "digest": {
+                "sha256": "a682cb176442ee03ce75dbb8431bc7c7f65df42c94b93515b9ddfc2b6618cbcf",
+                "sha512": "790f86b3d00ab01f9fcbf6b2d844230b903c01a3ccf958f44e8a6345fe3c928d1ebffbd6f23ee5aff127be8a6e7f75395980876eabafa29859f53648d49b0988"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "size(predicates) > 0",
-              "predicates":  {
-                "types":  [
+              "code": "size(predicates) > 0",
+              "predicates": {
+                "types": [
                   "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                   "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                 ]
               },
-              "assessment":  {
-                "message":  "Found attested repository data"
+              "assessment": {
+                "message": "Found attested repository data"
               }
             },
             {
-              "id":  "01",
-              "code":  "outputs[\"issues\"]",
-              "predicates":  {
-                "types":  [
+              "id": "01",
+              "code": "outputs[\"issues\"]",
+              "predicates": {
+                "types": [
                   "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                   "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                 ]
               },
-              "outputs":  {
-                "issues":  {
-                  "code":  "has(predicates[0].data.values.has_issues) ? predicates[0].data.values.has_issues : false"
+              "outputs": {
+                "issues": {
+                  "code": "has(predicates[0].data.values.has_issues) ? predicates[0].data.values.has_issues : false"
                 }
               },
-              "error":  {
-                "message":  "Issues are not enabled in the repo",
-                "guidance":  "Turn on the issues setting in the repository"
+              "error": {
+                "message": "Issues are not enabled in the repo",
+                "guidance": "Turn on the issues setting in the repository"
               },
-              "assessment":  {
-                "message":  "Issues feature is enabled in the repository"
+              "assessment": {
+                "message": "Issues feature is enabled in the repository"
               }
             }
           ]

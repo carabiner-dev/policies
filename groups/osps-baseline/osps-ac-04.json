@@ -1,63 +1,63 @@
 {
-  "id":  "OSPS-AC-04",
-  "meta":  {
-    "description":  "The project's permissions in CI/CD pipelines MUST follow the principle of least privilege.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/token-permissions` policy.",
-    "controls":  [
+  "id": "OSPS-AC-04",
+  "meta": {
+    "description": "The project's permissions in CI/CD pipelines MUST follow the principle of least privilege.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/token-permissions` policy.",
+    "controls": [
       {
-        "id":  "04",
-        "framework":  "OSPS",
-        "class":  "AC"
+        "id": "04",
+        "framework": "OSPS",
+        "class": "AC"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-ac-04.hjson",
-      "digest":  {
-        "sha256":  "1cceba7ff1f85d83803497f682464ecce8ca31eb4289d1264043b6b43f581976",
-        "sha512":  "cb7eaca68f1395bfd9f3ca8ab5cdce781ddec44c121fb0d16d0ba2e9f28f27c46694668d69b79a67e14c8245274c6fdd3648eb9f7f1a064aab18733b6f8cb838"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-ac-04.hjson",
+      "digest": {
+        "sha256": "1cceba7ff1f85d83803497f682464ecce8ca31eb4289d1264043b6b43f581976",
+        "sha512": "cb7eaca68f1395bfd9f3ca8ab5cdce781ddec44c121fb0d16d0ba2e9f28f27c46694668d69b79a67e14c8245274c6fdd3648eb9f7f1a064aab18733b6f8cb838"
       }
     },
-    "name":  "Least Privilege for CI/CD Pipelines"
+    "name": "Least Privilege for CI/CD Pipelines"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "SCORECARD-TOKEN-PERMISSIONS",
-          "meta":  {
-            "description":  "CI/CD pipelines MUST follow the principle of least privilege",
-            "assertMode":  "AND",
-            "enforce":  "OFF",
-            "origin":  {
-              "name":  "SCORECARD-TOKEN-PERMISSIONS",
-              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
-              "digest":  {
-                "sha256":  "60fade5bac5e0584dd284b8ffddd3aacc9647879e0ce12246d27ee522f3ee483",
-                "sha512":  "dcf42d89f35599d42f24687b573b67e8e357429b639cd2aaec6e6cc5ba78fea6a4c68d53479257f1f6b8e8fcb88e6707f77691ede5d0beb76d8aff81d3d5e4fc"
+          "id": "SCORECARD-TOKEN-PERMISSIONS",
+          "meta": {
+            "description": "CI/CD pipelines MUST follow the principle of least privilege",
+            "assertMode": "AND",
+            "enforce": "OFF",
+            "origin": {
+              "name": "SCORECARD-TOKEN-PERMISSIONS",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
+              "digest": {
+                "sha256": "60fade5bac5e0584dd284b8ffddd3aacc9647879e0ce12246d27ee522f3ee483",
+                "sha512": "dcf42d89f35599d42f24687b573b67e8e357429b639cd2aaec6e6cc5ba78fea6a4c68d53479257f1f6b8e8fcb88e6707f77691ede5d0beb76d8aff81d3d5e4fc"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "01-scorecard",
-              "code":  "outputs.perms.all(c, c.score == 10)",
-              "predicates":  {
-                "types":  [
+              "id": "01-scorecard",
+              "code": "outputs.perms.all(c, c.score == 10)",
+              "predicates": {
+                "types": [
                   "https://scorecard.dev/result/v0.1"
                 ]
               },
-              "outputs":  {
-                "perms":  {
-                  "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] "
+              "outputs": {
+                "perms": {
+                  "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] "
                 }
               },
-              "error":  {
-                "message":  "Scorecard detected workflows with excessivce permissions",
-                "guidance":  "Ensure workflows drop all privileges and only escalte when needed"
+              "error": {
+                "message": "Scorecard detected workflows with excessivce permissions",
+                "guidance": "Ensure workflows drop all privileges and only escalte when needed"
               },
-              "assessment":  {
-                "message":  "Scorecard reports workflows are configured with least privileges"
+              "assessment": {
+                "message": "Scorecard reports workflows are configured with least privileges"
               }
             }
           ]

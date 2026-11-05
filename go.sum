@@ -138,8 +138,8 @@ github.com/carabiner-dev/openeox v1.0.0 h1:iVfs9jgu2s2Jrb95bJK5FWMx55qF3aHBk9RhU
 github.com/carabiner-dev/openeox v1.0.0/go.mod h1:+6i8M7PhtWk2jRtUC1anZnhmOr5cXKMLGYjwFcqPDa0=
 github.com/carabiner-dev/osv v0.1.2 h1:W5nZOGuygnqzB7YbGon6ab3iFHxFZZgzS3m7GEvYnfc=
 github.com/carabiner-dev/osv v0.1.2/go.mod h1:06cHx1aOdlb53feQxjBIRt3NSFfQKg1b1hrHHj/57QQ=
-github.com/carabiner-dev/policyctl v0.1.3-0.20261104025156-6b37bd24c8bb h1:Sj3tm+aVRXQR5RFOge6QUGL7dg5VOznhMfMbp7iQ8Po=
-github.com/carabiner-dev/policyctl v0.1.3-0.20261104025156-6b37bd24c8bb/go.mod h1:GLo10oo2kw26njb8bTlmeDw2Tt+gT5XGdSt2Sjcq4XI=
+github.com/carabiner-dev/policyctl v0.1.3-0.20261105041052-6c15178e3d75 h1:ZlQt24kqQbaJB5jfUngqYcouWsoGXSLf+48dIvR+i/4=
+github.com/carabiner-dev/policyctl v0.1.3-0.20261105041052-6c15178e3d75/go.mod h1:WNqjPABQTjBmQ2/A/I/cGcahWTWOUEdhed1+08Rm610=
 github.com/carabiner-dev/sbomfs v0.2.0 h1:7OG0Su6iz9sPWcAFzSsaauVZQpKayzrJvGWe0NoxbPw=
 github.com/carabiner-dev/sbomfs v0.2.0/go.mod h1:KaTNcHjm5qbu5G0RCc/7uo3U1KZj1IqRZLFiG+nwC8g=
 github.com/carabiner-dev/spdx3 v0.1.0 h1:Q6nMLXV0BhtqDQuwRDOaJDZR670TK4jdOvZqvTW/ctY=

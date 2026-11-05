@@ -1,38 +1,38 @@
 {
-  "id":  "SCORECARD-DANGEROURS-WF",
-  "meta":  {
-    "description":  "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard detected workflows with dangerous patterns, such as untrusted input reaching privileged steps.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "dangerous-workflow.hjson",
-      "digest":  {
-        "sha256":  "0275a0bdf716a904884981e2bc96655954132cb8a03701ac6eebbd0df0d7a7b7",
-        "sha512":  "5cc08ce13d9a3d031adaeccbb1498bcd86638a7eca47d432ecae02845fca32a0e06bc6d3b9439397cc328155ceaa703220adfde8ff15e299ae69d328c4d6da8f"
+  "id": "SCORECARD-DANGEROURS-WF",
+  "meta": {
+    "description": "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard detected workflows with dangerous patterns, such as untrusted input reaching privileged steps.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "dangerous-workflow.hjson",
+      "digest": {
+        "sha256": "0275a0bdf716a904884981e2bc96655954132cb8a03701ac6eebbd0df0d7a7b7",
+        "sha512": "5cc08ce13d9a3d031adaeccbb1498bcd86638a7eca47d432ecae02845fca32a0e06bc6d3b9439397cc328155ceaa703220adfde8ff15e299ae69d328c4d6da8f"
       }
     },
-    "name":  "No Dangerous Workflows"
+    "name": "No Dangerous Workflows"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "01-scorecard",
-      "code":  "outputs.bin_artifacts_checks.all(c, c.score == 10)",
-      "predicates":  {
-        "types":  [
+      "id": "01-scorecard",
+      "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+      "predicates": {
+        "types": [
           "https://scorecard.dev/result/v0.1"
         ]
       },
-      "outputs":  {
-        "bin_artifacts_checks":  {
-          "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Dangerous-Workflow' && has(c.score)) : [] "
+      "outputs": {
+        "bin_artifacts_checks": {
+          "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Dangerous-Workflow' && has(c.score)) : [] "
         }
       },
-      "error":  {
-        "message":  "Scorecard detected workflows with dangerous patterns",
-        "guidance":  "Review your workflow files and look for dangerous patterns"
+      "error": {
+        "message": "Scorecard detected workflows with dangerous patterns",
+        "guidance": "Review your workflow files and look for dangerous patterns"
       },
-      "assessment":  {
-        "message":  "Scorecard found no dangerous pipelines"
+      "assessment": {
+        "message": "Scorecard found no dangerous pipelines"
       }
     }
   ]

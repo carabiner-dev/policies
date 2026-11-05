@@ -1,47 +1,47 @@
 {
-  "id":  "osv-no-critical",
-  "meta":  {
-    "runtime":  "cel@v1?plugin:osv=v1",
-    "description":  "Ensures an attested OSV report contains no vulnerability at or above the CVSS threshold (default 9)",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osv-no-critical.hjson",
-      "digest":  {
-        "sha256":  "2ce4d2f72deb102fc638679bd743f863899ff59dd77b50a12054c2c40357a615",
-        "sha512":  "c2018994e51db5111322f1f22233d2a8c3b4d75850cbc653040d72fe517623fcf4d97882d354886d9d6f04eaf3196aefcdc53e4efffc73b76966aec19ae3c5f5"
+  "id": "osv-no-critical",
+  "meta": {
+    "runtime": "cel@v1?plugin:osv=v1",
+    "description": "Ensures an attested OSV report contains no vulnerability at or above the CVSS threshold (default 9)",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "osv-no-critical.hjson",
+      "digest": {
+        "sha256": "2ce4d2f72deb102fc638679bd743f863899ff59dd77b50a12054c2c40357a615",
+        "sha512": "c2018994e51db5111322f1f22233d2a8c3b4d75850cbc653040d72fe517623fcf4d97882d354886d9d6f04eaf3196aefcdc53e4efffc73b76966aec19ae3c5f5"
       }
     },
-    "name":  "No Critical Vulnerabilities"
+    "name": "No Critical Vulnerabilities"
   },
-  "context":  {
-    "cvssThreshold":  {
-      "type":  "int",
-      "required":  false,
-      "default":  9,
-      "description":  "Minimum CVSS base score (0-10) that counts as a failing vulnerability. Defaults to 9 (critical)."
+  "context": {
+    "cvssThreshold": {
+      "type": "int",
+      "required": false,
+      "default": 9,
+      "description": "Minimum CVSS base score (0-10) that counts as a failing vulnerability. Defaults to 9 (critical)."
     }
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "size(outputs.flaggedVulns) == 0",
-      "predicates":  {
-        "types":  [
+      "code": "size(outputs.flaggedVulns) == 0",
+      "predicates": {
+        "types": [
           "https://ossf.github.io/osv-schema/results@v1",
           "https://ossf.github.io/osv-schema/results@v1.6.7"
         ]
       },
-      "outputs":  {
-        "flaggedVulns":  {
-          "code":  "osv.vulns(predicate).filter(v, osv.cvss(v) >= double(context.cvssThreshold)).map(v, v.id)"
+      "outputs": {
+        "flaggedVulns": {
+          "code": "osv.vulns(predicate).filter(v, osv.cvss(v) >= double(context.cvssThreshold)).map(v, v.id)"
         }
       },
-      "error":  {
-        "message":  "Attested OSV report contains vulnerabilities at or above the CVSS threshold: {{ .Outputs.flaggedVulns }}",
-        "guidance":  "Remediate or suppress the flagged vulnerabilities, or raise the cvssThreshold context value"
+      "error": {
+        "message": "Attested OSV report contains vulnerabilities at or above the CVSS threshold: {{ .Outputs.flaggedVulns }}",
+        "guidance": "Remediate or suppress the flagged vulnerabilities, or raise the cvssThreshold context value"
       },
-      "assessment":  {
-        "message":  "Attested OSV report has no vulnerability at or above the CVSS threshold"
+      "assessment": {
+        "message": "Attested OSV report has no vulnerability at or above the CVSS threshold"
       }
     }
   ]

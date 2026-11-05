@@ -1,75 +1,75 @@
 {
-  "id":  "grype-allow-severity",
-  "meta":  {
-    "description":  "Passes an attested [grype](https://github.com/anchore/grype) vulnerability report only when every match has a severity the verifier explicitly allowed. Each severity has its own boolean context value, all off by default, so the policy fails on any finding unless its severity was enabled.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "grype-allow-severity.hjson",
-      "digest":  {
-        "sha256":  "3e5bc09c1c6ac400044ed2c9cc4470cd32e3cf00530df225fac226e17982aeaa",
-        "sha512":  "eac1d023e5fea4168599c6198df6d2ca0f1b7d3b5a733dda44b6d7fe2ecf8890cc704b78a664da8a509f3c7f76ca4a531a55aa04297d99aac48d4602bc173918"
+  "id": "grype-allow-severity",
+  "meta": {
+    "description": "Passes an attested [grype](https://github.com/anchore/grype) vulnerability report only when every match has a severity the verifier explicitly allowed. Each severity has its own boolean context value, all off by default, so the policy fails on any finding unless its severity was enabled.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "grype-allow-severity.hjson",
+      "digest": {
+        "sha256": "3e5bc09c1c6ac400044ed2c9cc4470cd32e3cf00530df225fac226e17982aeaa",
+        "sha512": "eac1d023e5fea4168599c6198df6d2ca0f1b7d3b5a733dda44b6d7fe2ecf8890cc704b78a664da8a509f3c7f76ca4a531a55aa04297d99aac48d4602bc173918"
       }
     },
-    "name":  "Allowed Grype Severities"
+    "name": "Allowed Grype Severities"
   },
-  "context":  {
-    "allowCritical":  {
-      "type":  "bool",
-      "required":  false,
-      "default":  false,
-      "description":  "Allow vulnerabilities with severity Critical"
+  "context": {
+    "allowCritical": {
+      "type": "bool",
+      "required": false,
+      "default": false,
+      "description": "Allow vulnerabilities with severity Critical"
     },
-    "allowHigh":  {
-      "type":  "bool",
-      "required":  false,
-      "default":  false,
-      "description":  "Allow vulnerabilities with severity High"
+    "allowHigh": {
+      "type": "bool",
+      "required": false,
+      "default": false,
+      "description": "Allow vulnerabilities with severity High"
     },
-    "allowLow":  {
-      "type":  "bool",
-      "required":  false,
-      "default":  false,
-      "description":  "Allow vulnerabilities with severity Low"
+    "allowLow": {
+      "type": "bool",
+      "required": false,
+      "default": false,
+      "description": "Allow vulnerabilities with severity Low"
     },
-    "allowMedium":  {
-      "type":  "bool",
-      "required":  false,
-      "default":  false,
-      "description":  "Allow vulnerabilities with severity Medium"
+    "allowMedium": {
+      "type": "bool",
+      "required": false,
+      "default": false,
+      "description": "Allow vulnerabilities with severity Medium"
     },
-    "allowNegligible":  {
-      "type":  "bool",
-      "required":  false,
-      "default":  false,
-      "description":  "Allow vulnerabilities with severity Negligible"
+    "allowNegligible": {
+      "type": "bool",
+      "required": false,
+      "default": false,
+      "description": "Allow vulnerabilities with severity Negligible"
     },
-    "allowUnknown":  {
-      "type":  "bool",
-      "required":  false,
-      "default":  false,
-      "description":  "Allow vulnerabilities with severity Unknown"
+    "allowUnknown": {
+      "type": "bool",
+      "required": false,
+      "default": false,
+      "description": "Allow vulnerabilities with severity Unknown"
     }
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.disallowedCount == 0",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.disallowedCount == 0",
+      "predicates": {
+        "types": [
           "https://predicates.policylabs.dev/grype/v1"
         ]
       },
-      "outputs":  {
-        "disallowedCount":  {
-          "code":  "has(predicate.data.matches) ? size(predicate.data.matches.filter(m, !((m.vulnerability.severity.lowerAscii() == 'critical' && context.allowCritical) || (m.vulnerability.severity.lowerAscii() == 'high' && context.allowHigh) || (m.vulnerability.severity.lowerAscii() == 'medium' && context.allowMedium) || (m.vulnerability.severity.lowerAscii() == 'low' && context.allowLow) || (m.vulnerability.severity.lowerAscii() == 'negligible' && context.allowNegligible) || (m.vulnerability.severity.lowerAscii() == 'unknown' && context.allowUnknown)))) : 0"
+      "outputs": {
+        "disallowedCount": {
+          "code": "has(predicate.data.matches) ? size(predicate.data.matches.filter(m, !((m.vulnerability.severity.lowerAscii() == 'critical' && context.allowCritical) || (m.vulnerability.severity.lowerAscii() == 'high' && context.allowHigh) || (m.vulnerability.severity.lowerAscii() == 'medium' && context.allowMedium) || (m.vulnerability.severity.lowerAscii() == 'low' && context.allowLow) || (m.vulnerability.severity.lowerAscii() == 'negligible' && context.allowNegligible) || (m.vulnerability.severity.lowerAscii() == 'unknown' && context.allowUnknown)))) : 0"
         }
       },
-      "error":  {
-        "message":  "Attested grype report has {{ .Outputs.disallowedCount }} matches with a disallowed severity",
-        "guidance":  "Remediate the vulnerabilities or enable their severity level via the allow* policy context values"
+      "error": {
+        "message": "Attested grype report has {{ .Outputs.disallowedCount }} matches with a disallowed severity",
+        "guidance": "Remediate the vulnerabilities or enable their severity level via the allow* policy context values"
       },
-      "assessment":  {
-        "message":  "All attested grype matches have an allowed severity"
+      "assessment": {
+        "message": "All attested grype matches have an allowed severity"
       }
     }
   ]

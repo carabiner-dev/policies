@@ -61,7 +61,7 @@ require (
 	github.com/carabiner-dev/jsonl v0.2.2 // indirect
 	github.com/carabiner-dev/openeox v1.0.0 // indirect
 	github.com/carabiner-dev/osv v0.1.2 // indirect
-	github.com/carabiner-dev/policyctl v0.1.3-0.20261104025156-6b37bd24c8bb // indirect
+	github.com/carabiner-dev/policyctl v0.1.3-0.20261105041052-6c15178e3d75 // indirect
 	github.com/carabiner-dev/sbomfs v0.2.0 // indirect
 	github.com/carabiner-dev/spdx3 v0.1.0 // indirect
 	github.com/carabiner-dev/stash v0.0.0-20261004182444-008b3bad7a45 // indirect

@@ -1,46 +1,46 @@
 {
-  "id":  "slsa-build-level-3",
-  "meta":  {
-    "description":  "Checks that a SLSA Verification Summary Attestation records a passed verification at SLSA Build Level 3 or higher.",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "slsa-build-level-3",
+  "meta": {
+    "description": "Checks that a SLSA Verification Summary Attestation records a passed verification at SLSA Build Level 3 or higher.",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "LEVEL_3",
-        "framework":  "SLSA",
-        "class":  "BUILD"
+        "id": "LEVEL_3",
+        "framework": "SLSA",
+        "class": "BUILD"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "slsa-build-level3.hjson",
-      "digest":  {
-        "sha256":  "b8ae8f3774f17e3915378c6c47b7b1e003b7835de0172739e5c1dc1ee322728d",
-        "sha512":  "49729ccfb136c9d6546d23a2251e23aeaa8d33661a7345d558de508f1caf674d0d3d352b0010fc5df54b20b96f7cbe41e5bc5a167b4005a1e679660ddef114d7"
+    "enforce": "ON",
+    "origin": {
+      "name": "slsa-build-level3.hjson",
+      "digest": {
+        "sha256": "b8ae8f3774f17e3915378c6c47b7b1e003b7835de0172739e5c1dc1ee322728d",
+        "sha512": "49729ccfb136c9d6546d23a2251e23aeaa8d33661a7345d558de508f1caf674d0d3d352b0010fc5df54b20b96f7cbe41e5bc5a167b4005a1e679660ddef114d7"
       }
     },
-    "name":  "SLSA Build Level 3 Verified"
+    "name": "SLSA Build Level 3 Verified"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
+      "predicates": {
+        "types": [
           "https://slsa.dev/verification_summary/v1"
         ]
       },
-      "outputs":  {
-        "levels":  {
-          "code":  "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] "
+      "outputs": {
+        "levels": {
+          "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] "
         },
-        "pass":  {
-          "code":  "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false"
+        "pass": {
+          "code": "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false"
         }
       },
-      "error":  {
-        "message":  "SLSA Build L3+ not recored in verification summary"
+      "error": {
+        "message": "SLSA Build L3+ not recored in verification summary"
       },
-      "assessment":  {
-        "message":  "VSA attesting a SLSA_BUILD_3+ compliance verification"
+      "assessment": {
+        "message": "VSA attesting a SLSA_BUILD_3+ compliance verification"
       }
     }
   ]

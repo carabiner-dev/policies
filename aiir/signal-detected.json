@@ -1,45 +1,45 @@
 {
-  "id":  "aiir-signal-detected",
-  "meta":  {
-    "description":  "Checks that an AIIR commit receipt lists the detection signal named by the `requiredSignal` context value among the signals that informed its authorship decision.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "signal-detected.hjson",
-      "digest":  {
-        "sha256":  "6109dce9d96809e9bf83a26dbfcc73bb472cbaa547d04733e6cf26bdbbd72f46",
-        "sha512":  "c34b8c4842744430a2f830b1fc011812356e8a903aacf4dbfcaf358db7a8e546a0f1f7bf7d5b66ce9e070105e0a6b053a5de8297ad2e4aeda93bb1058409fa4a"
+  "id": "aiir-signal-detected",
+  "meta": {
+    "description": "Checks that an AIIR commit receipt lists the detection signal named by the `requiredSignal` context value among the signals that informed its authorship decision.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "signal-detected.hjson",
+      "digest": {
+        "sha256": "6109dce9d96809e9bf83a26dbfcc73bb472cbaa547d04733e6cf26bdbbd72f46",
+        "sha512": "c34b8c4842744430a2f830b1fc011812356e8a903aacf4dbfcaf358db7a8e546a0f1f7bf7d5b66ce9e070105e0a6b053a5de8297ad2e4aeda93bb1058409fa4a"
       }
     },
-    "name":  "Required Detection Signal"
+    "name": "Required Detection Signal"
   },
-  "context":  {
-    "requiredSignal":  {
-      "type":  "string",
-      "required":  true,
-      "description":  "AIIR detection signal that must be present in ai_attestation.signals_detected"
+  "context": {
+    "requiredSignal": {
+      "type": "string",
+      "required": true,
+      "description": "AIIR detection signal that must be present in ai_attestation.signals_detected"
     }
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.matchedSignal != ''",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.matchedSignal != ''",
+      "predicates": {
+        "types": [
           "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
           "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
         ]
       },
-      "outputs":  {
-        "matchedSignal":  {
-          "code":  "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.signals_detected) && predicate.data.ai_attestation.signals_detected.exists(signal, signal == context.requiredSignal) ? context.requiredSignal : ''"
+      "outputs": {
+        "matchedSignal": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.signals_detected) && predicate.data.ai_attestation.signals_detected.exists(signal, signal == context.requiredSignal) ? context.requiredSignal : ''"
         }
       },
-      "error":  {
-        "message":  "Required AIIR signal was not detected",
-        "guidance":  "This repo requires the AIIR receipt to include the detection signal expected by the verifier policy"
+      "error": {
+        "message": "Required AIIR signal was not detected",
+        "guidance": "This repo requires the AIIR receipt to include the detection signal expected by the verifier policy"
       },
-      "assessment":  {
-        "message":  "AIIR signal {{ .Outputs.matchedSignal }} was detected"
+      "assessment": {
+        "message": "AIIR signal {{ .Outputs.matchedSignal }} was detected"
       }
     }
   ]

@@ -1,88 +1,88 @@
 {
-  "id":  "OSPS-AC-03",
-  "meta":  {
-    "description":  "The project's version control system MUST prevent unintentional modification of the primary branch.\n\nChecked through the attested branch protection rules with the `snappy/branch-branch-protection` policy, which requires force pushes to be disabled on the default branch.",
-    "controls":  [
+  "id": "OSPS-AC-03",
+  "meta": {
+    "description": "The project's version control system MUST prevent unintentional modification of the primary branch.\n\nChecked through the attested branch protection rules with the `snappy/branch-branch-protection` policy, which requires force pushes to be disabled on the default branch.",
+    "controls": [
       {
-        "id":  "03",
-        "framework":  "OSPS",
-        "class":  "AC"
+        "id": "03",
+        "framework": "OSPS",
+        "class": "AC"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-ac-03.hjson",
-      "digest":  {
-        "sha256":  "0dd91469532be734c7d6f7f933699dc23fb15a3ecff0a435fde3ed86a54863d7",
-        "sha512":  "872d286a9b084055dbbc2656df47b3281d615b4b0c7dc2dd72bebad262c2fe5b4578536ff26ecf39b9b8a2e92fc62bc919c63c9abdf85d2ab14a987e83bd67d1"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-ac-03.hjson",
+      "digest": {
+        "sha256": "0dd91469532be734c7d6f7f933699dc23fb15a3ecff0a435fde3ed86a54863d7",
+        "sha512": "872d286a9b084055dbbc2656df47b3281d615b4b0c7dc2dd72bebad262c2fe5b4578536ff26ecf39b9b8a2e92fc62bc919c63c9abdf85d2ab14a987e83bd67d1"
       }
     },
-    "name":  "Protect the Primary Branch"
+    "name": "Protect the Primary Branch"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "SNAPPY-BRANCH-PROTECTION",
-          "meta":  {
-            "description":  "VCS MUST prevent unintentional modification of the primary branch.",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "SNAPPY-BRANCH-PROTECTION",
-              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json",
-              "digest":  {
-                "sha256":  "f26d226bca6e23ad6b872783d75c008a3c3a74ce056d7b7d5ff7930eb313da12",
-                "sha512":  "33fa1bafa3db28f6454e6f42cb31071d6a32a3b44d14d77f3c11cb9dd28b6e65c403bfd7cd2c722e8e9bb5c77bd536bb97b8f34a89553370b4c9eba00b4015e3"
+          "id": "SNAPPY-BRANCH-PROTECTION",
+          "meta": {
+            "description": "VCS MUST prevent unintentional modification of the primary branch.",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SNAPPY-BRANCH-PROTECTION",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json",
+              "digest": {
+                "sha256": "f26d226bca6e23ad6b872783d75c008a3c3a74ce056d7b7d5ff7930eb313da12",
+                "sha512": "33fa1bafa3db28f6454e6f42cb31071d6a32a3b44d14d77f3c11cb9dd28b6e65c403bfd7cd2c722e8e9bb5c77bd536bb97b8f34a89553370b4c9eba00b4015e3"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "size(predicates) > 0",
-              "predicates":  {
-                "types":  [
+              "code": "size(predicates) > 0",
+              "predicates": {
+                "types": [
                   "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
                   "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
                 ]
               },
-              "assessment":  {
-                "message":  "Found attested branch protection metadata"
+              "assessment": {
+                "message": "Found attested branch protection metadata"
               }
             },
             {
-              "id":  "01",
-              "code":  "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"non_fast_forward\") : false",
-              "predicates":  {
-                "types":  [
+              "id": "01",
+              "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"non_fast_forward\") : false",
+              "predicates": {
+                "types": [
                   "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
                   "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
                 ]
               },
-              "error":  {
-                "message":  "Force pushes can be sent to main branch",
-                "guidance":  "Create a branch ruleset protecting your default branch and enable \"Block force pushes\""
+              "error": {
+                "message": "Force pushes can be sent to main branch",
+                "guidance": "Create a branch ruleset protecting your default branch and enable \"Block force pushes\""
               },
-              "assessment":  {
-                "message":  "Force pushing is disabled on default branch"
+              "assessment": {
+                "message": "Force pushing is disabled on default branch"
               }
             },
             {
-              "id":  "02",
-              "code":  "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"deletion\") : false",
-              "predicates":  {
-                "types":  [
+              "id": "02",
+              "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"deletion\") : false",
+              "predicates": {
+                "types": [
                   "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
                   "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
                 ]
               },
-              "error":  {
-                "message":  "Branch delete protection is not enabled",
-                "guidance":  "Create a branch ruleset protecting your default branch and enable \"Restrict deletions\""
+              "error": {
+                "message": "Branch delete protection is not enabled",
+                "guidance": "Create a branch ruleset protecting your default branch and enable \"Restrict deletions\""
               },
-              "assessment":  {
-                "message":  "Branch deletion is disabled on default branch"
+              "assessment": {
+                "message": "Branch deletion is disabled on default branch"
               }
             }
           ]

@@ -1,90 +1,90 @@
 {
-  "id":  "OSPS-VM-04",
-  "meta":  {
-    "description":  "The project MUST publicly publish data about discovered vulnerabilities.\n\nChecked with the `openvex/project-is-vexing` policy, which requires an attested vulnerability report whose findings are addressed by OpenVEX statements.",
-    "controls":  [
+  "id": "OSPS-VM-04",
+  "meta": {
+    "description": "The project MUST publicly publish data about discovered vulnerabilities.\n\nChecked with the `openvex/project-is-vexing` policy, which requires an attested vulnerability report whose findings are addressed by OpenVEX statements.",
+    "controls": [
       {
-        "id":  "04",
-        "framework":  "OSPS",
-        "class":  "VM"
+        "id": "04",
+        "framework": "OSPS",
+        "class": "VM"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-vm-04.hjson",
-      "digest":  {
-        "sha256":  "c4fe6550f10e424fef8cc42b95841b649646adf31df2e3bb83edf3d802e04dd8",
-        "sha512":  "4b1bb3f4fab2504f94d905e008e320f7787f01490b4f1253b7948b34f50acc052ffd482cba7e74c0a1b221249d2746e61f64e055ecb69e013e28d72ff6d8b823"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-vm-04.hjson",
+      "digest": {
+        "sha256": "c4fe6550f10e424fef8cc42b95841b649646adf31df2e3bb83edf3d802e04dd8",
+        "sha512": "4b1bb3f4fab2504f94d905e008e320f7787f01490b4f1253b7948b34f50acc052ffd482cba7e74c0a1b221249d2746e61f64e055ecb69e013e28d72ff6d8b823"
       }
     },
-    "assertMode":  "OR",
-    "name":  "Discovered Vulnerabilities Published"
+    "assertMode": "OR",
+    "name": "Discovered Vulnerabilities Published"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "OPENVEX-VULNS-ARE-VEXED",
-          "meta":  {
-            "description":  "The project MUST publicly publish data about discovered vulnerabilities",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "OPENVEX-VULNS-ARE-VEXED",
-              "uri":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json",
-              "digest":  {
-                "sha256":  "de38d63a3c2833f9ac3ffb4980fb1db5e7ad897b2b9ed54d39c7b6b044d0630e",
-                "sha512":  "2fb4b2ff6a7d75e94eb6764aaeccaa2d90c6c2c2f9b8795e0e447be1f4e9d70a45224aca637baaa4e9a0a79bca855e2925b6983ba79a594b12afd20415a736fe"
+          "id": "OPENVEX-VULNS-ARE-VEXED",
+          "meta": {
+            "description": "The project MUST publicly publish data about discovered vulnerabilities",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "OPENVEX-VULNS-ARE-VEXED",
+              "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json",
+              "digest": {
+                "sha256": "de38d63a3c2833f9ac3ffb4980fb1db5e7ad897b2b9ed54d39c7b6b044d0630e",
+                "sha512": "2fb4b2ff6a7d75e94eb6764aaeccaa2d90c6c2c2f9b8795e0e447be1f4e9d70a45224aca637baaa4e9a0a79bca855e2925b6983ba79a594b12afd20415a736fe"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "01",
-              "code":  "size(predicates) > 0",
-              "predicates":  {
-                "types":  [
+              "id": "01",
+              "code": "size(predicates) > 0",
+              "predicates": {
+                "types": [
                   "https://ossf.github.io/osv-schema/results@v1",
                   "https://ossf.github.io/osv-schema/results@v1.6.7"
                 ]
               },
-              "error":  {
-                "message":  "A vulnerability report was found",
-                "guidance":  "The artifact was published with an attested OSV results"
+              "error": {
+                "message": "A vulnerability report was found",
+                "guidance": "The artifact was published with an attested OSV results"
               },
-              "assessment":  {
-                "message":  "Vulnerability report published"
+              "assessment": {
+                "message": "Vulnerability report published"
               }
             },
             {
-              "id":  "02",
-              "code":  "outputs.reports > 0 && (size(outputs.vulnerabilities) == 0 || outputs.vexes > 0)",
-              "predicates":  {
-                "types":  [
+              "id": "02",
+              "code": "outputs.reports > 0 && (size(outputs.vulnerabilities) == 0 || outputs.vexes > 0)",
+              "predicates": {
+                "types": [
                   "https://ossf.github.io/osv-schema/results@v1",
                   "https://ossf.github.io/osv-schema/results@v1.6.7",
                   "https://openvex.dev/ns/v0.2.0",
                   "https://openvex.dev/ns"
                 ]
               },
-              "outputs":  {
-                "reports":  {
-                  "code":  "size(predicates.filter(p, p.predicate_type.contains('osv-schema')))"
+              "outputs": {
+                "reports": {
+                  "code": "size(predicates.filter(p, p.predicate_type.contains('osv-schema')))"
                 },
-                "vexes":  {
-                  "code":  "size(predicates.filter(p, p.predicate_type.contains('openvex')))"
+                "vexes": {
+                  "code": "size(predicates.filter(p, p.predicate_type.contains('openvex')))"
                 },
-                "vulnerabilities":  {
-                  "code":  "predicates.filter(p, p.predicate_type.contains('osv-schema')).map(p, p.data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()).flatten()"
+                "vulnerabilities": {
+                  "code": "predicates.filter(p, p.predicate_type.contains('osv-schema')).map(p, p.data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()).flatten()"
                 }
               },
-              "error":  {
-                "message":  "Unvexed vulnerabilities found",
-                "guidance":  "All vulnerabilities must be patched or accounted in VEX documents"
+              "error": {
+                "message": "Unvexed vulnerabilities found",
+                "guidance": "All vulnerabilities must be patched or accounted in VEX documents"
               },
-              "assessment":  {
-                "message":  "No vulnerabilities and/or VEX data found"
+              "assessment": {
+                "message": "No vulnerabilities and/or VEX data found"
               }
             }
           ]
@@ -92,42 +92,42 @@
       ]
     },
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "grype-no-vulns",
-          "meta":  {
-            "description":  "Ensures an attested grype vulnerability report contains no vulnerability matches",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "grype-no-vulns",
-              "uri":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson",
-              "digest":  {
-                "sha256":  "0c302ef8882a61f191bac541d4a84c7b4470712aa3ba9f8d9930a61cf3c2151a",
-                "sha512":  "ff5b94d8a69b23a9b73f0f692d57ce27c8279c89f14937204de983c554e362c26df135941cadaf7a22765f73ebc54edee5577d159a3acf5ed717f00047fea640"
+          "id": "grype-no-vulns",
+          "meta": {
+            "description": "Ensures an attested grype vulnerability report contains no vulnerability matches",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "grype-no-vulns",
+              "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson",
+              "digest": {
+                "sha256": "0c302ef8882a61f191bac541d4a84c7b4470712aa3ba9f8d9930a61cf3c2151a",
+                "sha512": "ff5b94d8a69b23a9b73f0f692d57ce27c8279c89f14937204de983c554e362c26df135941cadaf7a22765f73ebc54edee5577d159a3acf5ed717f00047fea640"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "outputs.vulnCount == 0",
-              "predicates":  {
-                "types":  [
+              "code": "outputs.vulnCount == 0",
+              "predicates": {
+                "types": [
                   "https://predicates.policylabs.dev/grype/v1"
                 ]
               },
-              "outputs":  {
-                "vulnCount":  {
-                  "code":  "has(predicate.data.matches) ? size(predicate.data.matches) : 0"
+              "outputs": {
+                "vulnCount": {
+                  "code": "has(predicate.data.matches) ? size(predicate.data.matches) : 0"
                 }
               },
-              "error":  {
-                "message":  "Attested grype report has {{ .Outputs.vulnCount }} vulnerability matches",
-                "guidance":  "Remediate or suppress the vulnerabilities reported by grype before this policy can pass"
+              "error": {
+                "message": "Attested grype report has {{ .Outputs.vulnCount }} vulnerability matches",
+                "guidance": "Remediate or suppress the vulnerabilities reported by grype before this policy can pass"
               },
-              "assessment":  {
-                "message":  "Attested grype report has no vulnerability matches"
+              "assessment": {
+                "message": "Attested grype report has no vulnerability matches"
               }
             }
           ]
@@ -135,42 +135,42 @@
       ]
     },
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "trivy-no-vulns",
-          "meta":  {
-            "description":  "Ensures an attested trivy vulnerability report contains no vulnerabilities",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "trivy-no-vulns",
-              "uri":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson",
-              "digest":  {
-                "sha256":  "e2dd020bcd3c9ec9616eaf33c17e655ee9b39fa8be44034c2fe92fb7a9256176",
-                "sha512":  "50bf04040594da9113938b10d36a4817d6a23001a2bcce52e466de1f1cd5092ac47c2b2825be02216d3451ebb998057fd2487bc965b96af6adeacd628660db15"
+          "id": "trivy-no-vulns",
+          "meta": {
+            "description": "Ensures an attested trivy vulnerability report contains no vulnerabilities",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "trivy-no-vulns",
+              "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson",
+              "digest": {
+                "sha256": "e2dd020bcd3c9ec9616eaf33c17e655ee9b39fa8be44034c2fe92fb7a9256176",
+                "sha512": "50bf04040594da9113938b10d36a4817d6a23001a2bcce52e466de1f1cd5092ac47c2b2825be02216d3451ebb998057fd2487bc965b96af6adeacd628660db15"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "outputs.vulnCount == 0",
-              "predicates":  {
-                "types":  [
+              "code": "outputs.vulnCount == 0",
+              "predicates": {
+                "types": [
                   "https://predicates.policylabs.dev/trivy/v1"
                 ]
               },
-              "outputs":  {
-                "vulnCount":  {
-                  "code":  "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten()) : 0"
+              "outputs": {
+                "vulnCount": {
+                  "code": "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten()) : 0"
                 }
               },
-              "error":  {
-                "message":  "Attested trivy report has {{ .Outputs.vulnCount }} vulnerabilities",
-                "guidance":  "Remediate or suppress the vulnerabilities reported by trivy before this policy can pass"
+              "error": {
+                "message": "Attested trivy report has {{ .Outputs.vulnCount }} vulnerabilities",
+                "guidance": "Remediate or suppress the vulnerabilities reported by trivy before this policy can pass"
               },
-              "assessment":  {
-                "message":  "Attested trivy report has no vulnerabilities"
+              "assessment": {
+                "message": "Attested trivy report has no vulnerabilities"
               }
             }
           ]

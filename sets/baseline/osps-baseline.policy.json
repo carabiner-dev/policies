@@ -1,72 +1,72 @@
 {
-  "id":  "OSPS",
-  "meta":  {
-    "description":  "Evaluates a project against the [Open Source Project Security Baseline](https://baseline.openssf.org), one policy group per control, each mapped to its OSPS control identifier. The groups read attestations about the repository, its releases and its SBOM.",
-    "enforce":  "ON",
-    "frameworks":  [
+  "id": "OSPS",
+  "meta": {
+    "description": "Evaluates a project against the [Open Source Project Security Baseline](https://baseline.openssf.org), one policy group per control, each mapped to its OSPS control identifier. The groups read attestations about the repository, its releases and its SBOM.",
+    "enforce": "ON",
+    "frameworks": [
       {
-        "id":  "OSPS",
-        "name":  "OSPS Security Baseline"
+        "id": "OSPS",
+        "name": "OSPS Security Baseline"
       }
     ],
-    "origin":  {
-      "name":  "osps-baseline.policy.hjson",
-      "digest":  {
-        "sha256":  "a64232dda73038599d215ac287b30f9921547424e79daccd7f5747b66636bd6a",
-        "sha512":  "7aab95cb08fef2caa76b7c056d790ba8659d4fcaca68696b4b1643b09c965fb10b62b017036411ba97b2a3b8cfbf1ae2bf194516e762e6916d0cccf481003f9f"
+    "origin": {
+      "name": "osps-baseline.policy.hjson",
+      "digest": {
+        "sha256": "a64232dda73038599d215ac287b30f9921547424e79daccd7f5747b66636bd6a",
+        "sha512": "7aab95cb08fef2caa76b7c056d790ba8659d4fcaca68696b4b1643b09c965fb10b62b017036411ba97b2a3b8cfbf1ae2bf194516e762e6916d0cccf481003f9f"
       }
     },
-    "name":  "OpenSSF Security Baseline"
+    "name": "OpenSSF Security Baseline"
   },
-  "common":  {},
-  "groups":  [
+  "common": {},
+  "groups": [
     {
-      "id":  "OSPS-AC-01",
-      "meta":  {
-        "controls":  [
+      "id": "OSPS-AC-01",
+      "meta": {
+        "controls": [
           {
-            "id":  "01",
-            "framework":  "OSPS",
-            "class":  "AC"
+            "id": "01",
+            "framework": "OSPS",
+            "class": "AC"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SLSA-SRC-GHORG",
-              "meta":  {
-                "description":  "Evaluates if athe repository is hosted in GitHub",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SLSA-SRC-GHORG",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json",
-                  "digest":  {
-                    "sha256":  "da566b451637ae149ac648cfc80f59e0129bdfcbbc02403c440b62281e0bafd3",
-                    "sha512":  "fc09e14f2693ac3c543e12cb262904455598828377c59df366273593d5335b09ed4a28c4ae87eab876aa8bbd692380d6b43038ca8837415eccf9863bcc35be0d"
+              "id": "SLSA-SRC-GHORG",
+              "meta": {
+                "description": "Evaluates if athe repository is hosted in GitHub",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SLSA-SRC-GHORG",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json",
+                  "digest": {
+                    "sha256": "da566b451637ae149ac648cfc80f59e0129bdfcbbc02403c440b62281e0bafd3",
+                    "sha512": "fc09e14f2693ac3c543e12cb262904455598828377c59df366273593d5335b09ed4a28c4ae87eab876aa8bbd692380d6b43038ca8837415eccf9863bcc35be0d"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "outputs.org.name.indexOf('github.com') == 0 ",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "outputs.org.name.indexOf('github.com') == 0 ",
+                  "predicates": {
+                    "types": [
                       "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"
                     ]
                   },
-                  "outputs":  {
-                    "org":  {
-                      "code":  "github.orgDescriptorFromURI(predicate.data.repoUri)"
+                  "outputs": {
+                    "org": {
+                      "code": "github.orgDescriptorFromURI(predicate.data.repoUri)"
                     }
                   },
-                  "assessment":  {
-                    "message":  "GitHub organization found in SLSA provenance"
+                  "assessment": {
+                    "message": "GitHub organization found in SLSA provenance"
                   }
                 }
               ]
@@ -76,48 +76,48 @@
       ]
     },
     {
-      "id":  "OSPS-AC-02",
-      "meta":  {
-        "controls":  [
+      "id": "OSPS-AC-02",
+      "meta": {
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "AC"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "AC"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SNAPPY-ORG-EXISTS",
-              "meta":  {
-                "description":  "Attested GitHub organization data available",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SNAPPY-ORG-EXISTS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json",
-                  "digest":  {
-                    "sha256":  "d4b0550256121db1e3ad8659756ac107199db51c482e04e504a4df44183f6b37",
-                    "sha512":  "23088190d5dc7347331b1a6f0f5df8a384f2c12fcc164fc9861d4706a9c48ba5f89e7ece37cab8de26b88d1e1f6bee24c955470cb64ea84f1bde4d5b872f6f55"
+              "id": "SNAPPY-ORG-EXISTS",
+              "meta": {
+                "description": "Attested GitHub organization data available",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SNAPPY-ORG-EXISTS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json",
+                  "digest": {
+                    "sha256": "d4b0550256121db1e3ad8659756ac107199db51c482e04e504a4df44183f6b37",
+                    "sha512": "23088190d5dc7347331b1a6f0f5df8a384f2c12fcc164fc9861d4706a9c48ba5f89e7ece37cab8de26b88d1e1f6bee24c955470cb64ea84f1bde4d5b872f6f55"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "true",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "true",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/org.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/org.yaml"
                     ]
                   },
-                  "assessment":  {
-                    "message":  "Attested GitHub organization data found"
+                  "assessment": {
+                    "message": "Attested GitHub organization data found"
                   }
                 }
               ]
@@ -125,92 +125,92 @@
           ]
         }
       ],
-      "chain":  [
+      "chain": [
         {
-          "predicate":  {
-            "type":  "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
-            "selector":  "github.orgDescriptorFromURI(predicate.data.repoUri)",
-            "runtime":  "cel@v1"
+          "predicate": {
+            "type": "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
+            "selector": "github.orgDescriptorFromURI(predicate.data.repoUri)",
+            "runtime": "cel@v1"
           }
         }
       ]
     },
     {
-      "id":  "OSPS-AC-03",
-      "meta":  {
-        "controls":  [
+      "id": "OSPS-AC-03",
+      "meta": {
+        "controls": [
           {
-            "id":  "03",
-            "framework":  "OSPS",
-            "class":  "AC"
+            "id": "03",
+            "framework": "OSPS",
+            "class": "AC"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SNAPPY-BRANCH-PROTECTION",
-              "meta":  {
-                "description":  "VCS MUST prevent unintentional modification of the primary branch.",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SNAPPY-BRANCH-PROTECTION",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json",
-                  "digest":  {
-                    "sha256":  "f26d226bca6e23ad6b872783d75c008a3c3a74ce056d7b7d5ff7930eb313da12",
-                    "sha512":  "33fa1bafa3db28f6454e6f42cb31071d6a32a3b44d14d77f3c11cb9dd28b6e65c403bfd7cd2c722e8e9bb5c77bd536bb97b8f34a89553370b4c9eba00b4015e3"
+              "id": "SNAPPY-BRANCH-PROTECTION",
+              "meta": {
+                "description": "VCS MUST prevent unintentional modification of the primary branch.",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SNAPPY-BRANCH-PROTECTION",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json",
+                  "digest": {
+                    "sha256": "f26d226bca6e23ad6b872783d75c008a3c3a74ce056d7b7d5ff7930eb313da12",
+                    "sha512": "33fa1bafa3db28f6454e6f42cb31071d6a32a3b44d14d77f3c11cb9dd28b6e65c403bfd7cd2c722e8e9bb5c77bd536bb97b8f34a89553370b4c9eba00b4015e3"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
                     ]
                   },
-                  "assessment":  {
-                    "message":  "Found attested branch protection metadata"
+                  "assessment": {
+                    "message": "Found attested branch protection metadata"
                   }
                 },
                 {
-                  "id":  "01",
-                  "code":  "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"non_fast_forward\") : false",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"non_fast_forward\") : false",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
                     ]
                   },
-                  "error":  {
-                    "message":  "Force pushes can be sent to main branch",
-                    "guidance":  "Create a branch ruleset protecting your default branch and enable \"Block force pushes\""
+                  "error": {
+                    "message": "Force pushes can be sent to main branch",
+                    "guidance": "Create a branch ruleset protecting your default branch and enable \"Block force pushes\""
                   },
-                  "assessment":  {
-                    "message":  "Force pushing is disabled on default branch"
+                  "assessment": {
+                    "message": "Force pushing is disabled on default branch"
                   }
                 },
                 {
-                  "id":  "02",
-                  "code":  "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"deletion\") : false",
-                  "predicates":  {
-                    "types":  [
+                  "id": "02",
+                  "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"deletion\") : false",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
                     ]
                   },
-                  "error":  {
-                    "message":  "Branch delete protection is not enabled",
-                    "guidance":  "Create a branch ruleset protecting your default branch and enable \"Restrict deletions\""
+                  "error": {
+                    "message": "Branch delete protection is not enabled",
+                    "guidance": "Create a branch ruleset protecting your default branch and enable \"Restrict deletions\""
                   },
-                  "assessment":  {
-                    "message":  "Branch deletion is disabled on default branch"
+                  "assessment": {
+                    "message": "Branch deletion is disabled on default branch"
                   }
                 }
               ]
@@ -218,67 +218,67 @@
           ]
         }
       ],
-      "chain":  [
+      "chain": [
         {
-          "predicate":  {
-            "type":  "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
-            "selector":  "github.branchDescriptorFromURI(predicate.data.repoUri, 'main')",
-            "runtime":  "cel@v1"
+          "predicate": {
+            "type": "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
+            "selector": "github.branchDescriptorFromURI(predicate.data.repoUri, 'main')",
+            "runtime": "cel@v1"
           }
         }
       ]
     },
     {
-      "id":  "OSPS-AC-04",
-      "meta":  {
-        "controls":  [
+      "id": "OSPS-AC-04",
+      "meta": {
+        "controls": [
           {
-            "id":  "04",
-            "framework":  "OSPS",
-            "class":  "AC"
+            "id": "04",
+            "framework": "OSPS",
+            "class": "AC"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SCORECARD-TOKEN-PERMISSIONS",
-              "meta":  {
-                "description":  "CI/CD pipelines MUST follow the principle of least privilege",
-                "assertMode":  "AND",
-                "enforce":  "OFF",
-                "origin":  {
-                  "name":  "SCORECARD-TOKEN-PERMISSIONS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
-                  "digest":  {
-                    "sha256":  "60fade5bac5e0584dd284b8ffddd3aacc9647879e0ce12246d27ee522f3ee483",
-                    "sha512":  "dcf42d89f35599d42f24687b573b67e8e357429b639cd2aaec6e6cc5ba78fea6a4c68d53479257f1f6b8e8fcb88e6707f77691ede5d0beb76d8aff81d3d5e4fc"
+              "id": "SCORECARD-TOKEN-PERMISSIONS",
+              "meta": {
+                "description": "CI/CD pipelines MUST follow the principle of least privilege",
+                "assertMode": "AND",
+                "enforce": "OFF",
+                "origin": {
+                  "name": "SCORECARD-TOKEN-PERMISSIONS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
+                  "digest": {
+                    "sha256": "60fade5bac5e0584dd284b8ffddd3aacc9647879e0ce12246d27ee522f3ee483",
+                    "sha512": "dcf42d89f35599d42f24687b573b67e8e357429b639cd2aaec6e6cc5ba78fea6a4c68d53479257f1f6b8e8fcb88e6707f77691ede5d0beb76d8aff81d3d5e4fc"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-scorecard",
-                  "code":  "outputs.perms.all(c, c.score == 10)",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-scorecard",
+                  "code": "outputs.perms.all(c, c.score == 10)",
+                  "predicates": {
+                    "types": [
                       "https://scorecard.dev/result/v0.1"
                     ]
                   },
-                  "outputs":  {
-                    "perms":  {
-                      "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] "
+                  "outputs": {
+                    "perms": {
+                      "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] "
                     }
                   },
-                  "error":  {
-                    "message":  "Scorecard detected workflows with excessivce permissions",
-                    "guidance":  "Ensure workflows drop all privileges and only escalte when needed"
+                  "error": {
+                    "message": "Scorecard detected workflows with excessivce permissions",
+                    "guidance": "Ensure workflows drop all privileges and only escalte when needed"
                   },
-                  "assessment":  {
-                    "message":  "Scorecard reports workflows are configured with least privileges"
+                  "assessment": {
+                    "message": "Scorecard reports workflows are configured with least privileges"
                   }
                 }
               ]
@@ -288,57 +288,57 @@
       ]
     },
     {
-      "id":  "OSPS-BR-01",
-      "meta":  {
-        "description":  "The project's build and release pipelines MUST NOT permit untrusted input",
-        "controls":  [
+      "id": "OSPS-BR-01",
+      "meta": {
+        "description": "The project's build and release pipelines MUST NOT permit untrusted input",
+        "controls": [
           {
-            "id":  "01",
-            "framework":  "OSPS",
-            "class":  "BR"
+            "id": "01",
+            "framework": "OSPS",
+            "class": "BR"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SCORECARD-DANGEROURS-WF",
-              "meta":  {
-                "description":  "The project's build and release pipelines MUST NOT permit untrusted input",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SCORECARD-DANGEROURS-WF",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json",
-                  "digest":  {
-                    "sha256":  "32e62634fc89915554e0dff9f36e48bd15f641db9b5c363d99e89b02dcb65876",
-                    "sha512":  "4b94dda07da96061c3ec0b91ab88388b8507e2d0753afa05101bdb6369c18f7e9b5c29739a918f8bc7952d28a4de0c5c5299ff60e59c18a6188e7f763a2f3169"
+              "id": "SCORECARD-DANGEROURS-WF",
+              "meta": {
+                "description": "The project's build and release pipelines MUST NOT permit untrusted input",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SCORECARD-DANGEROURS-WF",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json",
+                  "digest": {
+                    "sha256": "32e62634fc89915554e0dff9f36e48bd15f641db9b5c363d99e89b02dcb65876",
+                    "sha512": "4b94dda07da96061c3ec0b91ab88388b8507e2d0753afa05101bdb6369c18f7e9b5c29739a918f8bc7952d28a4de0c5c5299ff60e59c18a6188e7f763a2f3169"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-scorecard",
-                  "code":  "outputs.bin_artifacts_checks.all(c, c.score == 10)",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-scorecard",
+                  "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+                  "predicates": {
+                    "types": [
                       "https://scorecard.dev/result/v0.1"
                     ]
                   },
-                  "outputs":  {
-                    "bin_artifacts_checks":  {
-                      "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Dangerous-Workflow' && has(c.score)) : [] "
+                  "outputs": {
+                    "bin_artifacts_checks": {
+                      "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Dangerous-Workflow' && has(c.score)) : [] "
                     }
                   },
-                  "error":  {
-                    "message":  "Scorecard detected workflows with dangerous patterns",
-                    "guidance":  "Review your workflow files and look for dangerous patterns"
+                  "error": {
+                    "message": "Scorecard detected workflows with dangerous patterns",
+                    "guidance": "Review your workflow files and look for dangerous patterns"
                   },
-                  "assessment":  {
-                    "message":  "Scorecard found no dangerous pipelines"
+                  "assessment": {
+                    "message": "Scorecard found no dangerous pipelines"
                   }
                 }
               ]
@@ -348,58 +348,58 @@
       ]
     },
     {
-      "id":  "OSPS-BR-02",
-      "meta":  {
-        "description":  "Releases and released software assets MUST be assigned a unique version identifier",
-        "controls":  [
+      "id": "OSPS-BR-02",
+      "meta": {
+        "description": "Releases and released software assets MUST be assigned a unique version identifier",
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "BR"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "BR"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-has-versions",
-              "meta":  {
-                "description":  "Checks an SBOMs top level components to ensure versions are set",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-has-versions",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json",
-                  "digest":  {
-                    "sha256":  "abed0f47da012f2c11c8b3156385ebd6a6cd998d032cf148db44c2aca85d35e8",
-                    "sha512":  "d75ea6eeeee1ba3301eb1470cd791aca1b9b60e8d3fad3fa2615accd399cb9bf3b20d717fc3a82143a0bd88a6535c9a96835bd813a7fa23636a289707deeeca1"
+              "id": "sbom-has-versions",
+              "meta": {
+                "description": "Checks an SBOMs top level components to ensure versions are set",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-has-versions",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json",
+                  "digest": {
+                    "sha256": "abed0f47da012f2c11c8b3156385ebd6a6cd998d032cf148db44c2aca85d35e8",
+                    "sha512": "d75ea6eeeee1ba3301eb1470cd791aca1b9b60e8d3fad3fa2615accd399cb9bf3b20d717fc3a82143a0bd88a6535c9a96835bd813a7fa23636a289707deeeca1"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-sbom",
-                  "code":  "outputs.versions.all(s, s != \"\")",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-sbom",
+                  "code": "outputs.versions.all(s, s != \"\")",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document",
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "outputs":  {
-                    "versions":  {
-                      "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
+                  "outputs": {
+                    "versions": {
+                      "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
                     }
                   },
-                  "error":  {
-                    "message":  "Som of the top level components in the SBOM are missing versions.",
-                    "guidance":  "Ensure the SBOM generation tool is capturing the release version."
+                  "error": {
+                    "message": "Som of the top level components in the SBOM are missing versions.",
+                    "guidance": "Ensure the SBOM generation tool is capturing the release version."
                   },
-                  "assessment":  {
-                    "message":  "All top level components have versions"
+                  "assessment": {
+                    "message": "All top level components have versions"
                   }
                 }
               ]
@@ -409,58 +409,58 @@
       ]
     },
     {
-      "id":  "OSPS-BR-04",
-      "meta":  {
-        "description":  "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
-        "controls":  [
+      "id": "OSPS-BR-04",
+      "meta": {
+        "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
+        "controls": [
           {
-            "id":  "04",
-            "framework":  "OSPS",
-            "class":  "BR"
+            "id": "04",
+            "framework": "OSPS",
+            "class": "BR"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-contains-changelog",
-              "meta":  {
-                "description":  "Checks an SBOM to locate a Changelog in the file lists",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-contains-changelog",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json",
-                  "digest":  {
-                    "sha256":  "0d0c2e8097c2d126702e3f8ec84d0f8dabb35d73aae3f9b8759a9208440eb5f5",
-                    "sha512":  "35b5dffb04b04622e7a7639c9c0503ff6baa300c3ab11b88ebc9cb752b328b11e8aa877c414010f6afd4fd6a17dfe4738aad3355b5a084e2640cc6ed5758a448"
+              "id": "sbom-contains-changelog",
+              "meta": {
+                "description": "Checks an SBOM to locate a Changelog in the file lists",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-contains-changelog",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json",
+                  "digest": {
+                    "sha256": "0d0c2e8097c2d126702e3f8ec84d0f8dabb35d73aae3f9b8759a9208440eb5f5",
+                    "sha512": "35b5dffb04b04622e7a7639c9c0503ff6baa300c3ab11b88ebc9cb752b328b11e8aa877c414010f6afd4fd6a17dfe4738aad3355b5a084e2640cc6ed5758a448"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-sbom",
-                  "code":  "size(outputs[\"files\"]) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-sbom",
+                  "code": "size(outputs[\"files\"]) > 0",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document",
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "outputs":  {
-                    "files":  {
-                      "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' || n.name == 'CHANGELOG.md' || n.name == 'CHANGELOG.rst' || n.name == 'CHANGELOG.txt'))"
+                  "outputs": {
+                    "files": {
+                      "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' || n.name == 'CHANGELOG.md' || n.name == 'CHANGELOG.rst' || n.name == 'CHANGELOG.txt'))"
                     }
                   },
-                  "error":  {
-                    "message":  "Could not detect a changelog file in the SBOM.",
-                    "guidance":  "Add a file named CHANGELOG to your project's codebase registering major changes."
+                  "error": {
+                    "message": "Could not detect a changelog file in the SBOM.",
+                    "guidance": "Add a file named CHANGELOG to your project's codebase registering major changes."
                   },
-                  "assessment":  {
-                    "message":  "Found a changelog in the project's SBOM."
+                  "assessment": {
+                    "message": "Found a changelog in the project's SBOM."
                   }
                 }
               ]
@@ -470,58 +470,58 @@
       ]
     },
     {
-      "id":  "OSPS-BR-05",
-      "meta":  {
-        "description":  "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time",
-        "controls":  [
+      "id": "OSPS-BR-05",
+      "meta": {
+        "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time",
+        "controls": [
           {
-            "id":  "05",
-            "framework":  "OSPS",
-            "class":  "BR"
+            "id": "05",
+            "framework": "OSPS",
+            "class": "BR"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-contains-lockfile",
-              "meta":  {
-                "description":  "Checks for a language dependency lockfile among the SBOM files",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-contains-lockfile",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json",
-                  "digest":  {
-                    "sha256":  "b0f808b2e363b8e9129dccb1615664d5412542343bc3a3f6edff9038cfae6142",
-                    "sha512":  "ef9c37500265f0b0ed11eb3b07ccf0c2baacb36f7fa9ff3e5589b299c12971fe8a3ed10125d5ce6000a62899d12b8643ea0900082c17b66f2f3724f1bc002fba"
+              "id": "sbom-contains-lockfile",
+              "meta": {
+                "description": "Checks for a language dependency lockfile among the SBOM files",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-contains-lockfile",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json",
+                  "digest": {
+                    "sha256": "b0f808b2e363b8e9129dccb1615664d5412542343bc3a3f6edff9038cfae6142",
+                    "sha512": "ef9c37500265f0b0ed11eb3b07ccf0c2baacb36f7fa9ff3e5589b299c12971fe8a3ed10125d5ce6000a62899d12b8643ea0900082c17b66f2f3724f1bc002fba"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-lockfile",
-                  "code":  "size(outputs[\"files\"]) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-lockfile",
+                  "code": "size(outputs[\"files\"]) > 0",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document",
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "outputs":  {
-                    "files":  {
-                      "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'requirements.txt' || n.name == 'poetry.lock' || n.name == 'go.mod' || n.name == 'package.lock' || n.name == 'Gemfile.lock' ))"
+                  "outputs": {
+                    "files": {
+                      "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'requirements.txt' || n.name == 'poetry.lock' || n.name == 'go.mod' || n.name == 'package.lock' || n.name == 'Gemfile.lock' ))"
                     }
                   },
-                  "error":  {
-                    "message":  "Could not detect a package lock file",
-                    "guidance":  "Ensure your project uses go, pypy, npm or ruby gems tooling o handle dependencies"
+                  "error": {
+                    "message": "Could not detect a package lock file",
+                    "guidance": "Ensure your project uses go, pypy, npm or ruby gems tooling o handle dependencies"
                   },
-                  "assessment":  {
-                    "message":  "Found a package lock file"
+                  "assessment": {
+                    "message": "Found a package lock file"
                   }
                 }
               ]
@@ -531,53 +531,53 @@
       ]
     },
     {
-      "id":  "OSPS-BR-06",
-      "meta":  {
-        "description":  "Release MUST be signed or accounted for in a signed manifest",
-        "controls":  [
+      "id": "OSPS-BR-06",
+      "meta": {
+        "description": "Release MUST be signed or accounted for in a signed manifest",
+        "controls": [
           {
-            "id":  "06",
-            "framework":  "OSPS",
-            "class":  "BR"
+            "id": "06",
+            "framework": "OSPS",
+            "class": "BR"
           }
         ],
-        "enforce":  "OFF"
+        "enforce": "OFF"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "slsa-has-attestation",
-              "meta":  {
-                "description":  "Checks if a SLSA provenance attestation is available",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "slsa-has-attestation",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json",
-                  "digest":  {
-                    "sha256":  "b7f9731dbed37e8eb838afbe57fbba20d26270dc656b4d218541e11e00ba8193",
-                    "sha512":  "dbf56a2c60da7529a4d05e63304b48ed42863ef71e824d332fcf654dfd8915cf0612521c984bd0aba96aece51f69ccf616590313668368951fc1082942b2c278"
+              "id": "slsa-has-attestation",
+              "meta": {
+                "description": "Checks if a SLSA provenance attestation is available",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "slsa-has-attestation",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json",
+                  "digest": {
+                    "sha256": "b7f9731dbed37e8eb838afbe57fbba20d26270dc656b4d218541e11e00ba8193",
+                    "sha512": "dbf56a2c60da7529a4d05e63304b48ed42863ef71e824d332fcf654dfd8915cf0612521c984bd0aba96aece51f69ccf616590313668368951fc1082942b2c278"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "slsa",
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "slsa",
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://slsa.dev/provenance/v0.2",
                       "https://slsa.dev/provenance/v1"
                     ]
                   },
-                  "error":  {
-                    "message":  "No SLSA attestation found",
-                    "guidance":  "Capture the build process in a SLSA provenance attestation"
+                  "error": {
+                    "message": "No SLSA attestation found",
+                    "guidance": "Capture the build process in a SLSA provenance attestation"
                   },
-                  "assessment":  {
-                    "message":  "SLSA provenance attestation found"
+                  "assessment": {
+                    "message": "SLSA provenance attestation found"
                   }
                 }
               ]
@@ -587,71 +587,71 @@
       ]
     },
     {
-      "id":  "OSPS-DO-01",
-      "meta":  {
-        "description":  "The project documentation MUST provide user guides for all basic functionality",
-        "controls":  [
+      "id": "OSPS-DO-01",
+      "meta": {
+        "description": "The project documentation MUST provide user guides for all basic functionality",
+        "controls": [
           {
-            "id":  "01",
-            "framework":  "OSPS",
-            "class":  "DO"
+            "id": "01",
+            "framework": "OSPS",
+            "class": "DO"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-HAS-DOCUMENTATION",
-              "meta":  {
-                "description":  "Ensure the detailed-guide field in SI is populated",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-HAS-DOCUMENTATION",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json",
-                  "digest":  {
-                    "sha256":  "17ec8ce85a8e3cbcda350b91f5f0cffd15fe856f5ce8c829caaeb7247f12df3b",
-                    "sha512":  "023b602eb0d7b4b04ad4956708dd655df544eac60db572306bccfc75fe031a76bbca726502167b723af62d469810ff89cff033c7e1526eec2fc54176d2d7e5a6"
+              "id": "SI-HAS-DOCUMENTATION",
+              "meta": {
+                "description": "Ensure the detailed-guide field in SI is populated",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-HAS-DOCUMENTATION",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json",
+                  "digest": {
+                    "sha256": "17ec8ce85a8e3cbcda350b91f5f0cffd15fe856f5ce8c829caaeb7247f12df3b",
+                    "sha512": "023b602eb0d7b4b04ad4956708dd655df544eac60db572306bccfc75fe031a76bbca726502167b723af62d469810ff89cff033c7e1526eec2fc54176d2d7e5a6"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "error":  {
-                    "message":  "No Security Insights attestation found",
-                    "guidance":  "Capture your security insights flile in an attestations at build point"
+                  "error": {
+                    "message": "No Security Insights attestation found",
+                    "guidance": "Capture your security insights flile in an attestations at build point"
                   },
-                  "assessment":  {
-                    "message":  "Security Insights attestation found"
+                  "assessment": {
+                    "message": "Security Insights attestation found"
                   }
                 },
                 {
-                  "code":  "outputs[\"docs\"] != \"\"",
-                  "predicates":  {
-                    "types":  [
+                  "code": "outputs[\"docs\"] != \"\"",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "docs":  {
-                      "code":  "\"documentation\" in predicates[0].data.project ? (\"detailed-guide\" in predicates[0].data.project.documentation ? predicates[0].data.project.documentation[\"detailed-guide\"] : \"\" ) : \"\" "
+                  "outputs": {
+                    "docs": {
+                      "code": "\"documentation\" in predicates[0].data.project ? (\"detailed-guide\" in predicates[0].data.project.documentation ? predicates[0].data.project.documentation[\"detailed-guide\"] : \"\" ) : \"\" "
                     }
                   },
-                  "error":  {
-                    "message":  "No documentation link found in SI",
-                    "guidance":  "Add a security insights file to your repository and define a documentation link"
+                  "error": {
+                    "message": "No documentation link found in SI",
+                    "guidance": "Add a security insights file to your repository and define a documentation link"
                   },
-                  "assessment":  {
-                    "message":  "Documentation link found in SECURITY_INSIGHTS.yaml"
+                  "assessment": {
+                    "message": "Documentation link found in SECURITY_INSIGHTS.yaml"
                   }
                 }
               ]
@@ -661,76 +661,76 @@
       ]
     },
     {
-      "id":  "OSPS-DO-02",
-      "meta":  {
-        "description":  "The project MUST provide a mechanism for reporting defects",
-        "controls":  [
+      "id": "OSPS-DO-02",
+      "meta": {
+        "description": "The project MUST provide a mechanism for reporting defects",
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "DO"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "DO"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-VULN-REPORTING",
-              "meta":  {
-                "description":  "Checks SI data for a vulnerability reporting link and ensures reports are accepted",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-VULN-REPORTING",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json",
-                  "digest":  {
-                    "sha256":  "ff9d39536704e3602379ed4eedbfdc1ef64662691ed42b8319a419f52ed7a0a1",
-                    "sha512":  "62b010abf3bfdbe27dad8317c988bb1d7bac4bfd3e674b16f6830af405913c8ce6455df7b19c0f10c462c9bd1b188a1d4865091789c25b7ed1cdfaa76275f25a"
+              "id": "SI-VULN-REPORTING",
+              "meta": {
+                "description": "Checks SI data for a vulnerability reporting link and ensures reports are accepted",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-VULN-REPORTING",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json",
+                  "digest": {
+                    "sha256": "ff9d39536704e3602379ed4eedbfdc1ef64662691ed42b8319a419f52ed7a0a1",
+                    "sha512": "62b010abf3bfdbe27dad8317c988bb1d7bac4bfd3e674b16f6830af405913c8ce6455df7b19c0f10c462c9bd1b188a1d4865091789c25b7ed1cdfaa76275f25a"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "code":  "outputs[\"reporting\"]  ",
-                  "predicates":  {
-                    "types":  [
+                  "code": "outputs[\"reporting\"]  ",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "reporting":  {
-                      "code":  "\"vulnerability-reporting\" in predicates[0].data.project ? (\"reports-accepted\" in predicates[0].data.project[\"vulnerability-reporting\"] ? predicates[0].data.project[\"vulnerability-reporting\"][\"reports-accepted\"]  : false  ) : false "
+                  "outputs": {
+                    "reporting": {
+                      "code": "\"vulnerability-reporting\" in predicates[0].data.project ? (\"reports-accepted\" in predicates[0].data.project[\"vulnerability-reporting\"] ? predicates[0].data.project[\"vulnerability-reporting\"][\"reports-accepted\"]  : false  ) : false "
                     }
                   },
-                  "error":  {
-                    "message":  "No vulnerability reports found in SI",
-                    "guidance":  "Add a security insights file to your repository and define reports-accepted as true under vulnerability-reporting"
+                  "error": {
+                    "message": "No vulnerability reports found in SI",
+                    "guidance": "Add a security insights file to your repository and define reports-accepted as true under vulnerability-reporting"
                   },
-                  "assessment":  {
-                    "message":  "Project accepts vulnerability reports according to SECURITY_INSIGHTS.yml"
+                  "assessment": {
+                    "message": "Project accepts vulnerability reports according to SECURITY_INSIGHTS.yml"
                   }
                 },
                 {
-                  "code":  "outputs[\"vulnerability-report-contact\"]  ",
-                  "predicates":  {
-                    "types":  [
+                  "code": "outputs[\"vulnerability-report-contact\"]  ",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "vulnerability-report-contact":  {
-                      "code":  "\"vulnerability-reporting\" in predicates[0].data.project ? (\"contact\" in predicates[0].data.project[\"vulnerability-reporting\"]  ) : false "
+                  "outputs": {
+                    "vulnerability-report-contact": {
+                      "code": "\"vulnerability-reporting\" in predicates[0].data.project ? (\"contact\" in predicates[0].data.project[\"vulnerability-reporting\"]  ) : false "
                     }
                   },
-                  "error":  {
-                    "message":  "No contact information found in SECURITY_INSIGHTS.yml",
-                    "guidance":  "Add contact data in the project's SECURITY_INSIGHTS.yml file, under vulnerability-reporting"
+                  "error": {
+                    "message": "No contact information found in SECURITY_INSIGHTS.yml",
+                    "guidance": "Add contact data in the project's SECURITY_INSIGHTS.yml file, under vulnerability-reporting"
                   },
-                  "assessment":  {
-                    "message":  "Vulnerability report contact found"
+                  "assessment": {
+                    "message": "Vulnerability report contact found"
                   }
                 }
               ]
@@ -740,57 +740,57 @@
       ]
     },
     {
-      "id":  "OSPS-DO-03",
-      "meta":  {
-        "description":  "Instructions to verify the integrity and authenticity of the release assets",
-        "controls":  [
+      "id": "OSPS-DO-03",
+      "meta": {
+        "description": "Instructions to verify the integrity and authenticity of the release assets",
+        "controls": [
           {
-            "id":  "03",
-            "framework":  "OSPS",
-            "class":  "DO"
+            "id": "03",
+            "framework": "OSPS",
+            "class": "DO"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-SIGNATURE-VERIFY",
-              "meta":  {
-                "description":  "Ensures the security insights file links a signature verification document",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-SIGNATURE-VERIFY",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json",
-                  "digest":  {
-                    "sha256":  "a83d7ed7e18b452dc80c116f548d54585c23dfa5af7b01383ccb8200866ec639",
-                    "sha512":  "1d53070a2650e55ea07a438067d2b2cd24ee7c4bd9ae524b03227bab6e04c4f0629a455e47ae0a7a3048359cfc40ac9b4f9e3495d1e5681f196e3ef207504639"
+              "id": "SI-SIGNATURE-VERIFY",
+              "meta": {
+                "description": "Ensures the security insights file links a signature verification document",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-SIGNATURE-VERIFY",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json",
+                  "digest": {
+                    "sha256": "a83d7ed7e18b452dc80c116f548d54585c23dfa5af7b01383ccb8200866ec639",
+                    "sha512": "1d53070a2650e55ea07a438067d2b2cd24ee7c4bd9ae524b03227bab6e04c4f0629a455e47ae0a7a3048359cfc40ac9b4f9e3495d1e5681f196e3ef207504639"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-si",
-                  "code":  "outputs['verify'] != '' ",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-si",
+                  "code": "outputs['verify'] != '' ",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "verify":  {
-                      "code":  "has(predicates[0].data.project) ? (has(predicates[0].data.project.documentation) ? ('signature-verification' in predicates[0].data.project.documentation ? predicates[0].data.project.documentation['signature-verification'] : '' ) : '' ) : '' "
+                  "outputs": {
+                    "verify": {
+                      "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.documentation) ? ('signature-verification' in predicates[0].data.project.documentation ? predicates[0].data.project.documentation['signature-verification'] : '' ) : '' ) : '' "
                     }
                   },
-                  "error":  {
-                    "message":  "No verification instructions found in SI",
-                    "guidance":  "Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml"
+                  "error": {
+                    "message": "No verification instructions found in SI",
+                    "guidance": "Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml"
                   },
-                  "assessment":  {
-                    "message":  "Signature verification instructions found in SECURITY_INSIGHTS.yml"
+                  "assessment": {
+                    "message": "Signature verification instructions found in SECURITY_INSIGHTS.yml"
                   }
                 }
               ]
@@ -800,53 +800,53 @@
       ]
     },
     {
-      "id":  "OSPS-DO-04",
-      "meta":  {
-        "description":  "the project documentation MUST include a descriptive statement about the scope and duration of support",
-        "controls":  [
+      "id": "OSPS-DO-04",
+      "meta": {
+        "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
+        "controls": [
           {
-            "id":  "04",
-            "framework":  "OSPS",
-            "class":  "DO"
+            "id": "04",
+            "framework": "OSPS",
+            "class": "DO"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "OPENEOX-EXISTS",
-              "meta":  {
-                "description":  "Ensures there is an openeox attestation",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "OPENEOX-EXISTS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
-                  "digest":  {
-                    "sha256":  "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
-                    "sha512":  "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
+              "id": "OPENEOX-EXISTS",
+              "meta": {
+                "description": "Ensures there is an openeox attestation",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "OPENEOX-EXISTS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
+                  "digest": {
+                    "sha256": "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
+                    "sha512": "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-openeox",
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-openeox",
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://docs.oasis-open.org/openeox/core/v1.0",
                       "https://docs.oasis-open.org/openeox/eox-core/v1.0"
                     ]
                   },
-                  "error":  {
-                    "message":  "No OpenEOX data found.",
-                    "guidance":  "Capture the project End of Support in an OpenEOX file."
+                  "error": {
+                    "message": "No OpenEOX data found.",
+                    "guidance": "Capture the project End of Support in an OpenEOX file."
                   },
-                  "assessment":  {
-                    "message":  "Found an OpenEoX statement with the artifact's EOS."
+                  "assessment": {
+                    "message": "Found an OpenEoX statement with the artifact's EOS."
                   }
                 }
               ]
@@ -856,53 +856,53 @@
       ]
     },
     {
-      "id":  "OSPS-DO-05",
-      "meta":  {
-        "description":  "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
-        "controls":  [
+      "id": "OSPS-DO-05",
+      "meta": {
+        "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
+        "controls": [
           {
-            "id":  "05",
-            "framework":  "OSPS",
-            "class":  "DO"
+            "id": "05",
+            "framework": "OSPS",
+            "class": "DO"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "OPENEOX-EXISTS",
-              "meta":  {
-                "description":  "Ensures there is an openeox attestation",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "OPENEOX-EXISTS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
-                  "digest":  {
-                    "sha256":  "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
-                    "sha512":  "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
+              "id": "OPENEOX-EXISTS",
+              "meta": {
+                "description": "Ensures there is an openeox attestation",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "OPENEOX-EXISTS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
+                  "digest": {
+                    "sha256": "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
+                    "sha512": "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-openeox",
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-openeox",
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://docs.oasis-open.org/openeox/core/v1.0",
                       "https://docs.oasis-open.org/openeox/eox-core/v1.0"
                     ]
                   },
-                  "error":  {
-                    "message":  "No OpenEOX data found.",
-                    "guidance":  "Capture the project End of Support in an OpenEOX file."
+                  "error": {
+                    "message": "No OpenEOX data found.",
+                    "guidance": "Capture the project End of Support in an OpenEOX file."
                   },
-                  "assessment":  {
-                    "message":  "Found an OpenEoX statement with the artifact's EOS."
+                  "assessment": {
+                    "message": "Found an OpenEoX statement with the artifact's EOS."
                   }
                 }
               ]
@@ -912,57 +912,57 @@
       ]
     },
     {
-      "id":  "OSPS-DO-06",
-      "meta":  {
-        "description":  "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
-        "controls":  [
+      "id": "OSPS-DO-06",
+      "meta": {
+        "description": "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
+        "controls": [
           {
-            "id":  "06",
-            "framework":  "OSPS",
-            "class":  "DO"
+            "id": "06",
+            "framework": "OSPS",
+            "class": "DO"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-DEPENDENCY-POLICY",
-              "meta":  {
-                "description":  "Checks security insights to ensure it links to a dependency policy",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-DEPENDENCY-POLICY",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
-                  "digest":  {
-                    "sha256":  "5a4f470b74aec32f2610b0c441986c7f69195f8e6e771abb54cf6fe1e835d168",
-                    "sha512":  "217cc7aa5bb1946470de2d802a8662523b6e8c8e93cc5e517854d9c3228587c7c9e2bcbf39cd27f3f2cec24e6caf03340779e604bb566a3dceae6ca8610f2a02"
+              "id": "SI-DEPENDENCY-POLICY",
+              "meta": {
+                "description": "Checks security insights to ensure it links to a dependency policy",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-DEPENDENCY-POLICY",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
+                  "digest": {
+                    "sha256": "5a4f470b74aec32f2610b0c441986c7f69195f8e6e771abb54cf6fe1e835d168",
+                    "sha512": "217cc7aa5bb1946470de2d802a8662523b6e8c8e93cc5e517854d9c3228587c7c9e2bcbf39cd27f3f2cec24e6caf03340779e604bb566a3dceae6ca8610f2a02"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-si",
-                  "code":  "outputs.deppolicy != '' ",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-si",
+                  "code": "outputs.deppolicy != '' ",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "deppolicy":  {
-                      "code":  "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (predicates[0].data.repository.documentation.exists(k, k == 'dependency-management-policy') ? predicates[0].data.repository.documentation['dependency-management-policy'] : '') : '') : '' "
+                  "outputs": {
+                    "deppolicy": {
+                      "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (predicates[0].data.repository.documentation.exists(k, k == 'dependency-management-policy') ? predicates[0].data.repository.documentation['dependency-management-policy'] : '') : '') : '' "
                     }
                   },
-                  "error":  {
-                    "message":  "Could not detect a dependency policy in the Security Insights file.",
-                    "guidance":  "Add a changelog entry to your SI file under repository.documentation.dependency-management-policy."
+                  "error": {
+                    "message": "Could not detect a dependency policy in the Security Insights file.",
+                    "guidance": "Add a changelog entry to your SI file under repository.documentation.dependency-management-policy."
                   },
-                  "assessment":  {
-                    "message":  "Found a link to the projects dependency policy in SECURITY_INSIGHTS.yml"
+                  "assessment": {
+                    "message": "Found a link to the projects dependency policy in SECURITY_INSIGHTS.yml"
                   }
                 }
               ]
@@ -972,56 +972,56 @@
       ]
     },
     {
-      "id":  "OSPS-GV-01",
-      "meta":  {
-        "controls":  [
+      "id": "OSPS-GV-01",
+      "meta": {
+        "controls": [
           {
-            "id":  "01",
-            "framework":  "OSPS",
-            "class":  "GV"
+            "id": "01",
+            "framework": "OSPS",
+            "class": "GV"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-ROLES",
-              "meta":  {
-                "description":  "Check the security insights file to ensure administrators are set",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-ROLES",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json",
-                  "digest":  {
-                    "sha256":  "13b05b25bc7bb37546cc7a3f7e34bde0e6e69e931870c0c415ab07340fc1d2bd",
-                    "sha512":  "6be46469187fd541c52e97f8aa065ce6f1687ec34cb9abd5e4a78413126dbb8a7160e57e46a9e8b4bcecc7a4d42bae2ea5857c900132258cc7cade86138f3126"
+              "id": "SI-ROLES",
+              "meta": {
+                "description": "Check the security insights file to ensure administrators are set",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-ROLES",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json",
+                  "digest": {
+                    "sha256": "13b05b25bc7bb37546cc7a3f7e34bde0e6e69e931870c0c415ab07340fc1d2bd",
+                    "sha512": "6be46469187fd541c52e97f8aa065ce6f1687ec34cb9abd5e4a78413126dbb8a7160e57e46a9e8b4bcecc7a4d42bae2ea5857c900132258cc7cade86138f3126"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-si",
-                  "code":  "outputs.admins.found ",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-si",
+                  "code": "outputs.admins.found ",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "admins":  {
-                      "code":  "has(predicates[0].data.project) ? (has(predicates[0].data.project.administrators) ? {'found': true,  'admins': predicates[0].data.project.administrators } : {'found': false,  'admins': [] } ) : {'found': false,  'admins': [] } "
+                  "outputs": {
+                    "admins": {
+                      "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.administrators) ? {'found': true,  'admins': predicates[0].data.project.administrators } : {'found': false,  'admins': [] } ) : {'found': false,  'admins': [] } "
                     }
                   },
-                  "error":  {
-                    "message":  "Security Insights has no project administrators",
-                    "guidance":  "List the project admins in your SI yaml under repository.administrators"
+                  "error": {
+                    "message": "Security Insights has no project administrators",
+                    "guidance": "List the project admins in your SI yaml under repository.administrators"
                   },
-                  "assessment":  {
-                    "message":  "Administrators listed in Securty Insights"
+                  "assessment": {
+                    "message": "Administrators listed in Securty Insights"
                   }
                 }
               ]
@@ -1031,70 +1031,70 @@
       ]
     },
     {
-      "id":  "OSPS-GV-02",
-      "meta":  {
-        "description":  "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
-        "controls":  [
+      "id": "OSPS-GV-02",
+      "meta": {
+        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "GV"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "GV"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SNAPPY-REPO-HAS-ISSUES",
-              "meta":  {
-                "description":  "Checks if a repository has issues enabled",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SNAPPY-REPO-HAS-ISSUES",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
-                  "digest":  {
-                    "sha256":  "a682cb176442ee03ce75dbb8431bc7c7f65df42c94b93515b9ddfc2b6618cbcf",
-                    "sha512":  "790f86b3d00ab01f9fcbf6b2d844230b903c01a3ccf958f44e8a6345fe3c928d1ebffbd6f23ee5aff127be8a6e7f75395980876eabafa29859f53648d49b0988"
+              "id": "SNAPPY-REPO-HAS-ISSUES",
+              "meta": {
+                "description": "Checks if a repository has issues enabled",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SNAPPY-REPO-HAS-ISSUES",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
+                  "digest": {
+                    "sha256": "a682cb176442ee03ce75dbb8431bc7c7f65df42c94b93515b9ddfc2b6618cbcf",
+                    "sha512": "790f86b3d00ab01f9fcbf6b2d844230b903c01a3ccf958f44e8a6345fe3c928d1ebffbd6f23ee5aff127be8a6e7f75395980876eabafa29859f53648d49b0988"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                     ]
                   },
-                  "assessment":  {
-                    "message":  "Found attested repository data"
+                  "assessment": {
+                    "message": "Found attested repository data"
                   }
                 },
                 {
-                  "id":  "01",
-                  "code":  "outputs[\"issues\"]",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "outputs[\"issues\"]",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                     ]
                   },
-                  "outputs":  {
-                    "issues":  {
-                      "code":  "has(predicates[0].data.values.has_issues) ? predicates[0].data.values.has_issues : false"
+                  "outputs": {
+                    "issues": {
+                      "code": "has(predicates[0].data.values.has_issues) ? predicates[0].data.values.has_issues : false"
                     }
                   },
-                  "error":  {
-                    "message":  "Issues are not enabled in the repo",
-                    "guidance":  "Turn on the issues setting in the repository"
+                  "error": {
+                    "message": "Issues are not enabled in the repo",
+                    "guidance": "Turn on the issues setting in the repository"
                   },
-                  "assessment":  {
-                    "message":  "Issues feature is enabled in the repository"
+                  "assessment": {
+                    "message": "Issues feature is enabled in the repository"
                   }
                 }
               ]
@@ -1102,69 +1102,69 @@
           ]
         }
       ],
-      "chain":  [
+      "chain": [
         {
-          "predicate":  {
-            "type":  "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
-            "selector":  "github.repoDescriptorFromURI(predicate.data.repoUri)",
-            "runtime":  "cel@v1"
+          "predicate": {
+            "type": "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
+            "selector": "github.repoDescriptorFromURI(predicate.data.repoUri)",
+            "runtime": "cel@v1"
           }
         }
       ]
     },
     {
-      "id":  "OSPS-GV-03",
-      "meta":  {
-        "description":  "The project documentation MUST include an explanation of the contribution process.",
-        "controls":  [
+      "id": "OSPS-GV-03",
+      "meta": {
+        "description": "The project documentation MUST include an explanation of the contribution process.",
+        "controls": [
           {
-            "id":  "03",
-            "framework":  "OSPS",
-            "class":  "GV"
+            "id": "03",
+            "framework": "OSPS",
+            "class": "GV"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-contains-contributing-md",
-              "meta":  {
-                "description":  "Checks for a CONTRIBUTING.md file in the SBOM",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-contains-contributing-md",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json",
-                  "digest":  {
-                    "sha256":  "867cd97c9a0abd1679141bbc6d7627267d362f4285eb054faf7e4b1af77d13d5",
-                    "sha512":  "449a022ee42c42aad13b078d96ecad0728eec13126c381913e91b5acb72b4ff89ffc3f2d97b1c6665874be3858fc329654e0b5592c96e3ba2f426bb05b5c61a0"
+              "id": "sbom-contains-contributing-md",
+              "meta": {
+                "description": "Checks for a CONTRIBUTING.md file in the SBOM",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-contains-contributing-md",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json",
+                  "digest": {
+                    "sha256": "867cd97c9a0abd1679141bbc6d7627267d362f4285eb054faf7e4b1af77d13d5",
+                    "sha512": "449a022ee42c42aad13b078d96ecad0728eec13126c381913e91b5acb72b4ff89ffc3f2d97b1c6665874be3858fc329654e0b5592c96e3ba2f426bb05b5c61a0"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "size(outputs['files']) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "size(outputs['files']) > 0",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document",
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "outputs":  {
-                    "files":  {
-                      "code":  "sboms[0].get_node_list().get_nodes().filter(n, n.name == \"CONTRIBUTING.md\")"
+                  "outputs": {
+                    "files": {
+                      "code": "sboms[0].get_node_list().get_nodes().filter(n, n.name == \"CONTRIBUTING.md\")"
                     }
                   },
-                  "error":  {
-                    "message":  "Repository has no CONTRIBUTING.md file",
-                    "guidance":  "Write up the project's contribution process into a CONTRIBUTING.md file and check it into the repository."
+                  "error": {
+                    "message": "Repository has no CONTRIBUTING.md file",
+                    "guidance": "Write up the project's contribution process into a CONTRIBUTING.md file and check it into the repository."
                   },
-                  "assessment":  {
-                    "message":  "Found a CONTRIBUTING.md file"
+                  "assessment": {
+                    "message": "Found a CONTRIBUTING.md file"
                   }
                 }
               ]
@@ -1174,34 +1174,34 @@
       ]
     },
     {
-      "id":  "OSPS-GV-04",
-      "meta":  {
-        "description":  "Policy that code contributors are reviewed prior to granting escalated permissions",
-        "controls":  [
+      "id": "OSPS-GV-04",
+      "meta": {
+        "description": "Policy that code contributors are reviewed prior to granting escalated permissions",
+        "controls": [
           {
-            "id":  "04",
-            "framework":  "OSPS",
-            "class":  "GV"
+            "id": "04",
+            "framework": "OSPS",
+            "class": "GV"
           }
         ],
-        "enforce":  "OFF"
+        "enforce": "OFF"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "false",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "false",
+                  "predicates": {
+                    "types": [
                       "https://slsa.dev/provenance/v0.2"
                     ]
                   },
-                  "error":  {
-                    "message":  "Not implemented yet",
-                    "guidance":  "We don't have a way to detect if contributors are reviewed"
+                  "error": {
+                    "message": "Not implemented yet",
+                    "guidance": "We don't have a way to detect if contributors are reviewed"
                   }
                 }
               ]
@@ -1211,64 +1211,64 @@
       ]
     },
     {
-      "id":  "OSPS-LE-02",
-      "meta":  {
-        "description":  "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition",
-        "controls":  [
+      "id": "OSPS-LE-02",
+      "meta": {
+        "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition",
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "LE"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "LE"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-licenses-are-foss",
-              "meta":  {
-                "description":  "License of the top-level components is OSI/FSF approved",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-licenses-are-foss",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json",
-                  "digest":  {
-                    "sha256":  "c8fa7dc665dc7d84f466a1dce255d95adc92894265d1ae44aea1ec6006778d0f",
-                    "sha512":  "f7acd1d0b12f941aeae3908540ae788350875054ba71c0f139e5517eee73c78fc7cf67159eb9d942e4cb5fd9bd30fe53d9dac8d34158ed6b611b88a58a9fa697"
+              "id": "sbom-licenses-are-foss",
+              "meta": {
+                "description": "License of the top-level components is OSI/FSF approved",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-licenses-are-foss",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json",
+                  "digest": {
+                    "sha256": "c8fa7dc665dc7d84f466a1dce255d95adc92894265d1ae44aea1ec6006778d0f",
+                    "sha512": "f7acd1d0b12f941aeae3908540ae788350875054ba71c0f139e5517eee73c78fc7cf67159eb9d942e4cb5fd9bd30fe53d9dac8d34158ed6b611b88a58a9fa697"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-sbom",
-                  "code":  "outputs.licenses.all(license, license in outputs.license_list) && size(outputs.licenses) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-sbom",
+                  "code": "outputs.licenses.all(license, license in outputs.license_list) && size(outputs.licenses) > 0",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document",
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "outputs":  {
-                    "license_list":  {
-                      "code":  "['0BSD', 'AAL', 'AFL-1.1', 'AFL-1.2', 'AFL-2.0', 'AFL-2.1', 'AFL-3.0', 'AGPL-3.0', 'AGPL-3.0-only', 'AGPL-3.0-or-later', 'Apache-1.1', 'Apache-2.0', 'APL-1.0', 'APSL-1.0', 'APSL-1.1', 'APSL-1.2', 'APSL-2.0', 'Artistic-1.0', 'Artistic-1.0-cl8', 'Artistic-1.0-Perl', 'Artistic-2.0', 'BlueOak-1.0.0', 'BSD-1-Clause', 'BSD-2-Clause', 'BSD-2-Clause-Patent', 'BSD-3-Clause', 'BSD-3-Clause-LBNL', 'BSL-1.0', 'CAL-1.0', 'CAL-1.0-Combined-Work-Exception', 'CATOSL-1.1', 'CDDL-1.0', 'CECILL-2.1', 'CERN-OHL-P-2.0', 'CERN-OHL-S-2.0', 'CERN-OHL-W-2.0', 'CNRI-Python', 'CPAL-1.0', 'CPL-1.0', 'CUA-OPL-1.0', 'ECL-1.0', 'ECL-2.0', 'EFL-1.0', 'EFL-2.0', 'Entessa', 'EPL-1.0', 'EPL-2.0', 'EUDatagrid', 'EUPL-1.1', 'EUPL-1.2', 'Fair', 'Frameworx-1.0', 'GPL-2.0', 'GPL-2.0+', 'GPL-2.0-only', 'GPL-2.0-or-later', 'GPL-3.0', 'GPL-3.0+', 'GPL-3.0-only', 'GPL-3.0-or-later', 'GPL-3.0-with-GCC-exception', 'HPND', 'ICU', 'Intel', 'IPA', 'IPL-1.0', 'ISC', 'Jam', 'LGPL-2.0', 'LGPL-2.0+', 'LGPL-2.0-only', 'LGPL-2.0-or-later', 'LGPL-2.1', 'LGPL-2.1+', 'LGPL-2.1-only', 'LGPL-2.1-or-later', 'LGPL-3.0', 'LGPL-3.0+', 'LGPL-3.0-only', 'LGPL-3.0-or-later', 'LiLiQ-P-1.1', 'LiLiQ-R-1.1', 'LiLiQ-Rplus-1.1', 'LPL-1.0', 'LPL-1.02', 'LPPL-1.3c', 'MirOS', 'MIT', 'MIT-0', 'MIT-Modern-Variant', 'Motosoto', 'MPL-1.0', 'MPL-1.1', 'MPL-2.0', 'MPL-2.0-no-copyleft-exception', 'MS-PL', 'MS-RL', 'MulanPSL-2.0', 'Multics', 'NASA-1.3', 'Naumen', 'NCSA', 'NGPL', 'Nokia', 'NPOSL-3.0', 'NTP', 'OCLC-2.0', 'OFL-1.1', 'OFL-1.1-no-RFN', 'OFL-1.1-RFN', 'OGTSL', 'OLDAP-2.8', 'OLFL-1.3', 'OSET-PL-2.1', 'OSL-1.0', 'OSL-2.0', 'OSL-2.1', 'OSL-3.0', 'PHP-3.0', 'PHP-3.01', 'PostgreSQL', 'Python-2.0', 'QPL-1.0', 'RPL-1.1', 'RPL-1.5', 'RPSL-1.0', 'RSCPL', 'SimPL-2.0', 'SISSL', 'Sleepycat', 'SPL-1.0', 'UCL-1.0', 'Unicode-3.0', 'Unicode-DFS-2016', 'Unlicense', 'UPL-1.0', 'VSL-1.0', 'W3C', 'W3C-20150513', 'Watcom-1.0', 'wxWindows', 'Xnet', 'Zlib', 'ZPL-2.0', 'ZPL-2.1'] "
+                  "outputs": {
+                    "license_list": {
+                      "code": "['0BSD', 'AAL', 'AFL-1.1', 'AFL-1.2', 'AFL-2.0', 'AFL-2.1', 'AFL-3.0', 'AGPL-3.0', 'AGPL-3.0-only', 'AGPL-3.0-or-later', 'Apache-1.1', 'Apache-2.0', 'APL-1.0', 'APSL-1.0', 'APSL-1.1', 'APSL-1.2', 'APSL-2.0', 'Artistic-1.0', 'Artistic-1.0-cl8', 'Artistic-1.0-Perl', 'Artistic-2.0', 'BlueOak-1.0.0', 'BSD-1-Clause', 'BSD-2-Clause', 'BSD-2-Clause-Patent', 'BSD-3-Clause', 'BSD-3-Clause-LBNL', 'BSL-1.0', 'CAL-1.0', 'CAL-1.0-Combined-Work-Exception', 'CATOSL-1.1', 'CDDL-1.0', 'CECILL-2.1', 'CERN-OHL-P-2.0', 'CERN-OHL-S-2.0', 'CERN-OHL-W-2.0', 'CNRI-Python', 'CPAL-1.0', 'CPL-1.0', 'CUA-OPL-1.0', 'ECL-1.0', 'ECL-2.0', 'EFL-1.0', 'EFL-2.0', 'Entessa', 'EPL-1.0', 'EPL-2.0', 'EUDatagrid', 'EUPL-1.1', 'EUPL-1.2', 'Fair', 'Frameworx-1.0', 'GPL-2.0', 'GPL-2.0+', 'GPL-2.0-only', 'GPL-2.0-or-later', 'GPL-3.0', 'GPL-3.0+', 'GPL-3.0-only', 'GPL-3.0-or-later', 'GPL-3.0-with-GCC-exception', 'HPND', 'ICU', 'Intel', 'IPA', 'IPL-1.0', 'ISC', 'Jam', 'LGPL-2.0', 'LGPL-2.0+', 'LGPL-2.0-only', 'LGPL-2.0-or-later', 'LGPL-2.1', 'LGPL-2.1+', 'LGPL-2.1-only', 'LGPL-2.1-or-later', 'LGPL-3.0', 'LGPL-3.0+', 'LGPL-3.0-only', 'LGPL-3.0-or-later', 'LiLiQ-P-1.1', 'LiLiQ-R-1.1', 'LiLiQ-Rplus-1.1', 'LPL-1.0', 'LPL-1.02', 'LPPL-1.3c', 'MirOS', 'MIT', 'MIT-0', 'MIT-Modern-Variant', 'Motosoto', 'MPL-1.0', 'MPL-1.1', 'MPL-2.0', 'MPL-2.0-no-copyleft-exception', 'MS-PL', 'MS-RL', 'MulanPSL-2.0', 'Multics', 'NASA-1.3', 'Naumen', 'NCSA', 'NGPL', 'Nokia', 'NPOSL-3.0', 'NTP', 'OCLC-2.0', 'OFL-1.1', 'OFL-1.1-no-RFN', 'OFL-1.1-RFN', 'OGTSL', 'OLDAP-2.8', 'OLFL-1.3', 'OSET-PL-2.1', 'OSL-1.0', 'OSL-2.0', 'OSL-2.1', 'OSL-3.0', 'PHP-3.0', 'PHP-3.01', 'PostgreSQL', 'Python-2.0', 'QPL-1.0', 'RPL-1.1', 'RPL-1.5', 'RPSL-1.0', 'RSCPL', 'SimPL-2.0', 'SISSL', 'Sleepycat', 'SPL-1.0', 'UCL-1.0', 'Unicode-3.0', 'Unicode-DFS-2016', 'Unlicense', 'UPL-1.0', 'VSL-1.0', 'W3C', 'W3C-20150513', 'Watcom-1.0', 'wxWindows', 'Xnet', 'Zlib', 'ZPL-2.0', 'ZPL-2.1'] "
                     },
-                    "licenses":  {
-                      "code":  "sboms[0].get_node_list().get_nodes().filter(n, size(n.licenses) > 0).map(n, n.licenses[0])"
+                    "licenses": {
+                      "code": "sboms[0].get_node_list().get_nodes().filter(n, size(n.licenses) > 0).map(n, n.licenses[0])"
                     },
-                    "licenses_test":  {
-                      "code":  "['AFL-2.1', 'Apache-2.0']"
+                    "licenses_test": {
+                      "code": "['AFL-2.1', 'Apache-2.0']"
                     }
                   },
-                  "error":  {
-                    "message":  "No licenses found in SBOM or licenses are not OSI approved",
-                    "guidance":  "Ensure your SBOM has license info and that the licenses are OSI approved"
+                  "error": {
+                    "message": "No licenses found in SBOM or licenses are not OSI approved",
+                    "guidance": "Ensure your SBOM has license info and that the licenses are OSI approved"
                   },
-                  "assessment":  {
-                    "message":  "Found a license file in the project's SBOM."
+                  "assessment": {
+                    "message": "Found a license file in the project's SBOM."
                   }
                 }
               ]
@@ -1278,58 +1278,58 @@
       ]
     },
     {
-      "id":  "OSPS-LE-03",
-      "meta":  {
-        "description":  "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
-        "controls":  [
+      "id": "OSPS-LE-03",
+      "meta": {
+        "description": "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
+        "controls": [
           {
-            "id":  "03",
-            "framework":  "OSPS",
-            "class":  "LE"
+            "id": "03",
+            "framework": "OSPS",
+            "class": "LE"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-contains-license-file",
-              "meta":  {
-                "description":  "Locate a license file in the project files",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-contains-license-file",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
-                  "digest":  {
-                    "sha256":  "12aa24dd3dc64376e2231fe0e959b4de27bbbad64bdefa84e600f15693c97ed7",
-                    "sha512":  "c9eedc7763fc72f7810bd2cec70d606e71d52560507a29ca4ccf70e3741703f8f1b7aa9c4ff56e1fa9ff4e4910da0234b3ba3e9bc3cecdf7ec8de9b17cdb36e0"
+              "id": "sbom-contains-license-file",
+              "meta": {
+                "description": "Locate a license file in the project files",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-contains-license-file",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
+                  "digest": {
+                    "sha256": "12aa24dd3dc64376e2231fe0e959b4de27bbbad64bdefa84e600f15693c97ed7",
+                    "sha512": "c9eedc7763fc72f7810bd2cec70d606e71d52560507a29ca4ccf70e3741703f8f1b7aa9c4ff56e1fa9ff4e4910da0234b3ba3e9bc3cecdf7ec8de9b17cdb36e0"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-sbom",
-                  "code":  "size(outputs[\"files\"]) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-sbom",
+                  "code": "size(outputs[\"files\"]) > 0",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document",
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "outputs":  {
-                    "files":  {
-                      "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'LICENSE' || n.name == 'LICENSE.txt' ))"
+                  "outputs": {
+                    "files": {
+                      "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'LICENSE' || n.name == 'LICENSE.txt' ))"
                     }
                   },
-                  "error":  {
-                    "message":  "Could not detect a license file in the SBOM.",
-                    "guidance":  "Add a file named LICENSE to your project's codebase."
+                  "error": {
+                    "message": "Could not detect a license file in the SBOM.",
+                    "guidance": "Add a file named LICENSE to your project's codebase."
                   },
-                  "assessment":  {
-                    "message":  "Found a license file in the project's SBOM."
+                  "assessment": {
+                    "message": "Found a license file in the project's SBOM."
                   }
                 }
               ]
@@ -1339,80 +1339,80 @@
       ]
     },
     {
-      "id":  "OSPS-QA-01",
-      "meta":  {
-        "description":  "The project's source code and change history MUST be publicly readable at a static URL",
-        "controls":  [
+      "id": "OSPS-QA-01",
+      "meta": {
+        "description": "The project's source code and change history MUST be publicly readable at a static URL",
+        "controls": [
           {
-            "id":  "01",
-            "framework":  "OSPS",
-            "class":  "QA"
+            "id": "01",
+            "framework": "OSPS",
+            "class": "QA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SNAPPY-REPO-PUBLIC-GIT",
-              "meta":  {
-                "description":  "The repository is public and uses git as VCS.",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SNAPPY-REPO-PUBLIC-GIT",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
-                  "digest":  {
-                    "sha256":  "23fcb7ceedde1175c8ad350211c79deb4b5d0c3b5760d478b461f46f57d87bb0",
-                    "sha512":  "a87c510c96e5686e651084695ad9bae4000b97b6f2bba42275bb52d5ad6217c3b2a0ddebef67a9604612c5ba4bbadd52f43d6ef549ce83eaffb379726b2f1867"
+              "id": "SNAPPY-REPO-PUBLIC-GIT",
+              "meta": {
+                "description": "The repository is public and uses git as VCS.",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SNAPPY-REPO-PUBLIC-GIT",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
+                  "digest": {
+                    "sha256": "23fcb7ceedde1175c8ad350211c79deb4b5d0c3b5760d478b461f46f57d87bb0",
+                    "sha512": "a87c510c96e5686e651084695ad9bae4000b97b6f2bba42275bb52d5ad6217c3b2a0ddebef67a9604612c5ba4bbadd52f43d6ef549ce83eaffb379726b2f1867"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "outputs[\"public\"]",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "outputs[\"public\"]",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                     ]
                   },
-                  "outputs":  {
-                    "public":  {
-                      "code":  "has(predicates[0].data.values.visibility) ? predicates[0].data.values.visibility == \"public\" : false"
+                  "outputs": {
+                    "public": {
+                      "code": "has(predicates[0].data.values.visibility) ? predicates[0].data.values.visibility == \"public\" : false"
                     }
                   },
-                  "error":  {
-                    "message":  "Repository is private",
-                    "guidance":  "Enable public visibility in the repository settings"
+                  "error": {
+                    "message": "Repository is private",
+                    "guidance": "Enable public visibility in the repository settings"
                   },
-                  "assessment":  {
-                    "message":  "Code repository is public"
+                  "assessment": {
+                    "message": "Code repository is public"
                   }
                 },
                 {
-                  "id":  "02",
-                  "code":  "outputs[\"git\"] != ''",
-                  "predicates":  {
-                    "types":  [
+                  "id": "02",
+                  "code": "outputs[\"git\"] != ''",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                     ]
                   },
-                  "outputs":  {
-                    "git":  {
-                      "code":  "has(predicates[0].data.values.git_url) ? predicates[0].data.values.git_url : '' "
+                  "outputs": {
+                    "git": {
+                      "code": "has(predicates[0].data.values.git_url) ? predicates[0].data.values.git_url : '' "
                     }
                   },
-                  "error":  {
-                    "message":  "No git repository found",
-                    "guidance":  "Ensure the project's code is available in git or other VCS"
+                  "error": {
+                    "message": "No git repository found",
+                    "guidance": "Ensure the project's code is available in git or other VCS"
                   },
-                  "assessment":  {
-                    "message":  "Code stored in git repository"
+                  "assessment": {
+                    "message": "Code stored in git repository"
                   }
                 }
               ]
@@ -1420,77 +1420,77 @@
           ]
         }
       ],
-      "chain":  [
+      "chain": [
         {
-          "predicate":  {
-            "type":  "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
-            "selector":  "github.repoDescriptorFromURI(predicate.data.repoUri)",
-            "runtime":  "cel@v1"
+          "predicate": {
+            "type": "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
+            "selector": "github.repoDescriptorFromURI(predicate.data.repoUri)",
+            "runtime": "cel@v1"
           }
         }
       ]
     },
     {
-      "id":  "OSPS-QA-02",
-      "meta":  {
-        "description":  "The project MUST provide a list of dependencies used in the software",
-        "controls":  [
+      "id": "OSPS-QA-02",
+      "meta": {
+        "description": "The project MUST provide a list of dependencies used in the software",
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "QA"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "QA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-exists",
-              "meta":  {
-                "description":  "SBOM data found",
-                "assertMode":  "OR",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-exists",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json",
-                  "digest":  {
-                    "sha256":  "410e9390f24dabe1d74fb5330a55031dd07302ba01271a141d4cc5d94a143dad",
-                    "sha512":  "2189f01e0b452495c21e8397cf7b38c7c63ac287e40cda912cff404d0337bb8ede3c0beb1b170c6e51da0a31ebdbc9af7bdd7339ce0e352a22ff91eaffd25b2d"
+              "id": "sbom-exists",
+              "meta": {
+                "description": "SBOM data found",
+                "assertMode": "OR",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-exists",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json",
+                  "digest": {
+                    "sha256": "410e9390f24dabe1d74fb5330a55031dd07302ba01271a141d4cc5d94a143dad",
+                    "sha512": "2189f01e0b452495c21e8397cf7b38c7c63ac287e40cda912cff404d0337bb8ede3c0beb1b170c6e51da0a31ebdbc9af7bdd7339ce0e352a22ff91eaffd25b2d"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document"
                     ]
                   },
-                  "error":  {
-                    "message":  "No SPDX SBOM found",
-                    "guidance":  "Generate an SPDX SBOM from your code"
+                  "error": {
+                    "message": "No SPDX SBOM found",
+                    "guidance": "Generate an SPDX SBOM from your code"
                   },
-                  "assessment":  {
-                    "message":  "Found attested SBOM (SPDX)"
+                  "assessment": {
+                    "message": "Found attested SBOM (SPDX)"
                   }
                 },
                 {
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "error":  {
-                    "message":  "No CycloneDX SBOM found",
-                    "guidance":  "Generate a CycloneDX SBOM from your code"
+                  "error": {
+                    "message": "No CycloneDX SBOM found",
+                    "guidance": "Generate a CycloneDX SBOM from your code"
                   },
-                  "assessment":  {
-                    "message":  "Found attested SBOM (CycloneDX)"
+                  "assessment": {
+                    "message": "Found attested SBOM (CycloneDX)"
                   }
                 }
               ]
@@ -1500,53 +1500,53 @@
       ]
     },
     {
-      "id":  "OSPS-QA-03",
-      "meta":  {
-        "description":  "Automated status checks for commits MUST pass or be manually bypassed.",
-        "controls":  [
+      "id": "OSPS-QA-03",
+      "meta": {
+        "description": "Automated status checks for commits MUST pass or be manually bypassed.",
+        "controls": [
           {
-            "id":  "03",
-            "framework":  "OSPS",
-            "class":  "QA"
+            "id": "03",
+            "framework": "OSPS",
+            "class": "QA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SNAPPY-BRANCH-STATUS-CHECKS",
-              "meta":  {
-                "description":  "Checks for a branch rule requiring PR status checks to pass",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SNAPPY-BRANCH-STATUS-CHECKS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json",
-                  "digest":  {
-                    "sha256":  "10d7d82fd5cece57cc9d5e3c002125cf5b52f47388f646689e60bd6cefa1ac01",
-                    "sha512":  "9aebca98ac2d8c9a27427d96846352c2eb939ca94f89d2ddb7b21f3f8bdf8cd971ee0338d3da74f6476b089277d680f8cc6beb3427f43182abab83f9081b242c"
+              "id": "SNAPPY-BRANCH-STATUS-CHECKS",
+              "meta": {
+                "description": "Checks for a branch rule requiring PR status checks to pass",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SNAPPY-BRANCH-STATUS-CHECKS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json",
+                  "digest": {
+                    "sha256": "10d7d82fd5cece57cc9d5e3c002125cf5b52f47388f646689e60bd6cefa1ac01",
+                    "sha512": "9aebca98ac2d8c9a27427d96846352c2eb939ca94f89d2ddb7b21f3f8bdf8cd971ee0338d3da74f6476b089277d680f8cc6beb3427f43182abab83f9081b242c"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"required_status_checks\") : false",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"required_status_checks\") : false",
+                  "predicates": {
+                    "types": [
                       "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
                       "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
                     ]
                   },
-                  "error":  {
-                    "message":  "Add a branch rule to ensure status checks must pass",
-                    "guidance":  "Enable \"Require status checks to pass\" in the repository branch rulesets"
+                  "error": {
+                    "message": "Add a branch rule to ensure status checks must pass",
+                    "guidance": "Enable \"Require status checks to pass\" in the repository branch rulesets"
                   },
-                  "assessment":  {
-                    "message":  "Status checks enforced"
+                  "assessment": {
+                    "message": "Status checks enforced"
                   }
                 }
               ]
@@ -1554,68 +1554,68 @@
           ]
         }
       ],
-      "chain":  [
+      "chain": [
         {
-          "predicate":  {
-            "type":  "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
-            "selector":  "github.branchDescriptorFromURI(predicate.data.repoUri, 'main')",
-            "runtime":  "cel@v1"
+          "predicate": {
+            "type": "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft",
+            "selector": "github.branchDescriptorFromURI(predicate.data.repoUri, 'main')",
+            "runtime": "cel@v1"
           }
         }
       ]
     },
     {
-      "id":  "OSPS-QA-04",
-      "meta":  {
-        "description":  "subproject code repositories MUST enforce the same security requirements",
-        "controls":  [
+      "id": "OSPS-QA-04",
+      "meta": {
+        "description": "subproject code repositories MUST enforce the same security requirements",
+        "controls": [
           {
-            "id":  "04",
-            "framework":  "OSPS",
-            "class":  "QA"
+            "id": "04",
+            "framework": "OSPS",
+            "class": "QA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-HAS-SUBPROJECTS",
-              "meta":  {
-                "description":  "project has subprojects defined in Security Insights",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-HAS-SUBPROJECTS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json",
-                  "digest":  {
-                    "sha256":  "2be00d7c9110b5bbee5fe908c695db348534997beb1e248b6156304780abcbdc",
-                    "sha512":  "507acd5d733c5f5ae7c35e447e53f9c1ee89ba62b996cdf04f555b463e97aa70e3db8827d7213ba3103a98c30c7914ddf348fc78d82c890968e4200135b7c066"
+              "id": "SI-HAS-SUBPROJECTS",
+              "meta": {
+                "description": "project has subprojects defined in Security Insights",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-HAS-SUBPROJECTS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json",
+                  "digest": {
+                    "sha256": "2be00d7c9110b5bbee5fe908c695db348534997beb1e248b6156304780abcbdc",
+                    "sha512": "507acd5d733c5f5ae7c35e447e53f9c1ee89ba62b996cdf04f555b463e97aa70e3db8827d7213ba3103a98c30c7914ddf348fc78d82c890968e4200135b7c066"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-si",
-                  "code":  "outputs.subprojects.found",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-si",
+                  "code": "outputs.subprojects.found",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "subprojects":  {
-                      "code":  "has(predicates[0].data.project) ? (has(predicates[0].data.project.repositories) ? {'found': true, 'subprojects': predicates[0].data.project.repositories } : {'found': false, 'subprojects': [] } ) : {'found': false, 'subprojects': [] }"
+                  "outputs": {
+                    "subprojects": {
+                      "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.repositories) ? {'found': true, 'subprojects': predicates[0].data.project.repositories } : {'found': false, 'subprojects': [] } ) : {'found': false, 'subprojects': [] }"
                     }
                   },
-                  "error":  {
-                    "message":  "Could not find subprojects in security insights.",
-                    "guidance":  "Add a subprojects list (empty will do) to SI YAML under project.repositories"
+                  "error": {
+                    "message": "Could not find subprojects in security insights.",
+                    "guidance": "Add a subprojects list (empty will do) to SI YAML under project.repositories"
                   },
-                  "assessment":  {
-                    "message":  "Found a changelog entry in the project's security insights file."
+                  "assessment": {
+                    "message": "Found a changelog entry in the project's security insights file."
                   }
                 }
               ]
@@ -1625,57 +1625,57 @@
       ]
     },
     {
-      "id":  "OSPS-QA-05",
-      "meta":  {
-        "description":  "The version control system MUST NOT contain generated executable artifacts",
-        "controls":  [
+      "id": "OSPS-QA-05",
+      "meta": {
+        "description": "The version control system MUST NOT contain generated executable artifacts",
+        "controls": [
           {
-            "id":  "05",
-            "framework":  "OSPS",
-            "class":  "QA"
+            "id": "05",
+            "framework": "OSPS",
+            "class": "QA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SCORECARD-BINARY-ARTIFACTS",
-              "meta":  {
-                "description":  "Checks for binary artifacts in the repository",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SCORECARD-BINARY-ARTIFACTS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json",
-                  "digest":  {
-                    "sha256":  "86b6298821197fbe4404ff1c675820cd78a927c01722455214d2c866571d4f55",
-                    "sha512":  "f2a6b4b55e7e4f4d3e56f195cf30579d643d991db4e9d02245c5758a15963224e3c1aabc1026964880ea15a45db16ecc754218f07338acdfbbe539527d256c75"
+              "id": "SCORECARD-BINARY-ARTIFACTS",
+              "meta": {
+                "description": "Checks for binary artifacts in the repository",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SCORECARD-BINARY-ARTIFACTS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json",
+                  "digest": {
+                    "sha256": "86b6298821197fbe4404ff1c675820cd78a927c01722455214d2c866571d4f55",
+                    "sha512": "f2a6b4b55e7e4f4d3e56f195cf30579d643d991db4e9d02245c5758a15963224e3c1aabc1026964880ea15a45db16ecc754218f07338acdfbbe539527d256c75"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-scorecard",
-                  "code":  "outputs.bin_artifacts_checks.all(c, c.score == 10)",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-scorecard",
+                  "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+                  "predicates": {
+                    "types": [
                       "https://scorecard.dev/result/v0.1"
                     ]
                   },
-                  "outputs":  {
-                    "bin_artifacts_checks":  {
-                      "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Binary-Artifacts' && has(c.score)) : [] "
+                  "outputs": {
+                    "bin_artifacts_checks": {
+                      "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Binary-Artifacts' && has(c.score)) : [] "
                     }
                   },
-                  "error":  {
-                    "message":  "Scorecard detected binaries in the repository",
-                    "guidance":  "Check your codebase and remove any checked-in executables"
+                  "error": {
+                    "message": "Scorecard detected binaries in the repository",
+                    "guidance": "Check your codebase and remove any checked-in executables"
                   },
-                  "assessment":  {
-                    "message":  "Scorecard did not detect any binaries in the repo"
+                  "assessment": {
+                    "message": "Scorecard did not detect any binaries in the repo"
                   }
                 }
               ]
@@ -1685,73 +1685,73 @@
       ]
     },
     {
-      "id":  "OSPS-QA-06",
-      "meta":  {
-        "description":  "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
-        "controls":  [
+      "id": "OSPS-QA-06",
+      "meta": {
+        "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
+        "controls": [
           {
-            "id":  "06",
-            "framework":  "OSPS",
-            "class":  "QA"
+            "id": "06",
+            "framework": "OSPS",
+            "class": "QA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "test-results-pass",
-              "meta":  {
-                "description":  "Verify that test results recored in an attestation pass",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "test-results-pass",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json",
-                  "digest":  {
-                    "sha256":  "cca9333f7705579e43f902673f21d7d00ad8006001ae7886964d5b1741d681ac",
-                    "sha512":  "4a339fdfa7a6adcb6752a1802de9ac24c536180d93691fa81089762315a6f75247898aa00b3a5d427634a7d3476d997fcd279daf37a306c523c14619853ca201"
+              "id": "test-results-pass",
+              "meta": {
+                "description": "Verify that test results recored in an attestation pass",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "test-results-pass",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json",
+                  "digest": {
+                    "sha256": "cca9333f7705579e43f902673f21d7d00ad8006001ae7886964d5b1741d681ac",
+                    "sha512": "4a339fdfa7a6adcb6752a1802de9ac24c536180d93691fa81089762315a6f75247898aa00b3a5d427634a7d3476d997fcd279daf37a306c523c14619853ca201"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01a",
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01a",
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://in-toto.io/attestation/test-result/v0.1"
                     ]
                   },
-                  "error":  {
-                    "message":  "No attested test runs found",
-                    "guidance":  "Generate a test-run attestation to capture the results of your unit tests"
+                  "error": {
+                    "message": "No attested test runs found",
+                    "guidance": "Generate a test-run attestation to capture the results of your unit tests"
                   },
-                  "assessment":  {
-                    "message":  "Attested test run found"
+                  "assessment": {
+                    "message": "Attested test run found"
                   }
                 },
                 {
-                  "id":  "01b",
-                  "code":  "outputs.result == 'pass' ",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01b",
+                  "code": "outputs.result == 'pass' ",
+                  "predicates": {
+                    "types": [
                       "https://in-toto.io/attestation/test-result/v0.1"
                     ]
                   },
-                  "outputs":  {
-                    "result":  {
-                      "code":  "has(predicates[0].data.result) ? predicates[0].data.result : '' "
+                  "outputs": {
+                    "result": {
+                      "code": "has(predicates[0].data.result) ? predicates[0].data.result : '' "
                     }
                   },
-                  "error":  {
-                    "message":  "Some of the attested test runs failed",
-                    "guidance":  "Check the output of your unit tests, ensure they are passing"
+                  "error": {
+                    "message": "Some of the attested test runs failed",
+                    "guidance": "Check the output of your unit tests, ensure they are passing"
                   },
-                  "assessment":  {
-                    "message":  "All attested tests are passing"
+                  "assessment": {
+                    "message": "All attested tests are passing"
                   }
                 }
               ]
@@ -1761,57 +1761,57 @@
       ]
     },
     {
-      "id":  "OSPS-QA-07",
-      "meta":  {
-        "description":  "VCS MUST require at least one non-author approval of changes to the primary branch",
-        "controls":  [
+      "id": "OSPS-QA-07",
+      "meta": {
+        "description": "VCS MUST require at least one non-author approval of changes to the primary branch",
+        "controls": [
           {
-            "id":  "07",
-            "framework":  "OSPS",
-            "class":  "QA"
+            "id": "07",
+            "framework": "OSPS",
+            "class": "QA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SCORECARD-CODE-REVIEW",
-              "meta":  {
-                "description":  "VCS MUST require at least one non-author approval of changes to the primary branch.",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SCORECARD-CODE-REVIEW",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json",
-                  "digest":  {
-                    "sha256":  "70f0cf629493b25cc847a3fdc7e1055160be08a67fce327d99fca27b992e053b",
-                    "sha512":  "2799a7bc363d89ed1edd0434dc4c82c3a4b47c9c49d30514316a5189761459e8e3fba2130d59698093f7255f533978410d21a42b9ba995305f7f64d09a7403e5"
+              "id": "SCORECARD-CODE-REVIEW",
+              "meta": {
+                "description": "VCS MUST require at least one non-author approval of changes to the primary branch.",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SCORECARD-CODE-REVIEW",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json",
+                  "digest": {
+                    "sha256": "70f0cf629493b25cc847a3fdc7e1055160be08a67fce327d99fca27b992e053b",
+                    "sha512": "2799a7bc363d89ed1edd0434dc4c82c3a4b47c9c49d30514316a5189761459e8e3fba2130d59698093f7255f533978410d21a42b9ba995305f7f64d09a7403e5"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-scorecard",
-                  "code":  "outputs.codereview.all(c, c.score == 10)",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-scorecard",
+                  "code": "outputs.codereview.all(c, c.score == 10)",
+                  "predicates": {
+                    "types": [
                       "https://scorecard.dev/result/v0.1"
                     ]
                   },
-                  "outputs":  {
-                    "codereview":  {
-                      "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] "
+                  "outputs": {
+                    "codereview": {
+                      "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] "
                     }
                   },
-                  "error":  {
-                    "message":  "Scorecard detected code review is not enabled in the repository",
-                    "guidance":  "Ensure your repo requires a review from another party for every pull request"
+                  "error": {
+                    "message": "Scorecard detected code review is not enabled in the repository",
+                    "guidance": "Ensure your repo requires a review from another party for every pull request"
                   },
-                  "assessment":  {
-                    "message":  "Scorecard reports code review is required for changes"
+                  "assessment": {
+                    "message": "Scorecard reports code review is required for changes"
                   }
                 }
               ]
@@ -1821,34 +1821,34 @@
       ]
     },
     {
-      "id":  "OSPS-SA-01",
-      "meta":  {
-        "description":  "design documentation demonstrating all actions and actors within the system",
-        "controls":  [
+      "id": "OSPS-SA-01",
+      "meta": {
+        "description": "design documentation demonstrating all actions and actors within the system",
+        "controls": [
           {
-            "id":  "01",
-            "framework":  "OSPS",
-            "class":  "SA"
+            "id": "01",
+            "framework": "OSPS",
+            "class": "SA"
           }
         ],
-        "enforce":  "OFF"
+        "enforce": "OFF"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "false",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "false",
+                  "predicates": {
+                    "types": [
                       "https://slsa.dev/provenance/v0.2"
                     ]
                   },
-                  "error":  {
-                    "message":  "Not implemented yet",
-                    "guidance":  "We don't have a way to detect documentation about actors and actions in the system"
+                  "error": {
+                    "message": "Not implemented yet",
+                    "guidance": "We don't have a way to detect documentation about actors and actions in the system"
                   }
                 }
               ]
@@ -1858,34 +1858,34 @@
       ]
     },
     {
-      "id":  "OSPS-SA-02",
-      "meta":  {
-        "description":  "descriptions of all external software interfaces",
-        "controls":  [
+      "id": "OSPS-SA-02",
+      "meta": {
+        "description": "descriptions of all external software interfaces",
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "SA"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "SA"
           }
         ],
-        "enforce":  "OFF"
+        "enforce": "OFF"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "false",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "false",
+                  "predicates": {
+                    "types": [
                       "https://slsa.dev/provenance/v0.2"
                     ]
                   },
-                  "error":  {
-                    "message":  "Not implemented yet",
-                    "guidance":  "We don't have a way to detect documentation about the external interfaces"
+                  "error": {
+                    "message": "Not implemented yet",
+                    "guidance": "We don't have a way to detect documentation about the external interfaces"
                   }
                 }
               ]
@@ -1895,57 +1895,57 @@
       ]
     },
     {
-      "id":  "OSPS-SA-03",
-      "meta":  {
-        "description":  "The project MUST assess the security posture of all software assets",
-        "controls":  [
+      "id": "OSPS-SA-03",
+      "meta": {
+        "description": "The project MUST assess the security posture of all software assets",
+        "controls": [
           {
-            "id":  "03",
-            "framework":  "OSPS",
-            "class":  "SA"
+            "id": "03",
+            "framework": "OSPS",
+            "class": "SA"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-ASSESSMENTS",
-              "meta":  {
-                "description":  "Checks for assessments URL set in security insights",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-ASSESSMENTS",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json",
-                  "digest":  {
-                    "sha256":  "1df8a2358e8a5e03177c7f42fe832e3a04a0f0b4fa73cefd6128799fb47d49a1",
-                    "sha512":  "fc29be4fb4c918b620a75487ea8adfb3ce91595a3e1962b06130cda3d0c183c034a041e26e015377a0a2670b13cdd8db866271545f24a17e4945c81627ad0f3c"
+              "id": "SI-ASSESSMENTS",
+              "meta": {
+                "description": "Checks for assessments URL set in security insights",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-ASSESSMENTS",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json",
+                  "digest": {
+                    "sha256": "1df8a2358e8a5e03177c7f42fe832e3a04a0f0b4fa73cefd6128799fb47d49a1",
+                    "sha512": "fc29be4fb4c918b620a75487ea8adfb3ce91595a3e1962b06130cda3d0c183c034a041e26e015377a0a2670b13cdd8db866271545f24a17e4945c81627ad0f3c"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-si",
-                  "code":  "size(outputs.assessments) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-si",
+                  "code": "size(outputs.assessments) > 0",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "assessments":  {
-                      "code":  "has(predicates[0].data.repository) && has(predicates[0].data.repository.security) && has(predicates[0].data.repository.security.assessments) ? predicates[0].data.repository.security.assessments : {}"
+                  "outputs": {
+                    "assessments": {
+                      "code": "has(predicates[0].data.repository) && has(predicates[0].data.repository.security) && has(predicates[0].data.repository.security.assessments) ? predicates[0].data.repository.security.assessments : {}"
                     }
                   },
-                  "error":  {
-                    "message":  "No assessments found in security insights",
-                    "guidance":  "Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml"
+                  "error": {
+                    "message": "No assessments found in security insights",
+                    "guidance": "Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml"
                   },
-                  "assessment":  {
-                    "message":  "Found at least one security assessment listed in security insights."
+                  "assessment": {
+                    "message": "Found at least one security assessment listed in security insights."
                   }
                 }
               ]
@@ -1955,58 +1955,58 @@
       ]
     },
     {
-      "id":  "OSPS-VM-01",
-      "meta":  {
-        "description":  "Policy for coordinated vulnerability disclosure",
-        "controls":  [
+      "id": "OSPS-VM-01",
+      "meta": {
+        "description": "Policy for coordinated vulnerability disclosure",
+        "controls": [
           {
-            "id":  "01",
-            "framework":  "OSPS",
-            "class":  "VM"
+            "id": "01",
+            "framework": "OSPS",
+            "class": "VM"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "sbom-contains-security-md",
-              "meta":  {
-                "description":  "Checks an SBOM's files for a SECURITY.md file",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "sbom-contains-security-md",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json",
-                  "digest":  {
-                    "sha256":  "6cd2cc69489e37917ef91a8a3285bf9c9fa78a9c4f15457ec937521537083204",
-                    "sha512":  "1734c904b5bcc7ccbcfb62f75a8929ab426f2701c26899147e19fb3ed263f39190738f35bbc1b47320e107b3a97107d04ae72f46ea943dfb0919152888afd9a3"
+              "id": "sbom-contains-security-md",
+              "meta": {
+                "description": "Checks an SBOM's files for a SECURITY.md file",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "sbom-contains-security-md",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json",
+                  "digest": {
+                    "sha256": "6cd2cc69489e37917ef91a8a3285bf9c9fa78a9c4f15457ec937521537083204",
+                    "sha512": "1734c904b5bcc7ccbcfb62f75a8929ab426f2701c26899147e19fb3ed263f39190738f35bbc1b47320e107b3a97107d04ae72f46ea943dfb0919152888afd9a3"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-sbom",
-                  "code":  "size(outputs[\"files\"]) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-sbom",
+                  "code": "size(outputs[\"files\"]) > 0",
+                  "predicates": {
+                    "types": [
                       "https://spdx.dev/Document",
                       "https://cyclonedx.org/bom"
                     ]
                   },
-                  "outputs":  {
-                    "files":  {
-                      "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'SECURITY.md' ))"
+                  "outputs": {
+                    "files": {
+                      "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'SECURITY.md' ))"
                     }
                   },
-                  "error":  {
-                    "message":  "Could not detect a SECURITY.md file in the SBOM.",
-                    "guidance":  "Add a file named SECURITY.md to your project's vulnerability disclosure policy"
+                  "error": {
+                    "message": "Could not detect a SECURITY.md file in the SBOM.",
+                    "guidance": "Add a file named SECURITY.md to your project's vulnerability disclosure policy"
                   },
-                  "assessment":  {
-                    "message":  "Found a SECURITY.md file in the project's SBOM."
+                  "assessment": {
+                    "message": "Found a SECURITY.md file in the project's SBOM."
                   }
                 }
               ]
@@ -2016,57 +2016,57 @@
       ]
     },
     {
-      "id":  "OSPS-VM-02",
-      "meta":  {
-        "description":  "The project MUST publish contacts and process for reporting vulnerabilities",
-        "controls":  [
+      "id": "OSPS-VM-02",
+      "meta": {
+        "description": "The project MUST publish contacts and process for reporting vulnerabilities",
+        "controls": [
           {
-            "id":  "02",
-            "framework":  "OSPS",
-            "class":  "VM"
+            "id": "02",
+            "framework": "OSPS",
+            "class": "VM"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SI-VULN-REP-CONTACT",
-              "meta":  {
-                "description":  "Ensures there is a contact for vulnerability reporting in SI",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SI-VULN-REP-CONTACT",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json",
-                  "digest":  {
-                    "sha256":  "4fe2e497f56ca443394160b306c2519558e96ef07c930ac35072c40d3a923f57",
-                    "sha512":  "31b1d40412c4dceee80cf52545288026e1d7758c26231eba9181872c5927f5a3d2aaf9f7f156f6820149adcd2e818dcaefece2081cbb8631fc6e9ac3cf062f43"
+              "id": "SI-VULN-REP-CONTACT",
+              "meta": {
+                "description": "Ensures there is a contact for vulnerability reporting in SI",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SI-VULN-REP-CONTACT",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json",
+                  "digest": {
+                    "sha256": "4fe2e497f56ca443394160b306c2519558e96ef07c930ac35072c40d3a923f57",
+                    "sha512": "31b1d40412c4dceee80cf52545288026e1d7758c26231eba9181872c5927f5a3d2aaf9f7f156f6820149adcd2e818dcaefece2081cbb8631fc6e9ac3cf062f43"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-si",
-                  "code":  "outputs.contact != null ",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-si",
+                  "code": "outputs.contact != null ",
+                  "predicates": {
+                    "types": [
                       "https://github.com/ossf/security-insights-spec"
                     ]
                   },
-                  "outputs":  {
-                    "contact":  {
-                      "code":  "has(predicates[0].data.project) ? ('vulnerability-reporting' in predicates[0].data.project ? ('contact' in predicates[0].data.project['vulnerability-reporting'] ? predicates[0].data.project['vulnerability-reporting']['contact'] : null) : null) : null"
+                  "outputs": {
+                    "contact": {
+                      "code": "has(predicates[0].data.project) ? ('vulnerability-reporting' in predicates[0].data.project ? ('contact' in predicates[0].data.project['vulnerability-reporting'] ? predicates[0].data.project['vulnerability-reporting']['contact'] : null) : null) : null"
                     }
                   },
-                  "error":  {
-                    "message":  "No vulnerability reporting contact found in SI",
-                    "guidance":  "Add a vulnerability reporting contact under the project data in the SI yaml file"
+                  "error": {
+                    "message": "No vulnerability reporting contact found in SI",
+                    "guidance": "Add a vulnerability reporting contact under the project data in the SI yaml file"
                   },
-                  "assessment":  {
-                    "message":  "Found vulnerability reporting contact in Security Insights"
+                  "assessment": {
+                    "message": "Found vulnerability reporting contact in Security Insights"
                   }
                 }
               ]
@@ -2076,84 +2076,84 @@
       ]
     },
     {
-      "id":  "OSPS-VM-04",
-      "meta":  {
-        "description":  "The project MUST publicly publish data about discovered vulnerabilities",
-        "controls":  [
+      "id": "OSPS-VM-04",
+      "meta": {
+        "description": "The project MUST publicly publish data about discovered vulnerabilities",
+        "controls": [
           {
-            "id":  "04",
-            "framework":  "OSPS",
-            "class":  "VM"
+            "id": "04",
+            "framework": "OSPS",
+            "class": "VM"
           }
         ],
-        "enforce":  "ON",
-        "assertMode":  "OR"
+        "enforce": "ON",
+        "assertMode": "OR"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "OPENVEX-VULNS-ARE-VEXED",
-              "meta":  {
-                "description":  "The project MUST publicly publish data about discovered vulnerabilities",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "OPENVEX-VULNS-ARE-VEXED",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json",
-                  "digest":  {
-                    "sha256":  "de38d63a3c2833f9ac3ffb4980fb1db5e7ad897b2b9ed54d39c7b6b044d0630e",
-                    "sha512":  "2fb4b2ff6a7d75e94eb6764aaeccaa2d90c6c2c2f9b8795e0e447be1f4e9d70a45224aca637baaa4e9a0a79bca855e2925b6983ba79a594b12afd20415a736fe"
+              "id": "OPENVEX-VULNS-ARE-VEXED",
+              "meta": {
+                "description": "The project MUST publicly publish data about discovered vulnerabilities",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "OPENVEX-VULNS-ARE-VEXED",
+                  "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json",
+                  "digest": {
+                    "sha256": "de38d63a3c2833f9ac3ffb4980fb1db5e7ad897b2b9ed54d39c7b6b044d0630e",
+                    "sha512": "2fb4b2ff6a7d75e94eb6764aaeccaa2d90c6c2c2f9b8795e0e447be1f4e9d70a45224aca637baaa4e9a0a79bca855e2925b6983ba79a594b12afd20415a736fe"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01",
-                  "code":  "size(predicates) > 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01",
+                  "code": "size(predicates) > 0",
+                  "predicates": {
+                    "types": [
                       "https://ossf.github.io/osv-schema/results@v1",
                       "https://ossf.github.io/osv-schema/results@v1.6.7"
                     ]
                   },
-                  "error":  {
-                    "message":  "A vulnerability report was found",
-                    "guidance":  "The artifact was published with an attested OSV results"
+                  "error": {
+                    "message": "A vulnerability report was found",
+                    "guidance": "The artifact was published with an attested OSV results"
                   },
-                  "assessment":  {
-                    "message":  "Vulnerability report published"
+                  "assessment": {
+                    "message": "Vulnerability report published"
                   }
                 },
                 {
-                  "id":  "02",
-                  "code":  "outputs.reports > 0 && (size(outputs.vulnerabilities) == 0 || outputs.vexes > 0)",
-                  "predicates":  {
-                    "types":  [
+                  "id": "02",
+                  "code": "outputs.reports > 0 && (size(outputs.vulnerabilities) == 0 || outputs.vexes > 0)",
+                  "predicates": {
+                    "types": [
                       "https://ossf.github.io/osv-schema/results@v1",
                       "https://ossf.github.io/osv-schema/results@v1.6.7",
                       "https://openvex.dev/ns/v0.2.0",
                       "https://openvex.dev/ns"
                     ]
                   },
-                  "outputs":  {
-                    "reports":  {
-                      "code":  "size(predicates.filter(p, p.predicate_type.contains('osv-schema')))"
+                  "outputs": {
+                    "reports": {
+                      "code": "size(predicates.filter(p, p.predicate_type.contains('osv-schema')))"
                     },
-                    "vexes":  {
-                      "code":  "size(predicates.filter(p, p.predicate_type.contains('openvex')))"
+                    "vexes": {
+                      "code": "size(predicates.filter(p, p.predicate_type.contains('openvex')))"
                     },
-                    "vulnerabilities":  {
-                      "code":  "predicates.filter(p, p.predicate_type.contains('osv-schema')).map(p, p.data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()).flatten()"
+                    "vulnerabilities": {
+                      "code": "predicates.filter(p, p.predicate_type.contains('osv-schema')).map(p, p.data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()).flatten()"
                     }
                   },
-                  "error":  {
-                    "message":  "Unvexed vulnerabilities found",
-                    "guidance":  "All vulnerabilities must be patched or accounted in VEX documents"
+                  "error": {
+                    "message": "Unvexed vulnerabilities found",
+                    "guidance": "All vulnerabilities must be patched or accounted in VEX documents"
                   },
-                  "assessment":  {
-                    "message":  "No vulnerabilities and/or VEX data found"
+                  "assessment": {
+                    "message": "No vulnerabilities and/or VEX data found"
                   }
                 }
               ]
@@ -2161,42 +2161,42 @@
           ]
         },
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "grype-no-vulns",
-              "meta":  {
-                "description":  "Ensures an attested grype vulnerability report contains no vulnerability matches",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "grype-no-vulns",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson",
-                  "digest":  {
-                    "sha256":  "0c302ef8882a61f191bac541d4a84c7b4470712aa3ba9f8d9930a61cf3c2151a",
-                    "sha512":  "ff5b94d8a69b23a9b73f0f692d57ce27c8279c89f14937204de983c554e362c26df135941cadaf7a22765f73ebc54edee5577d159a3acf5ed717f00047fea640"
+              "id": "grype-no-vulns",
+              "meta": {
+                "description": "Ensures an attested grype vulnerability report contains no vulnerability matches",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "grype-no-vulns",
+                  "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson",
+                  "digest": {
+                    "sha256": "0c302ef8882a61f191bac541d4a84c7b4470712aa3ba9f8d9930a61cf3c2151a",
+                    "sha512": "ff5b94d8a69b23a9b73f0f692d57ce27c8279c89f14937204de983c554e362c26df135941cadaf7a22765f73ebc54edee5577d159a3acf5ed717f00047fea640"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "code":  "outputs.vulnCount == 0",
-                  "predicates":  {
-                    "types":  [
+                  "code": "outputs.vulnCount == 0",
+                  "predicates": {
+                    "types": [
                       "https://predicates.policylabs.dev/grype/v1"
                     ]
                   },
-                  "outputs":  {
-                    "vulnCount":  {
-                      "code":  "has(predicate.data.matches) ? size(predicate.data.matches) : 0"
+                  "outputs": {
+                    "vulnCount": {
+                      "code": "has(predicate.data.matches) ? size(predicate.data.matches) : 0"
                     }
                   },
-                  "error":  {
-                    "message":  "Attested grype report has {{ .Outputs.vulnCount }} vulnerability matches",
-                    "guidance":  "Remediate or suppress the vulnerabilities reported by grype before this policy can pass"
+                  "error": {
+                    "message": "Attested grype report has {{ .Outputs.vulnCount }} vulnerability matches",
+                    "guidance": "Remediate or suppress the vulnerabilities reported by grype before this policy can pass"
                   },
-                  "assessment":  {
-                    "message":  "Attested grype report has no vulnerability matches"
+                  "assessment": {
+                    "message": "Attested grype report has no vulnerability matches"
                   }
                 }
               ]
@@ -2204,42 +2204,42 @@
           ]
         },
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "trivy-no-vulns",
-              "meta":  {
-                "description":  "Ensures an attested trivy vulnerability report contains no vulnerabilities",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "trivy-no-vulns",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson",
-                  "digest":  {
-                    "sha256":  "e2dd020bcd3c9ec9616eaf33c17e655ee9b39fa8be44034c2fe92fb7a9256176",
-                    "sha512":  "50bf04040594da9113938b10d36a4817d6a23001a2bcce52e466de1f1cd5092ac47c2b2825be02216d3451ebb998057fd2487bc965b96af6adeacd628660db15"
+              "id": "trivy-no-vulns",
+              "meta": {
+                "description": "Ensures an attested trivy vulnerability report contains no vulnerabilities",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "trivy-no-vulns",
+                  "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson",
+                  "digest": {
+                    "sha256": "e2dd020bcd3c9ec9616eaf33c17e655ee9b39fa8be44034c2fe92fb7a9256176",
+                    "sha512": "50bf04040594da9113938b10d36a4817d6a23001a2bcce52e466de1f1cd5092ac47c2b2825be02216d3451ebb998057fd2487bc965b96af6adeacd628660db15"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "code":  "outputs.vulnCount == 0",
-                  "predicates":  {
-                    "types":  [
+                  "code": "outputs.vulnCount == 0",
+                  "predicates": {
+                    "types": [
                       "https://predicates.policylabs.dev/trivy/v1"
                     ]
                   },
-                  "outputs":  {
-                    "vulnCount":  {
-                      "code":  "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten()) : 0"
+                  "outputs": {
+                    "vulnCount": {
+                      "code": "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten()) : 0"
                     }
                   },
-                  "error":  {
-                    "message":  "Attested trivy report has {{ .Outputs.vulnCount }} vulnerabilities",
-                    "guidance":  "Remediate or suppress the vulnerabilities reported by trivy before this policy can pass"
+                  "error": {
+                    "message": "Attested trivy report has {{ .Outputs.vulnCount }} vulnerabilities",
+                    "guidance": "Remediate or suppress the vulnerabilities reported by trivy before this policy can pass"
                   },
-                  "assessment":  {
-                    "message":  "Attested trivy report has no vulnerabilities"
+                  "assessment": {
+                    "message": "Attested trivy report has no vulnerabilities"
                   }
                 }
               ]
@@ -2249,65 +2249,65 @@
       ]
     },
     {
-      "id":  "OSPS-VM-05",
-      "meta":  {
-        "description":  "Ensure the project has no exploitable vulnerabilities",
-        "controls":  [
+      "id": "OSPS-VM-05",
+      "meta": {
+        "description": "Ensure the project has no exploitable vulnerabilities",
+        "controls": [
           {
-            "id":  "05",
-            "framework":  "OSPS",
-            "class":  "VM"
+            "id": "05",
+            "framework": "OSPS",
+            "class": "VM"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "openvex-no-exploitable-vulns",
-              "meta":  {
-                "description":  "Ensure the project has no exploitable vulnerabilities",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "openvex-no-exploitable-vulns",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json",
-                  "digest":  {
-                    "sha256":  "83e07778ab0e94ac1c0581a041a6cadd923e2123d22a683978d5567cb342304b",
-                    "sha512":  "5a3cf67e11fe42539eadf3bade9f09feb763a26d1d73d71f2fb4bc027880247e4d8f96dea09aa3c528524ed7b008583d6e92ce07cc4737a5e0f66c22a7199710"
+              "id": "openvex-no-exploitable-vulns",
+              "meta": {
+                "description": "Ensure the project has no exploitable vulnerabilities",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "openvex-no-exploitable-vulns",
+                  "uri": "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json",
+                  "digest": {
+                    "sha256": "83e07778ab0e94ac1c0581a041a6cadd923e2123d22a683978d5567cb342304b",
+                    "sha512": "5a3cf67e11fe42539eadf3bade9f09feb763a26d1d73d71f2fb4bc027880247e4d8f96dea09aa3c528524ed7b008583d6e92ce07cc4737a5e0f66c22a7199710"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json"
                 }
               },
-              "transformers":  [
+              "transformers": [
                 {
-                  "id":  "internal:vex"
+                  "id": "internal:vex"
                 }
               ],
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "02-osv+vex",
-                  "code":  "outputs.vulnerabilities == null ? true : size(outputs.vulnerabilities) == 0",
-                  "predicates":  {
-                    "types":  [
+                  "id": "02-osv+vex",
+                  "code": "outputs.vulnerabilities == null ? true : size(outputs.vulnerabilities) == 0",
+                  "predicates": {
+                    "types": [
                       "https://ossf.github.io/osv-schema/results@v1.6.7",
                       "https://ossf.github.io/osv-schema/results@v1",
                       "https://ossf.github.io/osv-schema/results",
                       "https://openvex.dev/ns/v0.2.0"
                     ]
                   },
-                  "outputs":  {
-                    "vulnerabilities":  {
-                      "code":  "predicates[0].data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()"
+                  "outputs": {
+                    "vulnerabilities": {
+                      "code": "predicates[0].data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()"
                     }
                   },
-                  "error":  {
-                    "message":  "Vulnerabilities found in code dependencies",
-                    "guidance":  "A scan of your source code found vulnerabilities. Ensure your dependencies are up to date or issue VEX documents to supress them."
+                  "error": {
+                    "message": "Vulnerabilities found in code dependencies",
+                    "guidance": "A scan of your source code found vulnerabilities. Ensure your dependencies are up to date or issue VEX documents to supress them."
                   },
-                  "assessment":  {
-                    "message":  "No exploitable vulnerabilities found"
+                  "assessment": {
+                    "message": "No exploitable vulnerabilities found"
                   }
                 }
               ]
@@ -2317,57 +2317,57 @@
       ]
     },
     {
-      "id":  "OSPS-VM-06",
-      "meta":  {
-        "description":  "Enforce a policy that defines a threshold for remediation of SAST findings",
-        "controls":  [
+      "id": "OSPS-VM-06",
+      "meta": {
+        "description": "Enforce a policy that defines a threshold for remediation of SAST findings",
+        "controls": [
           {
-            "id":  "VM-06",
-            "framework":  "OSPS",
-            "class":  "VM"
+            "id": "VM-06",
+            "framework": "OSPS",
+            "class": "VM"
           }
         ],
-        "enforce":  "ON"
+        "enforce": "ON"
       },
-      "blocks":  [
+      "blocks": [
         {
-          "policies":  [
+          "policies": [
             {
-              "id":  "SCORECARD-SAST",
-              "meta":  {
-                "description":  "Checks the SAST score in a scorecard attestation",
-                "assertMode":  "AND",
-                "enforce":  "ON",
-                "origin":  {
-                  "name":  "SCORECARD-SAST",
-                  "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
-                  "digest":  {
-                    "sha256":  "36bc11637352fa5e01d0599830ed24886c93e65187e1633336cb98d0d15d59be",
-                    "sha512":  "5f6c20ec7c15e40de5351e3d3944a5462570be58dd9306ebe85aeb0c3e7d63dd08506d8b7b24a49d6435821e9e1d312968b28ccf70943064a0a1e912df5cefdd"
+              "id": "SCORECARD-SAST",
+              "meta": {
+                "description": "Checks the SAST score in a scorecard attestation",
+                "assertMode": "AND",
+                "enforce": "ON",
+                "origin": {
+                  "name": "SCORECARD-SAST",
+                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
+                  "digest": {
+                    "sha256": "36bc11637352fa5e01d0599830ed24886c93e65187e1633336cb98d0d15d59be",
+                    "sha512": "5f6c20ec7c15e40de5351e3d3944a5462570be58dd9306ebe85aeb0c3e7d63dd08506d8b7b24a49d6435821e9e1d312968b28ccf70943064a0a1e912df5cefdd"
                   },
-                  "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
+                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
                 }
               },
-              "tenets":  [
+              "tenets": [
                 {
-                  "id":  "01-scorecard",
-                  "code":  "outputs.sast.all(c, c.score == 10)",
-                  "predicates":  {
-                    "types":  [
+                  "id": "01-scorecard",
+                  "code": "outputs.sast.all(c, c.score == 10)",
+                  "predicates": {
+                    "types": [
                       "https://scorecard.dev/result/v0.1"
                     ]
                   },
-                  "outputs":  {
-                    "sast":  {
-                      "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] "
+                  "outputs": {
+                    "sast": {
+                      "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] "
                     }
                   },
-                  "error":  {
-                    "message":  "Scorecard did not detect a SAST tool",
-                    "guidance":  "Configure a SAST tool like CodeQL in your repo and reattest the scorecard"
+                  "error": {
+                    "message": "Scorecard did not detect a SAST tool",
+                    "guidance": "Configure a SAST tool like CodeQL in your repo and reattest the scorecard"
                   },
-                  "assessment":  {
-                    "message":  "Scorecard detected a SAST tool"
+                  "assessment": {
+                    "message": "Scorecard detected a SAST tool"
                   }
                 }
               ]

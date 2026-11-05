@@ -1,37 +1,37 @@
 {
-  "id":  "SNAPPY-MFA-ALL",
-  "meta":  {
-    "description":  "Reads the attested GitHub organization data and fails when multi-factor authentication is not enabled for all members of the organization.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "mfa-all.hjson",
-      "digest":  {
-        "sha256":  "f5fd4ad421f9bac30547c0c1562fa21d485a5e19726465b590588bea6816e77c",
-        "sha512":  "e2773ec7822a62b0b95a1d1e6d57413ecdb2e74506792ecaa625b3f06f60220b482091dd299dc6404f3d38a82a2720f496ce9fa9be4794a6aa1b0abf933f2f26"
+  "id": "SNAPPY-MFA-ALL",
+  "meta": {
+    "description": "Reads the attested GitHub organization data and fails when multi-factor authentication is not enabled for all members of the organization.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "mfa-all.hjson",
+      "digest": {
+        "sha256": "f5fd4ad421f9bac30547c0c1562fa21d485a5e19726465b590588bea6816e77c",
+        "sha512": "e2773ec7822a62b0b95a1d1e6d57413ecdb2e74506792ecaa625b3f06f60220b482091dd299dc6404f3d38a82a2720f496ce9fa9be4794a6aa1b0abf933f2f26"
       }
     },
-    "name":  "MFA Enabled for All Members"
+    "name": "MFA Enabled for All Members"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.members.all(member, member.hasTwoFactorEnabled) && size(outputs.members) > 0",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.members.all(member, member.hasTwoFactorEnabled) && size(outputs.members) > 0",
+      "predicates": {
+        "types": [
           "http://github.com/carabiner-dev/snappy/specs/mfa.yaml"
         ]
       },
-      "outputs":  {
-        "members":  {
-          "code":  "has(predicates[0].data.values.data.organization.membersWithRole) ? (has(predicates[0].data.values.data.organization.membersWithRole.edges) ? predicates[0].data.values.data.organization.membersWithRole.edges : []) : []"
+      "outputs": {
+        "members": {
+          "code": "has(predicates[0].data.values.data.organization.membersWithRole) ? (has(predicates[0].data.values.data.organization.membersWithRole.edges) ? predicates[0].data.values.data.organization.membersWithRole.edges : []) : []"
         }
       },
-      "error":  {
-        "message":  "Multifactor authentication is not enabled for some members",
-        "guidance":  "Enable MFA in the GitHub organization settings to force all members to turn it on"
+      "error": {
+        "message": "Multifactor authentication is not enabled for some members",
+        "guidance": "Enable MFA in the GitHub organization settings to force all members to turn it on"
       },
-      "assessment":  {
-        "message":  "Multi-factor authentication is enabled for all members in the organization"
+      "assessment": {
+        "message": "Multi-factor authentication is enabled for all members in the organization"
       }
     }
   ]

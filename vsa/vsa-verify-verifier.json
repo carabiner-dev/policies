@@ -1,48 +1,48 @@
 {
-  "id":  "vsa-verify-verifier",
-  "meta":  {
-    "description":  "Checks that a SLSA Verification Summary Attestation was issued by the expected verifier, given as the `verifierId` context value, optionally ignoring the verifier's version.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "vsa-verify-verifier.hjson",
-      "digest":  {
-        "sha256":  "4aa9637e677f5b1bab642aa45c45a87d7145933e030f882f38b3fc8e11ee5805",
-        "sha512":  "a6c5951545fcd46a55a3662be93ce2803412b8bb2a5cfc77e4f6d6973723dacf799d7ee6436ee40f7ed6a7cea02056a51c44176ac700fc8979cbc68603de942f"
+  "id": "vsa-verify-verifier",
+  "meta": {
+    "description": "Checks that a SLSA Verification Summary Attestation was issued by the expected verifier, given as the `verifierId` context value, optionally ignoring the verifier's version.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "vsa-verify-verifier.hjson",
+      "digest": {
+        "sha256": "4aa9637e677f5b1bab642aa45c45a87d7145933e030f882f38b3fc8e11ee5805",
+        "sha512": "a6c5951545fcd46a55a3662be93ce2803412b8bb2a5cfc77e4f6d6973723dacf799d7ee6436ee40f7ed6a7cea02056a51c44176ac700fc8979cbc68603de942f"
       }
     },
-    "name":  "Trusted Verifier"
+    "name": "Trusted Verifier"
   },
-  "context":  {
-    "matchUnversionedVerifier":  {
-      "required":  true,
-      "default":  true,
-      "description":  "Allow matching the verifier URI without version"
+  "context": {
+    "matchUnversionedVerifier": {
+      "required": true,
+      "default": true,
+      "description": "Allow matching the verifier URI without version"
     },
-    "verifier":  {
-      "required":  true,
-      "description":  "URI identifier of the system performing the verification"
+    "verifier": {
+      "required": true,
+      "description": "URI identifier of the system performing the verification"
     }
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.verifier == context.verifier || (outputs.verifier.startsWith(context.verifier + '@') && context.matchUnversionedVerifier )",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.verifier == context.verifier || (outputs.verifier.startsWith(context.verifier + '@') && context.matchUnversionedVerifier )",
+      "predicates": {
+        "types": [
           "https://slsa.dev/verification_summary/v1"
         ]
       },
-      "outputs":  {
-        "verifier":  {
-          "code":  "has(predicates[0].data.verifier) ? ( has(predicates[0].data.verifier.id) ? predicates[0].data.verifier.id : '' ) : '' "
+      "outputs": {
+        "verifier": {
+          "code": "has(predicates[0].data.verifier) ? ( has(predicates[0].data.verifier.id) ? predicates[0].data.verifier.id : '' ) : '' "
         }
       },
-      "error":  {
-        "message":  "Attestation NOT issued by trusted verifier",
-        "guidance":  "Expecting {{ .Context.verifier }} got {{ .Outputs.verifier }}"
+      "error": {
+        "message": "Attestation NOT issued by trusted verifier",
+        "guidance": "Expecting {{ .Context.verifier }} got {{ .Outputs.verifier }}"
       },
-      "assessment":  {
-        "message":  "Attestation was issued by trusted verifier"
+      "assessment": {
+        "message": "Attestation was issued by trusted verifier"
       }
     }
   ]

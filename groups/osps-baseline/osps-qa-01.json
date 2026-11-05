@@ -1,86 +1,86 @@
 {
-  "id":  "OSPS-QA-01",
-  "meta":  {
-    "description":  "The project's source code and change history MUST be publicly readable and have a static URL.\n\nChecked through the attested repository data with the `snappy/repo-public-git` policy.",
-    "controls":  [
+  "id": "OSPS-QA-01",
+  "meta": {
+    "description": "The project's source code and change history MUST be publicly readable and have a static URL.\n\nChecked through the attested repository data with the `snappy/repo-public-git` policy.",
+    "controls": [
       {
-        "id":  "01",
-        "framework":  "OSPS",
-        "class":  "QA"
+        "id": "01",
+        "framework": "OSPS",
+        "class": "QA"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-qa-01.hjson",
-      "digest":  {
-        "sha256":  "c873e57aba05dbfeebc4ae46bfb68245590e5fbeb5bd904ff61fe78ed4c58e19",
-        "sha512":  "83198c88870987eaaf66cf967f2567b7fcf3291bca45d8ba5e4f10c01925941c4f70f45b44078cf6aa1a9f706729ca35508a545fd1173ada043c1a87fe933501"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-qa-01.hjson",
+      "digest": {
+        "sha256": "c873e57aba05dbfeebc4ae46bfb68245590e5fbeb5bd904ff61fe78ed4c58e19",
+        "sha512": "83198c88870987eaaf66cf967f2567b7fcf3291bca45d8ba5e4f10c01925941c4f70f45b44078cf6aa1a9f706729ca35508a545fd1173ada043c1a87fe933501"
       }
     },
-    "name":  "Source Code Publicly Readable"
+    "name": "Source Code Publicly Readable"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "SNAPPY-REPO-PUBLIC-GIT",
-          "meta":  {
-            "description":  "The repository is public and uses git as VCS.",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "SNAPPY-REPO-PUBLIC-GIT",
-              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
-              "digest":  {
-                "sha256":  "23fcb7ceedde1175c8ad350211c79deb4b5d0c3b5760d478b461f46f57d87bb0",
-                "sha512":  "a87c510c96e5686e651084695ad9bae4000b97b6f2bba42275bb52d5ad6217c3b2a0ddebef67a9604612c5ba4bbadd52f43d6ef549ce83eaffb379726b2f1867"
+          "id": "SNAPPY-REPO-PUBLIC-GIT",
+          "meta": {
+            "description": "The repository is public and uses git as VCS.",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SNAPPY-REPO-PUBLIC-GIT",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
+              "digest": {
+                "sha256": "23fcb7ceedde1175c8ad350211c79deb4b5d0c3b5760d478b461f46f57d87bb0",
+                "sha512": "a87c510c96e5686e651084695ad9bae4000b97b6f2bba42275bb52d5ad6217c3b2a0ddebef67a9604612c5ba4bbadd52f43d6ef549ce83eaffb379726b2f1867"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "01",
-              "code":  "outputs[\"public\"]",
-              "predicates":  {
-                "types":  [
+              "id": "01",
+              "code": "outputs[\"public\"]",
+              "predicates": {
+                "types": [
                   "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                   "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                 ]
               },
-              "outputs":  {
-                "public":  {
-                  "code":  "has(predicates[0].data.values.visibility) ? predicates[0].data.values.visibility == \"public\" : false"
+              "outputs": {
+                "public": {
+                  "code": "has(predicates[0].data.values.visibility) ? predicates[0].data.values.visibility == \"public\" : false"
                 }
               },
-              "error":  {
-                "message":  "Repository is private",
-                "guidance":  "Enable public visibility in the repository settings"
+              "error": {
+                "message": "Repository is private",
+                "guidance": "Enable public visibility in the repository settings"
               },
-              "assessment":  {
-                "message":  "Code repository is public"
+              "assessment": {
+                "message": "Code repository is public"
               }
             },
             {
-              "id":  "02",
-              "code":  "outputs[\"git\"] != ''",
-              "predicates":  {
-                "types":  [
+              "id": "02",
+              "code": "outputs[\"git\"] != ''",
+              "predicates": {
+                "types": [
                   "http://github.com/carabiner-dev/snappy/specs/github/repo.yaml",
                   "http://github.com/carabiner-dev/snappy/specs/repo.yaml"
                 ]
               },
-              "outputs":  {
-                "git":  {
-                  "code":  "has(predicates[0].data.values.git_url) ? predicates[0].data.values.git_url : '' "
+              "outputs": {
+                "git": {
+                  "code": "has(predicates[0].data.values.git_url) ? predicates[0].data.values.git_url : '' "
                 }
               },
-              "error":  {
-                "message":  "No git repository found",
-                "guidance":  "Ensure the project's code is available in git or other VCS"
+              "error": {
+                "message": "No git repository found",
+                "guidance": "Ensure the project's code is available in git or other VCS"
               },
-              "assessment":  {
-                "message":  "Code stored in git repository"
+              "assessment": {
+                "message": "Code stored in git repository"
               }
             }
           ]

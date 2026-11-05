@@ -1,63 +1,63 @@
 {
-  "id":  "OSPS-VM-06",
-  "meta":  {
-    "description":  "The project MUST publish and enforce an application security testing policy, with a threshold for the remediation of SAST findings.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/sast` policy.",
-    "controls":  [
+  "id": "OSPS-VM-06",
+  "meta": {
+    "description": "The project MUST publish and enforce an application security testing policy, with a threshold for the remediation of SAST findings.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/sast` policy.",
+    "controls": [
       {
-        "id":  "VM-06",
-        "framework":  "OSPS",
-        "class":  "VM"
+        "id": "VM-06",
+        "framework": "OSPS",
+        "class": "VM"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osps-vm-06.hjson",
-      "digest":  {
-        "sha256":  "082705d273d71682d894c87ca8525a2e7583d9c55c7128f91adf8f0ebc800cd2",
-        "sha512":  "7426725468f2e40bc01a1e6e73f7d16c8d8ff59284919529a88d07f5f4b03a635120883ccbd4aeadd74bfd9ee73af2d1f22397ad768ada5452fc3249cde76d9c"
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-vm-06.hjson",
+      "digest": {
+        "sha256": "082705d273d71682d894c87ca8525a2e7583d9c55c7128f91adf8f0ebc800cd2",
+        "sha512": "7426725468f2e40bc01a1e6e73f7d16c8d8ff59284919529a88d07f5f4b03a635120883ccbd4aeadd74bfd9ee73af2d1f22397ad768ada5452fc3249cde76d9c"
       }
     },
-    "name":  "Application Security Testing Enforced"
+    "name": "Application Security Testing Enforced"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "policies":  [
+      "policies": [
         {
-          "id":  "SCORECARD-SAST",
-          "meta":  {
-            "description":  "Checks the SAST score in a scorecard attestation",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "SCORECARD-SAST",
-              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
-              "digest":  {
-                "sha256":  "36bc11637352fa5e01d0599830ed24886c93e65187e1633336cb98d0d15d59be",
-                "sha512":  "5f6c20ec7c15e40de5351e3d3944a5462570be58dd9306ebe85aeb0c3e7d63dd08506d8b7b24a49d6435821e9e1d312968b28ccf70943064a0a1e912df5cefdd"
+          "id": "SCORECARD-SAST",
+          "meta": {
+            "description": "Checks the SAST score in a scorecard attestation",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SCORECARD-SAST",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
+              "digest": {
+                "sha256": "36bc11637352fa5e01d0599830ed24886c93e65187e1633336cb98d0d15d59be",
+                "sha512": "5f6c20ec7c15e40de5351e3d3944a5462570be58dd9306ebe85aeb0c3e7d63dd08506d8b7b24a49d6435821e9e1d312968b28ccf70943064a0a1e912df5cefdd"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
             }
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "01-scorecard",
-              "code":  "outputs.sast.all(c, c.score == 10)",
-              "predicates":  {
-                "types":  [
+              "id": "01-scorecard",
+              "code": "outputs.sast.all(c, c.score == 10)",
+              "predicates": {
+                "types": [
                   "https://scorecard.dev/result/v0.1"
                 ]
               },
-              "outputs":  {
-                "sast":  {
-                  "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] "
+              "outputs": {
+                "sast": {
+                  "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] "
                 }
               },
-              "error":  {
-                "message":  "Scorecard did not detect a SAST tool",
-                "guidance":  "Configure a SAST tool like CodeQL in your repo and reattest the scorecard"
+              "error": {
+                "message": "Scorecard did not detect a SAST tool",
+                "guidance": "Configure a SAST tool like CodeQL in your repo and reattest the scorecard"
               },
-              "assessment":  {
-                "message":  "Scorecard detected a SAST tool"
+              "assessment": {
+                "message": "Scorecard detected a SAST tool"
               }
             }
           ]

@@ -1,38 +1,38 @@
 {
-  "id":  "SI-ROLES",
-  "meta":  {
-    "description":  "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when the project does not list its administrators.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "roles.hjson",
-      "digest":  {
-        "sha256":  "408d136f787a910643e3e808e2a52b33abd914b32fe0b9abdb3dfc5359e434a6",
-        "sha512":  "03b152a6900bbb640c2eb46fcfbaa701c6c53107e22539a1a33443565eecfb587d6c178acf195300296aaa97947cf292b02a31e0891260d32f53aedf9d96858e"
+  "id": "SI-ROLES",
+  "meta": {
+    "description": "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when the project does not list its administrators.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "roles.hjson",
+      "digest": {
+        "sha256": "408d136f787a910643e3e808e2a52b33abd914b32fe0b9abdb3dfc5359e434a6",
+        "sha512": "03b152a6900bbb640c2eb46fcfbaa701c6c53107e22539a1a33443565eecfb587d6c178acf195300296aaa97947cf292b02a31e0891260d32f53aedf9d96858e"
       }
     },
-    "name":  "Administrators Listed"
+    "name": "Administrators Listed"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "01-si",
-      "code":  "outputs.admins.found ",
-      "predicates":  {
-        "types":  [
+      "id": "01-si",
+      "code": "outputs.admins.found ",
+      "predicates": {
+        "types": [
           "https://github.com/ossf/security-insights-spec"
         ]
       },
-      "outputs":  {
-        "admins":  {
-          "code":  "has(predicates[0].data.project) ? (has(predicates[0].data.project.administrators) ? {'found': true,  'admins': predicates[0].data.project.administrators } : {'found': false,  'admins': [] } ) : {'found': false,  'admins': [] } "
+      "outputs": {
+        "admins": {
+          "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.administrators) ? {'found': true,  'admins': predicates[0].data.project.administrators } : {'found': false,  'admins': [] } ) : {'found': false,  'admins': [] } "
         }
       },
-      "error":  {
-        "message":  "Security Insights has no project administrators",
-        "guidance":  "List the project admins in your SI yaml under repository.administrators"
+      "error": {
+        "message": "Security Insights has no project administrators",
+        "guidance": "List the project admins in your SI yaml under repository.administrators"
       },
-      "assessment":  {
-        "message":  "Administrators listed in Securty Insights"
+      "assessment": {
+        "message": "Administrators listed in Securty Insights"
       }
     }
   ]

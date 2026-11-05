@@ -1,38 +1,38 @@
 {
-  "id":  "SI-ASSESSMENTS",
-  "meta":  {
-    "description":  "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when no security assessment is listed for the project.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "assessments.hjson",
-      "digest":  {
-        "sha256":  "6ccfdb810f3f02c4a04b17873fd84b8c9fc5b3f85616de7ff6dbc7bf0c02471b",
-        "sha512":  "4ff1f765f64fe7e8ce9ea55cdefb3907757a01ce7bb4d1f7a178b3f5e059e377ac9cb8ab5511172d8418935de9aa4d06436b268dd0151654c1f0d8dcce010aa0"
+  "id": "SI-ASSESSMENTS",
+  "meta": {
+    "description": "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when no security assessment is listed for the project.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "assessments.hjson",
+      "digest": {
+        "sha256": "6ccfdb810f3f02c4a04b17873fd84b8c9fc5b3f85616de7ff6dbc7bf0c02471b",
+        "sha512": "4ff1f765f64fe7e8ce9ea55cdefb3907757a01ce7bb4d1f7a178b3f5e059e377ac9cb8ab5511172d8418935de9aa4d06436b268dd0151654c1f0d8dcce010aa0"
       }
     },
-    "name":  "Security Assessments Listed"
+    "name": "Security Assessments Listed"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "01-si",
-      "code":  "size(outputs.assessments) > 0",
-      "predicates":  {
-        "types":  [
+      "id": "01-si",
+      "code": "size(outputs.assessments) > 0",
+      "predicates": {
+        "types": [
           "https://github.com/ossf/security-insights-spec"
         ]
       },
-      "outputs":  {
-        "assessments":  {
-          "code":  "has(predicates[0].data.repository) && has(predicates[0].data.repository.security) && has(predicates[0].data.repository.security.assessments) ? predicates[0].data.repository.security.assessments : {}"
+      "outputs": {
+        "assessments": {
+          "code": "has(predicates[0].data.repository) && has(predicates[0].data.repository.security) && has(predicates[0].data.repository.security.assessments) ? predicates[0].data.repository.security.assessments : {}"
         }
       },
-      "error":  {
-        "message":  "No assessments found in security insights",
-        "guidance":  "Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml"
+      "error": {
+        "message": "No assessments found in security insights",
+        "guidance": "Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml"
       },
-      "assessment":  {
-        "message":  "Found at least one security assessment listed in security insights."
+      "assessment": {
+        "message": "Found at least one security assessment listed in security insights."
       }
     }
   ]

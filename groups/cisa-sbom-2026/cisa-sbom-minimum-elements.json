@@ -1,64 +1,64 @@
 {
-  "id":  "CISA-SBOM-2026",
-  "meta":  {
-    "description":  "Checks an SBOM's conformance to the data field elements of the\n2026 Minimum Elements for a Software Bill of Materials (SBOM),\npublished by CISA and partner agencies on July 29, 2026. The\ndocument updates and replaces the 2021 NTIA SBOM Minimum\nElements.\n\nThe group defines one block per minimum element, covering the\nnine SBOM Metadata elements and the eight Component Data\nelements. Each block can host one or more policies verifying its\nelement; all blocks must pass for the SBOM to conform.\n\nThe Practices and Processes elements of the document describe\norganizational behavior and are not verifiable against a single\nSBOM document, so they are not part of this group.\n\nAll blocks reference the standalone policies under protobom/,\npinned at commit 3c00b05.",
-    "version":  "1",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "cisa-sbom-minimum-elements.hjson",
-      "digest":  {
-        "sha256":  "113e6220a8e2dff1f9a92f125ed726bb38b47d39fde4079e53a30a180fa3450d",
-        "sha512":  "2042db0d672a1070f589980197a86d4ca7bfecadbef4f977a7720c99aff429170195c865ab80e3f8b98ecbcd0c6c8deab4cace7d7cec6d0254f2a75fefae4d21"
+  "id": "CISA-SBOM-2026",
+  "meta": {
+    "description": "Checks an SBOM's conformance to the data field elements of the\n2026 Minimum Elements for a Software Bill of Materials (SBOM),\npublished by CISA and partner agencies on July 29, 2026. The\ndocument updates and replaces the 2021 NTIA SBOM Minimum\nElements.\n\nThe group defines one block per minimum element, covering the\nnine SBOM Metadata elements and the eight Component Data\nelements. Each block can host one or more policies verifying its\nelement; all blocks must pass for the SBOM to conform.\n\nThe Practices and Processes elements of the document describe\norganizational behavior and are not verifiable against a single\nSBOM document, so they are not part of this group.\n\nAll blocks reference the standalone policies under protobom/,\npinned at commit 3c00b05.",
+    "version": "1",
+    "enforce": "ON",
+    "origin": {
+      "name": "cisa-sbom-minimum-elements.hjson",
+      "digest": {
+        "sha256": "113e6220a8e2dff1f9a92f125ed726bb38b47d39fde4079e53a30a180fa3450d",
+        "sha512": "2042db0d672a1070f589980197a86d4ca7bfecadbef4f977a7720c99aff429170195c865ab80e3f8b98ecbcd0c6c8deab4cace7d7cec6d0254f2a75fefae4d21"
       }
     },
-    "name":  "CISA 2026 SBOM Minimum Elements"
+    "name": "CISA 2026 SBOM Minimum Elements"
   },
-  "blocks":  [
+  "blocks": [
     {
-      "id":  "sbom-author",
-      "meta":  {
-        "description":  "The SBOM records the entity that created it",
-        "controls":  [
+      "id": "sbom-author",
+      "meta": {
+        "description": "The SBOM records the entity that created it",
+        "controls": [
           {
-            "id":  "AUTHOR",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "AUTHOR",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-AUTHOR",
-          "meta":  {
-            "description":  "SBOM has author data",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-AUTHOR",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json",
-              "digest":  {
-                "sha256":  "c107a8074467776fa90e6147707c147f661f7f42cf59e2218d1697d1f1cf6da6",
-                "sha512":  "4a832ad3cae243fedb80448ce417f30f602ace639b722647211d253f95e01a2b11e182660f7a7148cf2a1129e7e4ee5881fbb36bcead3335c400440ac95be325"
+          "id": "PROTOBOM-AUTHOR",
+          "meta": {
+            "description": "SBOM has author data",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-AUTHOR",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json",
+              "digest": {
+                "sha256": "c107a8074467776fa90e6147707c147f661f7f42cf59e2218d1697d1f1cf6da6",
+                "sha512": "4a832ad3cae243fedb80448ce417f30f602ace639b722647211d253f95e01a2b11e182660f7a7148cf2a1129e7e4ee5881fbb36bcead3335c400440ac95be325"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "size(outputs.authors) > 0",
-              "outputs":  {
-                "authors":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_authors() : []"
+              "code": "size(outputs.authors) > 0",
+              "outputs": {
+                "authors": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_authors() : []"
                 }
               },
-              "assessment":  {
-                "message":  "SBOM author defined"
+              "assessment": {
+                "message": "SBOM author defined"
               }
             }
           ]
@@ -66,57 +66,57 @@
       ]
     },
     {
-      "id":  "sbom-author-signature",
-      "meta":  {
-        "description":  "The SBOM attestation carries a verifiable signature",
-        "controls":  [
+      "id": "sbom-author-signature",
+      "meta": {
+        "description": "The SBOM attestation carries a verifiable signature",
+        "controls": [
           {
-            "id":  "AUTHOR-SIGNATURE",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "AUTHOR-SIGNATURE",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-SIGNED",
-          "meta":  {
-            "description":  "# SBOM Author Signature\n\nChecks that the SBOM was ingested from a signed attestation and that\nAMPEL verified its signature. This implements the _SBOM Author\nSignature_ element of the CISA 2026 SBOM Minimum Elements.\n\nNote that this policy checks the signature on the attestation\nenvelope wrapping the SBOM, not data inside the SBOM document\nitself (neither SPDX nor CycloneDX embed author signatures).\n\nThis standalone policy enforces the signature requirement. As most\nSBOMs are still distributed unsigned, the CISA-SBOM-2026 group\ncarries it with enforce OFF to make the check advisory; set\n`enforce: OFF` (or pin author identities) to match that behavior.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-SIGNED",
+          "meta": {
+            "description": "# SBOM Author Signature\n\nChecks that the SBOM was ingested from a signed attestation and that\nAMPEL verified its signature. This implements the _SBOM Author\nSignature_ element of the CISA 2026 SBOM Minimum Elements.\n\nNote that this policy checks the signature on the attestation\nenvelope wrapping the SBOM, not data inside the SBOM document\nitself (neither SPDX nor CycloneDX embed author signatures).\n\nThis standalone policy enforces the signature requirement. As most\nSBOMs are still distributed unsigned, the CISA-SBOM-2026 group\ncarries it with enforce OFF to make the check advisory; set\n`enforce: OFF` (or pin author identities) to match that behavior.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "AUTHOR-SIGNATURE",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "SBOM-METADATA"
+                "id": "AUTHOR-SIGNATURE",
+                "framework": "CISA-SBOM-2026",
+                "class": "SBOM-METADATA"
               }
             ],
-            "enforce":  "OFF",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-SIGNED",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson",
-              "digest":  {
-                "sha256":  "eeba82acc9cea4363c82e9b7e726cecd5ffb4f79022afa6056b0d8c8496190c2",
-                "sha512":  "0cbdb484b4837943d5680bcb14487827b7ee151ef5af11bcf5cce61cb5b0809951d4b34c7914e0823ab48fb10024c711184bd8817e5b51f76817e4ffec9b10e7"
+            "enforce": "OFF",
+            "origin": {
+              "name": "PROTOBOM-SBOM-SIGNED",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson",
+              "digest": {
+                "sha256": "eeba82acc9cea4363c82e9b7e726cecd5ffb4f79022afa6056b0d8c8496190c2",
+                "sha512": "0cbdb484b4837943d5680bcb14487827b7ee151ef5af11bcf5cce61cb5b0809951d4b34c7914e0823ab48fb10024c711184bd8817e5b51f76817e4ffec9b10e7"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "signed",
-              "code":  "size(predicates) > 0 && predicates.all(p, size(p.verification.signers) > 0)",
-              "error":  {
-                "message":  "The SBOM attestation is not signed or its signature could not be verified",
-                "guidance":  "Distribute the SBOM wrapped in a signed attestation (for example a sigstore bundle) attributable to the SBOM author"
+              "id": "signed",
+              "code": "size(predicates) > 0 && predicates.all(p, size(p.verification.signers) > 0)",
+              "error": {
+                "message": "The SBOM attestation is not signed or its signature could not be verified",
+                "guidance": "Distribute the SBOM wrapped in a signed attestation (for example a sigstore bundle) attributable to the SBOM author"
               },
-              "assessment":  {
-                "message":  "SBOM attestation signature verified"
+              "assessment": {
+                "message": "SBOM attestation signature verified"
               }
             }
           ]
@@ -124,62 +124,62 @@
       ]
     },
     {
-      "id":  "sbom-data-format-name",
-      "meta":  {
-        "description":  "The SBOM is in a widely used machine-processable data format",
-        "controls":  [
+      "id": "sbom-data-format-name",
+      "meta": {
+        "description": "The SBOM is in a widely used machine-processable data format",
+        "controls": [
           {
-            "id":  "DATA-FORMAT-NAME",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "DATA-FORMAT-NAME",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-FORMAT-NAME",
-          "meta":  {
-            "description":  "# SBOM Data Format Name\n\nChecks that the SBOM is expressed in one of the widely used,\nmachine-processable SBOM data formats: SPDX or CycloneDX. This\nimplements the _SBOM Data Format Name_ element of the CISA 2026\nSBOM Minimum Elements.\n\nThe format is read from the source data protobom captures when\ningesting the SBOM (for example `text/spdx+json;version=2.3`).",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-FORMAT-NAME",
+          "meta": {
+            "description": "# SBOM Data Format Name\n\nChecks that the SBOM is expressed in one of the widely used,\nmachine-processable SBOM data formats: SPDX or CycloneDX. This\nimplements the _SBOM Data Format Name_ element of the CISA 2026\nSBOM Minimum Elements.\n\nThe format is read from the source data protobom captures when\ningesting the SBOM (for example `text/spdx+json;version=2.3`).",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "DATA-FORMAT-NAME",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "SBOM-METADATA"
+                "id": "DATA-FORMAT-NAME",
+                "framework": "CISA-SBOM-2026",
+                "class": "SBOM-METADATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-FORMAT-NAME",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson",
-              "digest":  {
-                "sha256":  "8fca34a6409d8e35297b819d8daf09330166aed97b790df2922df8eae1dae045",
-                "sha512":  "e188cb03faa965c0d7e530ce9167319e27938b3952f33467eb763f068af2bbe11b2e6bc61e4e74e9f36b686a3f86770f81063d16dda2cb06761eabd23d576c59"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-FORMAT-NAME",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson",
+              "digest": {
+                "sha256": "8fca34a6409d8e35297b819d8daf09330166aed97b790df2922df8eae1dae045",
+                "sha512": "e188cb03faa965c0d7e530ce9167319e27938b3952f33467eb763f068af2bbe11b2e6bc61e4e74e9f36b686a3f86770f81063d16dda2cb06761eabd23d576c59"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "format-name",
-              "code":  "outputs.format.startsWith('text/spdx') || outputs.format.startsWith('application/vnd.cyclonedx')",
-              "outputs":  {
-                "format":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''"
+              "id": "format-name",
+              "code": "outputs.format.startsWith('text/spdx') || outputs.format.startsWith('application/vnd.cyclonedx')",
+              "outputs": {
+                "format": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''"
                 }
               },
-              "error":  {
-                "message":  "No SBOM in a widely used machine-processable data format was found",
-                "guidance":  "Provide the SBOM as an SPDX or CycloneDX document"
+              "error": {
+                "message": "No SBOM in a widely used machine-processable data format was found",
+                "guidance": "Provide the SBOM as an SPDX or CycloneDX document"
               },
-              "assessment":  {
-                "message":  "SBOM data format identified"
+              "assessment": {
+                "message": "SBOM data format identified"
               }
             }
           ]
@@ -187,62 +187,62 @@
       ]
     },
     {
-      "id":  "sbom-data-format-version",
-      "meta":  {
-        "description":  "The version of the SBOM's data format can be determined",
-        "controls":  [
+      "id": "sbom-data-format-version",
+      "meta": {
+        "description": "The version of the SBOM's data format can be determined",
+        "controls": [
           {
-            "id":  "DATA-FORMAT-VERSION",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "DATA-FORMAT-VERSION",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-FORMAT-VERSION",
-          "meta":  {
-            "description":  "# SBOM Data Format Version\n\nChecks that the version of the SBOM's data format can be\ndetermined. This implements the _SBOM Data Format Version_ element\nof the CISA 2026 SBOM Minimum Elements.\n\nThe version is read from the format string protobom captures when\ningesting the SBOM (for example `text/spdx+json;version=2.3` or\n`application/vnd.cyclonedx+json;version=1.6`).",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-FORMAT-VERSION",
+          "meta": {
+            "description": "# SBOM Data Format Version\n\nChecks that the version of the SBOM's data format can be\ndetermined. This implements the _SBOM Data Format Version_ element\nof the CISA 2026 SBOM Minimum Elements.\n\nThe version is read from the format string protobom captures when\ningesting the SBOM (for example `text/spdx+json;version=2.3` or\n`application/vnd.cyclonedx+json;version=1.6`).",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "DATA-FORMAT-VERSION",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "SBOM-METADATA"
+                "id": "DATA-FORMAT-VERSION",
+                "framework": "CISA-SBOM-2026",
+                "class": "SBOM-METADATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-FORMAT-VERSION",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson",
-              "digest":  {
-                "sha256":  "25899a1f972e8dceb0ea34101df64465cc85927495ebe757069e610c889e16d9",
-                "sha512":  "7645e3a7daff1dd78cb1340735adc639d4f582a9bdca76da90fecd4c33d33824d91afa86f8fba6ea325204968d217ef360a47a6179da724fbd4b7f7eda6687dd"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-FORMAT-VERSION",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson",
+              "digest": {
+                "sha256": "25899a1f972e8dceb0ea34101df64465cc85927495ebe757069e610c889e16d9",
+                "sha512": "7645e3a7daff1dd78cb1340735adc639d4f582a9bdca76da90fecd4c33d33824d91afa86f8fba6ea325204968d217ef360a47a6179da724fbd4b7f7eda6687dd"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "format-version",
-              "code":  "outputs.format.contains(';version=') && !outputs.format.endsWith('=')",
-              "outputs":  {
-                "format":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''"
+              "id": "format-version",
+              "code": "outputs.format.contains(';version=') && !outputs.format.endsWith('=')",
+              "outputs": {
+                "format": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''"
                 }
               },
-              "error":  {
-                "message":  "The version of the SBOM's data format could not be determined",
-                "guidance":  "Generate the SBOM in a versioned release of SPDX or CycloneDX"
+              "error": {
+                "message": "The version of the SBOM's data format could not be determined",
+                "guidance": "Generate the SBOM in a versioned release of SPDX or CycloneDX"
               },
-              "assessment":  {
-                "message":  "SBOM data format version identified"
+              "assessment": {
+                "message": "SBOM data format version identified"
               }
             }
           ]
@@ -250,75 +250,75 @@
       ]
     },
     {
-      "id":  "sbom-generation-context",
-      "meta":  {
-        "description":  "The SBOM declares the lifecycle phase it was generated in",
-        "controls":  [
+      "id": "sbom-generation-context",
+      "meta": {
+        "description": "The SBOM declares the lifecycle phase it was generated in",
+        "controls": [
           {
-            "id":  "GENERATION-CONTEXT",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "GENERATION-CONTEXT",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-GENERATION-CONTEXT",
-          "meta":  {
-            "description":  "# SBOM Generation Context\n\nChecks that the SBOM declares the software lifecycle phase it was\ngenerated in (before build, build, after build, etc). This\nimplements the _SBOM Generation Context_ element of the CISA 2026\nSBOM Minimum Elements.\n\nCycloneDX captures this in `metadata.lifecycles`, which protobom\nmaps to the document types. SPDX 2.x has no equivalent field, so\nSPDX documents are exempted from the check: the policy passes when\nthe SBOM is SPDX and requires at least one declared lifecycle\nphase when it is CycloneDX.\n\nThis policy uses the protobom transformer because the lifecycle\ndata is only reachable through the transformed predicate.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-GENERATION-CONTEXT",
+          "meta": {
+            "description": "# SBOM Generation Context\n\nChecks that the SBOM declares the software lifecycle phase it was\ngenerated in (before build, build, after build, etc). This\nimplements the _SBOM Generation Context_ element of the CISA 2026\nSBOM Minimum Elements.\n\nCycloneDX captures this in `metadata.lifecycles`, which protobom\nmaps to the document types. SPDX 2.x has no equivalent field, so\nSPDX documents are exempted from the check: the policy passes when\nthe SBOM is SPDX and requires at least one declared lifecycle\nphase when it is CycloneDX.\n\nThis policy uses the protobom transformer because the lifecycle\ndata is only reachable through the transformed predicate.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "GENERATION-CONTEXT",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "SBOM-METADATA"
+                "id": "GENERATION-CONTEXT",
+                "framework": "CISA-SBOM-2026",
+                "class": "SBOM-METADATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-GENERATION-CONTEXT",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson",
-              "digest":  {
-                "sha256":  "76bd24f4ab20ed24eaa2b08f54b52ef2d147b9412e0149818e66c6d47fe2b3e4",
-                "sha512":  "fbf545c5641644c1c5f10e1ce05941ac0035f16dcc7e24d00bddf65ec148a2a952e33e5c2e0a88eb8fc57e2ed855266b3b660e0a3d128df5679be984d550664a"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-GENERATION-CONTEXT",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson",
+              "digest": {
+                "sha256": "76bd24f4ab20ed24eaa2b08f54b52ef2d147b9412e0149818e66c6d47fe2b3e4",
+                "sha512": "fbf545c5641644c1c5f10e1ce05941ac0035f16dcc7e24d00bddf65ec148a2a952e33e5c2e0a88eb8fc57e2ed855266b3b660e0a3d128df5679be984d550664a"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "transformers":  [
+          "transformers": [
             {
-              "id":  "internal:protobom"
+              "id": "internal:protobom"
             }
           ],
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "generation-context",
-              "code":  "outputs.format.startsWith('text/spdx') || size(outputs.lifecycles) > 0",
-              "predicates":  {
-                "types":  [
+              "id": "generation-context",
+              "code": "outputs.format.startsWith('text/spdx') || size(outputs.lifecycles) > 0",
+              "predicates": {
+                "types": [
                   "application/protobom"
                 ]
               },
-              "outputs":  {
-                "format":  {
-                  "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.sourceData) ? predicates[0].data.metadata.sourceData.format : ''"
+              "outputs": {
+                "format": {
+                  "code": "size(predicates) > 0 && has(predicates[0].data.metadata.sourceData) ? predicates[0].data.metadata.sourceData.format : ''"
                 },
-                "lifecycles":  {
-                  "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.documentTypes) ? predicates[0].data.metadata.documentTypes : []"
+                "lifecycles": {
+                  "code": "size(predicates) > 0 && has(predicates[0].data.metadata.documentTypes) ? predicates[0].data.metadata.documentTypes : []"
                 }
               },
-              "error":  {
-                "message":  "The SBOM does not declare the lifecycle phase it was generated in",
-                "guidance":  "Record the generation context in the CycloneDX metadata.lifecycles field (for example: build)"
+              "error": {
+                "message": "The SBOM does not declare the lifecycle phase it was generated in",
+                "guidance": "Record the generation context in the CycloneDX metadata.lifecycles field (for example: build)"
               },
-              "assessment":  {
-                "message":  "SBOM declares its generation context"
+              "assessment": {
+                "message": "SBOM declares its generation context"
               }
             }
           ]
@@ -326,50 +326,50 @@
       ]
     },
     {
-      "id":  "sbom-timestamp",
-      "meta":  {
-        "description":  "The SBOM records when it was produced or last updated",
-        "controls":  [
+      "id": "sbom-timestamp",
+      "meta": {
+        "description": "The SBOM records when it was produced or last updated",
+        "controls": [
           {
-            "id":  "TIMESTAMP",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "TIMESTAMP",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-TIMESTAMP",
-          "meta":  {
-            "description":  "SBOM has a timestamp",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-TIMESTAMP",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json",
-              "digest":  {
-                "sha256":  "85dacc3b8259431844d66ce0a6a62ec045a755f4a5dac2bd9f3342f926fba60d",
-                "sha512":  "ed64edf300d75af61462f73a69aa6b4985801aa75839733b74906d8c4b05ef350bd8ee73554ff5f85294fc29afd09ba8aaf0b0593e6fae2232fddd6ad427ed49"
+          "id": "PROTOBOM-TIMESTAMP",
+          "meta": {
+            "description": "SBOM has a timestamp",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-TIMESTAMP",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json",
+              "digest": {
+                "sha256": "85dacc3b8259431844d66ce0a6a62ec045a755f4a5dac2bd9f3342f926fba60d",
+                "sha512": "ed64edf300d75af61462f73a69aa6b4985801aa75839733b74906d8c4b05ef350bd8ee73554ff5f85294fc29afd09ba8aaf0b0593e6fae2232fddd6ad427ed49"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "int(outputs.date) > 0",
-              "outputs":  {
-                "date":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
+              "code": "int(outputs.date) > 0",
+              "outputs": {
+                "date": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
                 }
               },
-              "assessment":  {
-                "message":  "SBOM contains a timestamp"
+              "assessment": {
+                "message": "SBOM contains a timestamp"
               }
             }
           ]
@@ -377,72 +377,72 @@
       ]
     },
     {
-      "id":  "sbom-tool-name",
-      "meta":  {
-        "description":  "The SBOM records the tool used to generate it",
-        "controls":  [
+      "id": "sbom-tool-name",
+      "meta": {
+        "description": "The SBOM records the tool used to generate it",
+        "controls": [
           {
-            "id":  "TOOL-NAME",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "TOOL-NAME",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-TOOL-NAME",
-          "meta":  {
-            "description":  "# SBOM Tool Name\n\nChecks that the SBOM records the name of the tool used to generate\nit. This implements the _SBOM Tool Name_ element of the CISA 2026\nSBOM Minimum Elements.\n\nThis policy uses the protobom transformer because the tool\nmetadata is only reachable through the transformed predicate.\n\nNote: protobom does not yet populate the tools collection when\nreading CycloneDX documents, so CycloneDX SBOMs currently fail\nthis check even when `metadata.tools` is set.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-TOOL-NAME",
+          "meta": {
+            "description": "# SBOM Tool Name\n\nChecks that the SBOM records the name of the tool used to generate\nit. This implements the _SBOM Tool Name_ element of the CISA 2026\nSBOM Minimum Elements.\n\nThis policy uses the protobom transformer because the tool\nmetadata is only reachable through the transformed predicate.\n\nNote: protobom does not yet populate the tools collection when\nreading CycloneDX documents, so CycloneDX SBOMs currently fail\nthis check even when `metadata.tools` is set.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "TOOL-NAME",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "SBOM-METADATA"
+                "id": "TOOL-NAME",
+                "framework": "CISA-SBOM-2026",
+                "class": "SBOM-METADATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-TOOL-NAME",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson",
-              "digest":  {
-                "sha256":  "cd128c93c1fcc8cb1f56b938311add7b1965b92e6909831dc3a2d919928795f8",
-                "sha512":  "f3cb830fd6017855a4605df6ade4c792b9a0f901c30b6d9232704270b2d164ba092382d1435720eae71a25829a2cd0d4cd88ae454bb4e46c84f592592be7cd71"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-TOOL-NAME",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson",
+              "digest": {
+                "sha256": "cd128c93c1fcc8cb1f56b938311add7b1965b92e6909831dc3a2d919928795f8",
+                "sha512": "f3cb830fd6017855a4605df6ade4c792b9a0f901c30b6d9232704270b2d164ba092382d1435720eae71a25829a2cd0d4cd88ae454bb4e46c84f592592be7cd71"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "transformers":  [
+          "transformers": [
             {
-              "id":  "internal:protobom"
+              "id": "internal:protobom"
             }
           ],
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "tool-name",
-              "code":  "size(outputs.tools) > 0 && outputs.tools.all(t, has(t.name) && t.name != '')",
-              "predicates":  {
-                "types":  [
+              "id": "tool-name",
+              "code": "size(outputs.tools) > 0 && outputs.tools.all(t, has(t.name) && t.name != '')",
+              "predicates": {
+                "types": [
                   "application/protobom"
                 ]
               },
-              "outputs":  {
-                "tools":  {
-                  "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.tools) ? predicates[0].data.metadata.tools : []"
+              "outputs": {
+                "tools": {
+                  "code": "size(predicates) > 0 && has(predicates[0].data.metadata.tools) ? predicates[0].data.metadata.tools : []"
                 }
               },
-              "error":  {
-                "message":  "The SBOM does not record the name of the tool that generated it",
-                "guidance":  "Record the generator in the SBOM metadata (SPDX Tool creator or CycloneDX metadata.tools)"
+              "error": {
+                "message": "The SBOM does not record the name of the tool that generated it",
+                "guidance": "Record the generator in the SBOM metadata (SPDX Tool creator or CycloneDX metadata.tools)"
               },
-              "assessment":  {
-                "message":  "SBOM records the tool that generated it"
+              "assessment": {
+                "message": "SBOM records the tool that generated it"
               }
             }
           ]
@@ -450,72 +450,72 @@
       ]
     },
     {
-      "id":  "sbom-tool-version",
-      "meta":  {
-        "description":  "The SBOM records the version of the tool used to generate it",
-        "controls":  [
+      "id": "sbom-tool-version",
+      "meta": {
+        "description": "The SBOM records the version of the tool used to generate it",
+        "controls": [
           {
-            "id":  "TOOL-VERSION",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "TOOL-VERSION",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-TOOL-VERSION",
-          "meta":  {
-            "description":  "# SBOM Tool Version\n\nChecks that the SBOM records the version of the tool used to\ngenerate it. This implements the _SBOM Tool Version_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nSPDX encodes the tool version in the creator string by convention\n(`Tool: name-version`) and protobom does not yet split it out, so\na tool entry also passes when its name embeds a version.\n\nThis policy uses the protobom transformer because the tool\nmetadata is only reachable through the transformed predicate.\n\nNote: protobom does not yet populate the tools collection when\nreading CycloneDX documents, so CycloneDX SBOMs currently fail\nthis check even when `metadata.tools` is set.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-TOOL-VERSION",
+          "meta": {
+            "description": "# SBOM Tool Version\n\nChecks that the SBOM records the version of the tool used to\ngenerate it. This implements the _SBOM Tool Version_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nSPDX encodes the tool version in the creator string by convention\n(`Tool: name-version`) and protobom does not yet split it out, so\na tool entry also passes when its name embeds a version.\n\nThis policy uses the protobom transformer because the tool\nmetadata is only reachable through the transformed predicate.\n\nNote: protobom does not yet populate the tools collection when\nreading CycloneDX documents, so CycloneDX SBOMs currently fail\nthis check even when `metadata.tools` is set.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "TOOL-VERSION",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "SBOM-METADATA"
+                "id": "TOOL-VERSION",
+                "framework": "CISA-SBOM-2026",
+                "class": "SBOM-METADATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-TOOL-VERSION",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson",
-              "digest":  {
-                "sha256":  "a5da8d88a57abe18de7dcb4945c851b9aba8190b17fc198649ea7a2242610559",
-                "sha512":  "30eb2e435e08810e32895013670e9a7055fbd1875ddffb254bf362881e80e2bc9df3420fbbaaf098799af2ea0d2ea258e0921d78f456992513d6432dbd0eeaa3"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-TOOL-VERSION",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson",
+              "digest": {
+                "sha256": "a5da8d88a57abe18de7dcb4945c851b9aba8190b17fc198649ea7a2242610559",
+                "sha512": "30eb2e435e08810e32895013670e9a7055fbd1875ddffb254bf362881e80e2bc9df3420fbbaaf098799af2ea0d2ea258e0921d78f456992513d6432dbd0eeaa3"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "transformers":  [
+          "transformers": [
             {
-              "id":  "internal:protobom"
+              "id": "internal:protobom"
             }
           ],
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "tool-version",
-              "code":  "size(outputs.tools) > 0 && outputs.tools.all(t, (has(t.version) && t.version != '') || (has(t.name) && t.name.matches('.*[-_/ ]v?[0-9].*')))",
-              "predicates":  {
-                "types":  [
+              "id": "tool-version",
+              "code": "size(outputs.tools) > 0 && outputs.tools.all(t, (has(t.version) && t.version != '') || (has(t.name) && t.name.matches('.*[-_/ ]v?[0-9].*')))",
+              "predicates": {
+                "types": [
                   "application/protobom"
                 ]
               },
-              "outputs":  {
-                "tools":  {
-                  "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.tools) ? predicates[0].data.metadata.tools : []"
+              "outputs": {
+                "tools": {
+                  "code": "size(predicates) > 0 && has(predicates[0].data.metadata.tools) ? predicates[0].data.metadata.tools : []"
                 }
               },
-              "error":  {
-                "message":  "The SBOM does not record the version of the tool that generated it",
-                "guidance":  "Record the generator version in the SBOM metadata (SPDX Tool creator string or CycloneDX metadata.tools)"
+              "error": {
+                "message": "The SBOM does not record the version of the tool that generated it",
+                "guidance": "Record the generator version in the SBOM metadata (SPDX Tool creator string or CycloneDX metadata.tools)"
               },
-              "assessment":  {
-                "message":  "SBOM records the version of the tool that generated it"
+              "assessment": {
+                "message": "SBOM records the version of the tool that generated it"
               }
             }
           ]
@@ -523,65 +523,65 @@
       ]
     },
     {
-      "id":  "sbom-version",
-      "meta":  {
-        "description":  "The SBOM document is versioned or uniquely identified",
-        "controls":  [
+      "id": "sbom-version",
+      "meta": {
+        "description": "The SBOM document is versioned or uniquely identified",
+        "controls": [
           {
-            "id":  "SBOM-VERSION",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "SBOM-METADATA"
+            "id": "SBOM-VERSION",
+            "framework": "CISA-SBOM-2026",
+            "class": "SBOM-METADATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-DOC-VERSION",
-          "meta":  {
-            "description":  "# SBOM Version\n\nChecks that the SBOM document itself is versioned, either through\na version identifier or through a unique document identifier\n(serial number). This implements the _SBOM Version_ element of the\nCISA 2026 SBOM Minimum Elements, which admits both semantic\nversions and RFC 9562 style unique identifiers.\n\nCycloneDX captures this in the document `version` and\n`serialNumber` fields. SPDX conveys it through the unique document\nnamespace.\n\nNot to be confused with PROTOBOM-SBOM-VERSIONS, which checks the\nversions of the components listed in the SBOM.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-DOC-VERSION",
+          "meta": {
+            "description": "# SBOM Version\n\nChecks that the SBOM document itself is versioned, either through\na version identifier or through a unique document identifier\n(serial number). This implements the _SBOM Version_ element of the\nCISA 2026 SBOM Minimum Elements, which admits both semantic\nversions and RFC 9562 style unique identifiers.\n\nCycloneDX captures this in the document `version` and\n`serialNumber` fields. SPDX conveys it through the unique document\nnamespace.\n\nNot to be confused with PROTOBOM-SBOM-VERSIONS, which checks the\nversions of the components listed in the SBOM.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "SBOM-VERSION",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "SBOM-METADATA"
+                "id": "SBOM-VERSION",
+                "framework": "CISA-SBOM-2026",
+                "class": "SBOM-METADATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-DOC-VERSION",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson",
-              "digest":  {
-                "sha256":  "b0e69147456734275fb8edbd411fd271980c11e71c187aedb3394af220806930",
-                "sha512":  "46d4ec98b21c6e2e3ab508864fe743ac0ccf6603d840c19b5a98d2f69c46b8e2fcfe37210728c2dc08b55ee386b84162a07abdd7b7767b131ac2e352af895798"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-DOC-VERSION",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson",
+              "digest": {
+                "sha256": "b0e69147456734275fb8edbd411fd271980c11e71c187aedb3394af220806930",
+                "sha512": "46d4ec98b21c6e2e3ab508864fe743ac0ccf6603d840c19b5a98d2f69c46b8e2fcfe37210728c2dc08b55ee386b84162a07abdd7b7767b131ac2e352af895798"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "doc-version",
-              "code":  "(outputs.version != '' && outputs.version != '0') || outputs.identifier != ''",
-              "outputs":  {
-                "identifier":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_metadata().id : ''"
+              "id": "doc-version",
+              "code": "(outputs.version != '' && outputs.version != '0') || outputs.identifier != ''",
+              "outputs": {
+                "identifier": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_metadata().id : ''"
                 },
-                "version":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_metadata().version : ''"
+                "version": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_metadata().version : ''"
                 }
               },
-              "error":  {
-                "message":  "The SBOM document has no version or unique identifier",
-                "guidance":  "Set the CycloneDX version/serialNumber or the SPDX document namespace to identify this revision of the SBOM"
+              "error": {
+                "message": "The SBOM document has no version or unique identifier",
+                "guidance": "Set the CycloneDX version/serialNumber or the SPDX document namespace to identify this revision of the SBOM"
               },
-              "assessment":  {
-                "message":  "SBOM document is versioned"
+              "assessment": {
+                "message": "SBOM document is versioned"
               }
             }
           ]
@@ -589,62 +589,62 @@
       ]
     },
     {
-      "id":  "component-producer",
-      "meta":  {
-        "description":  "Top level components identify the entity that created them",
-        "controls":  [
+      "id": "component-producer",
+      "meta": {
+        "description": "Top level components identify the entity that created them",
+        "controls": [
           {
-            "id":  "PRODUCER",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "PRODUCER",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-PRODUCERS",
-          "meta":  {
-            "description":  "# Component Producer\n\nChecks that the top level components of the SBOM identify the\nentity that created them. This implements the _Component Producer_\nelement of the CISA 2026 SBOM Minimum Elements, which replaces the\n2021 _Supplier Name_ element.\n\nThe check looks at each root component's originators and falls\nback to its suppliers, as most SBOM generators record the\nproducing entity in the supplier field.\n\nNote: protobom does not yet populate supplier data when reading\nCycloneDX documents, so CycloneDX SBOMs currently fail this check\neven when the component supplier is set.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-PRODUCERS",
+          "meta": {
+            "description": "# Component Producer\n\nChecks that the top level components of the SBOM identify the\nentity that created them. This implements the _Component Producer_\nelement of the CISA 2026 SBOM Minimum Elements, which replaces the\n2021 _Supplier Name_ element.\n\nThe check looks at each root component's originators and falls\nback to its suppliers, as most SBOM generators record the\nproducing entity in the supplier field.\n\nNote: protobom does not yet populate supplier data when reading\nCycloneDX documents, so CycloneDX SBOMs currently fail this check\neven when the component supplier is set.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "PRODUCER",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "COMPONENT-DATA"
+                "id": "PRODUCER",
+                "framework": "CISA-SBOM-2026",
+                "class": "COMPONENT-DATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-PRODUCERS",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson",
-              "digest":  {
-                "sha256":  "dc023e7df1f74a60e756ef47c133f78575e9e732fffc8e107973ae8366561bb5",
-                "sha512":  "f45e78497bbf4a91f41b49dd2d7a715f5d9d0545d7186bd57b54570be5768dfaf485588ac7b0c8f0f533503394f605ce11fad6cef0c250adcf739c55fd1fe380"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-PRODUCERS",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson",
+              "digest": {
+                "sha256": "dc023e7df1f74a60e756ef47c133f78575e9e732fffc8e107973ae8366561bb5",
+                "sha512": "f45e78497bbf4a91f41b49dd2d7a715f5d9d0545d7186bd57b54570be5768dfaf485588ac7b0c8f0f533503394f605ce11fad6cef0c250adcf739c55fd1fe380"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "producers",
-              "code":  "size(outputs.producers) > 0 && outputs.producers.all(p, size(p) > 0 && p.all(e, e.name != ''))",
-              "outputs":  {
-                "producers":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.originators) > 0 ? n.originators : n.suppliers) : []"
+              "id": "producers",
+              "code": "size(outputs.producers) > 0 && outputs.producers.all(p, size(p) > 0 && p.all(e, e.name != ''))",
+              "outputs": {
+                "producers": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.originators) > 0 ? n.originators : n.suppliers) : []"
                 }
               },
-              "error":  {
-                "message":  "One or more top level components do not identify the entity that produced them",
-                "guidance":  "Set the originator (SPDX) or supplier of each top level component, or explicitly mark it as of unknown provenance"
+              "error": {
+                "message": "One or more top level components do not identify the entity that produced them",
+                "guidance": "Set the originator (SPDX) or supplier of each top level component, or explicitly mark it as of unknown provenance"
               },
-              "assessment":  {
-                "message":  "All top level components identify their producer"
+              "assessment": {
+                "message": "All top level components identify their producer"
               }
             }
           ]
@@ -652,50 +652,50 @@
       ]
     },
     {
-      "id":  "component-dependency-relationship",
-      "meta":  {
-        "description":  "The SBOM captures the dependency relationships of its components",
-        "controls":  [
+      "id": "component-dependency-relationship",
+      "meta": {
+        "description": "The SBOM captures the dependency relationships of its components",
+        "controls": [
           {
-            "id":  "DEPENDENCY-RELATIONSHIP",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "DEPENDENCY-RELATIONSHIP",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-RELATONSHIPS",
-          "meta":  {
-            "description":  "Dependency relationships",
-            "assertMode":  "AND",
-            "enforce":  "OFF",
-            "origin":  {
-              "name":  "PROTOBOM-RELATONSHIPS",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json",
-              "digest":  {
-                "sha256":  "5f1f779fa6b2d65af66434f7fdab4baf1211cfa4cdf313c2416c42580e2ae829",
-                "sha512":  "a2d4b62bcc97643392f60b849071878d8b75be814d28d15d929f3ccc746a62a9484154ce97b1259ab0d31ebe47597320d687e3f5da20491a4e7c0604b19d54be"
+          "id": "PROTOBOM-RELATONSHIPS",
+          "meta": {
+            "description": "Dependency relationships",
+            "assertMode": "AND",
+            "enforce": "OFF",
+            "origin": {
+              "name": "PROTOBOM-RELATONSHIPS",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json",
+              "digest": {
+                "sha256": "5f1f779fa6b2d65af66434f7fdab4baf1211cfa4cdf313c2416c42580e2ae829",
+                "sha512": "a2d4b62bcc97643392f60b849071878d8b75be814d28d15d929f3ccc746a62a9484154ce97b1259ab0d31ebe47597320d687e3f5da20491a4e7c0604b19d54be"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
-              "outputs":  {
-                "descendants":  {
-                  "code":  "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))"
+              "code": "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
+              "outputs": {
+                "descendants": {
+                  "code": "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))"
                 }
               },
-              "assessment":  {
-                "message":  "All top level components have depedency relationships"
+              "assessment": {
+                "message": "All top level components have depedency relationships"
               }
             }
           ]
@@ -703,62 +703,62 @@
       ]
     },
     {
-      "id":  "component-hash-value",
-      "meta":  {
-        "description":  "Top level components carry cryptographic hashes",
-        "controls":  [
+      "id": "component-hash-value",
+      "meta": {
+        "description": "Top level components carry cryptographic hashes",
+        "controls": [
           {
-            "id":  "HASH-VALUE",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "HASH-VALUE",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-HASHES",
-          "meta":  {
-            "description":  "# Component Hash Value\n\nChecks that the top level components of the SBOM carry at least\none cryptographic hash of the component artifact. This implements\nthe _Component Hash Value_ element of the CISA 2026 SBOM Minimum\nElements.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-HASHES",
+          "meta": {
+            "description": "# Component Hash Value\n\nChecks that the top level components of the SBOM carry at least\none cryptographic hash of the component artifact. This implements\nthe _Component Hash Value_ element of the CISA 2026 SBOM Minimum\nElements.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "HASH-VALUE",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "COMPONENT-DATA"
+                "id": "HASH-VALUE",
+                "framework": "CISA-SBOM-2026",
+                "class": "COMPONENT-DATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-HASHES",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson",
-              "digest":  {
-                "sha256":  "fca3d57f9d79d382c48ea12d71293fe278dc75d113d8674ea1c638c0813d84d2",
-                "sha512":  "2f3f86dc0c103ec85b5ddaf71008d11b3a6969913b5f194fa85ec77bdb45a3cd80c5cd11a6f99882afaab2f7a2b5383861dc8cbb091d69b0f05756296af1a5b0"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-HASHES",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson",
+              "digest": {
+                "sha256": "fca3d57f9d79d382c48ea12d71293fe278dc75d113d8674ea1c638c0813d84d2",
+                "sha512": "2f3f86dc0c103ec85b5ddaf71008d11b3a6969913b5f194fa85ec77bdb45a3cd80c5cd11a6f99882afaab2f7a2b5383861dc8cbb091d69b0f05756296af1a5b0"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "hashes",
-              "code":  "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, h[alg] != ''))",
-              "outputs":  {
-                "hashes":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []"
+              "id": "hashes",
+              "code": "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, h[alg] != ''))",
+              "outputs": {
+                "hashes": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []"
                 }
               },
-              "error":  {
-                "message":  "One or more top level components have no cryptographic hash of the component artifact",
-                "guidance":  "Add checksums (SPDX) or hashes (CycloneDX) to each top level component, or explicitly mark the hash as unknown"
+              "error": {
+                "message": "One or more top level components have no cryptographic hash of the component artifact",
+                "guidance": "Add checksums (SPDX) or hashes (CycloneDX) to each top level component, or explicitly mark the hash as unknown"
               },
-              "assessment":  {
-                "message":  "All top level components have hash values"
+              "assessment": {
+                "message": "All top level components have hash values"
               }
             }
           ]
@@ -766,62 +766,62 @@
       ]
     },
     {
-      "id":  "component-hash-algorithm",
-      "meta":  {
-        "description":  "Component hashes identify the algorithm that produced them",
-        "controls":  [
+      "id": "component-hash-algorithm",
+      "meta": {
+        "description": "Component hashes identify the algorithm that produced them",
+        "controls": [
           {
-            "id":  "HASH-ALGORITHM",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "HASH-ALGORITHM",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-HASH-ALGORITHMS",
-          "meta":  {
-            "description":  "# Component Hash Algorithm\n\nChecks that the hashes of the SBOM's top level components identify\nthe cryptographic algorithm that produced them. This implements\nthe _Component Hash Algorithm_ element of the CISA 2026 SBOM\nMinimum Elements.\n\nProtobom normalizes hash algorithm names when ingesting the SBOM,\nso the check requires every hash entry to be keyed by a recognized\nalgorithm.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-HASH-ALGORITHMS",
+          "meta": {
+            "description": "# Component Hash Algorithm\n\nChecks that the hashes of the SBOM's top level components identify\nthe cryptographic algorithm that produced them. This implements\nthe _Component Hash Algorithm_ element of the CISA 2026 SBOM\nMinimum Elements.\n\nProtobom normalizes hash algorithm names when ingesting the SBOM,\nso the check requires every hash entry to be keyed by a recognized\nalgorithm.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "HASH-ALGORITHM",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "COMPONENT-DATA"
+                "id": "HASH-ALGORITHM",
+                "framework": "CISA-SBOM-2026",
+                "class": "COMPONENT-DATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-HASH-ALGORITHMS",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson",
-              "digest":  {
-                "sha256":  "096467b7901a3e227813e7786eff292bdfff62641f9b4380ef467bbeb25efcd1",
-                "sha512":  "b9e41cde171f564f4bb18c5477a3c551f594ccd0bf74fc1dc241b868ccdd23b79aca32787919e79308062b344ae289fe9b2c5ac528d77a3dc4cbf10e137fda0f"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-HASH-ALGORITHMS",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson",
+              "digest": {
+                "sha256": "096467b7901a3e227813e7786eff292bdfff62641f9b4380ef467bbeb25efcd1",
+                "sha512": "b9e41cde171f564f4bb18c5477a3c551f594ccd0bf74fc1dc241b868ccdd23b79aca32787919e79308062b344ae289fe9b2c5ac528d77a3dc4cbf10e137fda0f"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "hash-algorithms",
-              "code":  "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, alg != 'UNKNOWN'))",
-              "outputs":  {
-                "hashes":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []"
+              "id": "hash-algorithms",
+              "code": "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, alg != 'UNKNOWN'))",
+              "outputs": {
+                "hashes": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []"
                 }
               },
-              "error":  {
-                "message":  "One or more top level components have no hash keyed by a recognized cryptographic algorithm",
-                "guidance":  "Identify the hash algorithm of each component checksum using standard algorithm names (for example SHA256)"
+              "error": {
+                "message": "One or more top level components have no hash keyed by a recognized cryptographic algorithm",
+                "guidance": "Identify the hash algorithm of each component checksum using standard algorithm names (for example SHA256)"
               },
-              "assessment":  {
-                "message":  "All top level component hashes identify their algorithm"
+              "assessment": {
+                "message": "All top level component hashes identify their algorithm"
               }
             }
           ]
@@ -829,50 +829,50 @@
       ]
     },
     {
-      "id":  "component-identifiers",
-      "meta":  {
-        "description":  "Top level components carry machine-processable software identifiers",
-        "controls":  [
+      "id": "component-identifiers",
+      "meta": {
+        "description": "Top level components carry machine-processable software identifiers",
+        "controls": [
           {
-            "id":  "IDENTIFIERS",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "IDENTIFIERS",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-IDENTIFIERS",
-          "meta":  {
-            "description":  "Software identifiers",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-IDENTIFIERS",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json",
-              "digest":  {
-                "sha256":  "031a6a63fe82d9212525291e4d1d0e93fb6c0c3a0c57d5169d76b80a832a6920",
-                "sha512":  "0eca1a84120ffac9d56827c1630b40c9dda8f3f0ea6db373951b446b758a138dde5e18e6877a515a10aa9c82dac0dba85f1705136c6f691d82c39e6d3946a9aa"
+          "id": "PROTOBOM-IDENTIFIERS",
+          "meta": {
+            "description": "Software identifiers",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-IDENTIFIERS",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json",
+              "digest": {
+                "sha256": "031a6a63fe82d9212525291e4d1d0e93fb6c0c3a0c57d5169d76b80a832a6920",
+                "sha512": "0eca1a84120ffac9d56827c1630b40c9dda8f3f0ea6db373951b446b758a138dde5e18e6877a515a10aa9c82dac0dba85f1705136c6f691d82c39e6d3946a9aa"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "outputs.identifiers.all(s, size(s) > 0)",
-              "outputs":  {
-                "identifiers":  {
-                  "code":  "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)"
+              "code": "outputs.identifiers.all(s, size(s) > 0)",
+              "outputs": {
+                "identifiers": {
+                  "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)"
                 }
               },
-              "assessment":  {
-                "message":  "Top level components have software identifiers"
+              "assessment": {
+                "message": "Top level components have software identifiers"
               }
             }
           ]
@@ -880,62 +880,62 @@
       ]
     },
     {
-      "id":  "component-license",
-      "meta":  {
-        "description":  "Top level components carry license information",
-        "controls":  [
+      "id": "component-license",
+      "meta": {
+        "description": "Top level components carry license information",
+        "controls": [
           {
-            "id":  "LICENSE",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "LICENSE",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-LICENSES",
-          "meta":  {
-            "description":  "# Component License\n\nChecks that the top level components of the SBOM carry license\ninformation. This implements the _Component License_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nThe check accepts declared license lists or a concluded license on\neach root component. Explicit unknown markers (such as SPDX\nNOASSERTION) satisfy the element, as CISA requires unknown license\ninformation to be explicitly indicated rather than omitted.\n\nThis policy only checks for the presence of license data. To\nenforce that licenses are OSI/FSF approved, pair it with\nsbom-licenses-are-foss.",
-            "assertMode":  "AND",
-            "controls":  [
+          "id": "PROTOBOM-SBOM-LICENSES",
+          "meta": {
+            "description": "# Component License\n\nChecks that the top level components of the SBOM carry license\ninformation. This implements the _Component License_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nThe check accepts declared license lists or a concluded license on\neach root component. Explicit unknown markers (such as SPDX\nNOASSERTION) satisfy the element, as CISA requires unknown license\ninformation to be explicitly indicated rather than omitted.\n\nThis policy only checks for the presence of license data. To\nenforce that licenses are OSI/FSF approved, pair it with\nsbom-licenses-are-foss.",
+            "assertMode": "AND",
+            "controls": [
               {
-                "id":  "LICENSE",
-                "framework":  "CISA-SBOM-2026",
-                "class":  "COMPONENT-DATA"
+                "id": "LICENSE",
+                "framework": "CISA-SBOM-2026",
+                "class": "COMPONENT-DATA"
               }
             ],
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-LICENSES",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson",
-              "digest":  {
-                "sha256":  "38eec26cee6bd5d64ca624cf29d72c5d50fdedc4730d6baf1f99b80d46c3c984",
-                "sha512":  "c2712e8f778e4943a096f277cb729395aca72059588e4fb84d254740193b8d06df69c33b435a24ec8a7c68c122cb5042940b2ea5b8337c12bd1bca705bd3b374"
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-LICENSES",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson",
+              "digest": {
+                "sha256": "38eec26cee6bd5d64ca624cf29d72c5d50fdedc4730d6baf1f99b80d46c3c984",
+                "sha512": "c2712e8f778e4943a096f277cb729395aca72059588e4fb84d254740193b8d06df69c33b435a24ec8a7c68c122cb5042940b2ea5b8337c12bd1bca705bd3b374"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "id":  "licenses",
-              "code":  "size(outputs.licenses) > 0 && outputs.licenses.all(l, size(l) > 0 && l.all(x, x != ''))",
-              "outputs":  {
-                "licenses":  {
-                  "code":  "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.licenses) > 0 ? n.licenses : [n.license_concluded]) : []"
+              "id": "licenses",
+              "code": "size(outputs.licenses) > 0 && outputs.licenses.all(l, size(l) > 0 && l.all(x, x != ''))",
+              "outputs": {
+                "licenses": {
+                  "code": "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.licenses) > 0 ? n.licenses : [n.license_concluded]) : []"
                 }
               },
-              "error":  {
-                "message":  "One or more top level components carry no license information",
-                "guidance":  "Add license identifiers to each top level component or explicitly mark the license as unknown"
+              "error": {
+                "message": "One or more top level components carry no license information",
+                "guidance": "Add license identifiers to each top level component or explicitly mark the license as unknown"
               },
-              "assessment":  {
-                "message":  "All top level components carry license information"
+              "assessment": {
+                "message": "All top level components carry license information"
               }
             }
           ]
@@ -943,50 +943,50 @@
       ]
     },
     {
-      "id":  "component-name",
-      "meta":  {
-        "description":  "Top level components are named",
-        "controls":  [
+      "id": "component-name",
+      "meta": {
+        "description": "Top level components are named",
+        "controls": [
           {
-            "id":  "NAME",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "NAME",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-NAME",
-          "meta":  {
-            "description":  "Top level component names",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-NAME",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json",
-              "digest":  {
-                "sha256":  "d17a9e7c23e5ca39ff8b54e2b74e31debc0e7383ce999ff473c320d5d8ac3651",
-                "sha512":  "4d14cec1ae03db2422c81faec5c80f551a761a31462e4a0184b35474b3e6e7aab43834654ee07b785e5814e4ed269afd0889276094c741acfdec2f9635da149c"
+          "id": "PROTOBOM-NAME",
+          "meta": {
+            "description": "Top level component names",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-NAME",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json",
+              "digest": {
+                "sha256": "d17a9e7c23e5ca39ff8b54e2b74e31debc0e7383ce999ff473c320d5d8ac3651",
+                "sha512": "4d14cec1ae03db2422c81faec5c80f551a761a31462e4a0184b35474b3e6e7aab43834654ee07b785e5814e4ed269afd0889276094c741acfdec2f9635da149c"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "outputs.names.all(s, s != \"\")",
-              "outputs":  {
-                "names":  {
-                  "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.name)"
+              "code": "outputs.names.all(s, s != \"\")",
+              "outputs": {
+                "names": {
+                  "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.name)"
                 }
               },
-              "assessment":  {
-                "message":  "Top level components have their name set"
+              "assessment": {
+                "message": "Top level components have their name set"
               }
             }
           ]
@@ -994,50 +994,50 @@
       ]
     },
     {
-      "id":  "component-version",
-      "meta":  {
-        "description":  "Top level components are versioned",
-        "controls":  [
+      "id": "component-version",
+      "meta": {
+        "description": "Top level components are versioned",
+        "controls": [
           {
-            "id":  "VERSION",
-            "framework":  "CISA-SBOM-2026",
-            "class":  "COMPONENT-DATA"
+            "id": "VERSION",
+            "framework": "CISA-SBOM-2026",
+            "class": "COMPONENT-DATA"
           }
         ]
       },
-      "policies":  [
+      "policies": [
         {
-          "id":  "PROTOBOM-SBOM-VERSIONS",
-          "meta":  {
-            "description":  "Top level elements of the SBOM have version information set",
-            "assertMode":  "AND",
-            "enforce":  "ON",
-            "origin":  {
-              "name":  "PROTOBOM-SBOM-VERSIONS",
-              "uri":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json",
-              "digest":  {
-                "sha256":  "768f54ba94b6df7a740ab2810ee214aff6d1e32f3a1c9a2db56e1bede99016e5",
-                "sha512":  "910ec0342fd6aa498b4b3684de94762e1ef03ea18ddd35ae602d55badb3141aeb9be51b16938051dc0e94325de2772229a0f2f2a786cfed5f6fb6bd726d9b67a"
+          "id": "PROTOBOM-SBOM-VERSIONS",
+          "meta": {
+            "description": "Top level elements of the SBOM have version information set",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "PROTOBOM-SBOM-VERSIONS",
+              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json",
+              "digest": {
+                "sha256": "768f54ba94b6df7a740ab2810ee214aff6d1e32f3a1c9a2db56e1bede99016e5",
+                "sha512": "910ec0342fd6aa498b4b3684de94762e1ef03ea18ddd35ae602d55badb3141aeb9be51b16938051dc0e94325de2772229a0f2f2a786cfed5f6fb6bd726d9b67a"
               },
-              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json"
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json"
             }
           },
-          "predicates":  {
-            "types":  [
+          "predicates": {
+            "types": [
               "https://spdx.dev/Document",
               "https://cyclonedx.org/bom"
             ]
           },
-          "tenets":  [
+          "tenets": [
             {
-              "code":  "outputs.versions.all(s, s != \"\")",
-              "outputs":  {
-                "versions":  {
-                  "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
+              "code": "outputs.versions.all(s, s != \"\")",
+              "outputs": {
+                "versions": {
+                  "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
                 }
               },
-              "assessment":  {
-                "message":  "All top level components have versions"
+              "assessment": {
+                "message": "All top level components have versions"
               }
             }
           ]

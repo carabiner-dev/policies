@@ -1,45 +1,45 @@
 {
-  "id":  "aiir-authorship-class-allowed",
-  "meta":  {
-    "description":  "Checks that the authorship class recorded in an AIIR commit receipt is one of the classes allowed by the `allowedAuthorshipClasses` context value, a pipe-separated list. A project can, for example, admit human-authored and AI-assisted commits while rejecting fully AI-authored ones.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "authorship-class-allowed.hjson",
-      "digest":  {
-        "sha256":  "3db04c2174d15b9c708fbf3732e84083c668db92aa020784997b86d2100e8d0f",
-        "sha512":  "651a0f2e6db9a91e21a67c0ae758faf1501c4697c87b91a317cb4bb398d9107b37e1058bee1320bf75f501266acad5695e08823c938edd37c403ca17ffb964eb"
+  "id": "aiir-authorship-class-allowed",
+  "meta": {
+    "description": "Checks that the authorship class recorded in an AIIR commit receipt is one of the classes allowed by the `allowedAuthorshipClasses` context value, a pipe-separated list. A project can, for example, admit human-authored and AI-assisted commits while rejecting fully AI-authored ones.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "authorship-class-allowed.hjson",
+      "digest": {
+        "sha256": "3db04c2174d15b9c708fbf3732e84083c668db92aa020784997b86d2100e8d0f",
+        "sha512": "651a0f2e6db9a91e21a67c0ae758faf1501c4697c87b91a317cb4bb398d9107b37e1058bee1320bf75f501266acad5695e08823c938edd37c403ca17ffb964eb"
       }
     },
-    "name":  "Allowed Authorship Classes"
+    "name": "Allowed Authorship Classes"
   },
-  "context":  {
-    "allowedAuthorshipClasses":  {
-      "type":  "string",
-      "required":  true,
-      "description":  "Pipe-separated list of allowed AIIR authorship_class values"
+  "context": {
+    "allowedAuthorshipClasses": {
+      "type": "string",
+      "required": true,
+      "description": "Pipe-separated list of allowed AIIR authorship_class values"
     }
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.authorshipClass != '' && context.allowedAuthorshipClasses.split('|').exists(authorshipClass, authorshipClass == outputs.authorshipClass)",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.authorshipClass != '' && context.allowedAuthorshipClasses.split('|').exists(authorshipClass, authorshipClass == outputs.authorshipClass)",
+      "predicates": {
+        "types": [
           "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
           "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
         ]
       },
-      "outputs":  {
-        "authorshipClass":  {
-          "code":  "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.authorship_class) ? predicate.data.ai_attestation.authorship_class : ''"
+      "outputs": {
+        "authorshipClass": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.authorship_class) ? predicate.data.ai_attestation.authorship_class : ''"
         }
       },
-      "error":  {
-        "message":  "AIIR authorship class is not allowed",
-        "guidance":  "AuthorshipClass {{ .Outputs.authorshipClass }} is not allowed for revisions in this repo"
+      "error": {
+        "message": "AIIR authorship class is not allowed",
+        "guidance": "AuthorshipClass {{ .Outputs.authorshipClass }} is not allowed for revisions in this repo"
       },
-      "assessment":  {
-        "message":  "AIIR authorship class {{ .Outputs.authorshipClass }} is allowed"
+      "assessment": {
+        "message": "AIIR authorship class {{ .Outputs.authorshipClass }} is allowed"
       }
     }
   ]

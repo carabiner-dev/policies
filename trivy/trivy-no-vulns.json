@@ -1,37 +1,37 @@
 {
-  "id":  "trivy-no-vulns",
-  "meta":  {
-    "description":  "Checks that an attested [trivy](https://github.com/aquasecurity/trivy) vulnerability report contains no vulnerabilities at all.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "trivy-no-vulns.hjson",
-      "digest":  {
-        "sha256":  "4096fa2a286bfcbfe0a0105ed1ed9c33d709b06d44ddbf2bed5946e0206f4390",
-        "sha512":  "244d7d282acfab7c07e064050e193dcba62616152024a260b1d90cfe11736018934b9e8214b2875bcab5cb36d4ef73db1e450565807014737bfeb772ae73f017"
+  "id": "trivy-no-vulns",
+  "meta": {
+    "description": "Checks that an attested [trivy](https://github.com/aquasecurity/trivy) vulnerability report contains no vulnerabilities at all.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "trivy-no-vulns.hjson",
+      "digest": {
+        "sha256": "4096fa2a286bfcbfe0a0105ed1ed9c33d709b06d44ddbf2bed5946e0206f4390",
+        "sha512": "244d7d282acfab7c07e064050e193dcba62616152024a260b1d90cfe11736018934b9e8214b2875bcab5cb36d4ef73db1e450565807014737bfeb772ae73f017"
       }
     },
-    "name":  "No Trivy Vulnerabilities"
+    "name": "No Trivy Vulnerabilities"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.vulnCount == 0",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.vulnCount == 0",
+      "predicates": {
+        "types": [
           "https://predicates.policylabs.dev/trivy/v1"
         ]
       },
-      "outputs":  {
-        "vulnCount":  {
-          "code":  "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten()) : 0"
+      "outputs": {
+        "vulnCount": {
+          "code": "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten()) : 0"
         }
       },
-      "error":  {
-        "message":  "Attested trivy report has {{ .Outputs.vulnCount }} vulnerabilities",
-        "guidance":  "Remediate or suppress the vulnerabilities reported by trivy before this policy can pass"
+      "error": {
+        "message": "Attested trivy report has {{ .Outputs.vulnCount }} vulnerabilities",
+        "guidance": "Remediate or suppress the vulnerabilities reported by trivy before this policy can pass"
       },
-      "assessment":  {
-        "message":  "Attested trivy report has no vulnerabilities"
+      "assessment": {
+        "message": "Attested trivy report has no vulnerabilities"
       }
     }
   ]

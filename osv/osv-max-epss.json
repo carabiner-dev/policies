@@ -1,47 +1,47 @@
 {
-  "id":  "osv-max-epss",
-  "meta":  {
-    "runtime":  "cel@v1?plugin:osv=v1",
-    "description":  "Fails when an attested OSV report contains a vulnerability with an EPSS score at or above the threshold (default 0.5)",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "osv-max-epss.hjson",
-      "digest":  {
-        "sha256":  "bddd2a81f53372e522c5b5348526229184508ce08d4bc9861f37c58b746725e8",
-        "sha512":  "3713dc56693cf641a9c33695441f24a6ff92864d12f128e1a540289aa30b33c757eb6a256fc9bd58a05fd8a2c2da5f56589f57670a579b024fe53e4bdb1a1a14"
+  "id": "osv-max-epss",
+  "meta": {
+    "runtime": "cel@v1?plugin:osv=v1",
+    "description": "Fails when an attested OSV report contains a vulnerability with an EPSS score at or above the threshold (default 0.5)",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "osv-max-epss.hjson",
+      "digest": {
+        "sha256": "bddd2a81f53372e522c5b5348526229184508ce08d4bc9861f37c58b746725e8",
+        "sha512": "3713dc56693cf641a9c33695441f24a6ff92864d12f128e1a540289aa30b33c757eb6a256fc9bd58a05fd8a2c2da5f56589f57670a579b024fe53e4bdb1a1a14"
       }
     },
-    "name":  "Maximum EPSS Score"
+    "name": "Maximum EPSS Score"
   },
-  "context":  {
-    "epssThreshold":  {
-      "type":  "string",
-      "required":  false,
-      "default":  "0.5",
-      "description":  "EPSS score (0.0-1.0) at or above which a vulnerability fails the policy. Defaults to 0.5."
+  "context": {
+    "epssThreshold": {
+      "type": "string",
+      "required": false,
+      "default": "0.5",
+      "description": "EPSS score (0.0-1.0) at or above which a vulnerability fails the policy. Defaults to 0.5."
     }
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "size(outputs.likelyExploited) == 0",
-      "predicates":  {
-        "types":  [
+      "code": "size(outputs.likelyExploited) == 0",
+      "predicates": {
+        "types": [
           "https://ossf.github.io/osv-schema/results@v1",
           "https://ossf.github.io/osv-schema/results@v1.6.7"
         ]
       },
-      "outputs":  {
-        "likelyExploited":  {
-          "code":  "osv.vulns(predicate).filter(v, osv.epss(v) >= double(context.epssThreshold)).map(v, v.id)"
+      "outputs": {
+        "likelyExploited": {
+          "code": "osv.vulns(predicate).filter(v, osv.epss(v) >= double(context.epssThreshold)).map(v, v.id)"
         }
       },
-      "error":  {
-        "message":  "Attested OSV report contains vulnerabilities at or above the EPSS threshold: {{ .Outputs.likelyExploited }}",
-        "guidance":  "These vulnerabilities are likely to be exploited (high EPSS) — prioritize remediation, or raise the epssThreshold context value"
+      "error": {
+        "message": "Attested OSV report contains vulnerabilities at or above the EPSS threshold: {{ .Outputs.likelyExploited }}",
+        "guidance": "These vulnerabilities are likely to be exploited (high EPSS) — prioritize remediation, or raise the epssThreshold context value"
       },
-      "assessment":  {
-        "message":  "Attested OSV report contains no vulnerabilities at or above the EPSS threshold"
+      "assessment": {
+        "message": "Attested OSV report contains no vulnerabilities at or above the EPSS threshold"
       }
     }
   ]

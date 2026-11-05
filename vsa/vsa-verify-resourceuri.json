@@ -1,49 +1,49 @@
 {
-  "id":  "vsa-verify-resourceuri",
-  "meta":  {
-    "description":  "Checks that a SLSA Verification Summary Attestation verifies the expected resource, given as the `vsaResourceURI` context value, optionally matching it as a prefix.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "vsa-verify-resourceuri.hjson",
-      "digest":  {
-        "sha256":  "5a505d93cc0722aff00ec01c4c9473568418dc4767182fe7d81defd0fe91fdb3",
-        "sha512":  "6dc30089bd2e3ebd854a1f492bb5480401ad25448e61a86ca21d0a6fe652c8d6bca396974e5218ac1a688ffc0a82c4da0d624e81b51ff3b9c349b5f617b64a6d"
+  "id": "vsa-verify-resourceuri",
+  "meta": {
+    "description": "Checks that a SLSA Verification Summary Attestation verifies the expected resource, given as the `vsaResourceURI` context value, optionally matching it as a prefix.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "vsa-verify-resourceuri.hjson",
+      "digest": {
+        "sha256": "5a505d93cc0722aff00ec01c4c9473568418dc4767182fe7d81defd0fe91fdb3",
+        "sha512": "6dc30089bd2e3ebd854a1f492bb5480401ad25448e61a86ca21d0a6fe652c8d6bca396974e5218ac1a688ffc0a82c4da0d624e81b51ff3b9c349b5f617b64a6d"
       }
     },
-    "name":  "Expected Resource URI"
+    "name": "Expected Resource URI"
   },
-  "context":  {
-    "matchResourceUriBase":  {
-      "type":  "bool",
-      "required":  true,
-      "default":  false,
-      "description":  "Allow matching using vsaResourceURI as the string base"
+  "context": {
+    "matchResourceUriBase": {
+      "type": "bool",
+      "required": true,
+      "default": false,
+      "description": "Allow matching using vsaResourceURI as the string base"
     },
-    "vsaResourceURI":  {
-      "required":  true,
-      "description":  "Resource URI string to check in the VSA predicate"
+    "vsaResourceURI": {
+      "required": true,
+      "description": "Resource URI string to check in the VSA predicate"
     }
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.resourceURI == context.vsaResourceURI || (outputs.resourceURI.startsWith(context.vsaResourceURI) && context.matchResourceUriBase )",
-      "predicates":  {
-        "types":  [
+      "code": "outputs.resourceURI == context.vsaResourceURI || (outputs.resourceURI.startsWith(context.vsaResourceURI) && context.matchResourceUriBase )",
+      "predicates": {
+        "types": [
           "https://slsa.dev/verification_summary/v1"
         ]
       },
-      "outputs":  {
-        "resourceURI":  {
-          "code":  "has(predicates[0].data.resourceUri) ? predicates[0].data.resourceUri : '' "
+      "outputs": {
+        "resourceURI": {
+          "code": "has(predicates[0].data.resourceUri) ? predicates[0].data.resourceUri : '' "
         }
       },
-      "error":  {
-        "message":  "VSA not vierifying correct resource URI",
-        "guidance":  "Expecting {{ .Context.vsaResourceURI }} got {{ .Outputs.resourceURI }}"
+      "error": {
+        "message": "VSA not vierifying correct resource URI",
+        "guidance": "Expecting {{ .Context.vsaResourceURI }} got {{ .Outputs.resourceURI }}"
       },
-      "assessment":  {
-        "message":  "VSA verification of expected resource URI"
+      "assessment": {
+        "message": "VSA verification of expected resource URI"
       }
     }
   ]
