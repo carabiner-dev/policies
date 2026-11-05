@@ -1,8 +1,7 @@
 {
     id: "detached-signature"
     meta: {
-        // name is omitted for now: ampel < 1.3.10 rejects meta.name (setup-sbt pins v1.1.2)
-        // name: "Detached Signature Verified"
+        name: "Detached Signature Verified"
         description: "Checks that the artifact carries a verified detached signature or sigstore bundle from an accepted signer. The signer identity is matched by AMPEL against the identities given at verification time or declared in the policy."
     }
     tenets: [
