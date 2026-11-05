@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-SIGNED
 
     meta: {
+        name: "SBOM Author Signature"
         description:
             '''
-            # SBOM Author Signature
-
             Checks that the SBOM was ingested from a signed attestation and that
             AMPEL verified its signature. This implements the _SBOM Author
             Signature_ element of the CISA 2026 SBOM Minimum Elements.
@@ -25,6 +24,7 @@
     predicates: {
         types: [
             "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
             "https://cyclonedx.org/bom"
         ]
     }

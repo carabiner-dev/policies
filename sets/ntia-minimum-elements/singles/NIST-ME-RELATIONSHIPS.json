@@ -1,18 +1,35 @@
 {
-    "meta": {
-        "enforce": "OFF",
-        "description": "Dependency relationships"
+  "meta": {
+    "description": "Checks that every top-level component of the SBOM records its dependency relationships.",
+    "assertMode": "AND",
+    "enforce": "OFF",
+    "origin": {
+      "name": "NIST-ME-RELATIONSHIPS.hjson",
+      "digest": {
+        "sha256": "ba951c53ce0c7b780ef35d3ce8b1f9bbd19b4cf38273e3b65434fda1026928c3",
+        "sha512": "139d36f2c2adb61a3aa7bb69a2d24d5e1c711187f59e9ab524a4afc26afc7a187489c8c8ce5a30d29c39e7345dcfb481de8ae3995eff83264c14d518f8c75a0e"
+      }
     },
-    "predicates": {
-        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-    },
-    "tenets": [
-        {
-            "outputs": {
-                "descendants": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))" } 
-            },
-            "code": "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
-            "assessment": {  "message": "All top level components have depedency relationships" }
+    "name": "Dependency Relationships"
+  },
+  "predicates": {
+    "types": [
+      "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets": [
+    {
+      "code": "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
+      "outputs": {
+        "descendants": {
+          "code": "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))"
         }
-    ]            
+      },
+      "assessment": {
+        "message": "All top level components have depedency relationships"
+      }
+    }
+  ]
 }

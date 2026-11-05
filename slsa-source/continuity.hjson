@@ -1,0 +1,27 @@
+{
+    id: "SLSA-SRC-CONTINUITY"
+    meta: {
+        name: "Continuity Enforced"
+        description: "Checks the repository's SLSA source provenance for the `CONTINUITY_ENFORCED` property, which records that branch protection has been continuously enforced."
+    }
+    tenets: [
+        {
+            id: "01"
+            predicates: {
+                types: [
+                    "https://github.com/slsa-framework/source-tool/source-provenance/v1"
+                    "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"
+                ]
+            }
+            outputs: {
+                controls: {
+                    code: "predicates[0].data.controls.map(c, c.name)"
+                }
+            }
+            code: "outputs.controls.one(c, c == 'CONTINUITY_ENFORCED')"
+            assessment: {
+                message: "Repository has continous enforcement of branch protection"
+            }
+        }
+    ]
+}

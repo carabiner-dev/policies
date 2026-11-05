@@ -1,0 +1,30 @@
+{
+    id: "SI-LICENSE-SET"
+    meta: {
+        name: "License Declared"
+        description: "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when the repository's license is not set."
+    }
+    tenets: [
+        {
+            id: "01-si"
+            predicates: {
+                types: [
+                    "https://github.com/ossf/security-insights-spec"
+                ]
+            }
+            code: "outputs.license != '' "
+            outputs: {
+                license: {
+                    code: "has(predicates[0].repository) ? (has(predicates[0].repository.license) ? (has(predicates[0].repository.license.expression) ? predicates[0].repository.license.expression : '' ) : '' ) : '' "
+                }
+            }
+            assessment: {
+                message: "Found a license entry in the project's security insights file."
+            }
+            error: {
+                message: "Could not detect a license entry in the security insights file."
+                guidance: "Add a license entry to your SI file under repository.release.license"
+            }
+        }
+    ]
+}

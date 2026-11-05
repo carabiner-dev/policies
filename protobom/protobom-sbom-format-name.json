@@ -1,0 +1,48 @@
+{
+  "id": "PROTOBOM-SBOM-FORMAT-NAME",
+  "meta": {
+    "description": "Checks that the SBOM is expressed in one of the widely used,\nmachine-processable SBOM data formats: SPDX or CycloneDX. This\nimplements the _SBOM Data Format Name_ element of the CISA 2026\nSBOM Minimum Elements.\n\nThe format is read from the source data protobom captures when\ningesting the SBOM (for example `text/spdx+json;version=2.3`).",
+    "assertMode": "AND",
+    "controls": [
+      {
+        "id": "DATA-FORMAT-NAME",
+        "framework": "CISA-SBOM-2026",
+        "class": "SBOM-METADATA"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-format-name.hjson",
+      "digest": {
+        "sha256": "ea8fc87b504dd201aaf8016931db1921554bc719e8bff3b99936ccd1813bc575",
+        "sha512": "5ea066e83f443c9a1843e6e1117726aa7aecbb79ba5f1bd0c87150e2f1266525577de3ed706a1e1b0bc9599806fd10ce02fc37cea8eedd8ff49460eed2441bac"
+      }
+    },
+    "name": "SBOM Data Format Name"
+  },
+  "predicates": {
+    "types": [
+      "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets": [
+    {
+      "id": "format-name",
+      "code": "outputs.format.startsWith('text/spdx') || outputs.format.startsWith('application/vnd.cyclonedx')",
+      "outputs": {
+        "format": {
+          "code": "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''"
+        }
+      },
+      "error": {
+        "message": "No SBOM in a widely used machine-processable data format was found",
+        "guidance": "Provide the SBOM as an SPDX or CycloneDX document"
+      },
+      "assessment": {
+        "message": "SBOM data format identified"
+      }
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "OSPS-DO-01",
+  "meta": {
+    "description": "The project documentation MUST provide user guides for all basic functionality.\n\nChecked through the project's Security Insights data with the `security-insights/has-documentation` policy.",
+    "controls": [
+      {
+        "id": "01",
+        "framework": "OSPS",
+        "class": "DO"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-do-01.hjson",
+      "digest": {
+        "sha256": "281ac7f4f21133886bb7a8c750684ff47c484c6ec92b69a397f52ee229275d6c",
+        "sha512": "dab7183e0fddc0dcbc1b1c3e64f22ce68f2464ff65fe12bd1faafc58fcd7c06f194225985e7205505963372bb3743ee3149a331052e36b41c79d403880457193"
+      }
+    },
+    "name": "User Guides Published"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "SI-HAS-DOCUMENTATION",
+          "meta": {
+            "description": "Ensure the detailed-guide field in SI is populated",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SI-HAS-DOCUMENTATION",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json",
+              "digest": {
+                "sha256": "17ec8ce85a8e3cbcda350b91f5f0cffd15fe856f5ce8c829caaeb7247f12df3b",
+                "sha512": "023b602eb0d7b4b04ad4956708dd655df544eac60db572306bccfc75fe031a76bbca726502167b723af62d469810ff89cff033c7e1526eec2fc54176d2d7e5a6"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json"
+            }
+          },
+          "tenets": [
+            {
+              "code": "size(predicates) > 0",
+              "predicates": {
+                "types": [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "error": {
+                "message": "No Security Insights attestation found",
+                "guidance": "Capture your security insights flile in an attestations at build point"
+              },
+              "assessment": {
+                "message": "Security Insights attestation found"
+              }
+            },
+            {
+              "code": "outputs[\"docs\"] != \"\"",
+              "predicates": {
+                "types": [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "outputs": {
+                "docs": {
+                  "code": "\"documentation\" in predicates[0].data.project ? (\"detailed-guide\" in predicates[0].data.project.documentation ? predicates[0].data.project.documentation[\"detailed-guide\"] : \"\" ) : \"\" "
+                }
+              },
+              "error": {
+                "message": "No documentation link found in SI",
+                "guidance": "Add a security insights file to your repository and define a documentation link"
+              },
+              "assessment": {
+                "message": "Documentation link found in SECURITY_INSIGHTS.yaml"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

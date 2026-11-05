@@ -1,10 +1,11 @@
 {
   "id": "grype-allow-severity",
   "meta": {
-    "description": '''
-Allows an attested grype report to pass verification only when every vulnerability
-match has a severity level that has been explicitly enabled.
-'''
+    "name": "Allowed Grype Severities",
+    "description":
+        '''
+        Passes an attested [grype](https://github.com/anchore/grype) vulnerability report only when every match has a severity the verifier explicitly allowed. Each severity has its own boolean context value, all off by default, so the policy fails on any finding unless its severity was enabled.
+        '''
   },
   "context": {
     "allowCritical": {

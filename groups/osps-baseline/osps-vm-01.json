@@ -1,0 +1,69 @@
+{
+  "id": "OSPS-VM-01",
+  "meta": {
+    "description": "The project documentation MUST include a policy for coordinated vulnerability disclosure, with a clear timeframe for response.\n\nChecked through the release SBOM with the `sbom/sbom-contains-security-md` policy, which looks for a `SECURITY.md` file.",
+    "controls": [
+      {
+        "id": "01",
+        "framework": "OSPS",
+        "class": "VM"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-vm-01.hjson",
+      "digest": {
+        "sha256": "d143b2e2118097c304f38cb8ae16490bab9380f146f98a60203a977dc98d3e69",
+        "sha512": "027887fba085845d633f2e91791b88ed75597996d571437e86d330af09e8d35033830daa81d56690322c3df6f868c226dd119449888c26d18bbaa3e94ecbda01"
+      }
+    },
+    "name": "Coordinated Vulnerability Disclosure Policy"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "sbom-contains-security-md",
+          "meta": {
+            "description": "Checks an SBOM's files for a SECURITY.md file",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "sbom-contains-security-md",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json",
+              "digest": {
+                "sha256": "6cd2cc69489e37917ef91a8a3285bf9c9fa78a9c4f15457ec937521537083204",
+                "sha512": "1734c904b5bcc7ccbcfb62f75a8929ab426f2701c26899147e19fb3ed263f39190738f35bbc1b47320e107b3a97107d04ae72f46ea943dfb0919152888afd9a3"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json"
+            }
+          },
+          "tenets": [
+            {
+              "id": "01-sbom",
+              "code": "size(outputs[\"files\"]) > 0",
+              "predicates": {
+                "types": [
+                  "https://spdx.dev/Document",
+                  "https://cyclonedx.org/bom"
+                ]
+              },
+              "outputs": {
+                "files": {
+                  "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'SECURITY.md' ))"
+                }
+              },
+              "error": {
+                "message": "Could not detect a SECURITY.md file in the SBOM.",
+                "guidance": "Add a file named SECURITY.md to your project's vulnerability disclosure policy"
+              },
+              "assessment": {
+                "message": "Found a SECURITY.md file in the project's SBOM."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

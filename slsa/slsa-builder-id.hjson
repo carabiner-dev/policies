@@ -1,0 +1,56 @@
+{
+    id: "slsa-builder-id"
+    meta: {
+        name: "Expected Builder"
+        description: "Checks that the builder recorded in the artifact's SLSA provenance matches the `builderId` context value, either exactly or as a prefix followed by `@`."
+        assert_mode: "OR"
+    }
+    context: {
+        builderId: {
+            required: true
+            type: "string"
+        }
+    }
+    tenets: [
+        {
+            predicates: {
+                types: [
+                    "https://slsa.dev/provenance/v1"
+                ]
+            }
+            outputs: {
+                builderId: {
+                    code: "has(predicates[0].data.runDetails) ? (has(predicates[0].data.runDetails.builder) ? predicates[0].data.runDetails.builder.id : '' ) : '' "
+                }
+            }
+            code: "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')"
+            assessment: {
+                message: "Authorized builder ID detected"
+            }
+            error: {
+                message: "Builder identifier mismatch"
+                guidance: "The attestation builder does not match the context defined builder (want {{ .Context.builderId }} got {{ .Outputs.builderId }})"
+            }
+        }
+        {
+            predicates: {
+                types: [
+                    "https://slsa.dev/provenance/v0.2"
+                ]
+            }
+            outputs: {
+                builderId: {
+                    code: "has(predicates[0].data.builder) ? (has(predicates[0].data.builder.id) ? predicates[0].data.builder.id : '' ) : '' "
+                }
+            }
+            code: "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')"
+            assessment: {
+                message: "Authorized builder ID detected"
+            }
+            error: {
+                message: "Builder identifier mismatch"
+                guidance: "The attestation builder does not match the context defined builder (want {{ .Context.builderId }} got {{ .Outputs.builderId }})"
+            }
+        }
+    ]
+}

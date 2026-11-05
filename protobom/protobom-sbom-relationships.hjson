@@ -1,0 +1,28 @@
+{
+    id: "PROTOBOM-RELATONSHIPS"
+    meta: {
+        name: "Dependency Relationships"
+        description: "Checks that every top-level component of the SBOM records its dependency relationships. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike."
+        enforce: "OFF"
+    }
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+    tenets: [
+        {
+            outputs: {
+                descendants: {
+                    code: "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))"
+                }
+            }
+            code: "outputs.descendants.all(nl, size(nl.get_edges()) > 0)"
+            assessment: {
+                message: "All top level components have depedency relationships"
+            }
+        }
+    ]
+}

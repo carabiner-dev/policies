@@ -1,7 +1,8 @@
 {
     "id": "OSPS-QA-02",
     "meta": {
-        "description": "The project MUST provide a list of dependencies used in the software",
+        "name": "Software Dependencies Published",
+        "description": "The project MUST provide a list of dependencies used in the software.\n\nChecked with the `sbom/sbom-exists` policy, which requires an attested SBOM for the release.",
         "controls": [ { "framework": "OSPS", "class": "QA", "id": "02" } ]
     },
     "blocks": [

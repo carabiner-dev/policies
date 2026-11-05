@@ -1,0 +1,41 @@
+{
+    id: "sbom-exists"
+    meta: {
+        name: "SBOM Available"
+        description: "Checks that an attested SBOM describing the artifact is available, in either SPDX or CycloneDX format."
+        assert_mode: "OR"
+    }
+    tenets: [
+        {
+            code: "size(predicates) > 0"
+            predicates: {
+                types: [
+                    "https://spdx.dev/Document"
+                    "https://spdx.dev/Document/v3"
+                ]
+            }
+            assessment: {
+                message: "Found attested SBOM (SPDX)"
+            }
+            error: {
+                message: "No SPDX SBOM found"
+                guidance: "Generate an SPDX SBOM from your code"
+            }
+        }
+        {
+            code: "size(predicates) > 0"
+            predicates: {
+                types: [
+                    "https://cyclonedx.org/bom"
+                ]
+            }
+            assessment: {
+                message: "Found attested SBOM (CycloneDX)"
+            }
+            error: {
+                message: "No CycloneDX SBOM found"
+                guidance: "Generate a CycloneDX SBOM from your code"
+            }
+        }
+    ]
+}

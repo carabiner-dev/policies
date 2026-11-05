@@ -1,0 +1,69 @@
+{
+  "id": "OSPS-BR-04",
+  "meta": {
+    "description": "All releases MUST provide a descriptive log of functional and security modifications.\n\nChecked through the release SBOM with the `sbom/sbom-contains-changelog` policy, which looks for a changelog among the project's files.",
+    "controls": [
+      {
+        "id": "04",
+        "framework": "OSPS",
+        "class": "BR"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-br-04.hjson",
+      "digest": {
+        "sha256": "403799d43312138d7ddd6500a8cd1d207ffe95d5f573fc3b7231643f43d622c9",
+        "sha512": "4df8b98454decbc43af73088065132b82aea492e5fd214f8f6c68e77f6569f477e3a102e09ff08a8a1f9bdcfa058a33d012d9c8a0b70a0c8bac6e235b9930e28"
+      }
+    },
+    "name": "Change Log With Release"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "sbom-contains-changelog",
+          "meta": {
+            "description": "Checks an SBOM to locate a Changelog in the file lists",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "sbom-contains-changelog",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json",
+              "digest": {
+                "sha256": "0d0c2e8097c2d126702e3f8ec84d0f8dabb35d73aae3f9b8759a9208440eb5f5",
+                "sha512": "35b5dffb04b04622e7a7639c9c0503ff6baa300c3ab11b88ebc9cb752b328b11e8aa877c414010f6afd4fd6a17dfe4738aad3355b5a084e2640cc6ed5758a448"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json"
+            }
+          },
+          "tenets": [
+            {
+              "id": "01-sbom",
+              "code": "size(outputs[\"files\"]) > 0",
+              "predicates": {
+                "types": [
+                  "https://spdx.dev/Document",
+                  "https://cyclonedx.org/bom"
+                ]
+              },
+              "outputs": {
+                "files": {
+                  "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' || n.name == 'CHANGELOG.md' || n.name == 'CHANGELOG.rst' || n.name == 'CHANGELOG.txt'))"
+                }
+              },
+              "error": {
+                "message": "Could not detect a changelog file in the SBOM.",
+                "guidance": "Add a file named CHANGELOG to your project's codebase registering major changes."
+              },
+              "assessment": {
+                "message": "Found a changelog in the project's SBOM."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

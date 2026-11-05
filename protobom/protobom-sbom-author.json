@@ -1,18 +1,36 @@
 {
   "id": "PROTOBOM-AUTHOR",
   "meta": {
-      "description": "SBOM has author data"
+    "description": "Checks that the SBOM names the author of the SBOM data. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-author.hjson",
+      "digest": {
+        "sha256": "d37a5852e4786588ecceb39fcf33ecf0262f7e5c325355f2226c61e0ab706ee9",
+        "sha512": "852066d6a33c4441d5defa42cf42e45660a33e29435e86ac1700c5b3c75540305060e69d228a9116f6af8301a8c0f70cdac0a609c59a51229dfc4ebb829ccc57"
+      }
+    },
+    "name": "SBOM Author"
   },
   "predicates": {
-      "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
+    "types": [
+      "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
+      "https://cyclonedx.org/bom"
+    ]
   },
   "tenets": [
-      {
-          "outputs": {
-              "authors": { "code": "size(sboms) > 0 ? sboms[0].get_authors() : []" } 
-          },
-          "code": "size(outputs.authors) > 0",
-          "assessment": {  "message": "SBOM author defined" }
+    {
+      "code": "size(outputs.authors) > 0",
+      "outputs": {
+        "authors": {
+          "code": "size(sboms) > 0 ? sboms[0].get_authors() : []"
+        }
+      },
+      "assessment": {
+        "message": "SBOM author defined"
       }
-  ]            
+    }
+  ]
 }

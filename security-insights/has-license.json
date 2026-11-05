@@ -1,27 +1,39 @@
 {
-    "id": "SI-LICENSE-SET",
-    "meta": {
-        "description": "Repository data in security insights has a license set"
+  "id": "SI-LICENSE-SET",
+  "meta": {
+    "description": "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when the repository's license is not set.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "has-license.hjson",
+      "digest": {
+        "sha256": "2ee73ab6273ed4184edae0942025a9a638815f1e5f8e7e4132d8751fd4109c2e",
+        "sha512": "74bb1007b9f3fc426364deecfb249b391291e31f4f20f5def498090da4649d8bafa7bccaa027190d32800a669989ef792ec69f2c70e1ab9c465ba2e6c595675b"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-si",
-            "predicates": {
-                "types": ["https://github.com/ossf/security-insights-spec"]
-            },
-            "code": "outputs.license != '' ",
-            "outputs": {
-                "license": {
-                    "code": "has(predicates[0].repository) ? (has(predicates[0].repository.license) ? (has(predicates[0].repository.license.expression) ? predicates[0].repository.license.expression : '' ) : '' ) : '' "
-                }
-            },
-            "assessment": {
-                "message": "Found a license entry in the project's security insights file."
-            },
-            "error": {
-                "message": "Could not detect a license entry in the security insights file.",
-                "guidance": "Add a license entry to your SI file under repository.release.license"
-            }
+    "name": "License Declared"
+  },
+  "tenets": [
+    {
+      "id": "01-si",
+      "code": "outputs.license != '' ",
+      "predicates": {
+        "types": [
+          "https://github.com/ossf/security-insights-spec"
+        ]
+      },
+      "outputs": {
+        "license": {
+          "code": "has(predicates[0].repository) ? (has(predicates[0].repository.license) ? (has(predicates[0].repository.license.expression) ? predicates[0].repository.license.expression : '' ) : '' ) : '' "
         }
-    ]            
+      },
+      "error": {
+        "message": "Could not detect a license entry in the security insights file.",
+        "guidance": "Add a license entry to your SI file under repository.release.license"
+      },
+      "assessment": {
+        "message": "Found a license entry in the project's security insights file."
+      }
+    }
+  ]
 }

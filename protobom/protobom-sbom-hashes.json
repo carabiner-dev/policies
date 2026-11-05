@@ -1,0 +1,48 @@
+{
+  "id": "PROTOBOM-SBOM-HASHES",
+  "meta": {
+    "description": "Checks that the top level components of the SBOM carry at least\none cryptographic hash of the component artifact. This implements\nthe _Component Hash Value_ element of the CISA 2026 SBOM Minimum\nElements.",
+    "assertMode": "AND",
+    "controls": [
+      {
+        "id": "HASH-VALUE",
+        "framework": "CISA-SBOM-2026",
+        "class": "COMPONENT-DATA"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-hashes.hjson",
+      "digest": {
+        "sha256": "47c8f57e3c6624c28292165390b5f3825805a3692a50477ef35b56f3fede4d47",
+        "sha512": "d2e7246e743b59826dd19eed3e05c4acd63e07091f6e0d5b7600f43c0b12464a275e0fcda9add507cf9f50c90f0271e08b7889e7de8600785185d2101be7f63f"
+      }
+    },
+    "name": "Component Hash Value"
+  },
+  "predicates": {
+    "types": [
+      "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets": [
+    {
+      "id": "hashes",
+      "code": "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, h[alg] != ''))",
+      "outputs": {
+        "hashes": {
+          "code": "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []"
+        }
+      },
+      "error": {
+        "message": "One or more top level components have no cryptographic hash of the component artifact",
+        "guidance": "Add checksums (SPDX) or hashes (CycloneDX) to each top level component, or explicitly mark the hash as unknown"
+      },
+      "assessment": {
+        "message": "All top level components have hash values"
+      }
+    }
+  ]
+}

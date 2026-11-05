@@ -2,10 +2,9 @@
     id: gitsign-commit-signature
 
     meta: {
+        name: "Gitsign Commit Signature Verification"
         description:
             '''
-            # Gitsign Commit Signature Verification
-
             Passes when the subject git commit carries a verified gitsign
             (sigstore) signature from an accepted signer.
 

@@ -1,21 +1,47 @@
 {
-    "id": "slsa-build-level-2",
-    "meta": {
-        "description": "Checks for SLSA Build Level 2+ compliance in a VSA",
-        "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_2" } ]
+  "id": "slsa-build-level-2",
+  "meta": {
+    "description": "Checks that a SLSA Verification Summary Attestation records a passed verification at SLSA Build Level 2 or higher.",
+    "assertMode": "AND",
+    "controls": [
+      {
+        "id": "LEVEL_2",
+        "framework": "SLSA",
+        "class": "BUILD"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "slsa-build-level2.hjson",
+      "digest": {
+        "sha256": "c339cf91e6deb5ae6eee47eea56744485aedcd7490b470bfa221d86b2012258f",
+        "sha512": "040fdf2d36e343f74c30c62267294e548beaa6b63636425085b06c5694f9d51a0e099c0296c5fd98a83a5760c7d47cfff705e0959d5fd179c8b6343dbe979377"
+      }
     },
-    "tenets": [
-        {
-            "predicates": { "types": ["https://slsa.dev/verification_summary/v1"] },
-            "outputs": {
-                "pass": { "code": "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false" },
-                "levels": { "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] " }
-            },
-            "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_2' || v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
-            "assessment": { "message": "VSA attesting a SLSA_BUILD_2+ compliance verification" },
-            "error": {
-                "message": "SLSA Build L2+ not recored in verification summary"
-            }
+    "name": "SLSA Build Level 2 Verified"
+  },
+  "tenets": [
+    {
+      "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_2' || v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
+      "predicates": {
+        "types": [
+          "https://slsa.dev/verification_summary/v1"
+        ]
+      },
+      "outputs": {
+        "levels": {
+          "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] "
+        },
+        "pass": {
+          "code": "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false"
         }
-    ]
+      },
+      "error": {
+        "message": "SLSA Build L2+ not recored in verification summary"
+      },
+      "assessment": {
+        "message": "VSA attesting a SLSA_BUILD_2+ compliance verification"
+      }
+    }
+  ]
 }

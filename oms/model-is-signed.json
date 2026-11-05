@@ -1,0 +1,33 @@
+{
+  "id": "model-is-oms-signed",
+  "meta": {
+    "description": "Checks that an [OpenSSF Model Signing](https://github.com/ossf/model-signing-spec) attestation exists for the AI model under verification. Any OMS statement about the model counts; the policy does not inspect its contents.\n\nPair it with a signer identity to require that the signature comes from a trusted party.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "model-is-signed.hjson",
+      "digest": {
+        "sha256": "2e00700f54783fbb8bed4d85b413e5e0cc462f7397e43f5f78d821e272852463",
+        "sha512": "8f21bbec7a1e21690df132e5c017460310bdaca42e5510b53a5f948ab291eb98cb463f4344e8bca7936e4f0783628c7e3b615f5b1d73a5af007f39239e1dcbaa"
+      }
+    },
+    "name": "Model Is Signed"
+  },
+  "tenets": [
+    {
+      "code": "size(predicates) > 0",
+      "predicates": {
+        "types": [
+          "https://model_signing/signature/v1.0"
+        ]
+      },
+      "error": {
+        "message": "No model signature attestation found",
+        "guidance": "Sign the model using the model_signing utility"
+      },
+      "assessment": {
+        "message": "Found model signature (OMS)"
+      }
+    }
+  ]
+}

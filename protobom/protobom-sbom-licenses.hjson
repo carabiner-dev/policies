@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-LICENSES
 
     meta: {
+        name: "Component License"
         description:
             '''
-            # Component License
-
             Checks that the top level components of the SBOM carry license
             information. This implements the _Component License_ element of
             the CISA 2026 SBOM Minimum Elements.
@@ -25,6 +24,7 @@
     predicates: {
         types: [
             "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
             "https://cyclonedx.org/bom"
         ]
     }

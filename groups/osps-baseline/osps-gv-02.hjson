@@ -1,7 +1,8 @@
 {
     "id": "OSPS-GV-02",
     "meta": {
-        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
+        "name": "Public Discussion Mechanisms",
+        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.\n\nChecked through the attested repository data with the `snappy/repo-issues` policy, which requires issues to be enabled.",
         "controls": [ { "framework": "OSPS", "class": "GV", "id": "02" } ]
     },
     "blocks": [

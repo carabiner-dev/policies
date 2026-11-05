@@ -1,0 +1,40 @@
+{
+    id: "vsa-verify-verifier"
+    meta: {
+        name: "Trusted Verifier"
+        description: "Checks that a SLSA Verification Summary Attestation was issued by the expected verifier, given as the `verifierId` context value, optionally ignoring the verifier's version."
+    }
+    context: {
+        verifier: {
+            required: true
+            description: "URI identifier of the system performing the verification"
+        }
+        matchUnversionedVerifier: {
+            required: true
+            default: true
+            description: "Allow matching the verifier URI without version"
+        }
+    }
+    tenets: [
+        {
+            predicates: {
+                types: [
+                    "https://slsa.dev/verification_summary/v1"
+                ]
+            }
+            outputs: {
+                verifier: {
+                    code: "has(predicates[0].data.verifier) ? ( has(predicates[0].data.verifier.id) ? predicates[0].data.verifier.id : '' ) : '' "
+                }
+            }
+            code: "outputs.verifier == context.verifier || (outputs.verifier.startsWith(context.verifier + '@') && context.matchUnversionedVerifier )"
+            assessment: {
+                message: "Attestation was issued by trusted verifier"
+            }
+            error: {
+                message: "Attestation NOT issued by trusted verifier"
+                guidance: "Expecting {{ .Context.verifier }} got {{ .Outputs.verifier }}"
+            }
+        }
+    ]
+}

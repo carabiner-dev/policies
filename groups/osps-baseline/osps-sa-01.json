@@ -1,0 +1,49 @@
+{
+  "id": "OSPS-SA-01",
+  "meta": {
+    "description": "The project documentation MUST provide design documentation demonstrating all actions and actors within the system.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
+    "controls": [
+      {
+        "id": "01",
+        "framework": "OSPS",
+        "class": "SA"
+      }
+    ],
+    "enforce": "OFF",
+    "origin": {
+      "name": "osps-sa-01.hjson",
+      "digest": {
+        "sha256": "eabd425a52abd2d9c148a145cc3be279585ce18320d71a0939dff420e1c43838",
+        "sha512": "fd78e51883043693d91da10ecfe4596efa642a0508c0ddcf751f1b99a423fabf9bbfbb2d063fdcefc495491af42da113db1eabff8c2514e947cbab797b5050ab"
+      }
+    },
+    "name": "System Design Documentation"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "meta": {
+            "description": "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.",
+            "name": "Not Implemented"
+          },
+          "tenets": [
+            {
+              "id": "01",
+              "code": "false",
+              "predicates": {
+                "types": [
+                  "https://slsa.dev/provenance/v0.2"
+                ]
+              },
+              "error": {
+                "message": "Not implemented yet",
+                "guidance": "We don't have a way to detect documentation about actors and actions in the system"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

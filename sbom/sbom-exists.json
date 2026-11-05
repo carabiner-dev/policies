@@ -1,35 +1,49 @@
 {
-    "id": "sbom-exists",
-    "meta": {
-        "description": "SBOM data found",
-        "assert_mode":"OR"
+  "id": "sbom-exists",
+  "meta": {
+    "description": "Checks that an attested SBOM describing the artifact is available, in either SPDX or CycloneDX format.",
+    "assertMode": "OR",
+    "enforce": "ON",
+    "origin": {
+      "name": "sbom-exists.hjson",
+      "digest": {
+        "sha256": "c9d1135e9d01f5dc6b03f83450cb18bf93f15e68300b5d132d5d16c486a876bf",
+        "sha512": "6e0c1737baf10c98407a1fff92f3218f0b0348ff3325cf4e86d517f24b2e76ce89ffd3a6e1f4dd6fbd23980ee4ec6aa7419ae1a1c28f56e2c2933d0e528b38e9"
+      }
     },
-    "tenets": [
-        {
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": ["https://spdx.dev/Document"]
-            },
-            "assessment": {
-                "message": "Found attested SBOM (SPDX)"
-            },
-            "error": {
-                "message": "No SPDX SBOM found",
-                "guidance": "Generate an SPDX SBOM from your code"
-            }
-        },
-        {
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": ["https://cyclonedx.org/bom"]
-            },
-            "assessment": {
-                "message": "Found attested SBOM (CycloneDX)"
-            },
-            "error": {
-                "message": "No CycloneDX SBOM found",
-                "guidance": "Generate a CycloneDX SBOM from your code"
-            }
-        }
-    ]            
+    "name": "SBOM Available"
+  },
+  "tenets": [
+    {
+      "code": "size(predicates) > 0",
+      "predicates": {
+        "types": [
+          "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3"
+        ]
+      },
+      "error": {
+        "message": "No SPDX SBOM found",
+        "guidance": "Generate an SPDX SBOM from your code"
+      },
+      "assessment": {
+        "message": "Found attested SBOM (SPDX)"
+      }
+    },
+    {
+      "code": "size(predicates) > 0",
+      "predicates": {
+        "types": [
+          "https://cyclonedx.org/bom"
+        ]
+      },
+      "error": {
+        "message": "No CycloneDX SBOM found",
+        "guidance": "Generate a CycloneDX SBOM from your code"
+      },
+      "assessment": {
+        "message": "Found attested SBOM (CycloneDX)"
+      }
+    }
+  ]
 }

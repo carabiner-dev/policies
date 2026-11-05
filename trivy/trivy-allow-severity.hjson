@@ -1,7 +1,8 @@
 {
   "id": "trivy-allow-severity",
   "meta": {
-    "description": "Allows an attested trivy report to pass only when every vulnerability has a severity that the verifier has explicitly enabled"
+    "name": "Allowed Trivy Severities",
+    "description": "Passes an attested [trivy](https://github.com/aquasecurity/trivy) vulnerability report only when every finding has a severity the verifier explicitly allowed. Each severity has its own boolean context value, all off by default, so the policy fails on any finding unless its severity was enabled."
   },
   "context": {
     "allowCritical": {

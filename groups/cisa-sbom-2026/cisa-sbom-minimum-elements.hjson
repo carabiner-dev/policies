@@ -2,10 +2,9 @@
     id: CISA-SBOM-2026
 
     meta: {
+        name: "CISA 2026 SBOM Minimum Elements"
         description:
             '''
-            # CISA 2026 SBOM Minimum Elements
-
             Checks an SBOM's conformance to the data field elements of the
             2026 Minimum Elements for a Software Bill of Materials (SBOM),
             published by CISA and partner agencies on July 29, 2026. The

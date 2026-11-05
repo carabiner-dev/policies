@@ -1,21 +1,41 @@
 {
-    "id": "slsa-source-level-3",
-    "meta": {
-        "description": "Checks for SLSA_SOURCE Level 3 compliance in a VSA"
+  "id": "slsa-source-level-3",
+  "meta": {
+    "description": "Checks that a SLSA Verification Summary Attestation records a passed verification at SLSA Source Level 3 or higher.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "slsa-source-level3.hjson",
+      "digest": {
+        "sha256": "d38c9b1c3ed229142e95e83ab85c2ec901a24d3f32b9c9d42f664a2014dc098e",
+        "sha512": "bbdca15c74b9a29043bde9fd4ff5803eb9152656882a5a3846d4f3acc83bf10cc36867bd641d2659cd4be24cd2567d0ccada154f29b9ddca90494e3a25ee2856"
+      }
     },
-    "tenets": [
-        {
-            "id": "01",
-            "predicates": { "types": ["https://slsa.dev/verification_summary/v1"] },
-            "outputs": {
-                "pass": { "code": "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false" },
-                "levels": { "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] " }
-            },
-            "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_SOURCE_LEVEL_3' || v == 'SLSA_SOURCE_LEVEL_4') )",
-            "assessment": { "message": "VSA attesting SLSA_SOURCE L3 compliance checks" },
-            "error" : {
-                "message": "SLSA Source L3+ not recorded in verification summary"
-            }
+    "name": "SLSA Source Level 3 Verified"
+  },
+  "tenets": [
+    {
+      "id": "01",
+      "code": "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_SOURCE_LEVEL_3' || v == 'SLSA_SOURCE_LEVEL_4') )",
+      "predicates": {
+        "types": [
+          "https://slsa.dev/verification_summary/v1"
+        ]
+      },
+      "outputs": {
+        "levels": {
+          "code": "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] "
+        },
+        "pass": {
+          "code": "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false"
         }
-    ]
+      },
+      "error": {
+        "message": "SLSA Source L3+ not recorded in verification summary"
+      },
+      "assessment": {
+        "message": "VSA attesting SLSA_SOURCE L3 compliance checks"
+      }
+    }
+  ]
 }

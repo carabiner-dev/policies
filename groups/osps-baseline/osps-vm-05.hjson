@@ -1,7 +1,8 @@
 {
     "id": "OSPS-VM-05",
     "meta": {
-        "description": "Ensure the project has no exploitable vulnerabilities",
+        "name": "No Exploitable Vulnerabilities",
+        "description": "The project MUST publish and enforce a dependency remediation policy so released software carries no exploitable vulnerabilities.\n\nChecked with the `openvex/no-exploitable-vulns-osv` policy, which fails on findings not addressed by OpenVEX statements.",
         "controls": [ { "framework": "OSPS", "class": "VM", "id": "05" } ]
     },
     "blocks": [

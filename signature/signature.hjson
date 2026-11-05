@@ -1,0 +1,25 @@
+{
+    id: "detached-signature"
+    meta: {
+        name: "Detached Signature Verified"
+        description: "Checks that the artifact carries a verified detached signature or sigstore bundle from an accepted signer. The signer identity is matched by AMPEL against the identities given at verification time or declared in the policy."
+    }
+    tenets: [
+        {
+            id: "signature-check"
+            code: "size(predicates) > 0"
+            predicates: {
+                types: [
+                    "https://carabiner.dev/ampel/signature/v1"
+                ]
+            }
+            error: {
+                message: "No detached signature found"
+                guidance: "No signature found or unkown key"
+            }
+            assessment: {
+                message: "Signature verfiied"
+            }
+        }
+    ]
+}

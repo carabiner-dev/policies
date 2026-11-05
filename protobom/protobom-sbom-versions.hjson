@@ -1,0 +1,32 @@
+{
+    id: "PROTOBOM-SBOM-VERSIONS"
+    meta: {
+        name: "Component Versions"
+        description:
+            '''
+            Checks that every top-level component of the SBOM has a version. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.
+
+            Not to be confused with `PROTOBOM-SBOM-DOC-VERSION`, which checks the version of the SBOM document itself.
+            '''
+    }
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+    tenets: [
+        {
+            outputs: {
+                versions: {
+                    code: "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
+                }
+            }
+            code: "outputs.versions.all(s, s != \"\")"
+            assessment: {
+                message: "All top level components have versions"
+            }
+        }
+    ]
+}

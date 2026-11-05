@@ -1,6 +1,10 @@
 {
     "id": "OSPS-AC-01",
-    "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "01" } ] },
+    "meta": {
+        "name": "Use MFA for Sensitive Actions",
+        "description": "The project's version control system MUST require multi-factor authentication for collaborators modifying the project repository settings or accessing sensitive data.\n\nChecked through the repository's SLSA source provenance with the `slsa-source/ghorg` policy, which establishes that the repository is hosted in a GitHub organization.",
+        "controls": [ { "framework": "OSPS", "class": "AC", "id": "01" } ]
+    },
     "blocks": [
         {
             "policies": [

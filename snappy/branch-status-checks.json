@@ -1,22 +1,35 @@
 {
-    "id": "SNAPPY-BRANCH-STATUS-CHECKS",
-    "meta": {
-        "description": "Checks for a branch rule requiring PR status checks to pass"
+  "id": "SNAPPY-BRANCH-STATUS-CHECKS",
+  "meta": {
+    "description": "Reads the attested branch protection rules of the repository and fails when pull requests are not required to pass status checks before merging.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "branch-status-checks.hjson",
+      "digest": {
+        "sha256": "d5794e2940ef1ff6765a950d62aafc109c56ebcaf85a1305094f147b3844cd9d",
+        "sha512": "67f605e099042a8f80815290b4c625f2e66cfe5dd0f53e7ef6d09821edb6f0302b556a881fcba90609a337731a8829e48bbddce99610390f97b4773be21144fe"
+      }
     },
-    "tenets": [
-        {
-            "id": "01",
-            "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"required_status_checks\") : false",
-            "predicates": {
-                "types": ["http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml", "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"]
-            },
-            "assessment": {
-                "message": "Status checks enforced"
-            },
-            "error": {
-                "message": "Add a branch rule to ensure status checks must pass",
-                "guidance": "Enable \"Require status checks to pass\" in the repository branch rulesets"
-            }
-        }
-    ]
+    "name": "Status Checks Required"
+  },
+  "tenets": [
+    {
+      "id": "01",
+      "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"required_status_checks\") : false",
+      "predicates": {
+        "types": [
+          "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
+          "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
+        ]
+      },
+      "error": {
+        "message": "Add a branch rule to ensure status checks must pass",
+        "guidance": "Enable \"Require status checks to pass\" in the repository branch rulesets"
+      },
+      "assessment": {
+        "message": "Status checks enforced"
+      }
+    }
+  ]
 }

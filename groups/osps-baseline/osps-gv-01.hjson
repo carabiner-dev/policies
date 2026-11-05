@@ -1,6 +1,10 @@
 {
     "id": "OSPS-GV-01",
-    "meta": { "controls": [ { "framework": "OSPS", "class": "GV", "id": "01" } ] },
+    "meta": {
+        "name": "Roles and Responsibilities Published",
+        "description": "The project documentation MUST include the roles and responsibilities for members of the project.\n\nChecked through the project's Security Insights data with the `security-insights/roles` policy, which requires the project administrators to be listed.",
+        "controls": [ { "framework": "OSPS", "class": "GV", "id": "01" } ]
+    },
     "blocks": [
         {
             "policies": [

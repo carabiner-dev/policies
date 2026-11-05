@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-HASH-ALGORITHMS
 
     meta: {
+        name: "Component Hash Algorithm"
         description:
             '''
-            # Component Hash Algorithm
-
             Checks that the hashes of the SBOM's top level components identify
             the cryptographic algorithm that produced them. This implements
             the _Component Hash Algorithm_ element of the CISA 2026 SBOM
@@ -21,6 +20,7 @@
     predicates: {
         types: [
             "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
             "https://cyclonedx.org/bom"
         ]
     }

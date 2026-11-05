@@ -1,0 +1,45 @@
+{
+  "id": "aiir-ai-authored-disallowed",
+  "meta": {
+    "description": "Fails when an [AIIR](https://invariantsystems.io) commit receipt marks the attested commit as AI-authored, or when the receipt does not state its authorship at all. Both the v1 and the wrapped v2 receipt predicates are accepted.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "ai-authored-disallowed.hjson",
+      "digest": {
+        "sha256": "5ee8c5b341e03f102215f5d4485ff28527389f26c3f909d516f9e7d2e7113d49",
+        "sha512": "3dc56efdf73638952c4ed13babef8d49ad90e6b6b0b4f570e281c2d3b2f6e8b983d6453783393de673321035c068dce77b40feca17efe14f3c5e4c8458fc0fb8"
+      }
+    },
+    "name": "AI-Authored Commits Disallowed"
+  },
+  "tenets": [
+    {
+      "code": "outputs.hasAiAuthoredStatus && !outputs.isAiAuthored",
+      "predicates": {
+        "types": [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      "outputs": {
+        "authorshipClass": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.authorship_class) ? predicate.data.ai_attestation.authorship_class : ''"
+        },
+        "hasAiAuthoredStatus": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.is_ai_authored)"
+        },
+        "isAiAuthored": {
+          "code": "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.is_ai_authored) ? predicate.data.ai_attestation.is_ai_authored : false"
+        }
+      },
+      "error": {
+        "message": "AI-authored content detected by AIIR or authorship status is missing",
+        "guidance": "This repo only accepts revisions whose AIIR receipt reports a non-AI authorship status"
+      },
+      "assessment": {
+        "message": "AIIR receipt reports no AI-authored content"
+      }
+    }
+  ]
+}

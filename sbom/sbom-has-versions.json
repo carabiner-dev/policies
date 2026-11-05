@@ -1,23 +1,41 @@
 {
-    "id": "sbom-has-versions",
-    "meta": {
-        "description": "Checks an SBOMs top level components to ensure versions are set"
+  "id": "sbom-has-versions",
+  "meta": {
+    "description": "Checks that every top-level component of the SBOM has a version set.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "sbom-has-versions.hjson",
+      "digest": {
+        "sha256": "83b495db99964aab0d4f66b8bea7bed18ba2245af6c6c1915830fc48bb3d1aa8",
+        "sha512": "2684e5177172d56aae0aef2a301c2394d5ca9f83943a5686310c0a8c84de811d3db9a4bf909ce0e579d682d29f6e9cac9365b2c095cae82b5e9c567b29d963e7"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-sbom",
-            "predicates": {
-                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-            },
-            "outputs": {
-                "versions": { "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)" } 
-            },
-            "code": "outputs.versions.all(s, s != \"\")",
-            "assessment": {  "message": "All top level components have versions" },
-            "error": {
-                "message": "Som of the top level components in the SBOM are missing versions.",
-                "guidance": "Ensure the SBOM generation tool is capturing the release version."
-            }
+    "name": "Component Versions in SBOM"
+  },
+  "tenets": [
+    {
+      "id": "01-sbom",
+      "code": "outputs.versions.all(s, s != \"\")",
+      "predicates": {
+        "types": [
+          "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
+          "https://cyclonedx.org/bom"
+        ]
+      },
+      "outputs": {
+        "versions": {
+          "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
         }
-    ]            
+      },
+      "error": {
+        "message": "Som of the top level components in the SBOM are missing versions.",
+        "guidance": "Ensure the SBOM generation tool is capturing the release version."
+      },
+      "assessment": {
+        "message": "All top level components have versions"
+      }
+    }
+  ]
 }

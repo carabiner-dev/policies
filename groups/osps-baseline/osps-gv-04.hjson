@@ -1,14 +1,19 @@
 {
     "id": "OSPS-GV-04",
     "meta": {
+        "name": "Formal Review of Permission Grants",
         "enforce": "OFF",
-        "description": "Policy that code contributors are reviewed prior to granting escalated permissions",
+        "description": "The project documentation MUST have a policy that code contributors are reviewed prior to granting escalated permissions to sensitive resources.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
         "controls": [ { "framework": "OSPS", "class": "GV", "id": "04" } ]
     },
     "blocks": [
         {
             "policies": [
                 {
+                    "meta": {
+                        "name": "Not Implemented",
+                        "description": "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails."
+                    },
                     "tenets": [
                         {
                             "id": "01",

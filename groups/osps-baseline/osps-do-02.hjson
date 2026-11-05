@@ -1,7 +1,8 @@
 {
     "id": "OSPS-DO-02",
     "meta": {
-        "description": "The project MUST provide a mechanism for reporting defects",
+        "name": "Defect Reporting Mechanism",
+        "description": "The project documentation MUST include a guide for reporting defects.\n\nChecked through the project's Security Insights data with the `security-insights/vulnerability-reporting` policy.",
         "controls": [ { "framework": "OSPS", "class": "DO", "id": "02" } ]
     },
     "blocks": [

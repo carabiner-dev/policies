@@ -1,7 +1,8 @@
 {
     "id": "OSPS-DO-06",
     "meta": {
-        "description": "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
+        "name": "Dependency Management Policy",
+        "description": "The project documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.\n\nChecked through the project's Security Insights data with the `security-insights/dependency-policy` policy.",
         "controls": [ { "framework": "OSPS", "class": "DO", "id": "06" } ]
     },
     "blocks": [

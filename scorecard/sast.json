@@ -1,25 +1,39 @@
 {
-    "id": "SCORECARD-SAST",
-    "meta": {
-        "description": "Checks the SAST score in a scorecard attestation"
+  "id": "SCORECARD-SAST",
+  "meta": {
+    "description": "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard did not detect a static application security testing tool running on the project.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "sast.hjson",
+      "digest": {
+        "sha256": "d9235b00d928e27c4cb56e512bfd133fd9fcdd8d62b9f9f08a5206852de64874",
+        "sha512": "aa759049b0e34f1d922389ac61641729c0f72ba462f52d81c6af98365daf32b5ad26d8f84d8e3b8d844de93919d840f3c9e4b83a960cbb65545dea2791ae4037"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-scorecard",
-            "code": "outputs.sast.all(c, c.score == 10)",
-            "outputs": {
-                "sast": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] " }
-            },
-            "predicates": {
-                "types": ["https://scorecard.dev/result/v0.1"]
-            },
-            "assessment": {
-                "message": "Scorecard detected a SAST tool"
-            },
-            "error": {
-                "message": "Scorecard did not detect a SAST tool",
-                "guidance": "Configure a SAST tool like CodeQL in your repo and reattest the scorecard"
-            }
+    "name": "SAST Tooling in Use"
+  },
+  "tenets": [
+    {
+      "id": "01-scorecard",
+      "code": "outputs.sast.all(c, c.score == 10)",
+      "predicates": {
+        "types": [
+          "https://scorecard.dev/result/v0.1"
+        ]
+      },
+      "outputs": {
+        "sast": {
+          "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] "
         }
-    ]
+      },
+      "error": {
+        "message": "Scorecard did not detect a SAST tool",
+        "guidance": "Configure a SAST tool like CodeQL in your repo and reattest the scorecard"
+      },
+      "assessment": {
+        "message": "Scorecard detected a SAST tool"
+      }
+    }
+  ]
 }

@@ -1,23 +1,35 @@
 {
-    "id": "slsa-has-attestation",
-    "meta": {
-        "description": "Checks if a SLSA provenance attestation is available"
+  "id": "slsa-has-attestation",
+  "meta": {
+    "description": "Checks that a SLSA provenance attestation describing how the artifact was built is available.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "has-attestation.hjson",
+      "digest": {
+        "sha256": "1e7c701e47ebc9331995c8a43b26e67a1a27fe7a12dd376ff3b188889e9d116a",
+        "sha512": "9bd7d5571033dcb6d48d3c13f758c1189ef735782dcfc6848e138745dfb0080b00ca34bfba30fc1bb2f3044b2e6fb42f481780a347fbff3a73b907586a2bdf78"
+      }
     },
-    "tenets": [
-        {
-            "id": "slsa",
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": ["https://slsa.dev/provenance/v0.2", "https://slsa.dev/provenance/v1"]
-            },
-            "error": {
-                "message": "No SLSA attestation found",
-                "guidance": "Capture the build process in a SLSA provenance attestation"
-            },
-            "assessment": {
-                "message": "SLSA provenance attestation found"
-
-            }
-        }
-    ]
+    "name": "SLSA Provenance Available"
+  },
+  "tenets": [
+    {
+      "id": "slsa",
+      "code": "size(predicates) > 0",
+      "predicates": {
+        "types": [
+          "https://slsa.dev/provenance/v0.2",
+          "https://slsa.dev/provenance/v1"
+        ]
+      },
+      "error": {
+        "message": "No SLSA attestation found",
+        "guidance": "Capture the build process in a SLSA provenance attestation"
+      },
+      "assessment": {
+        "message": "SLSA provenance attestation found"
+      }
+    }
+  ]
 }

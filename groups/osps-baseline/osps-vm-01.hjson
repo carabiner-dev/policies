@@ -1,7 +1,8 @@
 {
     "id": "OSPS-VM-01",
     "meta": {
-        "description": "Policy for coordinated vulnerability disclosure",
+        "name": "Coordinated Vulnerability Disclosure Policy",
+        "description": "The project documentation MUST include a policy for coordinated vulnerability disclosure, with a clear timeframe for response.\n\nChecked through the release SBOM with the `sbom/sbom-contains-security-md` policy, which looks for a `SECURITY.md` file.",
         "controls": [ { "framework": "OSPS", "class": "VM", "id": "01" } ]
     },
     "blocks": [

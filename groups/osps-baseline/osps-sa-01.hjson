@@ -1,14 +1,19 @@
 {
     "id": "OSPS-SA-01",
     "meta": {
+        "name": "System Design Documentation",
         "enforce": "OFF",
-        "description": "design documentation demonstrating all actions and actors within the system",
+        "description": "The project documentation MUST provide design documentation demonstrating all actions and actors within the system.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
         "controls": [ { "framework": "OSPS", "class": "SA", "id": "01" } ]
     },
     "blocks": [
         {
             "policies": [
                 {
+                    "meta": {
+                        "name": "Not Implemented",
+                        "description": "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails."
+                    },
                     "tenets": [
                         {
                             "id": "01",

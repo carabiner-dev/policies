@@ -1,17 +1,36 @@
 {
-    "id": "SLSA-SRC-GHORG",
-    "meta": {
-        "description": "Evaluates if athe repository is hosted in GitHub"
+  "id": "SLSA-SRC-GHORG",
+  "meta": {
+    "description": "Checks the repository's SLSA source provenance to establish that the repository is hosted in a GitHub organization.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "ghorg.hjson",
+      "digest": {
+        "sha256": "1b347db40c46274260fb320d27d1cb85bd5220cdad473fe2e00ecca0388a8f2e",
+        "sha512": "7c8d907769e84ef686b4cc8f5dd60254b3702b7963c15df56ac723a044cb50ca91845a6b542456d1e89ae7384f1508a4786c4d7a77d9daaac43278ee56dbc63c"
+      }
     },
-    "tenets": [
-        {
-            "id": "01",
-            "predicates": { "types": ["https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"] },
-            "outputs": {
-                "org": { "code":"github.orgDescriptorFromURI(predicate.data.repoUri)" }
-            },
-            "code": "outputs.org.name.indexOf('github.com') == 0 ",
-            "assessment": { "message": "GitHub organization found in SLSA provenance" }
+    "name": "Hosted on GitHub"
+  },
+  "tenets": [
+    {
+      "id": "01",
+      "code": "outputs.org.name.indexOf('github.com') == 0 ",
+      "predicates": {
+        "types": [
+          "https://github.com/slsa-framework/source-tool/source-provenance/v1",
+          "https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft"
+        ]
+      },
+      "outputs": {
+        "org": {
+          "code": "github.orgDescriptorFromURI(predicate.data.repoUri)"
         }
-    ]
+      },
+      "assessment": {
+        "message": "GitHub organization found in SLSA provenance"
+      }
+    }
+  ]
 }

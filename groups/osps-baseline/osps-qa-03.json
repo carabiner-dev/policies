@@ -1,0 +1,64 @@
+{
+  "id": "OSPS-QA-03",
+  "meta": {
+    "description": "Automated status checks for commits MUST pass or be manually bypassed prior to merging into the primary branch.\n\nChecked through the attested branch protection rules with the `snappy/branch-status-checks` policy.",
+    "controls": [
+      {
+        "id": "03",
+        "framework": "OSPS",
+        "class": "QA"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-qa-03.hjson",
+      "digest": {
+        "sha256": "329ad5d43af672595c29ea0ad14a8a5ae113a34f1c445da3857ac8f8cdb141bc",
+        "sha512": "335c1bebd838b3b95a4b7819c264f9bc0ded1801c34fcfcf791b188559ba5cdc1786be70451e246d0bede3bb531ec76d9c49279c50ce3e5f4e481fa29b7ded93"
+      }
+    },
+    "name": "Status Checks Before Merging"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "SNAPPY-BRANCH-STATUS-CHECKS",
+          "meta": {
+            "description": "Checks for a branch rule requiring PR status checks to pass",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SNAPPY-BRANCH-STATUS-CHECKS",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json",
+              "digest": {
+                "sha256": "10d7d82fd5cece57cc9d5e3c002125cf5b52f47388f646689e60bd6cefa1ac01",
+                "sha512": "9aebca98ac2d8c9a27427d96846352c2eb939ca94f89d2ddb7b21f3f8bdf8cd971ee0338d3da74f6476b089277d680f8cc6beb3427f43182abab83f9081b242c"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json"
+            }
+          },
+          "tenets": [
+            {
+              "id": "01",
+              "code": "has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.type == \"required_status_checks\") : false",
+              "predicates": {
+                "types": [
+                  "http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml",
+                  "http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml"
+                ]
+              },
+              "error": {
+                "message": "Add a branch rule to ensure status checks must pass",
+                "guidance": "Enable \"Require status checks to pass\" in the repository branch rulesets"
+              },
+              "assessment": {
+                "message": "Status checks enforced"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

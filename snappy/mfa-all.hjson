@@ -1,0 +1,29 @@
+{
+    id: "SNAPPY-MFA-ALL"
+    meta: {
+        name: "MFA Enabled for All Members"
+        description: "Reads the attested GitHub organization data and fails when multi-factor authentication is not enabled for all members of the organization."
+    }
+    tenets: [
+        {
+            code: "outputs.members.all(member, member.hasTwoFactorEnabled) && size(outputs.members) > 0"
+            predicates: {
+                types: [
+                    "http://github.com/carabiner-dev/snappy/specs/mfa.yaml"
+                ]
+            }
+            outputs: {
+                members: {
+                    code: "has(predicates[0].data.values.data.organization.membersWithRole) ? (has(predicates[0].data.values.data.organization.membersWithRole.edges) ? predicates[0].data.values.data.organization.membersWithRole.edges : []) : []"
+                }
+            }
+            assessment: {
+                message: "Multi-factor authentication is enabled for all members in the organization"
+            }
+            error: {
+                message: "Multifactor authentication is not enabled for some members"
+                guidance: "Enable MFA in the GitHub organization settings to force all members to turn it on"
+            }
+        }
+    ]
+}

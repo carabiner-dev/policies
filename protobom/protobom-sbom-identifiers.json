@@ -1,18 +1,36 @@
 {
-    "id": "PROTOBOM-IDENTIFIERS",
-    "meta": {
-        "description": "Software identifiers"
+  "id": "PROTOBOM-IDENTIFIERS",
+  "meta": {
+    "description": "Checks that every top-level component of the SBOM carries at least one software identifier, such as a package URL or a CPE. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-identifiers.hjson",
+      "digest": {
+        "sha256": "4d083ced36fb94b74abc35a121ecff2c0711098744662384c74e007c99847381",
+        "sha512": "de53cd8a6211991d50b9d1101522298d490fbf8bc2ae69c8e6aacb6373505a9a2f5fca62f555d90e17d7d9dc067f4b46a5ebd7c884fe861cd249eb957c8be259"
+      }
     },
-    "predicates": {
-        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-    },
-    "tenets": [
-        {
-            "outputs": {
-                "identifiers": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)" } 
-            },
-            "code": "outputs.identifiers.all(s, size(s) > 0)",
-            "assessment": {  "message": "Top level components have software identifiers" }
+    "name": "Component Identifiers"
+  },
+  "predicates": {
+    "types": [
+      "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets": [
+    {
+      "code": "outputs.identifiers.all(s, size(s) > 0)",
+      "outputs": {
+        "identifiers": {
+          "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)"
         }
-    ]            
+      },
+      "assessment": {
+        "message": "Top level components have software identifiers"
+      }
+    }
+  ]
 }

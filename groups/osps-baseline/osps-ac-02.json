@@ -1,0 +1,60 @@
+{
+  "id": "OSPS-AC-02",
+  "meta": {
+    "description": "The project's version control system MUST restrict collaborator permissions to the lowest available privileges by default.\n\nChecked through the attested GitHub organization data with the `snappy/org-exists` policy.",
+    "controls": [
+      {
+        "id": "02",
+        "framework": "OSPS",
+        "class": "AC"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-ac-02.hjson",
+      "digest": {
+        "sha256": "d7acaf59c8f43b83bb2d247a947ec96c85f2890bbb60651066021fca4ef4b205",
+        "sha512": "6eb67b5edb1bb0683fc4de1a30ad0fff372c98f5c9c62c917ca49f9884f20417c9874c49e71c7e5acb759478f404a04138a7e78f9ed083966ca25599c3bbd35d"
+      }
+    },
+    "name": "Restrict Collaborator Permissions"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "SNAPPY-ORG-EXISTS",
+          "meta": {
+            "description": "Attested GitHub organization data available",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SNAPPY-ORG-EXISTS",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json",
+              "digest": {
+                "sha256": "d4b0550256121db1e3ad8659756ac107199db51c482e04e504a4df44183f6b37",
+                "sha512": "23088190d5dc7347331b1a6f0f5df8a384f2c12fcc164fc9861d4706a9c48ba5f89e7ece37cab8de26b88d1e1f6bee24c955470cb64ea84f1bde4d5b872f6f55"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json"
+            }
+          },
+          "tenets": [
+            {
+              "id": "01",
+              "code": "true",
+              "predicates": {
+                "types": [
+                  "http://github.com/carabiner-dev/snappy/specs/github/org.yaml",
+                  "http://github.com/carabiner-dev/snappy/specs/org.yaml"
+                ]
+              },
+              "assessment": {
+                "message": "Attested GitHub organization data found"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

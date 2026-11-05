@@ -1,0 +1,76 @@
+{
+  "id": "OSPS-VM-05",
+  "meta": {
+    "description": "The project MUST publish and enforce a dependency remediation policy so released software carries no exploitable vulnerabilities.\n\nChecked with the `openvex/no-exploitable-vulns-osv` policy, which fails on findings not addressed by OpenVEX statements.",
+    "controls": [
+      {
+        "id": "05",
+        "framework": "OSPS",
+        "class": "VM"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-vm-05.hjson",
+      "digest": {
+        "sha256": "64fa560edf938457edf41e6fd8a0ad62045181c0570fb83d813e739cf20ff5de",
+        "sha512": "c479dbf77cfd4d44f2ce33eb055c72da14a462f892225a2f2ea8f4529d01ca746dee74cde5ae0450a94e0e62adda0889a9e2d4a0c483bc54b7738d914e671c72"
+      }
+    },
+    "name": "No Exploitable Vulnerabilities"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "openvex-no-exploitable-vulns",
+          "meta": {
+            "description": "Ensure the project has no exploitable vulnerabilities",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "openvex-no-exploitable-vulns",
+              "uri": "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json",
+              "digest": {
+                "sha256": "83e07778ab0e94ac1c0581a041a6cadd923e2123d22a683978d5567cb342304b",
+                "sha512": "5a3cf67e11fe42539eadf3bade9f09feb763a26d1d73d71f2fb4bc027880247e4d8f96dea09aa3c528524ed7b008583d6e92ce07cc4737a5e0f66c22a7199710"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json"
+            }
+          },
+          "transformers": [
+            {
+              "id": "internal:vex"
+            }
+          ],
+          "tenets": [
+            {
+              "id": "02-osv+vex",
+              "code": "outputs.vulnerabilities == null ? true : size(outputs.vulnerabilities) == 0",
+              "predicates": {
+                "types": [
+                  "https://ossf.github.io/osv-schema/results@v1.6.7",
+                  "https://ossf.github.io/osv-schema/results@v1",
+                  "https://ossf.github.io/osv-schema/results",
+                  "https://openvex.dev/ns/v0.2.0"
+                ]
+              },
+              "outputs": {
+                "vulnerabilities": {
+                  "code": "predicates[0].data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()"
+                }
+              },
+              "error": {
+                "message": "Vulnerabilities found in code dependencies",
+                "guidance": "A scan of your source code found vulnerabilities. Ensure your dependencies are up to date or issue VEX documents to supress them."
+              },
+              "assessment": {
+                "message": "No exploitable vulnerabilities found"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

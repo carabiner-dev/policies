@@ -1,0 +1,30 @@
+{
+    id: "SCORECARD-CODE-REVIEW"
+    meta: {
+        name: "Code Review Required"
+        description: "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard reports that changes to the primary branch do not require a review from another party."
+    }
+    tenets: [
+        {
+            id: "01-scorecard"
+            code: "outputs.codereview.all(c, c.score == 10)"
+            outputs: {
+                codereview: {
+                    code: "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] "
+                }
+            }
+            predicates: {
+                types: [
+                    "https://scorecard.dev/result/v0.1"
+                ]
+            }
+            assessment: {
+                message: "Scorecard reports code review is required for changes"
+            }
+            error: {
+                message: "Scorecard detected code review is not enabled in the repository"
+                guidance: "Ensure your repo requires a review from another party for every pull request"
+            }
+        }
+    ]
+}

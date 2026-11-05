@@ -2,10 +2,9 @@
     id: sigstore-dual-signatures
 
     meta: {
+        name: "Sigstore Signature Verification (dual-style)"
         description:
             '''
-            # Sigstore Signature Verification (dual-style)
-
             Passes when a release artifact carries a verified sigstore signature
             from an accepted signer, regardless of whether it was signed the
             legacy way (a detached Fulcio certificate + signature pair, e.g.

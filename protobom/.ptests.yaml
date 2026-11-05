@@ -38,6 +38,12 @@ tests:
     subject: "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     attestations:
       - ../testdata/protobom/cdx-complete.intoto.json
+  - name: format-name-passes-with-spdx3
+    policy: protobom-sbom-format-name.hjson
+    expect: PASS
+    subject: "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    attestations:
+      - ../testdata/protobom/spdx3-complete.intoto.json
 
   # SBOM Data Format Version
   - name: format-version-passes-with-spdx
@@ -127,6 +133,18 @@ tests:
     subject: "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
     attestations:
       - ../testdata/protobom/cdx-minimal.intoto.json
+  - name: doc-version-passes-with-spdx3-document-id
+    policy: protobom-sbom-doc-version.hjson
+    expect: PASS
+    subject: "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    attestations:
+      - ../testdata/protobom/spdx3-complete.intoto.json
+  - name: doc-version-fails-with-spdx3-without-document
+    policy: protobom-sbom-doc-version.hjson
+    expect: FAIL
+    subject: "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    attestations:
+      - ../testdata/protobom/spdx3-no-document.intoto.json
 
   # Component Producer
   - name: producers-passes-with-originators

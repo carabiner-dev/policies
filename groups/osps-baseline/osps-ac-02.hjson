@@ -1,6 +1,10 @@
 {
     "id": "OSPS-AC-02",
-    "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "02" } ] },
+    "meta": {
+        "name": "Restrict Collaborator Permissions",
+        "description": "The project's version control system MUST restrict collaborator permissions to the lowest available privileges by default.\n\nChecked through the attested GitHub organization data with the `snappy/org-exists` policy.",
+        "controls": [ { "framework": "OSPS", "class": "AC", "id": "02" } ]
+    },
     "blocks": [
         {
             "policies": [

@@ -1,27 +1,41 @@
 {
-    "id": "sbom-contains-security-md",
-    "meta": {
-        "description": "Checks an SBOM's files for a SECURITY.md file"
+  "id": "sbom-contains-security-md",
+  "meta": {
+    "description": "Looks through the files listed in the project's SBOM for a `SECURITY.md` file and fails when none is found.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "sbom-contains-security-md.hjson",
+      "digest": {
+        "sha256": "e575ffc6f5ea2460ca076bd119494d71e7df71a5c79943f3eda5de4375c78f45",
+        "sha512": "792df0c28b8e0875f6ddd1ca1e78031d9ce1088e3c6169e193d8be9c3a041d87b5bcacdaf1d5678a240e5a09de492a50d5bee2a3595f81154a4825f2be8206c6"
+      }
     },
-    "tenets": [               
-        {
-            "id": "01-sbom",
-            "code": "size(outputs[\"files\"]) > 0",
-            "predicates": {
-                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-            },
-            "outputs": {
-                "files": {
-                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'SECURITY.md' ))"
-                }
-            },
-            "assessment": {
-                "message": "Found a SECURITY.md file in the project's SBOM."
-            },
-            "error": {
-                "message": "Could not detect a SECURITY.md file in the SBOM.",
-                "guidance": "Add a file named SECURITY.md to your project's vulnerability disclosure policy"
-            }
+    "name": "Security Policy in SBOM"
+  },
+  "tenets": [
+    {
+      "id": "01-sbom",
+      "code": "size(outputs[\"files\"]) > 0",
+      "predicates": {
+        "types": [
+          "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
+          "https://cyclonedx.org/bom"
+        ]
+      },
+      "outputs": {
+        "files": {
+          "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'SECURITY.md' ))"
         }
-    ]
+      },
+      "error": {
+        "message": "Could not detect a SECURITY.md file in the SBOM.",
+        "guidance": "Add a file named SECURITY.md to your project's vulnerability disclosure policy"
+      },
+      "assessment": {
+        "message": "Found a SECURITY.md file in the project's SBOM."
+      }
+    }
+  ]
 }

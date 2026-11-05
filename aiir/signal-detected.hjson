@@ -1,7 +1,8 @@
 {
   "id": "aiir-signal-detected",
   "meta": {
-    "description": "Ensures an AIIR attestation includes a required detection signal"
+    "name": "Required Detection Signal",
+    "description": "Checks that an AIIR commit receipt lists the detection signal named by the `requiredSignal` context value among the signals that informed its authorship decision."
   },
   "context": {
     "requiredSignal": {

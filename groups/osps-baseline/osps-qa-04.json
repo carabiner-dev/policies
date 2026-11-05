@@ -1,0 +1,68 @@
+{
+  "id": "OSPS-QA-04",
+  "meta": {
+    "description": "Any additional subproject code repositories produced by the project and compiled into a release MUST enforce the same security requirements as the primary repository.\n\nChecked through the project's Security Insights data with the `security-insights/has-subprojects` policy.",
+    "controls": [
+      {
+        "id": "04",
+        "framework": "OSPS",
+        "class": "QA"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-qa-04.hjson",
+      "digest": {
+        "sha256": "23a904693c4df5adba1ec3d729dd47fba75cee71cffeca464ecba8aaf8173136",
+        "sha512": "995c7948a9858ae278bd214b1252ce26f4e5882d52f5c452876d9ace250f34f31df1ae50cf4f8bba8035db0820f3520a8ae0a05839f7bb1a0ca4d8c21d61b0c3"
+      }
+    },
+    "name": "Security Requirements on All Codebases"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "SI-HAS-SUBPROJECTS",
+          "meta": {
+            "description": "project has subprojects defined in Security Insights",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SI-HAS-SUBPROJECTS",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json",
+              "digest": {
+                "sha256": "2be00d7c9110b5bbee5fe908c695db348534997beb1e248b6156304780abcbdc",
+                "sha512": "507acd5d733c5f5ae7c35e447e53f9c1ee89ba62b996cdf04f555b463e97aa70e3db8827d7213ba3103a98c30c7914ddf348fc78d82c890968e4200135b7c066"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json"
+            }
+          },
+          "tenets": [
+            {
+              "id": "01-si",
+              "code": "outputs.subprojects.found",
+              "predicates": {
+                "types": [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "outputs": {
+                "subprojects": {
+                  "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.repositories) ? {'found': true, 'subprojects': predicates[0].data.project.repositories } : {'found': false, 'subprojects': [] } ) : {'found': false, 'subprojects': [] }"
+                }
+              },
+              "error": {
+                "message": "Could not find subprojects in security insights.",
+                "guidance": "Add a subprojects list (empty will do) to SI YAML under project.repositories"
+              },
+              "assessment": {
+                "message": "Found a changelog entry in the project's security insights file."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

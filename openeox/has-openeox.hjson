@@ -1,0 +1,26 @@
+{
+    id: "OPENEOX-EXISTS"
+    meta: {
+        name: "OpenEoX Data Available"
+        description: "Checks that an [OpenEoX](https://github.com/openeox) attestation describing the end of life or end of support of the artifact is available. The policy only looks for the attestation; policies that read specific support dates can build on it."
+    }
+    tenets: [
+        {
+            id: "01-openeox"
+            predicates: {
+                types: [
+                    "https://docs.oasis-open.org/openeox/core/v1.0"
+                    "https://docs.oasis-open.org/openeox/eox-core/v1.0"
+                ]
+            }
+            code: "size(predicates) > 0"
+            assessment: {
+                message: "Found an OpenEoX statement with the artifact's EOS."
+            }
+            error: {
+                message: "No OpenEOX data found."
+                guidance: "Capture the project End of Support in an OpenEOX file."
+            }
+        }
+    ]
+}

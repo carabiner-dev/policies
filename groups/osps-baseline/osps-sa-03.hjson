@@ -1,7 +1,8 @@
 {
     "id": "OSPS-SA-03",
     "meta": {
-        "description": "The project MUST assess the security posture of all software assets",
+        "name": "Security Assessment Maintained",
+        "description": "The project MUST assess the security posture of all software assets in the project.\n\nChecked through the project's Security Insights data with the `security-insights/assessments` policy.",
         "controls": [ { "framework": "OSPS", "class": "SA", "id": "03" } ]
     },
     "blocks": [

@@ -1,0 +1,68 @@
+{
+  "id": "OSPS-SA-03",
+  "meta": {
+    "description": "The project MUST assess the security posture of all software assets in the project.\n\nChecked through the project's Security Insights data with the `security-insights/assessments` policy.",
+    "controls": [
+      {
+        "id": "03",
+        "framework": "OSPS",
+        "class": "SA"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-sa-03.hjson",
+      "digest": {
+        "sha256": "321a158757aa320e542555a6e27efc7defcf09e6f7601f41b1eb261f12f8bf90",
+        "sha512": "2e63126e958e89fdfe1ec49282c9ab0ca6d667d6bc94ac95c6dd77e40816354eea2d408996927cdefe6bfca1e460b3e99474e1d4d1b5fc5e615b6d0155850153"
+      }
+    },
+    "name": "Security Assessment Maintained"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "SI-ASSESSMENTS",
+          "meta": {
+            "description": "Checks for assessments URL set in security insights",
+            "assertMode": "AND",
+            "enforce": "ON",
+            "origin": {
+              "name": "SI-ASSESSMENTS",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json",
+              "digest": {
+                "sha256": "1df8a2358e8a5e03177c7f42fe832e3a04a0f0b4fa73cefd6128799fb47d49a1",
+                "sha512": "fc29be4fb4c918b620a75487ea8adfb3ce91595a3e1962b06130cda3d0c183c034a041e26e015377a0a2670b13cdd8db866271545f24a17e4945c81627ad0f3c"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json"
+            }
+          },
+          "tenets": [
+            {
+              "id": "01-si",
+              "code": "size(outputs.assessments) > 0",
+              "predicates": {
+                "types": [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "outputs": {
+                "assessments": {
+                  "code": "has(predicates[0].data.repository) && has(predicates[0].data.repository.security) && has(predicates[0].data.repository.security.assessments) ? predicates[0].data.repository.security.assessments : {}"
+                }
+              },
+              "error": {
+                "message": "No assessments found in security insights",
+                "guidance": "Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml"
+              },
+              "assessment": {
+                "message": "Found at least one security assessment listed in security insights."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

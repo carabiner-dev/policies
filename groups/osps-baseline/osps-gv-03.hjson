@@ -1,7 +1,8 @@
 {
     "id": "OSPS-GV-03",
     "meta": {
-        "description": "The project documentation MUST include an explanation of the contribution process.",
+        "name": "Contribution Guide Published",
+        "description": "The project documentation MUST include an explanation of the contribution process.\n\nChecked through the release SBOM with the `sbom/sbom-contains-contributing-md` policy, which looks for a `CONTRIBUTING.md` file.",
         "controls": [ { "framework": "OSPS", "class": "GV", "id": "03" } ]
     },
     "blocks": [

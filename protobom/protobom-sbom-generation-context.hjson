@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-GENERATION-CONTEXT
 
     meta: {
+        name: "SBOM Generation Context"
         description:
             '''
-            # SBOM Generation Context
-
             Checks that the SBOM declares the software lifecycle phase it was
             generated in (before build, build, after build, etc). This
             implements the _SBOM Generation Context_ element of the CISA 2026
@@ -26,6 +25,7 @@
     predicates: {
         types: [
             "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
             "https://cyclonedx.org/bom"
         ]
     }

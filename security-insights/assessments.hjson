@@ -1,0 +1,30 @@
+{
+    id: "SI-ASSESSMENTS"
+    meta: {
+        name: "Security Assessments Listed"
+        description: "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when no security assessment is listed for the project."
+    }
+    tenets: [
+        {
+            id: "01-si"
+            predicates: {
+                types: [
+                    "https://github.com/ossf/security-insights-spec"
+                ]
+            }
+            code: "size(outputs.assessments) > 0"
+            outputs: {
+                assessments: {
+                    code: "has(predicates[0].data.repository) && has(predicates[0].data.repository.security) && has(predicates[0].data.repository.security.assessments) ? predicates[0].data.repository.security.assessments : {}"
+                }
+            }
+            assessment: {
+                message: "Found at least one security assessment listed in security insights."
+            }
+            error: {
+                message: "No assessments found in security insights"
+                guidance: "Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml"
+            }
+        }
+    ]
+}

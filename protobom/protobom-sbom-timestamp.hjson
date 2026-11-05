@@ -1,0 +1,27 @@
+{
+    id: "PROTOBOM-TIMESTAMP"
+    meta: {
+        name: "SBOM Timestamp"
+        description: "Checks that the SBOM records when it was generated. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike."
+    }
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+    tenets: [
+        {
+            outputs: {
+                date: {
+                    code: "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
+                }
+            }
+            code: "int(outputs.date) > 0"
+            assessment: {
+                message: "SBOM contains a timestamp"
+            }
+        }
+    ]
+}

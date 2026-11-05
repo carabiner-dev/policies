@@ -1,27 +1,39 @@
 {
-    "id": "SI-SIGNATURE-VERIFY",
-    "meta": {
-        "description": "Ensures the security insights file links a signature verification document"
+  "id": "SI-SIGNATURE-VERIFY",
+  "meta": {
+    "description": "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when it does not link to instructions for verifying the project's signatures.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "signature-verify.hjson",
+      "digest": {
+        "sha256": "546d3eeb64667cdf076c93618a4d4c3222ee5c1b35a578b5b2c71c154e531fb3",
+        "sha512": "a1b4baa2eb6c2fc8a4ba7d813bff907b2eb047a811c4ec6cadb6260acde8439573585d8343d800554e64934a757192b2a03a251192f06c8ce090c6d5276b2ea0"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-si",
-            "code": "outputs['verify'] != '' ",
-            "outputs": {
-                "verify": {
-                    "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.documentation) ? ('signature-verification' in predicates[0].data.project.documentation ? predicates[0].data.project.documentation['signature-verification'] : '' ) : '' ) : '' "
-                }
-            },
-            "predicates": {
-                "types": ["https://github.com/ossf/security-insights-spec"]
-            },
-            "assessment": {
-                "message": "Signature verification instructions found in SECURITY_INSIGHTS.yml"
-            },
-            "error": {
-                "message": "No verification instructions found in SI",
-                "guidance": "Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml"
-            }
+    "name": "Signature Verification Instructions"
+  },
+  "tenets": [
+    {
+      "id": "01-si",
+      "code": "outputs['verify'] != '' ",
+      "predicates": {
+        "types": [
+          "https://github.com/ossf/security-insights-spec"
+        ]
+      },
+      "outputs": {
+        "verify": {
+          "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.documentation) ? ('signature-verification' in predicates[0].data.project.documentation ? predicates[0].data.project.documentation['signature-verification'] : '' ) : '' ) : '' "
         }
-    ]
+      },
+      "error": {
+        "message": "No verification instructions found in SI",
+        "guidance": "Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml"
+      },
+      "assessment": {
+        "message": "Signature verification instructions found in SECURITY_INSIGHTS.yml"
+      }
+    }
+  ]
 }

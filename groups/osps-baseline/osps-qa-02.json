@@ -1,0 +1,77 @@
+{
+  "id": "OSPS-QA-02",
+  "meta": {
+    "description": "The project MUST provide a list of dependencies used in the software.\n\nChecked with the `sbom/sbom-exists` policy, which requires an attested SBOM for the release.",
+    "controls": [
+      {
+        "id": "02",
+        "framework": "OSPS",
+        "class": "QA"
+      }
+    ],
+    "enforce": "ON",
+    "origin": {
+      "name": "osps-qa-02.hjson",
+      "digest": {
+        "sha256": "0fa20058704ff6355cd87bc21c7558ae06126cbca4ad3ddb44d9ca794def493a",
+        "sha512": "8b404edf6c852d38ccd396fa3f6c53d544c662fdbda218491a0d42d659274fc0baa632519c1a026ba872b5ce3c07486b96e5fb5c6aa0baccc92f3ea1e5865a38"
+      }
+    },
+    "name": "Software Dependencies Published"
+  },
+  "blocks": [
+    {
+      "policies": [
+        {
+          "id": "sbom-exists",
+          "meta": {
+            "description": "SBOM data found",
+            "assertMode": "OR",
+            "enforce": "ON",
+            "origin": {
+              "name": "sbom-exists",
+              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json",
+              "digest": {
+                "sha256": "410e9390f24dabe1d74fb5330a55031dd07302ba01271a141d4cc5d94a143dad",
+                "sha512": "2189f01e0b452495c21e8397cf7b38c7c63ac287e40cda912cff404d0337bb8ede3c0beb1b170c6e51da0a31ebdbc9af7bdd7339ce0e352a22ff91eaffd25b2d"
+              },
+              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json"
+            }
+          },
+          "tenets": [
+            {
+              "code": "size(predicates) > 0",
+              "predicates": {
+                "types": [
+                  "https://spdx.dev/Document"
+                ]
+              },
+              "error": {
+                "message": "No SPDX SBOM found",
+                "guidance": "Generate an SPDX SBOM from your code"
+              },
+              "assessment": {
+                "message": "Found attested SBOM (SPDX)"
+              }
+            },
+            {
+              "code": "size(predicates) > 0",
+              "predicates": {
+                "types": [
+                  "https://cyclonedx.org/bom"
+                ]
+              },
+              "error": {
+                "message": "No CycloneDX SBOM found",
+                "guidance": "Generate a CycloneDX SBOM from your code"
+              },
+              "assessment": {
+                "message": "Found attested SBOM (CycloneDX)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

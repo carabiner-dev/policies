@@ -1,14 +1,31 @@
 {
-    "id": "SNAPPY-ORG-EXISTS",
-    "meta": {
-        "description": "Attested GitHub organization data available"
+  "id": "SNAPPY-ORG-EXISTS",
+  "meta": {
+    "description": "Checks that attested data about the GitHub organization hosting the project is available.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "org-exists.hjson",
+      "digest": {
+        "sha256": "94fd98e879325b6f4fb6f27afbc0aa11162ff74823fee2394b35e38e66925532",
+        "sha512": "8d4cdbe5e777e80f34fd9189ba0e35a3469b4c8795a8b0efd5cf0d18f8fe9ffba02c47afee843e74963bc2ea2309e1d29836e270307011e60a328a06f98137b8"
+      }
     },
-    "tenets": [
-        {
-            "id": "01",
-            "predicates": { "types": ["http://github.com/carabiner-dev/snappy/specs/github/org.yaml", "http://github.com/carabiner-dev/snappy/specs/org.yaml"] },
-            "code": "true",
-            "assessment": { "message": "Attested GitHub organization data found" }
-        }
-    ]
+    "name": "Organization Data Available"
+  },
+  "tenets": [
+    {
+      "id": "01",
+      "code": "true",
+      "predicates": {
+        "types": [
+          "http://github.com/carabiner-dev/snappy/specs/github/org.yaml",
+          "http://github.com/carabiner-dev/snappy/specs/org.yaml"
+        ]
+      },
+      "assessment": {
+        "message": "Attested GitHub organization data found"
+      }
+    }
+  ]
 }

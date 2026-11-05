@@ -1,7 +1,8 @@
 {
     "id": "OSPS-DO-05",
     "meta": {
-        "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
+        "name": "Security Update Scope and Duration",
+        "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates.\n\nChecked with the `openeox/has-openeox` policy, which requires an OpenEoX statement describing the release's end of support.",
         "controls": [ { "framework": "OSPS", "class": "DO", "id": "05" } ]
     },
     "blocks": [

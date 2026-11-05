@@ -1,14 +1,19 @@
 {
     "id": "OSPS-SA-02",
     "meta": {
+        "name": "External Interface Descriptions",
         "enforce": "OFF",
-        "description": "descriptions of all external software interfaces",
+        "description": "The project documentation MUST include descriptions of all external software interfaces of the released software assets.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
         "controls": [ { "framework": "OSPS", "class": "SA", "id": "02" } ]
     },
     "blocks": [
         {
             "policies": [
                 {
+                    "meta": {
+                        "name": "Not Implemented",
+                        "description": "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails."
+                    },
                     "tenets": [
                         {
                             "id": "01",

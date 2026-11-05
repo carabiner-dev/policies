@@ -1,7 +1,8 @@
 {
     "id": "OSPS-BR-06",
     "meta": {
-        "description": "Release MUST be signed or accounted for in a signed manifest",
+        "name": "Signed Releases",
+        "description": "All releases MUST be signed or accounted for in a signed manifest including each asset's cryptographic hashes.\n\nChecked with the `slsa/has-attestation` policy, which requires signed SLSA provenance for the release.",
         "controls": [ { "framework": "OSPS", "class": "BR", "id": "06" } ]
     },
     "blocks": [

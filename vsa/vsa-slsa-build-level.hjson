@@ -1,0 +1,37 @@
+{
+    id: "vsa-slsa-build-level"
+    meta: {
+        name: "Verified SLSA Build Level"
+        description: "Checks that a SLSA Verification Summary Attestation records a passed verification at the expected SLSA Build level for the artifact."
+    }
+    context: {
+        level: {
+            required: true
+            description: "SLSA Build level to check (1-4)"
+        }
+    }
+    tenets: [
+        {
+            predicates: {
+                types: [
+                    "https://slsa.dev/verification_summary/v1"
+                ]
+            }
+            outputs: {
+                pass: {
+                    code: "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false"
+                }
+                levels: {
+                    code: "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] "
+                }
+            }
+            code: "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )"
+            assessment: {
+                message: "VSA attesting a SLSA_BUILD_3 compliance verification"
+            }
+            error: {
+                message: "SLSA Build L3 not recored in verification summary"
+            }
+        }
+    ]
+}

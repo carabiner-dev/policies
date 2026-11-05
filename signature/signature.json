@@ -1,22 +1,34 @@
 {
-    "id": "detached-signature",
-    "meta": {
-        "description": "Verifies an artifact with a detached signature or sigstore bundle"
+  "id": "detached-signature",
+  "meta": {
+    "description": "Checks that the artifact carries a verified detached signature or sigstore bundle from an accepted signer. The signer identity is matched by AMPEL against the identities given at verification time or declared in the policy.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "signature.hjson",
+      "digest": {
+        "sha256": "8dc2d08cba74ce22ac327a75476463ef3e433b3edb582789ac9e447a4c2bf27b",
+        "sha512": "d3f4c0d8f070ca32540290c8a2fcc150cf714df5b7a6c983c840d4d0fa1de4c2512d8d82e9b1284262c2267bb39ba4c9a6ee5b90a98e317e8b9dd6cb092aa478"
+      }
     },
-    "tenets": [
-        {
-            "id": "signature-check",
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": ["https://carabiner.dev/ampel/signature/v1"]
-            },
-            "error": {
-                "message": "No detached signature found",
-                "guidance": "No signature found or unkown key"
-            },
-            "assessment": {
-                "message": "Signature verfiied"
-            }
-        }
-    ]
+    "name": "Detached Signature Verified"
+  },
+  "tenets": [
+    {
+      "id": "signature-check",
+      "code": "size(predicates) > 0",
+      "predicates": {
+        "types": [
+          "https://carabiner.dev/ampel/signature/v1"
+        ]
+      },
+      "error": {
+        "message": "No detached signature found",
+        "guidance": "No signature found or unkown key"
+      },
+      "assessment": {
+        "message": "Signature verfiied"
+      }
+    }
+  ]
 }
