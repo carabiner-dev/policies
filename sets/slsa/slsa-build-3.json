@@ -23,7 +23,7 @@
     {
       "id": "slsa-builder-id",
       "meta": {
-        "description": "Ensures an artifact was built by a specific builder",
+        "description": "Checks that the builder recorded in the artifact's SLSA provenance matches the `builderId` context value, either exactly or as a prefix followed by `@`.",
         "assertMode": "OR",
         "controls": [
           {
@@ -37,11 +37,12 @@
           "name": "slsa-builder-id",
           "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json",
           "digest": {
-            "sha256": "a37585984f01ddfa466faccd13f72086a90f86f285a0dc78c5599023f813a10c",
-            "sha512": "8271f81825c6ff59621ee022480e6d74579acee6b2db8e21c04cfbecc35278d3acd15494954c0c559e76faf6bec1c3a2a5bfb8f6b97e3da25c2cb879061c90ce"
+            "sha256": "ab316b012ca5c51cdb8817fe8fb96a8d50e0d97f74c1ee5c3cc0000a4ec75297",
+            "sha512": "a52efade7b8c4a311ac8c09ffb7ed03be82376a2c58335f5a6d4e0b5b8c5de42ed13f46bd7825bb72558dc69b218faa87a72a438bc73569bc88f05a18ceb8f18"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json"
-        }
+        },
+        "name": "Expected Builder"
       },
       "context": {
         "builderId": {
@@ -95,7 +96,7 @@
     {
       "id": "slsa-build-type",
       "meta": {
-        "description": "Ensures an artifact was built from a specified repository and commit",
+        "description": "Checks that the build type recorded in the artifact's SLSA provenance matches the `buildType` context value, either exactly or as a prefix followed by `@`.",
         "assertMode": "OR",
         "controls": [
           {
@@ -109,11 +110,12 @@
           "name": "slsa-build-type",
           "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json",
           "digest": {
-            "sha256": "39303561c2bf42f0be93e608865cd6234ed423bdcc071c71ad9c788eab8d5e57",
-            "sha512": "36762eff503fca95d93bd6037901d822c145d56e534937978eb1871d1af5de1eef0cf09883a6affd1fc03899d3446b5dc392d431ea94a9a8ae1f797f0f579eaf"
+            "sha256": "139a80fc08cab8a12e410aa18d741121df651bb5d8005ce4bbb5bcfc0def0d45",
+            "sha512": "846c81a088f49503eb14955fa6b408a9480a83bdac7a9e8dbb81ac36071ae130d1129f7fb76f54491f914ff21c400d4519c69abe273da9823f4e2318719e0589"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json"
-        }
+        },
+        "name": "Expected Build Type"
       },
       "context": {
         "buildType": {
@@ -167,7 +169,7 @@
     {
       "id": "slsa-build-point",
       "meta": {
-        "description": "Ensures an artifact was built from a specific repository and commit",
+        "description": "Checks that the artifact's SLSA provenance records the expected source repository and commit, given as the `buildPoint` context value, among its resolved dependencies.",
         "assertMode": "OR",
         "controls": [
           {
@@ -181,11 +183,12 @@
           "name": "slsa-build-point",
           "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json",
           "digest": {
-            "sha256": "564edd2311fb15fa2d27a86287f00ba0eb40d64b1bfd643d77fc0212889ff816",
-            "sha512": "7fa9bb421b67fb158ab54d21f1b43adb8ec29babefcc4377d67818e9b6f10a85bfa712007498d0a625d40bc72cc7f96ada2eae58add32075b853eb1882802a29"
+            "sha256": "0cad59b1728989e418d24e902b26a9ca2906a22ebdfc01001631d0ffed5696ce",
+            "sha512": "db8bef03235162acbd3934f3a76a5fab47dba15f61f1282051682bec7681aa80dbda58d7eacbbe717d4ce9ba29830442c8d77f556049cbdf5b5d8883cf177add"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json"
-        }
+        },
+        "name": "Expected Build Point"
       },
       "context": {
         "buildPoint": {

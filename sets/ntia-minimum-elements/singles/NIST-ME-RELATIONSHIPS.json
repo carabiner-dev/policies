@@ -1,4 +1,5 @@
 {
+  "id": "NIST-ME-RELATIONSHIPS",
   "meta": {
     "description": "Checks that every top-level component of the SBOM records its dependency relationships.",
     "assertMode": "AND",
@@ -6,8 +7,8 @@
     "origin": {
       "name": "NIST-ME-RELATIONSHIPS.hjson",
       "digest": {
-        "sha256": "ba951c53ce0c7b780ef35d3ce8b1f9bbd19b4cf38273e3b65434fda1026928c3",
-        "sha512": "139d36f2c2adb61a3aa7bb69a2d24d5e1c711187f59e9ab524a4afc26afc7a187489c8c8ce5a30d29c39e7345dcfb481de8ae3995eff83264c14d518f8c75a0e"
+        "sha256": "d828d4bf86341c6f2fe33b9fb4f7798d452a79fb551712672e3c54c089d7e89a",
+        "sha512": "89f738e1a16c20f4f8c7c945cdb75256920784877d4e818380f792ff205d5f89abc1e0d7d538c08b898a68e32d6b83ff68a5ac3bfe4179423bbc0caa5268e461"
       }
     },
     "name": "Dependency Relationships"
