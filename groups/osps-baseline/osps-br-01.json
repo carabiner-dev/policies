@@ -1,0 +1,68 @@
+{
+  "id":  "OSPS-BR-01",
+  "meta":  {
+    "description":  "The project's build and release pipelines MUST NOT permit untrusted input that allows access to privileged resources.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/dangerous-workflow` policy.",
+    "controls":  [
+      {
+        "id":  "01",
+        "framework":  "OSPS",
+        "class":  "BR"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-br-01.hjson",
+      "digest":  {
+        "sha256":  "fdf7a0a36bfedd0e7ac8b39835b2e41051c81aa17b1ebb5033495db500b9985f",
+        "sha512":  "f632ca682227c6a57b45988d0fa638e878794f4a83e4bf3e7ced9be29a14409799b99c01eff57d181e3b8fff86b5da43959bda0f8d8cc97dac5216561b08939e"
+      }
+    },
+    "name":  "No Untrusted Input in Build Pipelines"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "SCORECARD-DANGEROURS-WF",
+          "meta":  {
+            "description":  "The project's build and release pipelines MUST NOT permit untrusted input",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "SCORECARD-DANGEROURS-WF",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json",
+              "digest":  {
+                "sha256":  "32e62634fc89915554e0dff9f36e48bd15f641db9b5c363d99e89b02dcb65876",
+                "sha512":  "4b94dda07da96061c3ec0b91ab88388b8507e2d0753afa05101bdb6369c18f7e9b5c29739a918f8bc7952d28a4de0c5c5299ff60e59c18a6188e7f763a2f3169"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-scorecard",
+              "code":  "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+              "predicates":  {
+                "types":  [
+                  "https://scorecard.dev/result/v0.1"
+                ]
+              },
+              "outputs":  {
+                "bin_artifacts_checks":  {
+                  "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Dangerous-Workflow' && has(c.score)) : [] "
+                }
+              },
+              "error":  {
+                "message":  "Scorecard detected workflows with dangerous patterns",
+                "guidance":  "Review your workflow files and look for dangerous patterns"
+              },
+              "assessment":  {
+                "message":  "Scorecard found no dangerous pipelines"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

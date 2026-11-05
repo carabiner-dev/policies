@@ -1,27 +1,39 @@
 {
-    "id": "SI-HAS-SUBPROJECTS",
-    "meta": {
-        "description": "project has subprojects defined in Security Insights"
+  "id":  "SI-HAS-SUBPROJECTS",
+  "meta":  {
+    "description":  "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when the project does not declare its list of subproject repositories, which may be empty.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "has-subprojects.hjson",
+      "digest":  {
+        "sha256":  "b1f567e5563642345ddd9c9bfe637ea16c7698a4eef776ba6f6ee8f56f62ec13",
+        "sha512":  "0438a0e0bcc78b526aa5446a6927add94f3d28ad91fd701646666913247087db11bab0a191e7e949bd67c18e8fe3e4ecb94728803a085ee025e3c1e9e20eef68"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-si",
-            "predicates": {
-                "types": ["https://github.com/ossf/security-insights-spec"]
-            },
-            "code": "outputs.subprojects.found",
-            "outputs": {
-                "subprojects": {
-                    "code": "has(predicates[0].data.project) ? (has(predicates[0].data.project.repositories) ? {'found': true, 'subprojects': predicates[0].data.project.repositories } : {'found': false, 'subprojects': [] } ) : {'found': false, 'subprojects': [] }"
-                }
-            },
-            "assessment": {
-                "message": "Found a changelog entry in the project's security insights file."
-            },
-            "error": {
-                "message": "Could not find subprojects in security insights.",
-                "guidance": "Add a subprojects list (empty will do) to SI YAML under project.repositories"
-            }
+    "name":  "Subprojects Declared"
+  },
+  "tenets":  [
+    {
+      "id":  "01-si",
+      "code":  "outputs.subprojects.found",
+      "predicates":  {
+        "types":  [
+          "https://github.com/ossf/security-insights-spec"
+        ]
+      },
+      "outputs":  {
+        "subprojects":  {
+          "code":  "has(predicates[0].data.project) ? (has(predicates[0].data.project.repositories) ? {'found': true, 'subprojects': predicates[0].data.project.repositories } : {'found': false, 'subprojects': [] } ) : {'found': false, 'subprojects': [] }"
         }
-    ]
+      },
+      "error":  {
+        "message":  "Could not find subprojects in security insights.",
+        "guidance":  "Add a subprojects list (empty will do) to SI YAML under project.repositories"
+      },
+      "assessment":  {
+        "message":  "Found a changelog entry in the project's security insights file."
+      }
+    }
+  ]
 }

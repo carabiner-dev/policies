@@ -1,7 +1,8 @@
 {
     "id": "OSPS-BR-01",
     "meta": {
-        "description": "The project's build and release pipelines MUST NOT permit untrusted input",
+        "name": "No Untrusted Input in Build Pipelines",
+        "description": "The project's build and release pipelines MUST NOT permit untrusted input that allows access to privileged resources.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/dangerous-workflow` policy.",
         "controls": [ { "framework": "OSPS", "class": "BR", "id": "01" } ]
     },
     "blocks": [

@@ -1,0 +1,57 @@
+{
+  "id":  "PROTOBOM-SBOM-TOOL-NAME",
+  "meta":  {
+    "description":  "Checks that the SBOM records the name of the tool used to generate\nit. This implements the _SBOM Tool Name_ element of the CISA 2026\nSBOM Minimum Elements.\n\nThis policy uses the protobom transformer because the tool\nmetadata is only reachable through the transformed predicate.\n\nNote: protobom does not yet populate the tools collection when\nreading CycloneDX documents, so CycloneDX SBOMs currently fail\nthis check even when `metadata.tools` is set.",
+    "assertMode":  "AND",
+    "controls":  [
+      {
+        "id":  "TOOL-NAME",
+        "framework":  "CISA-SBOM-2026",
+        "class":  "SBOM-METADATA"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "protobom-sbom-tool-name.hjson",
+      "digest":  {
+        "sha256":  "399ae6d88d86f78d5e951e97557f40fd79e2c83f92bf82b15f30a96b3ac1c726",
+        "sha512":  "cd0301c447dca1f4a041e3ec08690a111019dd3044ed42e6a5e5fc95c04a0874e31a690cb68ab42104afbad083cf55e2909420f74536cedc45cec0a05a21fe60"
+      }
+    },
+    "name":  "SBOM Tool Name"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "transformers":  [
+    {
+      "id":  "internal:protobom"
+    }
+  ],
+  "tenets":  [
+    {
+      "id":  "tool-name",
+      "code":  "size(outputs.tools) > 0 && outputs.tools.all(t, has(t.name) && t.name != '')",
+      "predicates":  {
+        "types":  [
+          "application/protobom"
+        ]
+      },
+      "outputs":  {
+        "tools":  {
+          "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.tools) ? predicates[0].data.metadata.tools : []"
+        }
+      },
+      "error":  {
+        "message":  "The SBOM does not record the name of the tool that generated it",
+        "guidance":  "Record the generator in the SBOM metadata (SPDX Tool creator or CycloneDX metadata.tools)"
+      },
+      "assessment":  {
+        "message":  "SBOM records the tool that generated it"
+      }
+    }
+  ]
+}

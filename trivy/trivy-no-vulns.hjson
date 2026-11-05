@@ -1,7 +1,8 @@
 {
   "id": "trivy-no-vulns",
   "meta": {
-    "description": "Ensures an attested trivy vulnerability report contains no vulnerabilities"
+    "name": "No Trivy Vulnerabilities",
+    "description": "Checks that an attested [trivy](https://github.com/aquasecurity/trivy) vulnerability report contains no vulnerabilities at all."
   },
   "tenets": [
     {

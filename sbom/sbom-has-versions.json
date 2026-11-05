@@ -1,23 +1,40 @@
 {
-    "id": "sbom-has-versions",
-    "meta": {
-        "description": "Checks an SBOMs top level components to ensure versions are set"
+  "id":  "sbom-has-versions",
+  "meta":  {
+    "description":  "Checks that every top-level component of the SBOM has a version set.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "sbom-has-versions.hjson",
+      "digest":  {
+        "sha256":  "4c68afe34924c1c5e15910f7f96f39a5a73a8affd1930b6553d01f2a99cbf30f",
+        "sha512":  "4fc7a734abee33021d7dc547f0b2dcc6620711435059a4a175a50fba3302b1f274c85af7341cc1a4ec9bd38f25991a37c3abc272a48748277249762ec86e1d39"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-sbom",
-            "predicates": {
-                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-            },
-            "outputs": {
-                "versions": { "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)" } 
-            },
-            "code": "outputs.versions.all(s, s != \"\")",
-            "assessment": {  "message": "All top level components have versions" },
-            "error": {
-                "message": "Som of the top level components in the SBOM are missing versions.",
-                "guidance": "Ensure the SBOM generation tool is capturing the release version."
-            }
+    "name":  "Component Versions in SBOM"
+  },
+  "tenets":  [
+    {
+      "id":  "01-sbom",
+      "code":  "outputs.versions.all(s, s != \"\")",
+      "predicates":  {
+        "types":  [
+          "https://spdx.dev/Document",
+          "https://cyclonedx.org/bom"
+        ]
+      },
+      "outputs":  {
+        "versions":  {
+          "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
         }
-    ]            
+      },
+      "error":  {
+        "message":  "Som of the top level components in the SBOM are missing versions.",
+        "guidance":  "Ensure the SBOM generation tool is capturing the release version."
+      },
+      "assessment":  {
+        "message":  "All top level components have versions"
+      }
+    }
+  ]
 }

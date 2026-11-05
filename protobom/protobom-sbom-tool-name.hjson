@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-TOOL-NAME
 
     meta: {
+        name: "SBOM Tool Name"
         description:
             '''
-            # SBOM Tool Name
-
             Checks that the SBOM records the name of the tool used to generate
             it. This implements the _SBOM Tool Name_ element of the CISA 2026
             SBOM Minimum Elements.

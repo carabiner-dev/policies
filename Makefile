@@ -21,6 +21,20 @@ POLICY_DOCS    := $(addsuffix .md,$(basename $(POLICY_SOURCES)))
 POLICY_DIRS    := $(sort $(dir $(POLICY_SOURCES)))
 POLICY_INDEXES := $(addsuffix README.md,$(POLICY_DIRS))
 
+# The HJSON files are the canonical sources. Every one of them has a JSON
+# twin compiled from it, for consumers that read plain JSON; the twins are
+# generated and must not be edited by hand. policyctl reports a failed
+# compile on stdout with a zero exit code, so the rule refuses an output
+# that is an error message rather than a document.
+JSON_TWINS := $(addsuffix .json,$(basename $(HJSON_SOURCES)))
+
+.PHONY: json
+json: $(JSON_TWINS) ## Compile the JSON twin of every HJSON policy source
+
+%.json: %.hjson
+	$(POLICYCTL) compile $< > $@
+	@if grep -q '^Exec error' $@; then cat $@; rm -f $@; exit 1; fi
+
 .PHONY: docs
 docs: $(POLICY_DOCS) $(POLICY_INDEXES) ## Generate the documentation of every policy material and the per directory indexes
 

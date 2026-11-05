@@ -1,0 +1,68 @@
+{
+  "id":  "OSPS-GV-01",
+  "meta":  {
+    "description":  "The project documentation MUST include the roles and responsibilities for members of the project.\n\nChecked through the project's Security Insights data with the `security-insights/roles` policy, which requires the project administrators to be listed.",
+    "controls":  [
+      {
+        "id":  "01",
+        "framework":  "OSPS",
+        "class":  "GV"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-gv-01.hjson",
+      "digest":  {
+        "sha256":  "8dcfc03a2486abe4aea5075c26119238551e34094ba7dbb05a83253586efac0f",
+        "sha512":  "23f94aca63e8dad062d2530f0e930b3541752bf83db8c32d0e2e1138499e557fc9075d3c93c92c87b7e08b2e53bb7e07514d79ec4e4c241be38745f135bc2157"
+      }
+    },
+    "name":  "Roles and Responsibilities Published"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "SI-ROLES",
+          "meta":  {
+            "description":  "Check the security insights file to ensure administrators are set",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "SI-ROLES",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json",
+              "digest":  {
+                "sha256":  "13b05b25bc7bb37546cc7a3f7e34bde0e6e69e931870c0c415ab07340fc1d2bd",
+                "sha512":  "6be46469187fd541c52e97f8aa065ce6f1687ec34cb9abd5e4a78413126dbb8a7160e57e46a9e8b4bcecc7a4d42bae2ea5857c900132258cc7cade86138f3126"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-si",
+              "code":  "outputs.admins.found ",
+              "predicates":  {
+                "types":  [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "outputs":  {
+                "admins":  {
+                  "code":  "has(predicates[0].data.project) ? (has(predicates[0].data.project.administrators) ? {'found': true,  'admins': predicates[0].data.project.administrators } : {'found': false,  'admins': [] } ) : {'found': false,  'admins': [] } "
+                }
+              },
+              "error":  {
+                "message":  "Security Insights has no project administrators",
+                "guidance":  "List the project admins in your SI yaml under repository.administrators"
+              },
+              "assessment":  {
+                "message":  "Administrators listed in Securty Insights"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

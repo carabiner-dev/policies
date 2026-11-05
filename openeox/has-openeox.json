@@ -1,25 +1,35 @@
 {
-    "id": "OPENEOX-EXISTS",
-    "meta": {
-        "description": "Ensures there is an openeox attestation"
+  "id":  "OPENEOX-EXISTS",
+  "meta":  {
+    "description":  "Checks that an [OpenEoX](https://github.com/openeox) attestation describing the end of life or end of support of the artifact is available. The policy only looks for the attestation; policies that read specific support dates can build on it.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "has-openeox.hjson",
+      "digest":  {
+        "sha256":  "25c3dbd3efee54ca8ed115cd5b978c9d7c825da3141da24e45ed15ae725b5b75",
+        "sha512":  "7adcec833ef431e6fd00a4b8895b4c9133a6ae3c142b5c44089d142868f720bc145fbd61fc939e44b1b804a9134ff6ee882bef0fa2a34f96fd2d945ac0bbcf8e"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-openeox",
-            "predicates": {
-                "types": [
-                    "https://docs.oasis-open.org/openeox/core/v1.0",
-                    "https://docs.oasis-open.org/openeox/eox-core/v1.0"
-                ]
-            },
-            "code": "size(predicates) > 0",
-            "assessment": {
-                "message": "Found an OpenEoX statement with the artifact's EOS."
-            },
-            "error": {
-                "message": "No OpenEOX data found.",
-                "guidance": "Capture the project End of Support in an OpenEOX file."
-            }
-        }
-    ]            
+    "name":  "OpenEoX Data Available"
+  },
+  "tenets":  [
+    {
+      "id":  "01-openeox",
+      "code":  "size(predicates) > 0",
+      "predicates":  {
+        "types":  [
+          "https://docs.oasis-open.org/openeox/core/v1.0",
+          "https://docs.oasis-open.org/openeox/eox-core/v1.0"
+        ]
+      },
+      "error":  {
+        "message":  "No OpenEOX data found.",
+        "guidance":  "Capture the project End of Support in an OpenEOX file."
+      },
+      "assessment":  {
+        "message":  "Found an OpenEoX statement with the artifact's EOS."
+      }
+    }
+  ]
 }

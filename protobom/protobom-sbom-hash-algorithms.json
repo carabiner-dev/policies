@@ -1,0 +1,47 @@
+{
+  "id":  "PROTOBOM-SBOM-HASH-ALGORITHMS",
+  "meta":  {
+    "description":  "Checks that the hashes of the SBOM's top level components identify\nthe cryptographic algorithm that produced them. This implements\nthe _Component Hash Algorithm_ element of the CISA 2026 SBOM\nMinimum Elements.\n\nProtobom normalizes hash algorithm names when ingesting the SBOM,\nso the check requires every hash entry to be keyed by a recognized\nalgorithm.",
+    "assertMode":  "AND",
+    "controls":  [
+      {
+        "id":  "HASH-ALGORITHM",
+        "framework":  "CISA-SBOM-2026",
+        "class":  "COMPONENT-DATA"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "protobom-sbom-hash-algorithms.hjson",
+      "digest":  {
+        "sha256":  "233c18cc6426b46935ef00e54adff34bf51d8a11a3f79c0c89c25f2132c25c0b",
+        "sha512":  "df72009b0236cb110a4a08372ff961214f81302a2446b0771379f4f858af448137dece71f84897f720140048152d4db7ec1c51ac025f03f6d544dcb81d79ba10"
+      }
+    },
+    "name":  "Component Hash Algorithm"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets":  [
+    {
+      "id":  "hash-algorithms",
+      "code":  "size(outputs.hashes) > 0 && outputs.hashes.all(h, size(h) > 0 && h.all(alg, alg != 'UNKNOWN'))",
+      "outputs":  {
+        "hashes":  {
+          "code":  "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, n.hashes) : []"
+        }
+      },
+      "error":  {
+        "message":  "One or more top level components have no hash keyed by a recognized cryptographic algorithm",
+        "guidance":  "Identify the hash algorithm of each component checksum using standard algorithm names (for example SHA256)"
+      },
+      "assessment":  {
+        "message":  "All top level component hashes identify their algorithm"
+      }
+    }
+  ]
+}

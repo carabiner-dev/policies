@@ -1,18 +1,35 @@
 {
-    "id": "PROTOBOM-SUPPLIERS",
-    "meta": {
-        "description": "SBOM top level elements have suppliers set"
+  "id":  "PROTOBOM-SUPPLIERS",
+  "meta":  {
+    "description":  "Checks that every top-level component of the SBOM names its supplier. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "protobom-sbom-suppliers.hjson",
+      "digest":  {
+        "sha256":  "0136820a6c8a57d5b6fd9b9e19cdcfc8ceadc3fdd1fccbe4198de5f37d413575",
+        "sha512":  "9e87e2ae63b4c675fe4e58c962860852dc28c23f781710d5eaba96630af23ad3ab5fd3a1efc91da0d1ac7efb7eb6f207b58362a511619713d32a2253436dd195"
+      }
     },
-    "predicates": {
-        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-    },
-    "tenets": [
-        {
-            "outputs": {
-                "suppliers": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)" } 
-            },
-            "code": "outputs.suppliers.all(s, size(s) > 0)",
-            "assessment": {  "message": "All top level components have supplier info" }
+    "name":  "Component Suppliers"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.suppliers.all(s, size(s) > 0)",
+      "outputs":  {
+        "suppliers":  {
+          "code":  "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)"
         }
-    ]            
+      },
+      "assessment":  {
+        "message":  "All top level components have supplier info"
+      }
+    }
+  ]
 }

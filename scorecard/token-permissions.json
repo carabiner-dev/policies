@@ -1,26 +1,39 @@
 {
-    "id": "SCORECARD-TOKEN-PERMISSIONS",
-    "meta": {
-        "enforce": "OFF",
-        "description": "CI/CD pipelines MUST follow the principle of least privilege"
+  "id":  "SCORECARD-TOKEN-PERMISSIONS",
+  "meta":  {
+    "description":  "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard detected workflows whose tokens hold more permissions than they need.",
+    "assertMode":  "AND",
+    "enforce":  "OFF",
+    "origin":  {
+      "name":  "token-permissions.hjson",
+      "digest":  {
+        "sha256":  "ee834ea45e117f69527dc80e6615d7eace7251f3ae98931328e940e136def201",
+        "sha512":  "2e1e5eec2c31d75e6bb08222908660dd6e1746c5cd18951b3b8470d9ad74079c97c6c3ea201d8854441fee8252507056f05bd1ccbe4ca3f247b3d417240a533f"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-scorecard",
-            "code": "outputs.perms.all(c, c.score == 10)",
-            "outputs": {
-                "perms": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] " }
-            },
-            "predicates": {
-                "types": ["https://scorecard.dev/result/v0.1"]
-            },
-            "assessment": {
-                "message": "Scorecard reports workflows are configured with least privileges"
-            },
-            "error": {
-                "message": "Scorecard detected workflows with excessivce permissions",
-                "guidance": "Ensure workflows drop all privileges and only escalte when needed"
-            }
+    "name":  "Least Privilege Tokens"
+  },
+  "tenets":  [
+    {
+      "id":  "01-scorecard",
+      "code":  "outputs.perms.all(c, c.score == 10)",
+      "predicates":  {
+        "types":  [
+          "https://scorecard.dev/result/v0.1"
+        ]
+      },
+      "outputs":  {
+        "perms":  {
+          "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] "
         }
-    ]
+      },
+      "error":  {
+        "message":  "Scorecard detected workflows with excessivce permissions",
+        "guidance":  "Ensure workflows drop all privileges and only escalte when needed"
+      },
+      "assessment":  {
+        "message":  "Scorecard reports workflows are configured with least privileges"
+      }
+    }
+  ]
 }

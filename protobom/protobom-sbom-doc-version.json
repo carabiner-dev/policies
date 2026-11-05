@@ -1,0 +1,50 @@
+{
+  "id":  "PROTOBOM-SBOM-DOC-VERSION",
+  "meta":  {
+    "description":  "Checks that the SBOM document itself is versioned, either through\na version identifier or through a unique document identifier\n(serial number). This implements the _SBOM Version_ element of the\nCISA 2026 SBOM Minimum Elements, which admits both semantic\nversions and RFC 9562 style unique identifiers.\n\nCycloneDX captures this in the document `version` and\n`serialNumber` fields. SPDX conveys it through the unique document\nnamespace.\n\nNot to be confused with PROTOBOM-SBOM-VERSIONS, which checks the\nversions of the components listed in the SBOM.",
+    "assertMode":  "AND",
+    "controls":  [
+      {
+        "id":  "SBOM-VERSION",
+        "framework":  "CISA-SBOM-2026",
+        "class":  "SBOM-METADATA"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "protobom-sbom-doc-version.hjson",
+      "digest":  {
+        "sha256":  "42f27472240ac1260ce27725e994147b3378b553d7ea09b45d5dc601b87fc0c1",
+        "sha512":  "9f15384e22d86f86c032d7fe252c296b0af5e4b4af52938ceacc79e55078e32ff8125bc61a05805bd4aa4d40c2625bbf89f4643b32eb7b6f0e0e12da28b94d6a"
+      }
+    },
+    "name":  "SBOM Version"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets":  [
+    {
+      "id":  "doc-version",
+      "code":  "(outputs.version != '' && outputs.version != '0') || outputs.identifier != ''",
+      "outputs":  {
+        "identifier":  {
+          "code":  "size(sboms) > 0 ? sboms[0].get_metadata().id : ''"
+        },
+        "version":  {
+          "code":  "size(sboms) > 0 ? sboms[0].get_metadata().version : ''"
+        }
+      },
+      "error":  {
+        "message":  "The SBOM document has no version or unique identifier",
+        "guidance":  "Set the CycloneDX version/serialNumber or the SPDX document namespace to identify this revision of the SBOM"
+      },
+      "assessment":  {
+        "message":  "SBOM document is versioned"
+      }
+    }
+  ]
+}

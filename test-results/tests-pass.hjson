@@ -1,0 +1,46 @@
+{
+    id: "test-results-pass"
+    meta: {
+        name: "Tests Pass"
+        description: "Checks that an attested test run exists for the artifact and that every test in it passed."
+    }
+    tenets: [
+        {
+            id: "01a"
+            code: "size(predicates) > 0"
+            predicates: {
+                types: [
+                    "https://in-toto.io/attestation/test-result/v0.1"
+                ]
+            }
+            assessment: {
+                message: "Attested test run found"
+            }
+            error: {
+                message: "No attested test runs found"
+                guidance: "Generate a test-run attestation to capture the results of your unit tests"
+            }
+        }
+        {
+            id: "01b"
+            code: "outputs.result == 'pass' "
+            outputs: {
+                result: {
+                    code: "has(predicates[0].data.result) ? predicates[0].data.result : '' "
+                }
+            }
+            predicates: {
+                types: [
+                    "https://in-toto.io/attestation/test-result/v0.1"
+                ]
+            }
+            assessment: {
+                message: "All attested tests are passing"
+            }
+            error: {
+                message: "Some of the attested test runs failed"
+                guidance: "Check the output of your unit tests, ensure they are passing"
+            }
+        }
+    ]
+}

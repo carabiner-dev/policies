@@ -1,0 +1,87 @@
+{
+  "id":  "OSPS-DO-02",
+  "meta":  {
+    "description":  "The project documentation MUST include a guide for reporting defects.\n\nChecked through the project's Security Insights data with the `security-insights/vulnerability-reporting` policy.",
+    "controls":  [
+      {
+        "id":  "02",
+        "framework":  "OSPS",
+        "class":  "DO"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-do-02.hjson",
+      "digest":  {
+        "sha256":  "d87646f01111c8906a792283fe72f9257fcd90207abf0aa095c77ca9fc4fd1bb",
+        "sha512":  "e6470b586a3092f5bb0601f2cbbd509e8c501c57d6fe295a30dad339697af8155c9ef36f550205d13c5808a9500e0753185848c242e35ae9928d69d8a23cf122"
+      }
+    },
+    "name":  "Defect Reporting Mechanism"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "SI-VULN-REPORTING",
+          "meta":  {
+            "description":  "Checks SI data for a vulnerability reporting link and ensures reports are accepted",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "SI-VULN-REPORTING",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json",
+              "digest":  {
+                "sha256":  "ff9d39536704e3602379ed4eedbfdc1ef64662691ed42b8319a419f52ed7a0a1",
+                "sha512":  "62b010abf3bfdbe27dad8317c988bb1d7bac4bfd3e674b16f6830af405913c8ce6455df7b19c0f10c462c9bd1b188a1d4865091789c25b7ed1cdfaa76275f25a"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json"
+            }
+          },
+          "tenets":  [
+            {
+              "code":  "outputs[\"reporting\"]  ",
+              "predicates":  {
+                "types":  [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "outputs":  {
+                "reporting":  {
+                  "code":  "\"vulnerability-reporting\" in predicates[0].data.project ? (\"reports-accepted\" in predicates[0].data.project[\"vulnerability-reporting\"] ? predicates[0].data.project[\"vulnerability-reporting\"][\"reports-accepted\"]  : false  ) : false "
+                }
+              },
+              "error":  {
+                "message":  "No vulnerability reports found in SI",
+                "guidance":  "Add a security insights file to your repository and define reports-accepted as true under vulnerability-reporting"
+              },
+              "assessment":  {
+                "message":  "Project accepts vulnerability reports according to SECURITY_INSIGHTS.yml"
+              }
+            },
+            {
+              "code":  "outputs[\"vulnerability-report-contact\"]  ",
+              "predicates":  {
+                "types":  [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "outputs":  {
+                "vulnerability-report-contact":  {
+                  "code":  "\"vulnerability-reporting\" in predicates[0].data.project ? (\"contact\" in predicates[0].data.project[\"vulnerability-reporting\"]  ) : false "
+                }
+              },
+              "error":  {
+                "message":  "No contact information found in SECURITY_INSIGHTS.yml",
+                "guidance":  "Add contact data in the project's SECURITY_INSIGHTS.yml file, under vulnerability-reporting"
+              },
+              "assessment":  {
+                "message":  "Vulnerability report contact found"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

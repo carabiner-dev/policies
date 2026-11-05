@@ -7,6 +7,7 @@
   # `epss` enrichment written by the scanner.
   id: osv-max-epss
   meta: {
+    name: "Maximum EPSS Score"
     description: "Fails when an attested OSV report contains a vulnerability with an EPSS score at or above the threshold (default 0.5)"
     # Requires the osv CEL plugin. Engines that lack it skip this policy
     # (with --skip-unsupported-runtime) rather than failing to compile it.

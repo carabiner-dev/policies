@@ -1,27 +1,39 @@
 {
-    "id": "SI-DEPENDENCY-POLICY",
-    "meta": {
-        "description": "Checks security insights to ensure it links to a dependency policy"
+  "id":  "SI-DEPENDENCY-POLICY",
+  "meta":  {
+    "description":  "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when it does not link to the project's dependency management policy.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "dependency-policy.hjson",
+      "digest":  {
+        "sha256":  "fd88e0a258a2c6be3daa4ff692a7f61cbad5f5380dd3a3d5d0dd95b0a8707a76",
+        "sha512":  "22966fa142b4b3705083fc1c6b6c970c9f402ee7cdbd94875286e359906844779cb2eae6707f2dd329467668515e4e10ab802d895974e7dc45768402fb889def"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-si",
-            "predicates": {
-                "types": ["https://github.com/ossf/security-insights-spec"]
-            },
-            "code": "outputs.deppolicy != '' ",
-            "outputs": {
-                "deppolicy": {
-                    "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (predicates[0].data.repository.documentation.exists(k, k == 'dependency-management-policy') ? predicates[0].data.repository.documentation['dependency-management-policy'] : '') : '') : '' "
-                }
-            },
-            "assessment": {
-                "message": "Found a link to the projects dependency policy in SECURITY_INSIGHTS.yml"
-            },
-            "error": {
-                "message": "Could not detect a dependency policy in the Security Insights file.",
-                "guidance": "Add a changelog entry to your SI file under repository.documentation.dependency-management-policy."
-            }
+    "name":  "Dependency Policy Linked"
+  },
+  "tenets":  [
+    {
+      "id":  "01-si",
+      "code":  "outputs.deppolicy != '' ",
+      "predicates":  {
+        "types":  [
+          "https://github.com/ossf/security-insights-spec"
+        ]
+      },
+      "outputs":  {
+        "deppolicy":  {
+          "code":  "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.documentation) ? (predicates[0].data.repository.documentation.exists(k, k == 'dependency-management-policy') ? predicates[0].data.repository.documentation['dependency-management-policy'] : '') : '') : '' "
         }
-    ]            
+      },
+      "error":  {
+        "message":  "Could not detect a dependency policy in the Security Insights file.",
+        "guidance":  "Add a changelog entry to your SI file under repository.documentation.dependency-management-policy."
+      },
+      "assessment":  {
+        "message":  "Found a link to the projects dependency policy in SECURITY_INSIGHTS.yml"
+      }
+    }
+  ]
 }

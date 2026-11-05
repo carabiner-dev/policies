@@ -1,27 +1,39 @@
 {
-    "id": "SI-CHANGELOG",
-    "meta": {
-        "description": "Ensures the Security Insights changelog field is set"
+  "id":  "SI-CHANGELOG",
+  "meta":  {
+    "description":  "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when the release changelog field is not set.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "changelog.hjson",
+      "digest":  {
+        "sha256":  "e8235af8d27dc274809fb670cfe6024600e77abb405e4a896077d36be5f5fd27",
+        "sha512":  "38a787fbf6a498787a9df8d92c7732a68bd196dd303412b8e5e878a77995f4756cedbf57e9f8708a44c1104f70a8f46f2bdbb429423a5c94259a539776c7adb0"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-si",
-            "predicates": {
-                "types": ["https://github.com/ossf/security-insights-spec"]
-            },
-            "code": "outputs.changelog != '' ",
-            "outputs": {
-                "changelog": {
-                    "code": "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.release) ? (has(predicates[0].data.repository.release.changelog) ? predicates[0].data.repository.release.changelog : '') : '') : '' "
-                }
-            },
-            "assessment": {
-                "message": "Found a changelog entry in the project's security insights file."
-            },
-            "error": {
-                "message": "Could not detect a changelog file in the security insights file.",
-                "guidance": "Add a changelog entry to your SI file under repository.release.changelog"
-            }
+    "name":  "Changelog Linked"
+  },
+  "tenets":  [
+    {
+      "id":  "01-si",
+      "code":  "outputs.changelog != '' ",
+      "predicates":  {
+        "types":  [
+          "https://github.com/ossf/security-insights-spec"
+        ]
+      },
+      "outputs":  {
+        "changelog":  {
+          "code":  "has(predicates[0].data.repository) ? (has(predicates[0].data.repository.release) ? (has(predicates[0].data.repository.release.changelog) ? predicates[0].data.repository.release.changelog : '') : '') : '' "
         }
-    ]            
+      },
+      "error":  {
+        "message":  "Could not detect a changelog file in the security insights file.",
+        "guidance":  "Add a changelog entry to your SI file under repository.release.changelog"
+      },
+      "assessment":  {
+        "message":  "Found a changelog entry in the project's security insights file."
+      }
+    }
+  ]
 }

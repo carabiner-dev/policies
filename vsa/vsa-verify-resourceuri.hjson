@@ -1,0 +1,41 @@
+{
+    id: "vsa-verify-resourceuri"
+    meta: {
+        name: "Expected Resource URI"
+        description: "Checks that a SLSA Verification Summary Attestation verifies the expected resource, given as the `vsaResourceURI` context value, optionally matching it as a prefix."
+    }
+    context: {
+        vsaResourceURI: {
+            required: true
+            description: "Resource URI string to check in the VSA predicate"
+        }
+        matchResourceUriBase: {
+            required: true
+            default: false
+            type: "bool"
+            description: "Allow matching using vsaResourceURI as the string base"
+        }
+    }
+    tenets: [
+        {
+            predicates: {
+                types: [
+                    "https://slsa.dev/verification_summary/v1"
+                ]
+            }
+            outputs: {
+                resourceURI: {
+                    code: "has(predicates[0].data.resourceUri) ? predicates[0].data.resourceUri : '' "
+                }
+            }
+            code: "outputs.resourceURI == context.vsaResourceURI || (outputs.resourceURI.startsWith(context.vsaResourceURI) && context.matchResourceUriBase )"
+            assessment: {
+                message: "VSA verification of expected resource URI"
+            }
+            error: {
+                message: "VSA not vierifying correct resource URI"
+                guidance: "Expecting {{ .Context.vsaResourceURI }} got {{ .Outputs.resourceURI }}"
+            }
+        }
+    ]
+}

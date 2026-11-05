@@ -1,0 +1,49 @@
+{
+  "id":  "OSPS-GV-04",
+  "meta":  {
+    "description":  "The project documentation MUST have a policy that code contributors are reviewed prior to granting escalated permissions to sensitive resources.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
+    "controls":  [
+      {
+        "id":  "04",
+        "framework":  "OSPS",
+        "class":  "GV"
+      }
+    ],
+    "enforce":  "OFF",
+    "origin":  {
+      "name":  "osps-gv-04.hjson",
+      "digest":  {
+        "sha256":  "b4a96c6da9b950a6717db6645aa6eb3b242ac6ce85691299023e02491106eae1",
+        "sha512":  "ee7ddcddf4f520d2b61d5c277527c6d9a35c7d9b761b772888d8824c0a6f856711d5e752809cb07c370315c4877da1a3c5d7721b4d20b3d2ac28b3e627de8fc2"
+      }
+    },
+    "name":  "Formal Review of Permission Grants"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "meta":  {
+            "description":  "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.",
+            "name":  "Not Implemented"
+          },
+          "tenets":  [
+            {
+              "id":  "01",
+              "code":  "false",
+              "predicates":  {
+                "types":  [
+                  "https://slsa.dev/provenance/v0.2"
+                ]
+              },
+              "error":  {
+                "message":  "Not implemented yet",
+                "guidance":  "We don't have a way to detect if contributors are reviewed"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

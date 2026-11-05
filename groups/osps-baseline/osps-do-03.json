@@ -1,0 +1,68 @@
+{
+  "id":  "OSPS-DO-03",
+  "meta":  {
+    "description":  "The project documentation MUST provide instructions to verify the integrity and authenticity of release assets, including the expected identity of the person or process authoring the software release.\n\nChecked through the project's Security Insights data with the `security-insights/signature-verify` policy.",
+    "controls":  [
+      {
+        "id":  "03",
+        "framework":  "OSPS",
+        "class":  "DO"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-do-03.hjson",
+      "digest":  {
+        "sha256":  "73ea5c137fce5ee4a156d653fc2c3a1b7b2fe7454c6948bd89ebdc0c1b490280",
+        "sha512":  "3bde5b4c925a15e179e37ac60a6714ac8753a1b1d478bc25d7f3e6ec11238e9fcecc26983deb05243a114b9d7176aa4ab374f95360a7dc49c5fb20cc3f5981d4"
+      }
+    },
+    "name":  "Release Verification Instructions"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "SI-SIGNATURE-VERIFY",
+          "meta":  {
+            "description":  "Ensures the security insights file links a signature verification document",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "SI-SIGNATURE-VERIFY",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json",
+              "digest":  {
+                "sha256":  "a83d7ed7e18b452dc80c116f548d54585c23dfa5af7b01383ccb8200866ec639",
+                "sha512":  "1d53070a2650e55ea07a438067d2b2cd24ee7c4bd9ae524b03227bab6e04c4f0629a455e47ae0a7a3048359cfc40ac9b4f9e3495d1e5681f196e3ef207504639"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-si",
+              "code":  "outputs['verify'] != '' ",
+              "predicates":  {
+                "types":  [
+                  "https://github.com/ossf/security-insights-spec"
+                ]
+              },
+              "outputs":  {
+                "verify":  {
+                  "code":  "has(predicates[0].data.project) ? (has(predicates[0].data.project.documentation) ? ('signature-verification' in predicates[0].data.project.documentation ? predicates[0].data.project.documentation['signature-verification'] : '' ) : '' ) : '' "
+                }
+              },
+              "error":  {
+                "message":  "No verification instructions found in SI",
+                "guidance":  "Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml"
+              },
+              "assessment":  {
+                "message":  "Signature verification instructions found in SECURITY_INSIGHTS.yml"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id":  "OSPS-BR-02",
+  "meta":  {
+    "description":  "All releases and released software assets MUST be assigned a unique version identifier for each release intended to be used by users.\n\nChecked through the release SBOM with the `sbom/sbom-has-versions` policy, which requires a version on every top-level component.",
+    "controls":  [
+      {
+        "id":  "02",
+        "framework":  "OSPS",
+        "class":  "BR"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-br-02.hjson",
+      "digest":  {
+        "sha256":  "1b3ee394a29dff51e20ac43da448b816364f5465dde15e508c1100bd6ebbe973",
+        "sha512":  "9f87330c5a80c3d8317870583d65e2212246f1ef225eec7cd539f95ecad11daafa363b9443432793dbd74f8260db7984dcd23e0ee9a2ead34c77adeb847878bf"
+      }
+    },
+    "name":  "Unique Version Identifiers"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "sbom-has-versions",
+          "meta":  {
+            "description":  "Checks an SBOMs top level components to ensure versions are set",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "sbom-has-versions",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json",
+              "digest":  {
+                "sha256":  "abed0f47da012f2c11c8b3156385ebd6a6cd998d032cf148db44c2aca85d35e8",
+                "sha512":  "d75ea6eeeee1ba3301eb1470cd791aca1b9b60e8d3fad3fa2615accd399cb9bf3b20d717fc3a82143a0bd88a6535c9a96835bd813a7fa23636a289707deeeca1"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-sbom",
+              "code":  "outputs.versions.all(s, s != \"\")",
+              "predicates":  {
+                "types":  [
+                  "https://spdx.dev/Document",
+                  "https://cyclonedx.org/bom"
+                ]
+              },
+              "outputs":  {
+                "versions":  {
+                  "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
+                }
+              },
+              "error":  {
+                "message":  "Som of the top level components in the SBOM are missing versions.",
+                "guidance":  "Ensure the SBOM generation tool is capturing the release version."
+              },
+              "assessment":  {
+                "message":  "All top level components have versions"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

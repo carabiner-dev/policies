@@ -1,0 +1,40 @@
+{
+  "id":  "osv-no-fixable",
+  "meta":  {
+    "runtime":  "cel@v1?plugin:osv=v1",
+    "description":  "Fails when an attested OSV report contains a vulnerability that already has a fix available",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osv-no-fixable.hjson",
+      "digest":  {
+        "sha256":  "c13c727c544d3de1db77243ad044578c6a0bfa7f38ea47004bdedebb982a47f3",
+        "sha512":  "ac7c21e57a5729958954c95d239acba8ac9ca244ea4bf337c616ad6defe39996d8c9ea7cb08e2277c63f102598bb7dfbed1062b2c51927ba193f8fcbf3959507"
+      }
+    },
+    "name":  "No Fixable Vulnerabilities"
+  },
+  "tenets":  [
+    {
+      "code":  "size(outputs.fixable) == 0",
+      "predicates":  {
+        "types":  [
+          "https://ossf.github.io/osv-schema/results@v1",
+          "https://ossf.github.io/osv-schema/results@v1.6.7"
+        ]
+      },
+      "outputs":  {
+        "fixable":  {
+          "code":  "osv.vulns(predicate).filter(v, osv.isFixed(v)).map(v, v.id)"
+        }
+      },
+      "error":  {
+        "message":  "Attested OSV report contains vulnerabilities with an available fix: {{ .Outputs.fixable }}",
+        "guidance":  "These vulnerabilities already have fixed versions — upgrade the affected packages to remediate them"
+      },
+      "assessment":  {
+        "message":  "Attested OSV report contains no vulnerabilities with an available fix"
+      }
+    }
+  ]
+}

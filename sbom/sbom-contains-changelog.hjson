@@ -1,0 +1,31 @@
+{
+    id: "sbom-contains-changelog"
+    meta: {
+        name: "Changelog in SBOM"
+        description: "Looks through the files listed in the project's SBOM for a changelog (`CHANGELOG`, `CHANGELOG.md`, `CHANGELOG.rst` or `CHANGELOG.txt`) and fails when none is found."
+    }
+    tenets: [
+        {
+            id: "01-sbom"
+            code: "size(outputs[\"files\"]) > 0"
+            predicates: {
+                types: [
+                    "https://spdx.dev/Document"
+                    "https://cyclonedx.org/bom"
+                ]
+            }
+            outputs: {
+                files: {
+                    code: "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' || n.name == 'CHANGELOG.md' || n.name == 'CHANGELOG.rst' || n.name == 'CHANGELOG.txt'))"
+                }
+            }
+            assessment: {
+                message: "Found a changelog in the project's SBOM."
+            }
+            error: {
+                message: "Could not detect a changelog file in the SBOM."
+                guidance: "Add a file named CHANGELOG to your project's codebase registering major changes."
+            }
+        }
+    ]
+}

@@ -1,7 +1,8 @@
 {
     "id": "OSPS-BR-02",
     "meta": {
-        "description": "Releases and released software assets MUST be assigned a unique version identifier",
+        "name": "Unique Version Identifiers",
+        "description": "All releases and released software assets MUST be assigned a unique version identifier for each release intended to be used by users.\n\nChecked through the release SBOM with the `sbom/sbom-has-versions` policy, which requires a version on every top-level component.",
         "controls": [ { "framework": "OSPS", "class": "BR", "id": "02" } ]
     },
     "blocks": [

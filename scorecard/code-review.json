@@ -1,25 +1,39 @@
 {
-    "id": "SCORECARD-CODE-REVIEW",
-    "meta": {
-        "description": "VCS MUST require at least one non-author approval of changes to the primary branch."
+  "id":  "SCORECARD-CODE-REVIEW",
+  "meta":  {
+    "description":  "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard reports that changes to the primary branch do not require a review from another party.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "code-review.hjson",
+      "digest":  {
+        "sha256":  "9b46d4dfdf8fd8861c104008d0b86f737360d3207f3a0d169c9f2a9824fa306e",
+        "sha512":  "9f6e6859290ffd9007324f7fbc870016fa634608d7089a1cfc95fa4bbf65cd7363a4c1cab566aa3d39977ba1dcd9c641cf97f759ba12e5ab6510bfa5f9f8e09f"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-scorecard",
-            "code": "outputs.codereview.all(c, c.score == 10)",
-            "outputs": {
-                "codereview": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] " }
-            },
-            "predicates": {
-                "types": ["https://scorecard.dev/result/v0.1"]
-            },
-            "assessment": {
-                "message": "Scorecard reports code review is required for changes"
-            },
-            "error": {
-                "message": "Scorecard detected code review is not enabled in the repository",
-                "guidance": "Ensure your repo requires a review from another party for every pull request"
-            }
+    "name":  "Code Review Required"
+  },
+  "tenets":  [
+    {
+      "id":  "01-scorecard",
+      "code":  "outputs.codereview.all(c, c.score == 10)",
+      "predicates":  {
+        "types":  [
+          "https://scorecard.dev/result/v0.1"
+        ]
+      },
+      "outputs":  {
+        "codereview":  {
+          "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] "
         }
-    ]
+      },
+      "error":  {
+        "message":  "Scorecard detected code review is not enabled in the repository",
+        "guidance":  "Ensure your repo requires a review from another party for every pull request"
+      },
+      "assessment":  {
+        "message":  "Scorecard reports code review is required for changes"
+      }
+    }
+  ]
 }

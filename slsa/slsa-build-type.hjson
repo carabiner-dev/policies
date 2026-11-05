@@ -1,0 +1,56 @@
+{
+    id: "slsa-build-type"
+    meta: {
+        name: "Expected Build Type"
+        description: "Checks that the build type recorded in the artifact's SLSA provenance matches the `buildType` context value, either exactly or as a prefix followed by `@`."
+        assert_mode: "OR"
+    }
+    context: {
+        buildType: {
+            required: true
+            type: "string"
+        }
+    }
+    tenets: [
+        {
+            predicates: {
+                types: [
+                    "https://slsa.dev/provenance/v1"
+                ]
+            }
+            outputs: {
+                buildType: {
+                    code: "has(predicates[0].data.buildDefinition) ? (has(predicates[0].data.buildDefinition.buildType) ? predicates[0].data.buildDefinition.buildType : '' ) : '' "
+                }
+            }
+            code: "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')"
+            assessment: {
+                message: "Expected buildType found: {{ .Outputs.buildType  }}"
+            }
+            error: {
+                message: "BuildType mismatch"
+                guidance: "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
+            }
+        }
+        {
+            predicates: {
+                types: [
+                    "https://slsa.dev/provenance/v0.2"
+                ]
+            }
+            outputs: {
+                buildType: {
+                    code: "has(predicates[0].data.buildType) ? predicates[0].data.buildType : '' "
+                }
+            }
+            code: "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')"
+            assessment: {
+                message: "Expected buildType found: {{ .Outputs.buildType  }}"
+            }
+            error: {
+                message: "BuildType mismatch"
+                guidance: "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
+            }
+        }
+    ]
+}

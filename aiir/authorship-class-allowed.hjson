@@ -1,7 +1,8 @@
 {
   "id": "aiir-authorship-class-allowed",
   "meta": {
-    "description": "Ensures the AIIR attestation authorship class is in an allowed set"
+    "name": "Allowed Authorship Classes",
+    "description": "Checks that the authorship class recorded in an AIIR commit receipt is one of the classes allowed by the `allowedAuthorshipClasses` context value, a pipe-separated list. A project can, for example, admit human-authored and AI-assisted commits while rejecting fully AI-authored ones."
   },
   "context": {
     "allowedAuthorshipClasses": {

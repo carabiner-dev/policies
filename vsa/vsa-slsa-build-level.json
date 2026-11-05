@@ -1,0 +1,46 @@
+{
+  "id":  "vsa-slsa-build-level",
+  "meta":  {
+    "description":  "Checks that a SLSA Verification Summary Attestation records a passed verification at the expected SLSA Build level for the artifact.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "vsa-slsa-build-level.hjson",
+      "digest":  {
+        "sha256":  "9e7c99137e94d70d315fd8d611bf178257ae1225bfa34312c9ab1ffabeaa8792",
+        "sha512":  "567d5042a9c9b1bcbf0934ad6ceea63b1c38ba28cc5ddc92d961d203c6d1ed52de8fcad1b3ffcaabd4582ce8300498a14418978d663d8ae3ba95ae82311ad73d"
+      }
+    },
+    "name":  "Verified SLSA Build Level"
+  },
+  "context":  {
+    "level":  {
+      "required":  true,
+      "description":  "SLSA Build level to check (1-4)"
+    }
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.pass && outputs.levels.exists(k, v, (v == 'SLSA_BUILD_LEVEL_3' || v == 'SLSA_BUILD_LEVEL_4') )",
+      "predicates":  {
+        "types":  [
+          "https://slsa.dev/verification_summary/v1"
+        ]
+      },
+      "outputs":  {
+        "levels":  {
+          "code":  "has(predicates[0].data.verifiedLevels) ? predicates[0].data.verifiedLevels : [] "
+        },
+        "pass":  {
+          "code":  "has(predicates[0].data.verificationResult) ? predicates[0].data.verificationResult == 'PASSED' : false"
+        }
+      },
+      "error":  {
+        "message":  "SLSA Build L3 not recored in verification summary"
+      },
+      "assessment":  {
+        "message":  "VSA attesting a SLSA_BUILD_3 compliance verification"
+      }
+    }
+  ]
+}

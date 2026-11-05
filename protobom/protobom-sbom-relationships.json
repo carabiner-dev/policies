@@ -1,19 +1,35 @@
 {
-    "id": "PROTOBOM-RELATONSHIPS",
-    "meta": {
-        "enforce": "OFF",
-        "description": "Dependency relationships"
+  "id":  "PROTOBOM-RELATONSHIPS",
+  "meta":  {
+    "description":  "Checks that every top-level component of the SBOM records its dependency relationships. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode":  "AND",
+    "enforce":  "OFF",
+    "origin":  {
+      "name":  "protobom-sbom-relationships.hjson",
+      "digest":  {
+        "sha256":  "c2d4f02368f7c3c51459a302c12e49fd79dbfcb81cb6ebf182f77f80aeaee513",
+        "sha512":  "74725713fa3470a8f6e2853bff0970bade52be154365681ed8aebf7667037c87c19b2c9ed4eacb33baa2809dadfcffc2b9f057dccb70d6fbe2b2b04a0806add1"
+      }
     },
-    "predicates": {
-        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-    },
-    "tenets": [
-        {
-            "outputs": {
-                "descendants": { "code": "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))" } 
-            },
-            "code": "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
-            "assessment": {  "message": "All top level components have depedency relationships" }
-        }
+    "name":  "Dependency Relationships"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
     ]
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
+      "outputs":  {
+        "descendants":  {
+          "code":  "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))"
+        }
+      },
+      "assessment":  {
+        "message":  "All top level components have depedency relationships"
+      }
+    }
+  ]
 }

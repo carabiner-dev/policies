@@ -1,32 +1,39 @@
 {
-    "id": "MFA-ENABLED",
-    "meta": {
-        "description": "Verifies that all organization members have two-factor authentication (2FA) enabled",
-        "assert_mode": "AND",
-        "enforce": "ON",
-        "controls": []
+  "id":  "MFA-ENABLED",
+  "meta":  {
+    "description":  "Reads the attested GitHub organization membership and fails when any member has two-factor authentication disabled.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "mfa-enabled.hjson",
+      "digest":  {
+        "sha256":  "5505bfcb2edbb00b3909a90491cd1047765a6ef7bae6787ba02fcc12d765b06c",
+        "sha512":  "9a5934c6ac182513464d8c9383016b363f2f0c8cdbacb98172c4500c8b1baa7b68c129123a5adcb0ccec6e189ae21649193c1243f1253ca36b18cb2ff6fbef69"
+      }
     },
-    "predicates": {
-        "types": [
-            "http://github.com/carabiner-dev/snappy/specs/github/mfa-rest.yaml"
-        ]
-    },
-    "tenets": [
-        {
-            "id": "01",
-            "outputs": {
-                "membersWithout2FA": {
-                    "code": "has(predicates[0].data.values) ? size(predicates[0].data.values) : -1"
-                }
-            },
-            "code": "has(predicates[0].data.values) && size(predicates[0].data.values) == 0",
-            "assessment": {
-                "message": "All organization members have two-factor authentication enabled"
-            },
-            "error": {
-                "message": "Organization has members with two-factor authentication disabled",
-                "guidance": "Review the list of members without 2FA enabled and require them to enable two-factor authentication. In GitHub, navigate to Organization Settings > Authentication security > Require two-factor authentication for everyone in the organization."
-            }
-        }
+    "name":  "Two-Factor Authentication Enabled"
+  },
+  "predicates":  {
+    "types":  [
+      "http://github.com/carabiner-dev/snappy/specs/github/mfa-rest.yaml"
     ]
+  },
+  "tenets":  [
+    {
+      "id":  "01",
+      "code":  "has(predicates[0].data.values) && size(predicates[0].data.values) == 0",
+      "outputs":  {
+        "membersWithout2FA":  {
+          "code":  "has(predicates[0].data.values) ? size(predicates[0].data.values) : -1"
+        }
+      },
+      "error":  {
+        "message":  "Organization has members with two-factor authentication disabled",
+        "guidance":  "Review the list of members without 2FA enabled and require them to enable two-factor authentication. In GitHub, navigate to Organization Settings > Authentication security > Require two-factor authentication for everyone in the organization."
+      },
+      "assessment":  {
+        "message":  "All organization members have two-factor authentication enabled"
+      }
+    }
+  ]
 }

@@ -1,0 +1,30 @@
+{
+    id: "SI-SIGNATURE-VERIFY"
+    meta: {
+        name: "Signature Verification Instructions"
+        description: "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when it does not link to instructions for verifying the project's signatures."
+    }
+    tenets: [
+        {
+            id: "01-si"
+            code: "outputs['verify'] != '' "
+            outputs: {
+                verify: {
+                    code: "has(predicates[0].data.project) ? (has(predicates[0].data.project.documentation) ? ('signature-verification' in predicates[0].data.project.documentation ? predicates[0].data.project.documentation['signature-verification'] : '' ) : '' ) : '' "
+                }
+            }
+            predicates: {
+                types: [
+                    "https://github.com/ossf/security-insights-spec"
+                ]
+            }
+            assessment: {
+                message: "Signature verification instructions found in SECURITY_INSIGHTS.yml"
+            }
+            error: {
+                message: "No verification instructions found in SI"
+                guidance: "Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml"
+            }
+        }
+    ]
+}

@@ -1,7 +1,8 @@
 {
     "id": "OSPS-QA-05",
     "meta": {
-        "description": "The version control system MUST NOT contain generated executable artifacts",
+        "name": "No Executables in the Codebase",
+        "description": "The version control system MUST NOT contain generated executable artifacts.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/binary-artifacts` policy.",
         "controls": [ { "framework": "OSPS", "class": "QA", "id": "05" } ]
     },
     "blocks": [

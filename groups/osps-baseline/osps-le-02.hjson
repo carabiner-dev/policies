@@ -1,7 +1,8 @@
 {
     "id": "OSPS-LE-02",
     "meta": {
-        "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition",
+        "name": "Fully Open Source Licenses",
+        "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition.\n\nChecked through the release SBOM with the `sbom/sbom-licenses-are-foss` policy.",
         "controls": [ { "framework": "OSPS", "class": "LE", "id": "02" } ]
     },
     "blocks": [

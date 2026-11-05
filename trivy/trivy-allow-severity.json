@@ -1,0 +1,70 @@
+{
+  "id":  "trivy-allow-severity",
+  "meta":  {
+    "description":  "Passes an attested [trivy](https://github.com/aquasecurity/trivy) vulnerability report only when every finding has a severity the verifier explicitly allowed. Each severity has its own boolean context value, all off by default, so the policy fails on any finding unless its severity was enabled.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "trivy-allow-severity.hjson",
+      "digest":  {
+        "sha256":  "53757a21aad249a04e3862dc5b174b524a4e56f1216f80a717d7bb19e5248be4",
+        "sha512":  "f3c0019747acd3144a59766eca9cf88d85c44baba768c0f6c79be380489779d3ca312a10402a86181925d77734f3a8902ef1c296425ac5ab122c0e44beb43cdd"
+      }
+    },
+    "name":  "Allowed Trivy Severities"
+  },
+  "context":  {
+    "allowCritical":  {
+      "type":  "bool",
+      "required":  false,
+      "default":  false,
+      "description":  "Allow vulnerabilities with severity Critical"
+    },
+    "allowHigh":  {
+      "type":  "bool",
+      "required":  false,
+      "default":  false,
+      "description":  "Allow vulnerabilities with severity High"
+    },
+    "allowLow":  {
+      "type":  "bool",
+      "required":  false,
+      "default":  false,
+      "description":  "Allow vulnerabilities with severity Low"
+    },
+    "allowMedium":  {
+      "type":  "bool",
+      "required":  false,
+      "default":  false,
+      "description":  "Allow vulnerabilities with severity Medium"
+    },
+    "allowUnknown":  {
+      "type":  "bool",
+      "required":  false,
+      "default":  false,
+      "description":  "Allow vulnerabilities with severity Unknown"
+    }
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.disallowedCount == 0",
+      "predicates":  {
+        "types":  [
+          "https://predicates.policylabs.dev/trivy/v1"
+        ]
+      },
+      "outputs":  {
+        "disallowedCount":  {
+          "code":  "has(predicate.data.Results) ? size(predicate.data.Results.map(r, has(r.Vulnerabilities), r.Vulnerabilities).flatten().filter(v, !((v.Severity.lowerAscii() == 'critical' && context.allowCritical) || (v.Severity.lowerAscii() == 'high' && context.allowHigh) || (v.Severity.lowerAscii() == 'medium' && context.allowMedium) || (v.Severity.lowerAscii() == 'low' && context.allowLow) || (v.Severity.lowerAscii() == 'unknown' && context.allowUnknown)))) : 0"
+        }
+      },
+      "error":  {
+        "message":  "Attested trivy report has {{ .Outputs.disallowedCount }} vulnerabilities with a disallowed severity",
+        "guidance":  "Remediate the vulnerabilities or enable their severity level via the allow* policy context values"
+      },
+      "assessment":  {
+        "message":  "All attested trivy vulnerabilities have an allowed severity"
+      }
+    }
+  ]
+}

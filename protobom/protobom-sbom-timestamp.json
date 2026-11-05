@@ -1,18 +1,35 @@
 {
-    "id": "PROTOBOM-TIMESTAMP",
-    "meta": {
-        "description": "SBOM has a timestamp"
+  "id":  "PROTOBOM-TIMESTAMP",
+  "meta":  {
+    "description":  "Checks that the SBOM records when it was generated. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "protobom-sbom-timestamp.hjson",
+      "digest":  {
+        "sha256":  "0bed3347ef940415508d95e0cda515052e8eb677ef8283b0c3aa86e18bc3b44d",
+        "sha512":  "c032c6da2e3786cefdbb20badbe213112f1705e414421ba97ea4c5fb038f704c35c039bfcf951a16120254267d74d5372f1d55bd588ffab9007a5bf6f96677d5"
+      }
     },
-    "predicates": {
-        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-    },
-    "tenets": [
-        {
-            "outputs": {
-                "date": { "code": "size(sboms) > 0 ? sboms[0].get_metadata().date : null" } 
-            },
-            "code": "int(outputs.date) > 0",
-            "assessment": { "message": "SBOM contains a timestamp" }
+    "name":  "SBOM Timestamp"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets":  [
+    {
+      "code":  "int(outputs.date) > 0",
+      "outputs":  {
+        "date":  {
+          "code":  "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
         }
-    ]            
+      },
+      "assessment":  {
+        "message":  "SBOM contains a timestamp"
+      }
+    }
+  ]
 }

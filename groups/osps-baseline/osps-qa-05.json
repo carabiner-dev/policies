@@ -1,0 +1,68 @@
+{
+  "id":  "OSPS-QA-05",
+  "meta":  {
+    "description":  "The version control system MUST NOT contain generated executable artifacts.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/binary-artifacts` policy.",
+    "controls":  [
+      {
+        "id":  "05",
+        "framework":  "OSPS",
+        "class":  "QA"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-qa-05.hjson",
+      "digest":  {
+        "sha256":  "53fe6c285dfc6f1e4339ac91f61681838bed3f707003dd4aeb5878b017ed5f2a",
+        "sha512":  "0a68dba3e84908e1a94f924e2e985f223b3b57fc56e6e7790c0b600d00d4271c7d500ff62febfd2d9467675f2ae768cd7c6aca040d3a1af58c63c7f3459c8c50"
+      }
+    },
+    "name":  "No Executables in the Codebase"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "SCORECARD-BINARY-ARTIFACTS",
+          "meta":  {
+            "description":  "Checks for binary artifacts in the repository",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "SCORECARD-BINARY-ARTIFACTS",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json",
+              "digest":  {
+                "sha256":  "86b6298821197fbe4404ff1c675820cd78a927c01722455214d2c866571d4f55",
+                "sha512":  "f2a6b4b55e7e4f4d3e56f195cf30579d643d991db4e9d02245c5758a15963224e3c1aabc1026964880ea15a45db16ecc754218f07338acdfbbe539527d256c75"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-scorecard",
+              "code":  "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+              "predicates":  {
+                "types":  [
+                  "https://scorecard.dev/result/v0.1"
+                ]
+              },
+              "outputs":  {
+                "bin_artifacts_checks":  {
+                  "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Binary-Artifacts' && has(c.score)) : [] "
+                }
+              },
+              "error":  {
+                "message":  "Scorecard detected binaries in the repository",
+                "guidance":  "Check your codebase and remove any checked-in executables"
+              },
+              "assessment":  {
+                "message":  "Scorecard did not detect any binaries in the repo"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

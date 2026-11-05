@@ -1,7 +1,8 @@
 {
     "id": "OSPS-DO-03",
     "meta": {
-        "description": "Instructions to verify the integrity and authenticity of the release assets",
+        "name": "Release Verification Instructions",
+        "description": "The project documentation MUST provide instructions to verify the integrity and authenticity of release assets, including the expected identity of the person or process authoring the software release.\n\nChecked through the project's Security Insights data with the `security-insights/signature-verify` policy.",
         "controls": [ { "framework": "OSPS", "class": "DO", "id": "03" } ]
     },
     "blocks": [

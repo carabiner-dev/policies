@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-PRODUCERS
 
     meta: {
+        name: "Component Producer"
         description:
             '''
-            # Component Producer
-
             Checks that the top level components of the SBOM identify the
             entity that created them. This implements the _Component Producer_
             element of the CISA 2026 SBOM Minimum Elements, which replaces the

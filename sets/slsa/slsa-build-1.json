@@ -1,35 +1,256 @@
 {
-    "id": "slsa-build-1",
-    "meta": {
-        "description": "verifies an artifact to check if it was built in a SLSA_BUILD_LEVEL_1 build system",
-        "frameworks": [
-            {
-                "id": "SLSA",
-                "name": "Supply-Chain Levels for Software Artifacts"
-            }
-        ]
+  "id":  "slsa-build-1",
+  "meta":  {
+    "description":  "Verifies that an artifact was built on a SLSA Build Level 1 system by checking its SLSA provenance against the level's requirements. Each policy in the set is referenced from this repository and mapped to the SLSA BUILD control it covers.",
+    "enforce":  "ON",
+    "frameworks":  [
+      {
+        "id":  "SLSA",
+        "name":  "Supply-Chain Levels for Software Artifacts"
+      }
+    ],
+    "origin":  {
+      "name":  "slsa-build-1.hjson",
+      "digest":  {
+        "sha256":  "7a32985f76cfac0ac3f47f0584a69e18c8771163878e2cb66b5d6de06215f475",
+        "sha512":  "d7be65ec4fbb447718c1e69be61067081578923512a3b7fa37ab0f86a11fd021b76960272282b46e7a5032643b2071f27fed255e57eede60d75426eef4603250"
+      }
     },
-    "policies": [
-        {
-            "id": "slsa-builder-id",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json" }
-            },
-            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_1" } ] }
-        },
-        {
-            "id": "slsa-build-type",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json" }
-            },
-            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_1" } ] }
-        },
-        {
-            "id": "slsa-build-point",
-            "source": {
-                "location": { "uri": "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json" }
-            },
-            "meta": { "controls": [ { "framework": "SLSA", "class": "BUILD", "id": "LEVEL_1" } ] }
+    "name":  "SLSA Build Level 1"
+  },
+  "common":  {},
+  "policies":  [
+    {
+      "id":  "slsa-builder-id",
+      "meta":  {
+        "description":  "Ensures an artifact was built by a specific builder",
+        "assertMode":  "OR",
+        "controls":  [
+          {
+            "id":  "LEVEL_1",
+            "framework":  "SLSA",
+            "class":  "BUILD"
+          }
+        ],
+        "enforce":  "ON",
+        "origin":  {
+          "name":  "slsa-builder-id",
+          "uri":  "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json",
+          "digest":  {
+            "sha256":  "a37585984f01ddfa466faccd13f72086a90f86f285a0dc78c5599023f813a10c",
+            "sha512":  "8271f81825c6ff59621ee022480e6d74579acee6b2db8e21c04cfbecc35278d3acd15494954c0c559e76faf6bec1c3a2a5bfb8f6b97e3da25c2cb879061c90ce"
+          },
+          "downloadLocation":  "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json"
         }
-    ]
+      },
+      "context":  {
+        "builderId":  {
+          "type":  "string",
+          "required":  true
+        }
+      },
+      "tenets":  [
+        {
+          "code":  "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')",
+          "predicates":  {
+            "types":  [
+              "https://slsa.dev/provenance/v1"
+            ]
+          },
+          "outputs":  {
+            "builderId":  {
+              "code":  "has(predicates[0].data.runDetails) ? (has(predicates[0].data.runDetails.builder) ? predicates[0].data.runDetails.builder.id : '' ) : '' "
+            }
+          },
+          "error":  {
+            "message":  "Builder identifier mismatch",
+            "guidance":  "The attestation builder does not match the context defined builder (want {{ .Context.builderId }} got {{ .Outputs.builderId }})"
+          },
+          "assessment":  {
+            "message":  "Authorized builder ID detected"
+          }
+        },
+        {
+          "code":  "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')",
+          "predicates":  {
+            "types":  [
+              "https://slsa.dev/provenance/v0.2"
+            ]
+          },
+          "outputs":  {
+            "builderId":  {
+              "code":  "has(predicates[0].data.builder) ? (has(predicates[0].data.builder.id) ? predicates[0].data.builder.id : '' ) : '' "
+            }
+          },
+          "error":  {
+            "message":  "Builder identifier mismatch",
+            "guidance":  "The attestation builder does not match the context defined builder (want {{ .Context.builderId }} got {{ .Outputs.builderId }})"
+          },
+          "assessment":  {
+            "message":  "Authorized builder ID detected"
+          }
+        }
+      ]
+    },
+    {
+      "id":  "slsa-build-type",
+      "meta":  {
+        "description":  "Ensures an artifact was built from a specified repository and commit",
+        "assertMode":  "OR",
+        "controls":  [
+          {
+            "id":  "LEVEL_1",
+            "framework":  "SLSA",
+            "class":  "BUILD"
+          }
+        ],
+        "enforce":  "ON",
+        "origin":  {
+          "name":  "slsa-build-type",
+          "uri":  "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json",
+          "digest":  {
+            "sha256":  "39303561c2bf42f0be93e608865cd6234ed423bdcc071c71ad9c788eab8d5e57",
+            "sha512":  "36762eff503fca95d93bd6037901d822c145d56e534937978eb1871d1af5de1eef0cf09883a6affd1fc03899d3446b5dc392d431ea94a9a8ae1f797f0f579eaf"
+          },
+          "downloadLocation":  "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json"
+        }
+      },
+      "context":  {
+        "buildType":  {
+          "type":  "string",
+          "required":  true
+        }
+      },
+      "tenets":  [
+        {
+          "code":  "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
+          "predicates":  {
+            "types":  [
+              "https://slsa.dev/provenance/v1"
+            ]
+          },
+          "outputs":  {
+            "buildType":  {
+              "code":  "has(predicates[0].data.buildDefinition) ? (has(predicates[0].data.buildDefinition.buildType) ? predicates[0].data.buildDefinition.buildType : '' ) : '' "
+            }
+          },
+          "error":  {
+            "message":  "BuildType mismatch",
+            "guidance":  "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
+          },
+          "assessment":  {
+            "message":  "Expected buildType found: {{ .Outputs.buildType  }}"
+          }
+        },
+        {
+          "code":  "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
+          "predicates":  {
+            "types":  [
+              "https://slsa.dev/provenance/v0.2"
+            ]
+          },
+          "outputs":  {
+            "buildType":  {
+              "code":  "has(predicates[0].data.buildType) ? predicates[0].data.buildType : '' "
+            }
+          },
+          "error":  {
+            "message":  "BuildType mismatch",
+            "guidance":  "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
+          },
+          "assessment":  {
+            "message":  "Expected buildType found: {{ .Outputs.buildType  }}"
+          }
+        }
+      ]
+    },
+    {
+      "id":  "slsa-build-point",
+      "meta":  {
+        "description":  "Ensures an artifact was built from a specific repository and commit",
+        "assertMode":  "OR",
+        "controls":  [
+          {
+            "id":  "LEVEL_1",
+            "framework":  "SLSA",
+            "class":  "BUILD"
+          }
+        ],
+        "enforce":  "ON",
+        "origin":  {
+          "name":  "slsa-build-point",
+          "uri":  "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json",
+          "digest":  {
+            "sha256":  "564edd2311fb15fa2d27a86287f00ba0eb40d64b1bfd643d77fc0212889ff816",
+            "sha512":  "7fa9bb421b67fb158ab54d21f1b43adb8ec29babefcc4377d67818e9b6f10a85bfa712007498d0a625d40bc72cc7f96ada2eae58add32075b853eb1882802a29"
+          },
+          "downloadLocation":  "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json"
+        }
+      },
+      "context":  {
+        "buildPoint":  {
+          "type":  "string",
+          "required":  true
+        },
+        "buildPointAllowRepo":  {
+          "type":  "bool",
+          "required":  false,
+          "default":  true
+        },
+        "buildPointCommit":  {
+          "type":  "string",
+          "required":  false,
+          "default":  ""
+        }
+      },
+      "tenets":  [
+        {
+          "code":  "outputs.uri != '' && (context.buildPointAllowRepo || outputs.uri == context.buildPoint) && (context.buildPointCommit == '' || outputs.commitMatch)",
+          "predicates":  {
+            "types":  [
+              "https://slsa.dev/provenance/v1"
+            ]
+          },
+          "outputs":  {
+            "commitMatch":  {
+              "code":  "context.buildPointCommit != '' && has(predicate.data.buildDefinition) && has(predicate.data.buildDefinition.resolvedDependencies) && predicate.data.buildDefinition.resolvedDependencies.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint) && has(dep.digest) && dep.digest.exists(k, dep.digest[k] == (context.buildPointCommit.contains(':') ? context.buildPointCommit.split(':')[1] : context.buildPointCommit)))"
+            },
+            "uri":  {
+              "code":  "has(predicate.data.buildDefinition) && has(predicate.data.buildDefinition.resolvedDependencies) && predicate.data.buildDefinition.resolvedDependencies.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint)) ? predicate.data.buildDefinition.resolvedDependencies.filter(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint))[0].uri : ''"
+            }
+          },
+          "error":  {
+            "message":  "Build point mismatch",
+            "guidance":  "The attested build point does not match the expected reference"
+          },
+          "assessment":  {
+            "message":  "Expected build point found: {{ .Context.buildPoint }}"
+          }
+        },
+        {
+          "code":  "outputs.uri != '' && (context.buildPointAllowRepo || outputs.uri == context.buildPoint) && (context.buildPointCommit == '' || outputs.commitMatch)",
+          "predicates":  {
+            "types":  [
+              "https://slsa.dev/provenance/v0.2"
+            ]
+          },
+          "outputs":  {
+            "commitMatch":  {
+              "code":  "context.buildPointCommit != '' && has(predicate.data.materials) && predicate.data.materials.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint) && has(dep.digest) && dep.digest.exists(k, dep.digest[k] == (context.buildPointCommit.contains(':') ? context.buildPointCommit.split(':')[1] : context.buildPointCommit)))"
+            },
+            "uri":  {
+              "code":  "has(predicate.data.materials) && predicate.data.materials.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint)) ? predicate.data.materials.filter(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint))[0].uri : ''"
+            }
+          },
+          "error":  {
+            "message":  "Build point mismatch",
+            "guidance":  "The attested build point does not match the expected reference"
+          },
+          "assessment":  {
+            "message":  "Expected build point found: {{ .Context.buildPoint }}"
+          }
+        }
+      ]
+    }
+  ]
 }

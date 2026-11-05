@@ -1,7 +1,8 @@
 {
     "id": "OSPS-LE-03",
     "meta": {
-        "description": "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
+        "name": "License in a Well Known Location",
+        "description": "All licenses for the project's source code MUST be maintained in a standard location within the project's repository.\n\nChecked through the release SBOM with the `sbom/sbom-contains-license-file` policy, which looks for a license file among the project's files.",
         "controls": [ { "framework": "OSPS", "class": "LE", "id": "03" } ]
     },
     "blocks": [

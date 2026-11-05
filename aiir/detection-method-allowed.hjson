@@ -1,7 +1,8 @@
 {
   "id": "aiir-detection-method-allowed",
   "meta": {
-    "description": "Ensures the AIIR attestation detection method is in an allowed set"
+    "name": "Allowed Detection Methods",
+    "description": "Checks that the method an AIIR commit receipt used to determine authorship is one of the methods allowed by the `allowedDetectionMethods` context value, a pipe-separated list. Projects that only trust certain detection methods can enforce that preference here."
   },
   "context": {
     "allowedDetectionMethods": {

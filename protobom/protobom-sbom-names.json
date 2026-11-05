@@ -1,18 +1,35 @@
 {
-    "id": "PROTOBOM-NAME",
-    "meta": {
-        "description": "Top level component names"
+  "id":  "PROTOBOM-NAME",
+  "meta":  {
+    "description":  "Checks that every top-level component of the SBOM has a name. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "protobom-sbom-names.hjson",
+      "digest":  {
+        "sha256":  "bca252a0d81750cfd21e19eccb6763f5f42f8bbbc886e322155e10c0eacdf88f",
+        "sha512":  "4217f99e6a8b2eb12f2e6cdcde6cbb200a3bfc9d47148a9d54b6d991f81f2b4d263fc8046542346b1724153638251d9b3ee23332bd594bb595880f6830b07dc1"
+      }
     },
-    "predicates": {
-        "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-    },
-    "tenets": [
-        {
-            "outputs": {
-                "names": { "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.name)" } 
-            },
-            "code": "outputs.names.all(s, s != \"\")",
-            "assessment": {  "message": "Top level components have their name set" }
+    "name":  "Component Names"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.names.all(s, s != \"\")",
+      "outputs":  {
+        "names":  {
+          "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.name)"
         }
-    ]            
+      },
+      "assessment":  {
+        "message":  "Top level components have their name set"
+      }
+    }
+  ]
 }

@@ -1,39 +1,55 @@
 {
-    "id": "test-results-pass",
-    "meta": {
-        "description": "Verify that test results recored in an attestation pass"
+  "id":  "test-results-pass",
+  "meta":  {
+    "description":  "Checks that an attested test run exists for the artifact and that every test in it passed.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "tests-pass.hjson",
+      "digest":  {
+        "sha256":  "636528b1c1a8fce7180c06feb9626bc212a6f31555b8f7acf2137a58341eb280",
+        "sha512":  "9b87547ff24d5d62a2ebf076b94f54724535dee4d8af77e79b90306fc494850ef0cc61726a941067b2e7ee67328de777fb92e83d3515022fbb3ed7cf48042faa"
+      }
     },
-    "tenets": [
-        {
-            "id": "01a",
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": ["https://in-toto.io/attestation/test-result/v0.1"]
-            },
-            "assessment": {
-                "message": "Attested test run found"
-            },
-            "error": {
-                "message": "No attested test runs found",
-                "guidance": "Generate a test-run attestation to capture the results of your unit tests"
-            }
-        },
-        {
-            "id": "01b",
-            "code": "outputs.result == 'pass' ",
-            "outputs": {
-                "result": { "code": "has(predicates[0].data.result) ? predicates[0].data.result : '' " }
-            },
-            "predicates": {
-                "types": ["https://in-toto.io/attestation/test-result/v0.1"]
-            },
-            "assessment": {
-                "message": "All attested tests are passing"
-            },
-            "error": {
-                "message": "Some of the attested test runs failed",
-                "guidance": "Check the output of your unit tests, ensure they are passing"
-            }
+    "name":  "Tests Pass"
+  },
+  "tenets":  [
+    {
+      "id":  "01a",
+      "code":  "size(predicates) > 0",
+      "predicates":  {
+        "types":  [
+          "https://in-toto.io/attestation/test-result/v0.1"
+        ]
+      },
+      "error":  {
+        "message":  "No attested test runs found",
+        "guidance":  "Generate a test-run attestation to capture the results of your unit tests"
+      },
+      "assessment":  {
+        "message":  "Attested test run found"
+      }
+    },
+    {
+      "id":  "01b",
+      "code":  "outputs.result == 'pass' ",
+      "predicates":  {
+        "types":  [
+          "https://in-toto.io/attestation/test-result/v0.1"
+        ]
+      },
+      "outputs":  {
+        "result":  {
+          "code":  "has(predicates[0].data.result) ? predicates[0].data.result : '' "
         }
-    ]
+      },
+      "error":  {
+        "message":  "Some of the attested test runs failed",
+        "guidance":  "Check the output of your unit tests, ensure they are passing"
+      },
+      "assessment":  {
+        "message":  "All attested tests are passing"
+      }
+    }
+  ]
 }

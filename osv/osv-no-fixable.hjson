@@ -6,6 +6,7 @@
   # reports whether a finding's affected ranges declare a `fixed` event.
   id: osv-no-fixable
   meta: {
+    name: "No Fixable Vulnerabilities"
     description: "Fails when an attested OSV report contains a vulnerability that already has a fix available"
     # Requires the osv CEL plugin. Engines that lack it skip this policy
     # (with --skip-unsupported-runtime) rather than failing to compile it.

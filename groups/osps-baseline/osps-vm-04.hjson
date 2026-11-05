@@ -1,7 +1,8 @@
 {
     "id": "OSPS-VM-04",
     "meta": {
-        "description": "The project MUST publicly publish data about discovered vulnerabilities",
+        "name": "Discovered Vulnerabilities Published",
+        "description": "The project MUST publicly publish data about discovered vulnerabilities.\n\nChecked with the `openvex/project-is-vexing` policy, which requires an attested vulnerability report whose findings are addressed by OpenVEX statements.",
         "controls": [ { "framework": "OSPS", "class": "VM", "id": "04" } ],
         "assert_mode": "OR"
     },

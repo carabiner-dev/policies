@@ -1,28 +1,44 @@
 {
-    "id": "SLSA-BUILDER-BASE",
-    "meta": {
-        "description": "(This policy is deprecated, use slsa/slsa-builder-id.json instead)"
+  "id":  "SLSA-BUILDER-BASE",
+  "meta":  {
+    "description":  "Deprecated, use `slsa/slsa-builder-id.json` instead.\n\nChecks that the builder recorded in the artifact's SLSA provenance matches the `builderId` context value, either exactly or as a prefix followed by `@`.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "builderid-base.hjson",
+      "digest":  {
+        "sha256":  "01e389f6342e8c5500020dd47663d2ab9da090cc6c8ef1b5c5866bfa446a8ce6",
+        "sha512":  "9e0c873edf87baba98563d614652ba0abf640cffe8bfa303a75ab86abe96e3e9ad12109d33a3320d174df7cd3fdc3f3d6b05f895159f9b4600f4f385042cb34d"
+      }
     },
-    "context": {
-        "builderId" : {
-            "required": true,
-            "type": "string"
+    "name":  "Expected Builder (Deprecated)"
+  },
+  "context":  {
+    "builderId":  {
+      "type":  "string",
+      "required":  true
+    }
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')",
+      "predicates":  {
+        "types":  [
+          "https://slsa.dev/provenance/v1"
+        ]
+      },
+      "outputs":  {
+        "builderId":  {
+          "code":  "has(predicates[0].data.runDetails) ? (has(predicates[0].data.runDetails.builder) ? predicates[0].data.runDetails.builder.id : '' ) : '' "
         }
-    },
-    "tenets": [
-        {
-            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
-            "outputs": {
-                "builderId": {
-                    "code": "has(predicates[0].data.runDetails) ? (has(predicates[0].data.runDetails.builder) ? predicates[0].data.runDetails.builder.id : '' ) : '' "
-                }
-            },
-            "code": "outputs.builderId == context.builderId || outputs.builderId.startsWith(context.builderId + '@')",
-            "assessment": { "message": "Authorized builder ID detected" },
-            "error": {
-                "message": "Builder identifier mismatch",
-                "guidance": "The attestation builder does not match the context defined builder (want {{ .Context.builderId }} got {{ .Outputs.builderId }})"
-            }
-        }
-    ]
+      },
+      "error":  {
+        "message":  "Builder identifier mismatch",
+        "guidance":  "The attestation builder does not match the context defined builder (want {{ .Context.builderId }} got {{ .Outputs.builderId }})"
+      },
+      "assessment":  {
+        "message":  "Authorized builder ID detected"
+      }
+    }
+  ]
 }

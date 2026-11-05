@@ -1,0 +1,26 @@
+{
+    id: "PROTOBOM-AUTHOR"
+    meta: {
+        name: "SBOM Author"
+        description: "Checks that the SBOM names the author of the SBOM data. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike."
+    }
+    predicates: {
+        types: [
+            "https://spdx.dev/Document"
+            "https://cyclonedx.org/bom"
+        ]
+    }
+    tenets: [
+        {
+            outputs: {
+                authors: {
+                    code: "size(sboms) > 0 ? sboms[0].get_authors() : []"
+                }
+            }
+            code: "size(outputs.authors) > 0"
+            assessment: {
+                message: "SBOM author defined"
+            }
+        }
+    ]
+}

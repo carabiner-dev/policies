@@ -1,7 +1,8 @@
 {
     "id": "OSPS-VM-02",
     "meta": {
-        "description": "The project MUST publish contacts and process for reporting vulnerabilities",
+        "name": "Vulnerability Reporting Contacts",
+        "description": "The project MUST publish contacts and process for reporting vulnerabilities.\n\nChecked through the project's Security Insights data with the `security-insights/vulnerability-reporting-contact` policy.",
         "controls": [ { "framework": "OSPS", "class": "VM", "id": "02" } ]
     },
     "blocks": [

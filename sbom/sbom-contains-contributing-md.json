@@ -1,27 +1,40 @@
 {
-    "id": "sbom-contains-contributing-md",
-    "meta": {
-        "description": "Checks for a CONTRIBUTING.md file in the SBOM"
+  "id":  "sbom-contains-contributing-md",
+  "meta":  {
+    "description":  "Looks through the files listed in the project's SBOM for a `CONTRIBUTING.md` file and fails when none is found.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "sbom-contains-contributing-md.hjson",
+      "digest":  {
+        "sha256":  "ee44ec289f6461ebda1f1c295b5daedd373455405b18982c1e89a6d173bedfc9",
+        "sha512":  "015d466b120870ea9594214a496fcda7d21d5cda4b4581e3f68e9cd0537033a5ea4ea151b0c00236fa2e1bdbdf1e9ffa9dfecb7138d40fe88d3672ff7fef834b"
+      }
     },
-    "tenets": [
-        {
-            "id": "01",
-            "code": "size(outputs['files']) > 0",
-            "predicates": {
-                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-            },
-            "outputs": {
-                "files": {
-                    "code": "sboms[0].get_node_list().get_nodes().filter(n, n.name == \"CONTRIBUTING.md\")"
-                }
-            },
-            "assessment": {
-                "message": "Found a CONTRIBUTING.md file"
-            },
-            "error": {
-                "message": "Repository has no CONTRIBUTING.md file",
-                "guidance": "Write up the project's contribution process into a CONTRIBUTING.md file and check it into the repository."
-            }
+    "name":  "Contributing Guide in SBOM"
+  },
+  "tenets":  [
+    {
+      "id":  "01",
+      "code":  "size(outputs['files']) > 0",
+      "predicates":  {
+        "types":  [
+          "https://spdx.dev/Document",
+          "https://cyclonedx.org/bom"
+        ]
+      },
+      "outputs":  {
+        "files":  {
+          "code":  "sboms[0].get_node_list().get_nodes().filter(n, n.name == \"CONTRIBUTING.md\")"
         }
-    ]            
+      },
+      "error":  {
+        "message":  "Repository has no CONTRIBUTING.md file",
+        "guidance":  "Write up the project's contribution process into a CONTRIBUTING.md file and check it into the repository."
+      },
+      "assessment":  {
+        "message":  "Found a CONTRIBUTING.md file"
+      }
+    }
+  ]
 }

@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-FORMAT-VERSION
 
     meta: {
+        name: "SBOM Data Format Version"
         description:
             '''
-            # SBOM Data Format Version
-
             Checks that the version of the SBOM's data format can be
             determined. This implements the _SBOM Data Format Version_ element
             of the CISA 2026 SBOM Minimum Elements.

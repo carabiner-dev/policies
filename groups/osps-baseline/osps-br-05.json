@@ -1,0 +1,69 @@
+{
+  "id":  "OSPS-BR-05",
+  "meta":  {
+    "description":  "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time.\n\nChecked through the release SBOM with the `sbom/sbom-contains-lockfile` policy, which looks for a language dependency lockfile among the project's files.",
+    "controls":  [
+      {
+        "id":  "05",
+        "framework":  "OSPS",
+        "class":  "BR"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-br-05.hjson",
+      "digest":  {
+        "sha256":  "98f939857a48abaf98327a91a49a31ff19d5e30b44a8f47aacc13399bb3c9856",
+        "sha512":  "4b3ca87fb186104ea0d1c891e0ff7f8cae3ee66ba7520349bd9d48951e1f3d4b77fbc176828e3474428910a0c81352b05091ef943de9b0118d8ebd6fe6b3432a"
+      }
+    },
+    "name":  "Standardized Dependency Tooling"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "sbom-contains-lockfile",
+          "meta":  {
+            "description":  "Checks for a language dependency lockfile among the SBOM files",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "sbom-contains-lockfile",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json",
+              "digest":  {
+                "sha256":  "b0f808b2e363b8e9129dccb1615664d5412542343bc3a3f6edff9038cfae6142",
+                "sha512":  "ef9c37500265f0b0ed11eb3b07ccf0c2baacb36f7fa9ff3e5589b299c12971fe8a3ed10125d5ce6000a62899d12b8643ea0900082c17b66f2f3724f1bc002fba"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-lockfile",
+              "code":  "size(outputs[\"files\"]) > 0",
+              "predicates":  {
+                "types":  [
+                  "https://spdx.dev/Document",
+                  "https://cyclonedx.org/bom"
+                ]
+              },
+              "outputs":  {
+                "files":  {
+                  "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'requirements.txt' || n.name == 'poetry.lock' || n.name == 'go.mod' || n.name == 'package.lock' || n.name == 'Gemfile.lock' ))"
+                }
+              },
+              "error":  {
+                "message":  "Could not detect a package lock file",
+                "guidance":  "Ensure your project uses go, pypy, npm or ruby gems tooling o handle dependencies"
+              },
+              "assessment":  {
+                "message":  "Found a package lock file"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

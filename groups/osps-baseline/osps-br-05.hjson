@@ -1,7 +1,8 @@
 {
     "id": "OSPS-BR-05",
     "meta": {
-        "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time",
+        "name": "Standardized Dependency Tooling",
+        "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time.\n\nChecked through the release SBOM with the `sbom/sbom-contains-lockfile` policy, which looks for a language dependency lockfile among the project's files.",
         "controls": [ { "framework": "OSPS", "class": "BR", "id": "05" } ]
     },
     "blocks": [

@@ -1,59 +1,80 @@
 {
-    "id": "slsa-build-point",
-    "meta": {
-        "description": "Ensures an artifact was built from a specific repository and commit",
-        "assert_mode": "OR"
+  "id":  "slsa-build-point",
+  "meta":  {
+    "description":  "Checks that the artifact's SLSA provenance records the expected source repository and commit, given as the `buildPoint` context value, among its resolved dependencies.",
+    "assertMode":  "OR",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "slsa-build-point.hjson",
+      "digest":  {
+        "sha256":  "ea8843fcbf75d21ffcfe57f8c448e249cb2a8d70cbbd69d11ab40b9116b97096",
+        "sha512":  "fcfd37ad3d907c08f22903c518d0cc970f6c32ce7e4f91c706b99353c3cf18d4cda627d096f50bd863740805740b2d2ab1e51fd2d0cbff17bd853ead7baef35a"
+      }
     },
-    "context": {
-        "buildPoint" : {
-            "required": true,
-            "type": "string"
-        },
-        "buildPointAllowRepo" : {
-            "required": false,
-            "type": "bool",
-            "default": true
-        },
-        "buildPointCommit" : {
-            "required": false,
-            "type": "string",
-            "default": ""
-        }
+    "name":  "Expected Build Point"
+  },
+  "context":  {
+    "buildPoint":  {
+      "type":  "string",
+      "required":  true
     },
-    "tenets": [
-        {
-            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
-            "outputs": {
-                "uri": {
-                    "code": "has(predicate.data.buildDefinition) && has(predicate.data.buildDefinition.resolvedDependencies) && predicate.data.buildDefinition.resolvedDependencies.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint)) ? predicate.data.buildDefinition.resolvedDependencies.filter(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint))[0].uri : ''"
-                },
-                "commitMatch": {
-                    "code": "context.buildPointCommit != '' && has(predicate.data.buildDefinition) && has(predicate.data.buildDefinition.resolvedDependencies) && predicate.data.buildDefinition.resolvedDependencies.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint) && has(dep.digest) && dep.digest.exists(k, dep.digest[k] == (context.buildPointCommit.contains(':') ? context.buildPointCommit.split(':')[1] : context.buildPointCommit)))"
-                }
-            },
-            "code": "outputs.uri != '' && (context.buildPointAllowRepo || outputs.uri == context.buildPoint) && (context.buildPointCommit == '' || outputs.commitMatch)",
-            "assessment": { "message": "Expected build point found: {{ .Context.buildPoint }}" },
-            "error": {
-                "message": "Build point mismatch",
-                "guidance": "The attested build point does not match the expected reference"
-            }
+    "buildPointAllowRepo":  {
+      "type":  "bool",
+      "required":  false,
+      "default":  true
+    },
+    "buildPointCommit":  {
+      "type":  "string",
+      "required":  false,
+      "default":  ""
+    }
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.uri != '' && (context.buildPointAllowRepo || outputs.uri == context.buildPoint) && (context.buildPointCommit == '' || outputs.commitMatch)",
+      "predicates":  {
+        "types":  [
+          "https://slsa.dev/provenance/v1"
+        ]
+      },
+      "outputs":  {
+        "commitMatch":  {
+          "code":  "context.buildPointCommit != '' && has(predicate.data.buildDefinition) && has(predicate.data.buildDefinition.resolvedDependencies) && predicate.data.buildDefinition.resolvedDependencies.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint) && has(dep.digest) && dep.digest.exists(k, dep.digest[k] == (context.buildPointCommit.contains(':') ? context.buildPointCommit.split(':')[1] : context.buildPointCommit)))"
         },
-        {
-            "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
-            "outputs": {
-                "uri": {
-                    "code": "has(predicate.data.materials) && predicate.data.materials.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint)) ? predicate.data.materials.filter(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint))[0].uri : ''"
-                },
-                "commitMatch": {
-                    "code": "context.buildPointCommit != '' && has(predicate.data.materials) && predicate.data.materials.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint) && has(dep.digest) && dep.digest.exists(k, dep.digest[k] == (context.buildPointCommit.contains(':') ? context.buildPointCommit.split(':')[1] : context.buildPointCommit)))"
-                }
-            },
-            "code": "outputs.uri != '' && (context.buildPointAllowRepo || outputs.uri == context.buildPoint) && (context.buildPointCommit == '' || outputs.commitMatch)",
-            "assessment": { "message": "Expected build point found: {{ .Context.buildPoint }}" },
-            "error": {
-                "message": "Build point mismatch",
-                "guidance": "The attested build point does not match the expected reference"
-            }
+        "uri":  {
+          "code":  "has(predicate.data.buildDefinition) && has(predicate.data.buildDefinition.resolvedDependencies) && predicate.data.buildDefinition.resolvedDependencies.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint)) ? predicate.data.buildDefinition.resolvedDependencies.filter(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint))[0].uri : ''"
         }
-    ]
+      },
+      "error":  {
+        "message":  "Build point mismatch",
+        "guidance":  "The attested build point does not match the expected reference"
+      },
+      "assessment":  {
+        "message":  "Expected build point found: {{ .Context.buildPoint }}"
+      }
+    },
+    {
+      "code":  "outputs.uri != '' && (context.buildPointAllowRepo || outputs.uri == context.buildPoint) && (context.buildPointCommit == '' || outputs.commitMatch)",
+      "predicates":  {
+        "types":  [
+          "https://slsa.dev/provenance/v0.2"
+        ]
+      },
+      "outputs":  {
+        "commitMatch":  {
+          "code":  "context.buildPointCommit != '' && has(predicate.data.materials) && predicate.data.materials.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint) && has(dep.digest) && dep.digest.exists(k, dep.digest[k] == (context.buildPointCommit.contains(':') ? context.buildPointCommit.split(':')[1] : context.buildPointCommit)))"
+        },
+        "uri":  {
+          "code":  "has(predicate.data.materials) && predicate.data.materials.exists(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint)) ? predicate.data.materials.filter(dep, has(dep.uri) && (dep.uri.contains('@') ? dep.uri.split('@')[0] : dep.uri) == (context.buildPoint.contains('@') ? context.buildPoint.split('@')[0] : context.buildPoint))[0].uri : ''"
+        }
+      },
+      "error":  {
+        "message":  "Build point mismatch",
+        "guidance":  "The attested build point does not match the expected reference"
+      },
+      "assessment":  {
+        "message":  "Expected build point found: {{ .Context.buildPoint }}"
+      }
+    }
+  ]
 }

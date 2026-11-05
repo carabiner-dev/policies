@@ -1,25 +1,39 @@
 {
-    "id": "SCORECARD-BINARY-ARTIFACTS",
-    "meta": {
-        "description": "Checks for binary artifacts in the repository"
+  "id":  "SCORECARD-BINARY-ARTIFACTS",
+  "meta":  {
+    "description":  "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard detected executables checked into the repository.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "binary-artifacts.hjson",
+      "digest":  {
+        "sha256":  "73843baa393f15ed7f085efd73cad8d82a2732362c23068004089df17df25c62",
+        "sha512":  "91737629834416d1c022296fcd65a04ce25993484119fcbfc200058eb2463d847b4a684ca953059832c52f0fa020b5ec40f2fe6251dd13b1cfbfac35821a0c83"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-scorecard",
-            "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
-            "outputs": {
-                "bin_artifacts_checks": { "code": "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Binary-Artifacts' && has(c.score)) : [] " }
-            },
-            "predicates": {
-                "types": ["https://scorecard.dev/result/v0.1"]
-            },
-            "assessment": {
-                "message": "Scorecard did not detect any binaries in the repo"
-            },
-            "error": {
-                "message": "Scorecard detected binaries in the repository",
-                "guidance": "Check your codebase and remove any checked-in executables"
-            }
+    "name":  "No Binary Artifacts"
+  },
+  "tenets":  [
+    {
+      "id":  "01-scorecard",
+      "code":  "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+      "predicates":  {
+        "types":  [
+          "https://scorecard.dev/result/v0.1"
+        ]
+      },
+      "outputs":  {
+        "bin_artifacts_checks":  {
+          "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Binary-Artifacts' && has(c.score)) : [] "
         }
-    ]
+      },
+      "error":  {
+        "message":  "Scorecard detected binaries in the repository",
+        "guidance":  "Check your codebase and remove any checked-in executables"
+      },
+      "assessment":  {
+        "message":  "Scorecard did not detect any binaries in the repo"
+      }
+    }
+  ]
 }

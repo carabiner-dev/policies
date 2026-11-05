@@ -1,6 +1,10 @@
 {
     "id": "OSPS-AC-03",
-    "meta": { "controls": [ { "framework": "OSPS", "class": "AC", "id": "03" } ] },
+    "meta": {
+        "name": "Protect the Primary Branch",
+        "description": "The project's version control system MUST prevent unintentional modification of the primary branch.\n\nChecked through the attested branch protection rules with the `snappy/branch-branch-protection` policy, which requires force pushes to be disabled on the default branch.",
+        "controls": [ { "framework": "OSPS", "class": "AC", "id": "03" } ]
+    },
     "blocks": [
         {
             "policies": [

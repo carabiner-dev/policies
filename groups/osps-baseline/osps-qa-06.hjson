@@ -1,7 +1,8 @@
 {
     "id": "OSPS-QA-06",
     "meta": {
-        "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
+        "name": "Automated Tests in CI/CD",
+        "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations.\n\nChecked with the `test-results/tests-pass` policy, which requires an attested test run with all tests passing.",
         "controls": [ { "framework": "OSPS", "class": "QA", "id": "06" } ]
     },
     "blocks": [

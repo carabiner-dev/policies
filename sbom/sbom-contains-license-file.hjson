@@ -1,0 +1,31 @@
+{
+    id: "sbom-contains-license-file"
+    meta: {
+        name: "License File in SBOM"
+        description: "Looks through the files listed in the project's SBOM for a license file and fails when none is found."
+    }
+    tenets: [
+        {
+            id: "01-sbom"
+            code: "size(outputs[\"files\"]) > 0"
+            predicates: {
+                types: [
+                    "https://spdx.dev/Document"
+                    "https://cyclonedx.org/bom"
+                ]
+            }
+            outputs: {
+                files: {
+                    code: "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'LICENSE' || n.name == 'LICENSE.txt' ))"
+                }
+            }
+            assessment: {
+                message: "Found a license file in the project's SBOM."
+            }
+            error: {
+                message: "Could not detect a license file in the SBOM."
+                guidance: "Add a file named LICENSE to your project's codebase."
+            }
+        }
+    ]
+}

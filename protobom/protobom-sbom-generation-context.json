@@ -1,0 +1,60 @@
+{
+  "id":  "PROTOBOM-SBOM-GENERATION-CONTEXT",
+  "meta":  {
+    "description":  "Checks that the SBOM declares the software lifecycle phase it was\ngenerated in (before build, build, after build, etc). This\nimplements the _SBOM Generation Context_ element of the CISA 2026\nSBOM Minimum Elements.\n\nCycloneDX captures this in `metadata.lifecycles`, which protobom\nmaps to the document types. SPDX 2.x has no equivalent field, so\nSPDX documents are exempted from the check: the policy passes when\nthe SBOM is SPDX and requires at least one declared lifecycle\nphase when it is CycloneDX.\n\nThis policy uses the protobom transformer because the lifecycle\ndata is only reachable through the transformed predicate.",
+    "assertMode":  "AND",
+    "controls":  [
+      {
+        "id":  "GENERATION-CONTEXT",
+        "framework":  "CISA-SBOM-2026",
+        "class":  "SBOM-METADATA"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "protobom-sbom-generation-context.hjson",
+      "digest":  {
+        "sha256":  "5096f3aeaa61ef755ab9400399cb5a729342caa746484f46e745070a85b9f383",
+        "sha512":  "f8fdae1f64367502202c3ae83b118a6760fbe299f12d625af9858e0fef124a2cffb42f9b0525ec96b7c3e19e3e5e21c0763a22b3da0c4ef59541df89d1160b73"
+      }
+    },
+    "name":  "SBOM Generation Context"
+  },
+  "predicates":  {
+    "types":  [
+      "https://spdx.dev/Document",
+      "https://cyclonedx.org/bom"
+    ]
+  },
+  "transformers":  [
+    {
+      "id":  "internal:protobom"
+    }
+  ],
+  "tenets":  [
+    {
+      "id":  "generation-context",
+      "code":  "outputs.format.startsWith('text/spdx') || size(outputs.lifecycles) > 0",
+      "predicates":  {
+        "types":  [
+          "application/protobom"
+        ]
+      },
+      "outputs":  {
+        "format":  {
+          "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.sourceData) ? predicates[0].data.metadata.sourceData.format : ''"
+        },
+        "lifecycles":  {
+          "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.documentTypes) ? predicates[0].data.metadata.documentTypes : []"
+        }
+      },
+      "error":  {
+        "message":  "The SBOM does not declare the lifecycle phase it was generated in",
+        "guidance":  "Record the generation context in the CycloneDX metadata.lifecycles field (for example: build)"
+      },
+      "assessment":  {
+        "message":  "SBOM declares its generation context"
+      }
+    }
+  ]
+}

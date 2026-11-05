@@ -1,43 +1,64 @@
 {
-    "id": "slsa-build-type",
-    "meta": {
-        "description": "Ensures an artifact was built from a specified repository and commit",
-        "assert_mode": "OR"
+  "id":  "slsa-build-type",
+  "meta":  {
+    "description":  "Checks that the build type recorded in the artifact's SLSA provenance matches the `buildType` context value, either exactly or as a prefix followed by `@`.",
+    "assertMode":  "OR",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "slsa-build-type.hjson",
+      "digest":  {
+        "sha256":  "28e2bd3b87cd04b4a192cf36fe192a5d857b96d8fa84a12fc570fda57fa8e11b",
+        "sha512":  "a54ee814890d721fd932c71ce702196340a2d838f28bc1b5afbe0f9757b25b1ec56b1051dd6feb33d14c8c168f967038bb354bd21c0d6646c73a4ec929753f17"
+      }
     },
-    "context": {
-        "buildType" : {
-            "required": true,
-            "type": "string"
+    "name":  "Expected Build Type"
+  },
+  "context":  {
+    "buildType":  {
+      "type":  "string",
+      "required":  true
+    }
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
+      "predicates":  {
+        "types":  [
+          "https://slsa.dev/provenance/v1"
+        ]
+      },
+      "outputs":  {
+        "buildType":  {
+          "code":  "has(predicates[0].data.buildDefinition) ? (has(predicates[0].data.buildDefinition.buildType) ? predicates[0].data.buildDefinition.buildType : '' ) : '' "
         }
+      },
+      "error":  {
+        "message":  "BuildType mismatch",
+        "guidance":  "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
+      },
+      "assessment":  {
+        "message":  "Expected buildType found: {{ .Outputs.buildType  }}"
+      }
     },
-    "tenets": [
-        {
-            "predicates": { "types": ["https://slsa.dev/provenance/v1"] },
-            "outputs": {
-                "buildType": {
-                    "code": "has(predicates[0].data.buildDefinition) ? (has(predicates[0].data.buildDefinition.buildType) ? predicates[0].data.buildDefinition.buildType : '' ) : '' "
-                }
-            },
-            "code": "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
-            "assessment": { "message": "Expected buildType found: {{ .Outputs.buildType  }}" },
-            "error": {
-                "message": "BuildType mismatch",
-                "guidance": "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
-            }
-        },
-        {
-            "predicates": { "types": ["https://slsa.dev/provenance/v0.2"] },
-            "outputs": {
-                "buildType": {
-                    "code": "has(predicates[0].data.buildType) ? predicates[0].data.buildType : '' "
-                }
-            },
-            "code": "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
-            "assessment": { "message": "Expected buildType found: {{ .Outputs.buildType  }}" },
-            "error": {
-                "message": "BuildType mismatch",
-                "guidance": "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
-            }
+    {
+      "code":  "outputs.buildType == context.buildType || outputs.buildType.startsWith(context.buildType + '@')",
+      "predicates":  {
+        "types":  [
+          "https://slsa.dev/provenance/v0.2"
+        ]
+      },
+      "outputs":  {
+        "buildType":  {
+          "code":  "has(predicates[0].data.buildType) ? predicates[0].data.buildType : '' "
         }
-    ]
+      },
+      "error":  {
+        "message":  "BuildType mismatch",
+        "guidance":  "The attested build type ({{ .Outputs.buildType }}) does not match the expected identifier"
+      },
+      "assessment":  {
+        "message":  "Expected buildType found: {{ .Outputs.buildType  }}"
+      }
+    }
+  ]
 }

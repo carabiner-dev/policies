@@ -1,0 +1,68 @@
+{
+  "id":  "OSPS-QA-07",
+  "meta":  {
+    "description":  "The version control system MUST require at least one non-author approval of changes before merging into the primary branch.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/code-review` policy.",
+    "controls":  [
+      {
+        "id":  "07",
+        "framework":  "OSPS",
+        "class":  "QA"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-qa-07.hjson",
+      "digest":  {
+        "sha256":  "f9582afc10a962c9a85a263a38cbf4c008dd21468c0007a901d6fbcbe45ae0c0",
+        "sha512":  "fdfc110ed517faf8270a5c3bf66caa0fd650d43011e6cf4f1473aa6db74f16c3252f3f6cfdf4bae0d377cbd11985a7a695ccdfbb00e09d8a93d17e27990f649d"
+      }
+    },
+    "name":  "Merge Approvals Required"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "SCORECARD-CODE-REVIEW",
+          "meta":  {
+            "description":  "VCS MUST require at least one non-author approval of changes to the primary branch.",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "SCORECARD-CODE-REVIEW",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json",
+              "digest":  {
+                "sha256":  "70f0cf629493b25cc847a3fdc7e1055160be08a67fce327d99fca27b992e053b",
+                "sha512":  "2799a7bc363d89ed1edd0434dc4c82c3a4b47c9c49d30514316a5189761459e8e3fba2130d59698093f7255f533978410d21a42b9ba995305f7f64d09a7403e5"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-scorecard",
+              "code":  "outputs.codereview.all(c, c.score == 10)",
+              "predicates":  {
+                "types":  [
+                  "https://scorecard.dev/result/v0.1"
+                ]
+              },
+              "outputs":  {
+                "codereview":  {
+                  "code":  "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Code-Review' && has(c.score)) : [] "
+                }
+              },
+              "error":  {
+                "message":  "Scorecard detected code review is not enabled in the repository",
+                "guidance":  "Ensure your repo requires a review from another party for every pull request"
+              },
+              "assessment":  {
+                "message":  "Scorecard reports code review is required for changes"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

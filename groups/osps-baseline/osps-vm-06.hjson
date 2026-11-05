@@ -1,7 +1,8 @@
 {
     "id": "OSPS-VM-06",
     "meta": {
-        "description": "Enforce a policy that defines a threshold for remediation of SAST findings",
+        "name": "Application Security Testing Enforced",
+        "description": "The project MUST publish and enforce an application security testing policy, with a threshold for the remediation of SAST findings.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/sast` policy.",
         "controls": [ { "framework": "OSPS", "class": "VM", "id": "VM-06" } ]
     },
     "blocks": [

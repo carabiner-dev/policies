@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-TOOL-VERSION
 
     meta: {
+        name: "SBOM Tool Version"
         description:
             '''
-            # SBOM Tool Version
-
             Checks that the SBOM records the version of the tool used to
             generate it. This implements the _SBOM Tool Version_ element of
             the CISA 2026 SBOM Minimum Elements.

@@ -1,7 +1,8 @@
 {
   "id": "aiir-ai-authored-disallowed",
   "meta": {
-    "description": "Fails when an AIIR receipt marks the attested commit as AI-authored or omits authorship status"
+    "name": "AI-Authored Commits Disallowed",
+    "description": "Fails when an [AIIR](https://invariantsystems.io) commit receipt marks the attested commit as AI-authored, or when the receipt does not state its authorship at all. Both the v1 and the wrapped v2 receipt predicates are accepted."
   },
   "tenets": [
     {

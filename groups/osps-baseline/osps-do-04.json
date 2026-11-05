@@ -1,0 +1,64 @@
+{
+  "id":  "OSPS-DO-04",
+  "meta":  {
+    "description":  "The project documentation MUST include a descriptive statement about the scope and duration of support for each release.\n\nChecked with the `openeox/has-openeox` policy, which requires an OpenEoX statement describing the release's end of support.",
+    "controls":  [
+      {
+        "id":  "04",
+        "framework":  "OSPS",
+        "class":  "DO"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-do-04.hjson",
+      "digest":  {
+        "sha256":  "81ebf1896a5c18f79938728156ceafdbb7c098f8049734971944dd494fd3a267",
+        "sha512":  "238d50bb8bfdc9ccee07e4741a69f47ec6eec005342fb9a1de4ccb594d581e6465d3acff3aeef9a4a66eb447d85a58f0821dca5f3fd2b533ec33e81ad4e7df4f"
+      }
+    },
+    "name":  "Support Scope and Duration"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "OPENEOX-EXISTS",
+          "meta":  {
+            "description":  "Ensures there is an openeox attestation",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "OPENEOX-EXISTS",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
+              "digest":  {
+                "sha256":  "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
+                "sha512":  "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01-openeox",
+              "code":  "size(predicates) > 0",
+              "predicates":  {
+                "types":  [
+                  "https://docs.oasis-open.org/openeox/core/v1.0",
+                  "https://docs.oasis-open.org/openeox/eox-core/v1.0"
+                ]
+              },
+              "error":  {
+                "message":  "No OpenEOX data found.",
+                "guidance":  "Capture the project End of Support in an OpenEOX file."
+              },
+              "assessment":  {
+                "message":  "Found an OpenEoX statement with the artifact's EOS."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

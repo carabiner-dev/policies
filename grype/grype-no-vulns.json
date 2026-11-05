@@ -1,0 +1,38 @@
+{
+  "id":  "grype-no-vulns",
+  "meta":  {
+    "description":  "Checks that an attested [grype](https://github.com/anchore/grype) vulnerability report contains no vulnerability matches at all.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "grype-no-vulns.hjson",
+      "digest":  {
+        "sha256":  "4dcc4da21c1f72379cb9ff8b679a8391c7ec3233138079eecd85a2d29e6e547d",
+        "sha512":  "5da450bf0c852120d572bcea0d12453185edcfab5854c0c9be8c23bae58f9f848ac869784cda991af8d37e95c2e6a67d7e742dc32ff4ffac47cf782ed04a7e96"
+      }
+    },
+    "name":  "No Grype Vulnerabilities"
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.vulnCount == 0",
+      "predicates":  {
+        "types":  [
+          "https://predicates.policylabs.dev/grype/v1"
+        ]
+      },
+      "outputs":  {
+        "vulnCount":  {
+          "code":  "has(predicate.data.matches) ? size(predicate.data.matches) : 0"
+        }
+      },
+      "error":  {
+        "message":  "Attested grype report has {{ .Outputs.vulnCount }} vulnerability matches",
+        "guidance":  "Remediate or suppress the vulnerabilities reported by grype before this policy can pass"
+      },
+      "assessment":  {
+        "message":  "Attested grype report has no vulnerability matches"
+      }
+    }
+  ]
+}

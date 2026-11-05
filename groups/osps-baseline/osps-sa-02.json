@@ -1,0 +1,49 @@
+{
+  "id":  "OSPS-SA-02",
+  "meta":  {
+    "description":  "The project documentation MUST include descriptions of all external software interfaces of the released software assets.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
+    "controls":  [
+      {
+        "id":  "02",
+        "framework":  "OSPS",
+        "class":  "SA"
+      }
+    ],
+    "enforce":  "OFF",
+    "origin":  {
+      "name":  "osps-sa-02.hjson",
+      "digest":  {
+        "sha256":  "6a6884b394171173ee365491614faaff8c1d9f9a27eb55b79c58e538e765ed80",
+        "sha512":  "3ce60f45e7df2bbb4dc44a3c4b4716a9c635f9f2d0252a88ba62266160be91691e520564e821dcb432fd6e7a69c49b75ecdf44ce4d621713b0d242cefc6e4bf9"
+      }
+    },
+    "name":  "External Interface Descriptions"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "meta":  {
+            "description":  "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.",
+            "name":  "Not Implemented"
+          },
+          "tenets":  [
+            {
+              "id":  "01",
+              "code":  "false",
+              "predicates":  {
+                "types":  [
+                  "https://slsa.dev/provenance/v0.2"
+                ]
+              },
+              "error":  {
+                "message":  "Not implemented yet",
+                "guidance":  "We don't have a way to detect documentation about the external interfaces"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,27 +1,40 @@
 {
-    "id": "sbom-contains-lockfile",
-    "meta": {
-        "description": "Checks for a language dependency lockfile among the SBOM files"
+  "id":  "sbom-contains-lockfile",
+  "meta":  {
+    "description":  "Looks through the files listed in the project's SBOM for a language dependency lockfile, such as those of Go, Python, npm or Ruby tooling, and fails when none is found.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "sbom-contains-lockfile.hjson",
+      "digest":  {
+        "sha256":  "aa4ddbfec7a3cd87acb49f14f63518b78ac25c2cfc350e03ce7b56a1bfaa3f21",
+        "sha512":  "584a8a9c0a133f09a0d462d07a4812b6b42f8cda0e527218b64461de249173771348408f80c1b0417cae6f315c0cf83a75d5bb304020906980da51ec18c68c38"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-lockfile",
-            "code": "size(outputs[\"files\"]) > 0",
-            "predicates": {
-                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-            },
-            "outputs": {
-                "files": {
-                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'requirements.txt' || n.name == 'poetry.lock' || n.name == 'go.mod' || n.name == 'package.lock' || n.name == 'Gemfile.lock' ))"
-                }
-            },
-            "assessment": {
-                "message": "Found a package lock file"
-            },
-            "error": {
-                "message": "Could not detect a package lock file",
-                "guidance": "Ensure your project uses go, pypy, npm or ruby gems tooling o handle dependencies"
-            }
+    "name":  "Dependency Lockfile in SBOM"
+  },
+  "tenets":  [
+    {
+      "id":  "01-lockfile",
+      "code":  "size(outputs[\"files\"]) > 0",
+      "predicates":  {
+        "types":  [
+          "https://spdx.dev/Document",
+          "https://cyclonedx.org/bom"
+        ]
+      },
+      "outputs":  {
+        "files":  {
+          "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'requirements.txt' || n.name == 'poetry.lock' || n.name == 'go.mod' || n.name == 'package.lock' || n.name == 'Gemfile.lock' ))"
         }
-    ]            
+      },
+      "error":  {
+        "message":  "Could not detect a package lock file",
+        "guidance":  "Ensure your project uses go, pypy, npm or ruby gems tooling o handle dependencies"
+      },
+      "assessment":  {
+        "message":  "Found a package lock file"
+      }
+    }
+  ]
 }

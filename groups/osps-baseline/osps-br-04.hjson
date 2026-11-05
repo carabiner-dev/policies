@@ -1,7 +1,8 @@
 {
     "id": "OSPS-BR-04",
     "meta": {
-        "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
+        "name": "Change Log With Release",
+        "description": "All releases MUST provide a descriptive log of functional and security modifications.\n\nChecked through the release SBOM with the `sbom/sbom-contains-changelog` policy, which looks for a changelog among the project's files.",
         "controls": [ { "framework": "OSPS", "class": "BR", "id": "04" } ]
     },
     "blocks": [

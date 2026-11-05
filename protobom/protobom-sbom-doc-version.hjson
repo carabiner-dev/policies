@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-DOC-VERSION
 
     meta: {
+        name: "SBOM Version"
         description:
             '''
-            # SBOM Version
-
             Checks that the SBOM document itself is versioned, either through
             a version identifier or through a unique document identifier
             (serial number). This implements the _SBOM Version_ element of the

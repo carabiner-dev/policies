@@ -1,56 +1,65 @@
 {
-    "id": "OPENVEX-VULNS-ARE-VEXED",
-    "meta": {
-        "description": "The project MUST publicly publish data about discovered vulnerabilities",
-        "assert_mode": "AND"
+  "id":  "OPENVEX-VULNS-ARE-VEXED",
+  "meta":  {
+    "description":  "Checks that the project publishes data about the vulnerabilities found in its code: an attested OSV vulnerability report exists and every finding in it is addressed by an OpenVEX statement.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "project-is-vexing.hjson",
+      "digest":  {
+        "sha256":  "49dca2f6120efa8187d5b204bb33503cb04b4d8eb2b8acd85ae997f0d78bb160",
+        "sha512":  "2297af2357bc67fca0bf8f80d09763a908dedbf4ff7e102a674edf9055be8b4a4dcb569fa2b8b967aac8dd0c02aa944d5e9d139552ee1207c556ec5c3bb1e0c4"
+      }
     },
-    "tenets": [
-        {
-            "id": "01",
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": [
-                    "https://ossf.github.io/osv-schema/results@v1",
-                    "https://ossf.github.io/osv-schema/results@v1.6.7"
-                ]
-            },
-            "assessment": {
-                "message": "Vulnerability report published"
-            },
-            "error": {
-                "message": "A vulnerability report was found",
-                "guidance": "The artifact was published with an attested OSV results"
-            }
+    "name":  "Vulnerabilities Published and Vexed"
+  },
+  "tenets":  [
+    {
+      "id":  "01",
+      "code":  "size(predicates) > 0",
+      "predicates":  {
+        "types":  [
+          "https://ossf.github.io/osv-schema/results@v1",
+          "https://ossf.github.io/osv-schema/results@v1.6.7"
+        ]
+      },
+      "error":  {
+        "message":  "A vulnerability report was found",
+        "guidance":  "The artifact was published with an attested OSV results"
+      },
+      "assessment":  {
+        "message":  "Vulnerability report published"
+      }
+    },
+    {
+      "id":  "02",
+      "code":  "outputs.reports > 0 && (size(outputs.vulnerabilities) == 0 || outputs.vexes > 0)",
+      "predicates":  {
+        "types":  [
+          "https://ossf.github.io/osv-schema/results@v1",
+          "https://ossf.github.io/osv-schema/results@v1.6.7",
+          "https://openvex.dev/ns/v0.2.0",
+          "https://openvex.dev/ns"
+        ]
+      },
+      "outputs":  {
+        "reports":  {
+          "code":  "size(predicates.filter(p, p.predicate_type.contains('osv-schema')))"
         },
-        {
-            "id": "02",
-            "code": "outputs.reports > 0 && (size(outputs.vulnerabilities) == 0 || outputs.vexes > 0)",
-            "outputs": {
-                "vulnerabilities": {
-                    "code": "predicates.filter(p, p.predicate_type.contains('osv-schema')).map(p, p.data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()).flatten()"
-                },
-                "vexes": {
-                    "code": "size(predicates.filter(p, p.predicate_type.contains('openvex')))"
-                },
-                "reports": {
-                    "code": "size(predicates.filter(p, p.predicate_type.contains('osv-schema')))"
-                }
-            },
-            "predicates": {
-                "types": [
-                    "https://ossf.github.io/osv-schema/results@v1",
-                    "https://ossf.github.io/osv-schema/results@v1.6.7",
-                    "https://openvex.dev/ns/v0.2.0",
-                    "https://openvex.dev/ns"
-                ]
-            },
-            "assessment": {
-                "message": "No vulnerabilities and/or VEX data found"
-            },
-            "error": {
-                "message": "Unvexed vulnerabilities found",
-                "guidance": "All vulnerabilities must be patched or accounted in VEX documents"
-            }
+        "vexes":  {
+          "code":  "size(predicates.filter(p, p.predicate_type.contains('openvex')))"
+        },
+        "vulnerabilities":  {
+          "code":  "predicates.filter(p, p.predicate_type.contains('osv-schema')).map(p, p.data.results.map(r, has(r.packages), r.packages.map(p, p.vulnerabilities.map(v, v.id)).flatten()).flatten()).flatten()"
         }
-    ]            
+      },
+      "error":  {
+        "message":  "Unvexed vulnerabilities found",
+        "guidance":  "All vulnerabilities must be patched or accounted in VEX documents"
+      },
+      "assessment":  {
+        "message":  "No vulnerabilities and/or VEX data found"
+      }
+    }
+  ]
 }

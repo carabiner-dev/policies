@@ -2,10 +2,9 @@
     id: PROTOBOM-SBOM-HASHES
 
     meta: {
+        name: "Component Hash Value"
         description:
             '''
-            # Component Hash Value
-
             Checks that the top level components of the SBOM carry at least
             one cryptographic hash of the component artifact. This implements
             the _Component Hash Value_ element of the CISA 2026 SBOM Minimum

@@ -1,0 +1,31 @@
+{
+    id: "SCORECARD-TOKEN-PERMISSIONS"
+    meta: {
+        name: "Least Privilege Tokens"
+        description: "Reads the project's attested [OpenSSF Scorecard](https://scorecard.dev) results. Fails when Scorecard detected workflows whose tokens hold more permissions than they need."
+        enforce: "OFF"
+    }
+    tenets: [
+        {
+            id: "01-scorecard"
+            code: "outputs.perms.all(c, c.score == 10)"
+            outputs: {
+                perms: {
+                    code: "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] "
+                }
+            }
+            predicates: {
+                types: [
+                    "https://scorecard.dev/result/v0.1"
+                ]
+            }
+            assessment: {
+                message: "Scorecard reports workflows are configured with least privileges"
+            }
+            error: {
+                message: "Scorecard detected workflows with excessivce permissions"
+                guidance: "Ensure workflows drop all privileges and only escalte when needed"
+            }
+        }
+    ]
+}

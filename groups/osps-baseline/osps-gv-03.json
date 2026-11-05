@@ -1,0 +1,69 @@
+{
+  "id":  "OSPS-GV-03",
+  "meta":  {
+    "description":  "The project documentation MUST include an explanation of the contribution process.\n\nChecked through the release SBOM with the `sbom/sbom-contains-contributing-md` policy, which looks for a `CONTRIBUTING.md` file.",
+    "controls":  [
+      {
+        "id":  "03",
+        "framework":  "OSPS",
+        "class":  "GV"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-gv-03.hjson",
+      "digest":  {
+        "sha256":  "3f77e109fe6d35fa07cccafe50bf7c91c30b5cb3f4890f8fa8ea4fc0ee1147d3",
+        "sha512":  "ebe6f53a53fec07ad7416c5988189e8232eeee6992b809dabb7e2b893d90c395305bd116ee5b8ae75b5152042cf45bc343b78689de1ba9d3b2d71e35961b21b7"
+      }
+    },
+    "name":  "Contribution Guide Published"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "sbom-contains-contributing-md",
+          "meta":  {
+            "description":  "Checks for a CONTRIBUTING.md file in the SBOM",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "sbom-contains-contributing-md",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json",
+              "digest":  {
+                "sha256":  "867cd97c9a0abd1679141bbc6d7627267d362f4285eb054faf7e4b1af77d13d5",
+                "sha512":  "449a022ee42c42aad13b078d96ecad0728eec13126c381913e91b5acb72b4ff89ffc3f2d97b1c6665874be3858fc329654e0b5592c96e3ba2f426bb05b5c61a0"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01",
+              "code":  "size(outputs['files']) > 0",
+              "predicates":  {
+                "types":  [
+                  "https://spdx.dev/Document",
+                  "https://cyclonedx.org/bom"
+                ]
+              },
+              "outputs":  {
+                "files":  {
+                  "code":  "sboms[0].get_node_list().get_nodes().filter(n, n.name == \"CONTRIBUTING.md\")"
+                }
+              },
+              "error":  {
+                "message":  "Repository has no CONTRIBUTING.md file",
+                "guidance":  "Write up the project's contribution process into a CONTRIBUTING.md file and check it into the repository."
+              },
+              "assessment":  {
+                "message":  "Found a CONTRIBUTING.md file"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

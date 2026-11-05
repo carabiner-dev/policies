@@ -1,27 +1,40 @@
 {
-    "id": "sbom-contains-changelog",
-    "meta": {
-        "description": "Checks an SBOM to locate a Changelog in the file lists"
+  "id":  "sbom-contains-changelog",
+  "meta":  {
+    "description":  "Looks through the files listed in the project's SBOM for a changelog (`CHANGELOG`, `CHANGELOG.md`, `CHANGELOG.rst` or `CHANGELOG.txt`) and fails when none is found.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "sbom-contains-changelog.hjson",
+      "digest":  {
+        "sha256":  "8551ee45e035baf3d8dbd07934553a4f5cc3f359ccfff10ee27575c16c3bc51e",
+        "sha512":  "4858550d1a9de46aeb8bc42a7028f2cc22fd663902cd2cd52ebef020c9e0103a20b11087c99315a7beb8177fb6fc38d03c3b2e2f17b5da6689f041c25dea8762"
+      }
     },
-    "tenets": [
-        {
-            "id": "01-sbom",
-            "code": "size(outputs[\"files\"]) > 0",
-            "predicates": {
-                "types": ["https://spdx.dev/Document", "https://cyclonedx.org/bom"]
-            },
-            "outputs": {
-                "files": {
-                    "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' || n.name == 'CHANGELOG.md' || n.name == 'CHANGELOG.rst' || n.name == 'CHANGELOG.txt'))"
-                }
-            },
-            "assessment": {
-                "message": "Found a changelog in the project's SBOM."
-            },
-            "error": {
-                "message": "Could not detect a changelog file in the SBOM.",
-                "guidance": "Add a file named CHANGELOG to your project's codebase registering major changes."
-            }
+    "name":  "Changelog in SBOM"
+  },
+  "tenets":  [
+    {
+      "id":  "01-sbom",
+      "code":  "size(outputs[\"files\"]) > 0",
+      "predicates":  {
+        "types":  [
+          "https://spdx.dev/Document",
+          "https://cyclonedx.org/bom"
+        ]
+      },
+      "outputs":  {
+        "files":  {
+          "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'CHANGELOG' || n.name == 'changelog.txt' || n.name == 'CHANGELOG.md' || n.name == 'CHANGELOG.rst' || n.name == 'CHANGELOG.txt'))"
         }
-    ]            
+      },
+      "error":  {
+        "message":  "Could not detect a changelog file in the SBOM.",
+        "guidance":  "Add a file named CHANGELOG to your project's codebase registering major changes."
+      },
+      "assessment":  {
+        "message":  "Found a changelog in the project's SBOM."
+      }
+    }
+  ]
 }

@@ -1,0 +1,46 @@
+{
+  "id":  "aiir-detection-method-allowed",
+  "meta":  {
+    "description":  "Checks that the method an AIIR commit receipt used to determine authorship is one of the methods allowed by the `allowedDetectionMethods` context value, a pipe-separated list. Projects that only trust certain detection methods can enforce that preference here.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "detection-method-allowed.hjson",
+      "digest":  {
+        "sha256":  "6918d6954a2ce69348ccc8c1a4e5a3228f8547c770249d282a9dbb9f71d65eea",
+        "sha512":  "18785a8e1d484269b68a5c61ec67617672cef0700f7280b31745769bd4d59c63e769938ba3971d046d60215b233470727688c8d59c378a9cd36d5bbd9e879213"
+      }
+    },
+    "name":  "Allowed Detection Methods"
+  },
+  "context":  {
+    "allowedDetectionMethods":  {
+      "type":  "string",
+      "required":  true,
+      "description":  "Pipe-separated list of allowed AIIR detection_method values"
+    }
+  },
+  "tenets":  [
+    {
+      "code":  "outputs.detectionMethod != '' && context.allowedDetectionMethods.split('|').exists(detectionMethod, detectionMethod == outputs.detectionMethod)",
+      "predicates":  {
+        "types":  [
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v1",
+          "https://invariantsystems.io/predicates/aiir/commit_receipt/v2"
+        ]
+      },
+      "outputs":  {
+        "detectionMethod":  {
+          "code":  "has(predicate.data.ai_attestation) && has(predicate.data.ai_attestation.detection_method) ? predicate.data.ai_attestation.detection_method : ''"
+        }
+      },
+      "error":  {
+        "message":  "AIIR detection method is not allowed",
+        "guidance":  "This repo does not accept revisions whose AIIR receipt uses detection method {{ .Outputs.detectionMethod }}"
+      },
+      "assessment":  {
+        "message":  "AIIR detection method {{ .Outputs.detectionMethod }} is allowed"
+      }
+    }
+  ]
+}

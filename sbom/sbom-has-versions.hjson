@@ -1,0 +1,31 @@
+{
+    id: "sbom-has-versions"
+    meta: {
+        name: "Component Versions in SBOM"
+        description: "Checks that every top-level component of the SBOM has a version set."
+    }
+    tenets: [
+        {
+            id: "01-sbom"
+            predicates: {
+                types: [
+                    "https://spdx.dev/Document"
+                    "https://cyclonedx.org/bom"
+                ]
+            }
+            outputs: {
+                versions: {
+                    code: "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
+                }
+            }
+            code: "outputs.versions.all(s, s != \"\")"
+            assessment: {
+                message: "All top level components have versions"
+            }
+            error: {
+                message: "Som of the top level components in the SBOM are missing versions."
+                guidance: "Ensure the SBOM generation tool is capturing the release version."
+            }
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    id: "slsa-has-attestation"
+    meta: {
+        name: "SLSA Provenance Available"
+        description: "Checks that a SLSA provenance attestation describing how the artifact was built is available."
+    }
+    tenets: [
+        {
+            id: "slsa"
+            code: "size(predicates) > 0"
+            predicates: {
+                types: [
+                    "https://slsa.dev/provenance/v0.2"
+                    "https://slsa.dev/provenance/v1"
+                ]
+            }
+            error: {
+                message: "No SLSA attestation found"
+                guidance: "Capture the build process in a SLSA provenance attestation"
+            }
+            assessment: {
+                message: "SLSA provenance attestation found"
+            }
+        }
+    ]
+}

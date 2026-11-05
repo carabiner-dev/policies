@@ -1,0 +1,84 @@
+{
+  "id":  "OSPS-QA-06",
+  "meta":  {
+    "description":  "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations.\n\nChecked with the `test-results/tests-pass` policy, which requires an attested test run with all tests passing.",
+    "controls":  [
+      {
+        "id":  "06",
+        "framework":  "OSPS",
+        "class":  "QA"
+      }
+    ],
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "osps-qa-06.hjson",
+      "digest":  {
+        "sha256":  "636a086e6dc800922d23de220c0a830ab2fe74d15e29b8b9e361006b1fdc9da1",
+        "sha512":  "dead3e26f7d7695c057ba436cb48d78fc89f29c02f7562bfbcba7d22fae2eeb727446bc396c4dc3c63af1a2c38b8a36810f8a2d8fd8f09f4dec4eeddf87368f5"
+      }
+    },
+    "name":  "Automated Tests in CI/CD"
+  },
+  "blocks":  [
+    {
+      "policies":  [
+        {
+          "id":  "test-results-pass",
+          "meta":  {
+            "description":  "Verify that test results recored in an attestation pass",
+            "assertMode":  "AND",
+            "enforce":  "ON",
+            "origin":  {
+              "name":  "test-results-pass",
+              "uri":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json",
+              "digest":  {
+                "sha256":  "cca9333f7705579e43f902673f21d7d00ad8006001ae7886964d5b1741d681ac",
+                "sha512":  "4a339fdfa7a6adcb6752a1802de9ac24c536180d93691fa81089762315a6f75247898aa00b3a5d427634a7d3476d997fcd279daf37a306c523c14619853ca201"
+              },
+              "downloadLocation":  "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json"
+            }
+          },
+          "tenets":  [
+            {
+              "id":  "01a",
+              "code":  "size(predicates) > 0",
+              "predicates":  {
+                "types":  [
+                  "https://in-toto.io/attestation/test-result/v0.1"
+                ]
+              },
+              "error":  {
+                "message":  "No attested test runs found",
+                "guidance":  "Generate a test-run attestation to capture the results of your unit tests"
+              },
+              "assessment":  {
+                "message":  "Attested test run found"
+              }
+            },
+            {
+              "id":  "01b",
+              "code":  "outputs.result == 'pass' ",
+              "predicates":  {
+                "types":  [
+                  "https://in-toto.io/attestation/test-result/v0.1"
+                ]
+              },
+              "outputs":  {
+                "result":  {
+                  "code":  "has(predicates[0].data.result) ? predicates[0].data.result : '' "
+                }
+              },
+              "error":  {
+                "message":  "Some of the attested test runs failed",
+                "guidance":  "Check the output of your unit tests, ensure they are passing"
+              },
+              "assessment":  {
+                "message":  "All attested tests are passing"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

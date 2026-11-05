@@ -1,40 +1,53 @@
 {
-    "id": "SI-HAS-DOCUMENTATION",
-    "meta": {
-        "description": "Ensure the detailed-guide field in SI is populated"
+  "id":  "SI-HAS-DOCUMENTATION",
+  "meta":  {
+    "description":  "Reads the project's attested [Security Insights](https://github.com/ossf/security-insights-spec) file. Fails when the detailed guide field is not set.",
+    "assertMode":  "AND",
+    "enforce":  "ON",
+    "origin":  {
+      "name":  "has-documentation.hjson",
+      "digest":  {
+        "sha256":  "a48cd021b42b959c1f535b7bf005e2cb75202d5eb04f6cdc63f40adbbc2944ef",
+        "sha512":  "943078ae0e24aa965ed25a209c70ce01bf894fdd26b27cf1b2e42f1ac3bb8a9a9af70df9206456d45765030d6214f857a989a50f9fc595e2df77055eae99f306"
+      }
     },
-    "tenets": [
-        {
-            "code": "size(predicates) > 0",
-            "predicates": {
-                "types": ["https://github.com/ossf/security-insights-spec"]
-            },
-            "error": {
-                "message": "No Security Insights attestation found",
-                "guidance": "Capture your security insights flile in an attestations at build point"
-            },
-            "assessment": {
-                "message": "Security Insights attestation found"
-
-            }
-        },   
-        {
-            "code": "outputs[\"docs\"] != \"\"",
-            "outputs": {
-                "docs": {
-                    "code": "\"documentation\" in predicates[0].data.project ? (\"detailed-guide\" in predicates[0].data.project.documentation ? predicates[0].data.project.documentation[\"detailed-guide\"] : \"\" ) : \"\" "
-                }
-            },
-            "predicates": {
-                "types": ["https://github.com/ossf/security-insights-spec"]
-            },
-            "assessment": {
-                "message": "Documentation link found in SECURITY_INSIGHTS.yaml"
-            },
-            "error": {
-                "message": "No documentation link found in SI",
-                "guidance": "Add a security insights file to your repository and define a documentation link"
-            }
+    "name":  "Documentation Linked"
+  },
+  "tenets":  [
+    {
+      "code":  "size(predicates) > 0",
+      "predicates":  {
+        "types":  [
+          "https://github.com/ossf/security-insights-spec"
+        ]
+      },
+      "error":  {
+        "message":  "No Security Insights attestation found",
+        "guidance":  "Capture your security insights flile in an attestations at build point"
+      },
+      "assessment":  {
+        "message":  "Security Insights attestation found"
+      }
+    },
+    {
+      "code":  "outputs[\"docs\"] != \"\"",
+      "predicates":  {
+        "types":  [
+          "https://github.com/ossf/security-insights-spec"
+        ]
+      },
+      "outputs":  {
+        "docs":  {
+          "code":  "\"documentation\" in predicates[0].data.project ? (\"detailed-guide\" in predicates[0].data.project.documentation ? predicates[0].data.project.documentation[\"detailed-guide\"] : \"\" ) : \"\" "
         }
-    ]            
+      },
+      "error":  {
+        "message":  "No documentation link found in SI",
+        "guidance":  "Add a security insights file to your repository and define a documentation link"
+      },
+      "assessment":  {
+        "message":  "Documentation link found in SECURITY_INSIGHTS.yaml"
+      }
+    }
+  ]
 }
