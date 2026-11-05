@@ -7,11 +7,10 @@
     "origin": {
       "name": "sigstore-dual-signatures.hjson",
       "digest": {
-        "sha256": "98e310460d893185d7df288a71f0c20ded16fa1195c1ef611df23c54c4e37c17",
-        "sha512": "9a8ee5b4e16135b7cea99b5674bc0e6558a441bbf92cfa9c884f0e2695cde6d7729639373bc986125a72f217806e9df6b5ff044a1128607d931994e045983a35"
+        "sha256": "45f34fdc5dff58a2fc19761652e5ea619e0d1b6fd6a2ffab3b270149d4638d6c",
+        "sha512": "f615214166dd34325c7ad3a7cee49399913c2b635229afc0d3a2815cbfee70def90c6708858c34fff3a852a5c18ac42a6f51972aff592659d79764e029d3ce85"
       }
-    },
-    "name": "Sigstore Signature Verification (dual-style)"
+    }
   },
   "tenets": [
     {

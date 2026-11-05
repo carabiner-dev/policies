@@ -2,7 +2,8 @@
     id: sigstore-dual-signatures
 
     meta: {
-        name: "Sigstore Signature Verification (dual-style)"
+        // name is omitted for now: ampel < 1.3.10 rejects meta.name (kubernetes-sigs/release-actions v0.4.5 runs v1.3.6)
+        // name: "Sigstore Signature Verification (dual-style)"
         description:
             '''
             Passes when a release artifact carries a verified sigstore signature
