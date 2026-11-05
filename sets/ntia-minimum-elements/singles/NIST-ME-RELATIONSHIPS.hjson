@@ -1,4 +1,5 @@
 {
+    id: "NIST-ME-RELATIONSHIPS"
     meta: {
         name: "Dependency Relationships"
         description: "Checks that every top-level component of the SBOM records its dependency relationships."

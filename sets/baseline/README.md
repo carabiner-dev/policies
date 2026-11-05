@@ -10,7 +10,9 @@ ampel can use to validate the OSPS Baseline requirements.
 ## Policy set
 
 <!-- policyctl:index:sets:begin -->
-_Run `make docs` to generate this table._
+| ID | Name | Version | Policies | Groups | Predicate types |
+|----|------|---------|----------|--------|-----------------|
+| [`OSPS`](osps-baseline.policy.md) | OpenSSF Security Baseline |  | 0 | 36 | `http://github.com/carabiner-dev/snappy/specs/branch-rules.yaml`<br>`http://github.com/carabiner-dev/snappy/specs/github/branch-rules.yaml`<br>`http://github.com/carabiner-dev/snappy/specs/github/org.yaml`<br>`http://github.com/carabiner-dev/snappy/specs/github/repo.yaml`<br>`http://github.com/carabiner-dev/snappy/specs/org.yaml`<br>`http://github.com/carabiner-dev/snappy/specs/repo.yaml`<br>`https://cyclonedx.org/bom`<br>`https://docs.oasis-open.org/openeox/core/v1.0`<br>`https://docs.oasis-open.org/openeox/eox-core/v1.0`<br>`https://github.com/ossf/security-insights-spec`<br>`https://github.com/slsa-framework/slsa-source-poc/source-provenance/v1-draft`<br>`https://in-toto.io/attestation/test-result/v0.1`<br>`https://openvex.dev/ns`<br>`https://openvex.dev/ns/v0.2.0`<br>`https://ossf.github.io/osv-schema/results`<br>`https://ossf.github.io/osv-schema/results@v1`<br>`https://ossf.github.io/osv-schema/results@v1.6.7`<br>`https://predicates.policylabs.dev/grype/v1`<br>`https://predicates.policylabs.dev/trivy/v1`<br>`https://scorecard.dev/result/v0.1`<br>`https://slsa.dev/provenance/v0.2`<br>`https://slsa.dev/provenance/v1`<br>`https://spdx.dev/Document` |
 <!-- policyctl:index:sets:end -->
 
 ## Controls and Policy Choices

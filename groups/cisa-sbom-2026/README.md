@@ -19,7 +19,9 @@ Every block references its policy remotely from the standalone files under
 ## Policy group
 
 <!-- policyctl:index:groups:begin -->
-_Run `make docs` to generate this table._
+| ID | Name | Version | Blocks | Policies | Predicate types |
+|----|------|---------|--------|----------|-----------------|
+| [`CISA-SBOM-2026`](cisa-sbom-minimum-elements.md) | CISA 2026 SBOM Minimum Elements | 1 | 17 | 17 | `application/protobom`<br>`https://cyclonedx.org/bom`<br>`https://spdx.dev/Document` |
 <!-- policyctl:index:groups:end -->
 
 ## Element coverage
