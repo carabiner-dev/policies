@@ -1,34 +1,35 @@
 {
-  "id":  "PROTOBOM-SBOM-VERSIONS",
-  "meta":  {
-    "description":  "Checks that every top-level component of the SBOM has a version. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.\n\nNot to be confused with `PROTOBOM-SBOM-DOC-VERSION`, which checks the version of the SBOM document itself.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-versions.hjson",
-      "digest":  {
-        "sha256":  "5cb9d51a59831c88f4d8ef57f7b62d1b97d09b14d2987134220c6f7520ccdd50",
-        "sha512":  "438b4ae0ac6a3ba6511b4f3fd75f505b60c52032eff3033e75967d2b972118fe5c70ad2fd267a4993b05168b226ff888bf6d7e2ec3355f46558fcdd4eeaef1e7"
+  "id": "PROTOBOM-SBOM-VERSIONS",
+  "meta": {
+    "description": "Checks that every top-level component of the SBOM has a version. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.\n\nNot to be confused with `PROTOBOM-SBOM-DOC-VERSION`, which checks the version of the SBOM document itself.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-versions.hjson",
+      "digest": {
+        "sha256": "084d50e05c7e63f88d27c52bafeedd5bb1a11aa75ad8d3e8193c51da7c0d495d",
+        "sha512": "3ef6d11a770e22bdb64234840eff961e8f84a0dcd178ad5da3b434f2cbb89132bbb7444db4108d71f654184fbedd359165fff8c4b8b39111ea69601cc2029529"
       }
     },
-    "name":  "Component Versions"
+    "name": "Component Versions"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.versions.all(s, s != \"\")",
-      "outputs":  {
-        "versions":  {
-          "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
+      "code": "outputs.versions.all(s, s != \"\")",
+      "outputs": {
+        "versions": {
+          "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
         }
       },
-      "assessment":  {
-        "message":  "All top level components have versions"
+      "assessment": {
+        "message": "All top level components have versions"
       }
     }
   ]

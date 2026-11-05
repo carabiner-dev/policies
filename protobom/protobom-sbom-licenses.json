@@ -1,46 +1,47 @@
 {
-  "id":  "PROTOBOM-SBOM-LICENSES",
-  "meta":  {
-    "description":  "Checks that the top level components of the SBOM carry license\ninformation. This implements the _Component License_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nThe check accepts declared license lists or a concluded license on\neach root component. Explicit unknown markers (such as SPDX\nNOASSERTION) satisfy the element, as CISA requires unknown license\ninformation to be explicitly indicated rather than omitted.\n\nThis policy only checks for the presence of license data. To\nenforce that licenses are OSI/FSF approved, pair it with\nsbom-licenses-are-foss.",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "PROTOBOM-SBOM-LICENSES",
+  "meta": {
+    "description": "Checks that the top level components of the SBOM carry license\ninformation. This implements the _Component License_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nThe check accepts declared license lists or a concluded license on\neach root component. Explicit unknown markers (such as SPDX\nNOASSERTION) satisfy the element, as CISA requires unknown license\ninformation to be explicitly indicated rather than omitted.\n\nThis policy only checks for the presence of license data. To\nenforce that licenses are OSI/FSF approved, pair it with\nsbom-licenses-are-foss.",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "LICENSE",
-        "framework":  "CISA-SBOM-2026",
-        "class":  "COMPONENT-DATA"
+        "id": "LICENSE",
+        "framework": "CISA-SBOM-2026",
+        "class": "COMPONENT-DATA"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-licenses.hjson",
-      "digest":  {
-        "sha256":  "11f16f122109636ca534b0790ee167b25d266e0870135cd75639f2457f9352ec",
-        "sha512":  "d1f80e177b0a58aa1e65dcfba51feec1f17bb1c4b92b770de8348d4aac18cd3c3d4982dc44c5d6ed61fd02c8172be95a2e328e000e742f07aa665520fd355c2d"
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-licenses.hjson",
+      "digest": {
+        "sha256": "66097abd86a7fa6a8b3c3281ab7123d03b68679ee13a7deca7e45814a363f93d",
+        "sha512": "7b2ec3f65d6f28ed50762309c118a0d37b28a5fb4f8502b806017f71a15f9f7bfdaa85c59655436cd11b81cd1ee5a38a5052d4bad6aeeed0132635dcdb4bc655"
       }
     },
-    "name":  "Component License"
+    "name": "Component License"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "licenses",
-      "code":  "size(outputs.licenses) > 0 && outputs.licenses.all(l, size(l) > 0 && l.all(x, x != ''))",
-      "outputs":  {
-        "licenses":  {
-          "code":  "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.licenses) > 0 ? n.licenses : [n.license_concluded]) : []"
+      "id": "licenses",
+      "code": "size(outputs.licenses) > 0 && outputs.licenses.all(l, size(l) > 0 && l.all(x, x != ''))",
+      "outputs": {
+        "licenses": {
+          "code": "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.licenses) > 0 ? n.licenses : [n.license_concluded]) : []"
         }
       },
-      "error":  {
-        "message":  "One or more top level components carry no license information",
-        "guidance":  "Add license identifiers to each top level component or explicitly mark the license as unknown"
+      "error": {
+        "message": "One or more top level components carry no license information",
+        "guidance": "Add license identifiers to each top level component or explicitly mark the license as unknown"
       },
-      "assessment":  {
-        "message":  "All top level components carry license information"
+      "assessment": {
+        "message": "All top level components carry license information"
       }
     }
   ]

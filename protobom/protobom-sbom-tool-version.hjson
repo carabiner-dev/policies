@@ -26,6 +26,7 @@
     predicates: {
         types: [
             "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
             "https://cyclonedx.org/bom"
         ]
     }

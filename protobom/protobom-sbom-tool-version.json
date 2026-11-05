@@ -1,56 +1,57 @@
 {
-  "id":  "PROTOBOM-SBOM-TOOL-VERSION",
-  "meta":  {
-    "description":  "Checks that the SBOM records the version of the tool used to\ngenerate it. This implements the _SBOM Tool Version_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nSPDX encodes the tool version in the creator string by convention\n(`Tool: name-version`) and protobom does not yet split it out, so\na tool entry also passes when its name embeds a version.\n\nThis policy uses the protobom transformer because the tool\nmetadata is only reachable through the transformed predicate.\n\nNote: protobom does not yet populate the tools collection when\nreading CycloneDX documents, so CycloneDX SBOMs currently fail\nthis check even when `metadata.tools` is set.",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "PROTOBOM-SBOM-TOOL-VERSION",
+  "meta": {
+    "description": "Checks that the SBOM records the version of the tool used to\ngenerate it. This implements the _SBOM Tool Version_ element of\nthe CISA 2026 SBOM Minimum Elements.\n\nSPDX encodes the tool version in the creator string by convention\n(`Tool: name-version`) and protobom does not yet split it out, so\na tool entry also passes when its name embeds a version.\n\nThis policy uses the protobom transformer because the tool\nmetadata is only reachable through the transformed predicate.\n\nNote: protobom does not yet populate the tools collection when\nreading CycloneDX documents, so CycloneDX SBOMs currently fail\nthis check even when `metadata.tools` is set.",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "TOOL-VERSION",
-        "framework":  "CISA-SBOM-2026",
-        "class":  "SBOM-METADATA"
+        "id": "TOOL-VERSION",
+        "framework": "CISA-SBOM-2026",
+        "class": "SBOM-METADATA"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-tool-version.hjson",
-      "digest":  {
-        "sha256":  "6ae236e24d669fb9f93d3c5aff93e9f66e521017df0f35da1473723bc8d8b0bc",
-        "sha512":  "cc3e0638c7471cca7ea6e55f8448445ac2e05696ccfcd46bba830f68cab1ce155de2823523f817809dd5da6f1b1fed173c0c82f0ee57e79521161e7160398a76"
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-tool-version.hjson",
+      "digest": {
+        "sha256": "569af5954299d17491650752b94d85b005da7230f7a9a40d4ac274775c601a2f",
+        "sha512": "0912d89e52fb5496b57bc1fdfefc588b7d2b9c13eeb432c340c9047cc8266b21210103f82dcee5af5c5a4106f3209c1a47a0b93014f797fe074feb6152f6d0a8"
       }
     },
-    "name":  "SBOM Tool Version"
+    "name": "SBOM Tool Version"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "transformers":  [
+  "transformers": [
     {
-      "id":  "internal:protobom"
+      "id": "internal:protobom"
     }
   ],
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "tool-version",
-      "code":  "size(outputs.tools) > 0 && outputs.tools.all(t, (has(t.version) && t.version != '') || (has(t.name) && t.name.matches('.*[-_/ ]v?[0-9].*')))",
-      "predicates":  {
-        "types":  [
+      "id": "tool-version",
+      "code": "size(outputs.tools) > 0 && outputs.tools.all(t, (has(t.version) && t.version != '') || (has(t.name) && t.name.matches('.*[-_/ ]v?[0-9].*')))",
+      "predicates": {
+        "types": [
           "application/protobom"
         ]
       },
-      "outputs":  {
-        "tools":  {
-          "code":  "size(predicates) > 0 && has(predicates[0].data.metadata.tools) ? predicates[0].data.metadata.tools : []"
+      "outputs": {
+        "tools": {
+          "code": "size(predicates) > 0 && has(predicates[0].data.metadata.tools) ? predicates[0].data.metadata.tools : []"
         }
       },
-      "error":  {
-        "message":  "The SBOM does not record the version of the tool that generated it",
-        "guidance":  "Record the generator version in the SBOM metadata (SPDX Tool creator string or CycloneDX metadata.tools)"
+      "error": {
+        "message": "The SBOM does not record the version of the tool that generated it",
+        "guidance": "Record the generator version in the SBOM metadata (SPDX Tool creator string or CycloneDX metadata.tools)"
       },
-      "assessment":  {
-        "message":  "SBOM records the version of the tool that generated it"
+      "assessment": {
+        "message": "SBOM records the version of the tool that generated it"
       }
     }
   ]

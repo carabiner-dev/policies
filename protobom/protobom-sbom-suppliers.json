@@ -1,34 +1,35 @@
 {
-  "id":  "PROTOBOM-SUPPLIERS",
-  "meta":  {
-    "description":  "Checks that every top-level component of the SBOM names its supplier. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-suppliers.hjson",
-      "digest":  {
-        "sha256":  "0136820a6c8a57d5b6fd9b9e19cdcfc8ceadc3fdd1fccbe4198de5f37d413575",
-        "sha512":  "9e87e2ae63b4c675fe4e58c962860852dc28c23f781710d5eaba96630af23ad3ab5fd3a1efc91da0d1ac7efb7eb6f207b58362a511619713d32a2253436dd195"
+  "id": "PROTOBOM-SUPPLIERS",
+  "meta": {
+    "description": "Checks that every top-level component of the SBOM names its supplier. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-suppliers.hjson",
+      "digest": {
+        "sha256": "3b66add457271da26d6f52531ac7d398e7f6c2ffbf85d07cdcf811c4e1781364",
+        "sha512": "5205568ddd2be211806113d45f6295a6e471c513cbcc48aff7a4fca8598d7723ab01b704048e7fd07d76fe6f1bf61ce9329a4440cb5101dd67b260ba0693f1ef"
       }
     },
-    "name":  "Component Suppliers"
+    "name": "Component Suppliers"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "outputs.suppliers.all(s, size(s) > 0)",
-      "outputs":  {
-        "suppliers":  {
-          "code":  "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)"
+      "code": "outputs.suppliers.all(s, size(s) > 0)",
+      "outputs": {
+        "suppliers": {
+          "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)"
         }
       },
-      "assessment":  {
-        "message":  "All top level components have supplier info"
+      "assessment": {
+        "message": "All top level components have supplier info"
       }
     }
   ]

@@ -1,46 +1,47 @@
 {
-  "id":  "PROTOBOM-SBOM-FORMAT-VERSION",
-  "meta":  {
-    "description":  "Checks that the version of the SBOM's data format can be\ndetermined. This implements the _SBOM Data Format Version_ element\nof the CISA 2026 SBOM Minimum Elements.\n\nThe version is read from the format string protobom captures when\ningesting the SBOM (for example `text/spdx+json;version=2.3` or\n`application/vnd.cyclonedx+json;version=1.6`).",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "PROTOBOM-SBOM-FORMAT-VERSION",
+  "meta": {
+    "description": "Checks that the version of the SBOM's data format can be\ndetermined. This implements the _SBOM Data Format Version_ element\nof the CISA 2026 SBOM Minimum Elements.\n\nThe version is read from the format string protobom captures when\ningesting the SBOM (for example `text/spdx+json;version=2.3` or\n`application/vnd.cyclonedx+json;version=1.6`).",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "DATA-FORMAT-VERSION",
-        "framework":  "CISA-SBOM-2026",
-        "class":  "SBOM-METADATA"
+        "id": "DATA-FORMAT-VERSION",
+        "framework": "CISA-SBOM-2026",
+        "class": "SBOM-METADATA"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-format-version.hjson",
-      "digest":  {
-        "sha256":  "1af6fdb3eed4f1ced6ea9f83d5ab0e0785eadcb1d928e44bf572a018284dce49",
-        "sha512":  "82e640383df0a88a48df63bdf1ecf6bcdc4a8fbbc6fa23be48b0fb7e7a7a395967839792481f8db9299daf0031b4d49ee9e00b07b41ae0d08d1049f942e2800f"
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-format-version.hjson",
+      "digest": {
+        "sha256": "8646c2d907224f5300746cea14fff97751e8f6db50c653eaa196d20973801cc8",
+        "sha512": "1bbc348791f05224b29a8d7fc9af1bdafbabad1b37ca13e31452ea0459e011bf451a2081b65c7b24e06a863807ad2016e6bddf316cfc35a88dd5971dcf92d5df"
       }
     },
-    "name":  "SBOM Data Format Version"
+    "name": "SBOM Data Format Version"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "format-version",
-      "code":  "outputs.format.contains(';version=') && !outputs.format.endsWith('=')",
-      "outputs":  {
-        "format":  {
-          "code":  "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''"
+      "id": "format-version",
+      "code": "outputs.format.contains(';version=') && !outputs.format.endsWith('=')",
+      "outputs": {
+        "format": {
+          "code": "size(sboms) > 0 ? sboms[0].get_metadata().source_data.format : ''"
         }
       },
-      "error":  {
-        "message":  "The version of the SBOM's data format could not be determined",
-        "guidance":  "Generate the SBOM in a versioned release of SPDX or CycloneDX"
+      "error": {
+        "message": "The version of the SBOM's data format could not be determined",
+        "guidance": "Generate the SBOM in a versioned release of SPDX or CycloneDX"
       },
-      "assessment":  {
-        "message":  "SBOM data format version identified"
+      "assessment": {
+        "message": "SBOM data format version identified"
       }
     }
   ]

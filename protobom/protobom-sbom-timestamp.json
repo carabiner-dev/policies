@@ -1,34 +1,35 @@
 {
-  "id":  "PROTOBOM-TIMESTAMP",
-  "meta":  {
-    "description":  "Checks that the SBOM records when it was generated. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-timestamp.hjson",
-      "digest":  {
-        "sha256":  "0bed3347ef940415508d95e0cda515052e8eb677ef8283b0c3aa86e18bc3b44d",
-        "sha512":  "c032c6da2e3786cefdbb20badbe213112f1705e414421ba97ea4c5fb038f704c35c039bfcf951a16120254267d74d5372f1d55bd588ffab9007a5bf6f96677d5"
+  "id": "PROTOBOM-TIMESTAMP",
+  "meta": {
+    "description": "Checks that the SBOM records when it was generated. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-timestamp.hjson",
+      "digest": {
+        "sha256": "f9b1fa2cf77505db436be2bb7d0e31092935a24d0a601e67f34a47775f217376",
+        "sha512": "972586c14ca288727cdeec121f27a0171571b4be7ec9d0820eac8c248c695cb33721567006366ee7d975a05db2284f6c6a4896c402b419572bb0c3005823a8db"
       }
     },
-    "name":  "SBOM Timestamp"
+    "name": "SBOM Timestamp"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "int(outputs.date) > 0",
-      "outputs":  {
-        "date":  {
-          "code":  "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
+      "code": "int(outputs.date) > 0",
+      "outputs": {
+        "date": {
+          "code": "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
         }
       },
-      "assessment":  {
-        "message":  "SBOM contains a timestamp"
+      "assessment": {
+        "message": "SBOM contains a timestamp"
       }
     }
   ]

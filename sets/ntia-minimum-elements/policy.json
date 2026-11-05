@@ -1,215 +1,222 @@
 {
-  "id":  "NIST-SBOM-ME",
-  "meta":  {
-    "description":  "Checks that a Software Bill of Materials carries the minimum elements defined by NTIA in *The Minimum Elements for a Software Bill of Materials* (2021): the author and timestamp of the SBOM, and the supplier, name, version, identifiers and dependency relationships of every top-level component.\n\nFor the 2026 update of these elements by CISA see the `CISA-SBOM-2026` group.",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "policy.hjson",
-      "digest":  {
-        "sha256":  "93e42b54de330b4f79a0673d60fb5654183cbb75699d451bc1c96dc7209d33b8",
-        "sha512":  "587f33144aecdb5482d6aa32ef22f380570adf23eb51f2b0e89fef892ba65cbecf0d90ac066a76a0b61d12d8f101a82896d22d9ac08ef60059e39b7375972b08"
+  "id": "NIST-SBOM-ME",
+  "meta": {
+    "description": "Checks that a Software Bill of Materials carries the minimum elements defined by NTIA in *The Minimum Elements for a Software Bill of Materials* (2021): the author and timestamp of the SBOM, and the supplier, name, version, identifiers and dependency relationships of every top-level component.\n\nFor the 2026 update of these elements by CISA see the `CISA-SBOM-2026` group.",
+    "enforce": "ON",
+    "origin": {
+      "name": "policy.hjson",
+      "digest": {
+        "sha256": "cc2e332a8c8b436c07a4ca06697dbfe5d71b5a93be9ce113f26a6bbdccea4c9c",
+        "sha512": "9fc870987c2891a39de44a38cc6b8f4009dfead9d19a7d525a91d0add4b3eb7345f90f50fb3fc6dbc4ae8fb6afdf9ac3d8b6ef6da42af090c8fda405bb369e71"
       }
     },
-    "name":  "NTIA SBOM Minimum Elements"
+    "name": "NTIA SBOM Minimum Elements"
   },
-  "common":  {},
-  "policies":  [
+  "common": {},
+  "policies": [
     {
-      "id":  "NIST-ME-AUTHOR",
-      "meta":  {
-        "description":  "Checks that the SBOM names the author of the SBOM data.",
-        "assertMode":  "AND",
-        "enforce":  "ON",
-        "name":  "SBOM Author"
+      "id": "NIST-ME-AUTHOR",
+      "meta": {
+        "description": "Checks that the SBOM names the author of the SBOM data.",
+        "assertMode": "AND",
+        "enforce": "ON",
+        "name": "SBOM Author"
       },
-      "predicates":  {
-        "types":  [
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "tenets":  [
+      "tenets": [
         {
-          "code":  "size(outputs.authors) > 0",
-          "outputs":  {
-            "authors":  {
-              "code":  "size(sboms) > 0 ? sboms[0].get_authors() : []"
+          "code": "size(outputs.authors) > 0",
+          "outputs": {
+            "authors": {
+              "code": "size(sboms) > 0 ? sboms[0].get_authors() : []"
             }
           },
-          "error":  {
-            "message":  "SBOM document has no authors defined",
-            "guidance":  "Ensure the document has author information set in its metadata"
+          "error": {
+            "message": "SBOM document has no authors defined",
+            "guidance": "Ensure the document has author information set in its metadata"
           },
-          "assessment":  {
-            "message":  "SBOM author defined"
+          "assessment": {
+            "message": "SBOM author defined"
           }
         }
       ]
     },
     {
-      "id":  "NIST-ME-TIMESTAMP",
-      "meta":  {
-        "description":  "Checks that the SBOM records when it was generated.",
-        "assertMode":  "AND",
-        "enforce":  "ON",
-        "name":  "SBOM Timestamp"
+      "id": "NIST-ME-TIMESTAMP",
+      "meta": {
+        "description": "Checks that the SBOM records when it was generated.",
+        "assertMode": "AND",
+        "enforce": "ON",
+        "name": "SBOM Timestamp"
       },
-      "predicates":  {
-        "types":  [
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "tenets":  [
+      "tenets": [
         {
-          "code":  "int(outputs.date) > 0",
-          "outputs":  {
-            "date":  {
-              "code":  "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
+          "code": "int(outputs.date) > 0",
+          "outputs": {
+            "date": {
+              "code": "size(sboms) > 0 ? sboms[0].get_metadata().date : null"
             }
           },
-          "assessment":  {
-            "message":  "SBOM contains a timestamp"
+          "assessment": {
+            "message": "SBOM contains a timestamp"
           }
         }
       ]
     },
     {
-      "id":  "NIST-ME-SUPPLIER",
-      "meta":  {
-        "description":  "Checks that every top-level component of the SBOM names its supplier.",
-        "assertMode":  "AND",
-        "enforce":  "ON",
-        "name":  "Component Suppliers"
+      "id": "NIST-ME-SUPPLIER",
+      "meta": {
+        "description": "Checks that every top-level component of the SBOM names its supplier.",
+        "assertMode": "AND",
+        "enforce": "ON",
+        "name": "Component Suppliers"
       },
-      "predicates":  {
-        "types":  [
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "tenets":  [
+      "tenets": [
         {
-          "code":  "outputs.suppliers.all(s, size(s) > 0)",
-          "outputs":  {
-            "suppliers":  {
-              "code":  "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)"
+          "code": "outputs.suppliers.all(s, size(s) > 0)",
+          "outputs": {
+            "suppliers": {
+              "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.suppliers)"
             }
           },
-          "assessment":  {
-            "message":  "All top level components have supplier info"
+          "assessment": {
+            "message": "All top level components have supplier info"
           }
         }
       ]
     },
     {
-      "id":  "NIST-ME-VERSION",
-      "meta":  {
-        "description":  "Checks that every top-level component of the SBOM has a version.",
-        "assertMode":  "AND",
-        "enforce":  "ON",
-        "name":  "Component Versions"
+      "id": "NIST-ME-VERSION",
+      "meta": {
+        "description": "Checks that every top-level component of the SBOM has a version.",
+        "assertMode": "AND",
+        "enforce": "ON",
+        "name": "Component Versions"
       },
-      "predicates":  {
-        "types":  [
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "tenets":  [
+      "tenets": [
         {
-          "code":  "outputs.versions.all(s, s != \"\")",
-          "outputs":  {
-            "versions":  {
-              "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
+          "code": "outputs.versions.all(s, s != \"\")",
+          "outputs": {
+            "versions": {
+              "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.version)"
             }
           },
-          "assessment":  {
-            "message":  "All top level components have versions"
+          "assessment": {
+            "message": "All top level components have versions"
           }
         }
       ]
     },
     {
-      "id":  "NIST-ME-IDENTIFIERS",
-      "meta":  {
-        "description":  "Checks that every top-level component of the SBOM carries at least one software identifier, such as a package URL or a CPE.",
-        "assertMode":  "AND",
-        "enforce":  "ON",
-        "name":  "Component Identifiers"
+      "id": "NIST-ME-IDENTIFIERS",
+      "meta": {
+        "description": "Checks that every top-level component of the SBOM carries at least one software identifier, such as a package URL or a CPE.",
+        "assertMode": "AND",
+        "enforce": "ON",
+        "name": "Component Identifiers"
       },
-      "predicates":  {
-        "types":  [
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "tenets":  [
+      "tenets": [
         {
-          "code":  "outputs.identifiers.all(s, size(s) > 0)",
-          "outputs":  {
-            "identifiers":  {
-              "code":  "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)"
+          "code": "outputs.identifiers.all(s, size(s) > 0)",
+          "outputs": {
+            "identifiers": {
+              "code": "sboms[0].get_node_list().get_root_nodes().map(n, n.identifiers)"
             }
           },
-          "assessment":  {
-            "message":  "Top level components have software identifiers"
+          "assessment": {
+            "message": "Top level components have software identifiers"
           }
         }
       ]
     },
     {
-      "id":  "NIST-ME-NAME",
-      "meta":  {
-        "description":  "Checks that every top-level component of the SBOM has a name.",
-        "assertMode":  "AND",
-        "enforce":  "ON",
-        "name":  "Component Names"
+      "id": "NIST-ME-NAME",
+      "meta": {
+        "description": "Checks that every top-level component of the SBOM has a name.",
+        "assertMode": "AND",
+        "enforce": "ON",
+        "name": "Component Names"
       },
-      "predicates":  {
-        "types":  [
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "tenets":  [
+      "tenets": [
         {
-          "code":  "outputs.names.all(s, s != \"\")",
-          "outputs":  {
-            "names":  {
-              "code":  "sboms[0].get_node_list().get_root_nodes().map(s, s.name)"
+          "code": "outputs.names.all(s, s != \"\")",
+          "outputs": {
+            "names": {
+              "code": "sboms[0].get_node_list().get_root_nodes().map(s, s.name)"
             }
           },
-          "assessment":  {
-            "message":  "Top level components have their name set"
+          "assessment": {
+            "message": "Top level components have their name set"
           }
         }
       ]
     },
     {
-      "id":  "NIST-ME-RELATONSHIPS",
-      "meta":  {
-        "description":  "Checks that every top-level component of the SBOM records its dependency relationships.",
-        "assertMode":  "AND",
-        "enforce":  "OFF",
-        "name":  "Dependency Relationships"
+      "id": "NIST-ME-RELATONSHIPS",
+      "meta": {
+        "description": "Checks that every top-level component of the SBOM records its dependency relationships.",
+        "assertMode": "AND",
+        "enforce": "OFF",
+        "name": "Dependency Relationships"
       },
-      "predicates":  {
-        "types":  [
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "tenets":  [
+      "tenets": [
         {
-          "code":  "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
-          "outputs":  {
-            "descendants":  {
-              "code":  "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))"
+          "code": "outputs.descendants.all(nl, size(nl.get_edges()) > 0)",
+          "outputs": {
+            "descendants": {
+              "code": "sboms[0].get_node_list().get_root_nodes().map(n, sboms[0].get_node_list().get_node_descendants(n.id, 1))"
             }
           },
-          "assessment":  {
-            "message":  "All top level components have depedency relationships"
+          "assessment": {
+            "message": "All top level components have depedency relationships"
           }
         }
       ]

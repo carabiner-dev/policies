@@ -1,34 +1,35 @@
 {
-  "id":  "PROTOBOM-AUTHOR",
-  "meta":  {
-    "description":  "Checks that the SBOM names the author of the SBOM data. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-author.hjson",
-      "digest":  {
-        "sha256":  "ab651ca052bad3cd5cf5e00e9226f0fd0d74ca6adc9098e2f129e86d476ede7f",
-        "sha512":  "b9b89d13268565331ed346eec83814c98dba2f57caf9c274043fb689b9f66471cd97601c0ed47551388dd2de52d31d5e27274c13e7be16ecdd4d969dd6d4f4f3"
+  "id": "PROTOBOM-AUTHOR",
+  "meta": {
+    "description": "Checks that the SBOM names the author of the SBOM data. The SBOM is read through protobom, so SPDX and CycloneDX documents are handled alike.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-author.hjson",
+      "digest": {
+        "sha256": "d37a5852e4786588ecceb39fcf33ecf0262f7e5c325355f2226c61e0ab706ee9",
+        "sha512": "852066d6a33c4441d5defa42cf42e45660a33e29435e86ac1700c5b3c75540305060e69d228a9116f6af8301a8c0f70cdac0a609c59a51229dfc4ebb829ccc57"
       }
     },
-    "name":  "SBOM Author"
+    "name": "SBOM Author"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "code":  "size(outputs.authors) > 0",
-      "outputs":  {
-        "authors":  {
-          "code":  "size(sboms) > 0 ? sboms[0].get_authors() : []"
+      "code": "size(outputs.authors) > 0",
+      "outputs": {
+        "authors": {
+          "code": "size(sboms) > 0 ? sboms[0].get_authors() : []"
         }
       },
-      "assessment":  {
-        "message":  "SBOM author defined"
+      "assessment": {
+        "message": "SBOM author defined"
       }
     }
   ]

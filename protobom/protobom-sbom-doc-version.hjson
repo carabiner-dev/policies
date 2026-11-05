@@ -12,8 +12,11 @@
             versions and RFC 9562 style unique identifiers.
 
             CycloneDX captures this in the document `version` and
-            `serialNumber` fields. SPDX conveys it through the unique document
-            namespace.
+            `serialNumber` fields, which must be stated explicitly: a document
+            that omits `version` is version 1 by the CycloneDX default, but it
+            does not identify its revision. SPDX 2 conveys it through the unique
+            document namespace, SPDX 3 through the `spdxId` of the document's
+            `SpdxDocument` element.
 
             Not to be confused with PROTOBOM-SBOM-VERSIONS, which checks the
             versions of the components listed in the SBOM.
@@ -24,6 +27,7 @@
     predicates: {
         types: [
             "https://spdx.dev/Document"
+            "https://spdx.dev/Document/v3"
             "https://cyclonedx.org/bom"
         ]
     }
@@ -31,15 +35,21 @@
     tenets: [
         {
             id: doc-version
+            // The raw document is checked rather than protobom's view of it:
+            // protobom gives every document a version ("1" by default, as
+            // CycloneDX specifies for a document that states none), which
+            // cannot tell an explicitly versioned SBOM from one that is not.
             outputs: {
-                version: { code: "size(sboms) > 0 ? sboms[0].get_metadata().version : ''" }
-                identifier: { code: "size(sboms) > 0 ? sboms[0].get_metadata().id : ''" }
+                version: { code: "size(predicates) > 0 && has(predicates[0].data.version) ? string(predicates[0].data.version) : ''" }
+                serial: { code: "size(predicates) > 0 && has(predicates[0].data.serialNumber) ? predicates[0].data.serialNumber : ''" }
+                namespace: { code: "size(predicates) > 0 && has(predicates[0].data.documentNamespace) ? predicates[0].data.documentNamespace : ''" }
+                spdxId: { code: "size(predicates) > 0 && '@graph' in predicates[0].data ? (predicates[0].data['@graph'].filter(e, has(e.type) && e.type == 'SpdxDocument' && has(e.spdxId) && e.spdxId != '').map(e, e.spdxId) + [''])[0] : ''" }
             }
-            code: "(outputs.version != '' && outputs.version != '0') || outputs.identifier != ''"
+            code: "outputs.version != '' || outputs.serial != '' || outputs.namespace != '' || outputs.spdxId != ''"
             assessment: { message: "SBOM document is versioned" }
             error: {
                 message: "The SBOM document has no version or unique identifier"
-                guidance: "Set the CycloneDX version/serialNumber or the SPDX document namespace to identify this revision of the SBOM"
+                guidance: "Set the CycloneDX version/serialNumber, the SPDX 2 document namespace or the SPDX 3 SpdxDocument spdxId to identify this revision of the SBOM"
             }
         }
     ]

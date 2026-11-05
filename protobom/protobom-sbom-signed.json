@@ -1,41 +1,42 @@
 {
-  "id":  "PROTOBOM-SBOM-SIGNED",
-  "meta":  {
-    "description":  "Checks that the SBOM was ingested from a signed attestation and that\nAMPEL verified its signature. This implements the _SBOM Author\nSignature_ element of the CISA 2026 SBOM Minimum Elements.\n\nNote that this policy checks the signature on the attestation\nenvelope wrapping the SBOM, not data inside the SBOM document\nitself (neither SPDX nor CycloneDX embed author signatures).\n\nThis standalone policy enforces the signature requirement. As most\nSBOMs are still distributed unsigned, the CISA-SBOM-2026 group\ncarries it with enforce OFF to make the check advisory; set\n`enforce: OFF` (or pin author identities) to match that behavior.",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "PROTOBOM-SBOM-SIGNED",
+  "meta": {
+    "description": "Checks that the SBOM was ingested from a signed attestation and that\nAMPEL verified its signature. This implements the _SBOM Author\nSignature_ element of the CISA 2026 SBOM Minimum Elements.\n\nNote that this policy checks the signature on the attestation\nenvelope wrapping the SBOM, not data inside the SBOM document\nitself (neither SPDX nor CycloneDX embed author signatures).\n\nThis standalone policy enforces the signature requirement. As most\nSBOMs are still distributed unsigned, the CISA-SBOM-2026 group\ncarries it with enforce OFF to make the check advisory; set\n`enforce: OFF` (or pin author identities) to match that behavior.",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "AUTHOR-SIGNATURE",
-        "framework":  "CISA-SBOM-2026",
-        "class":  "SBOM-METADATA"
+        "id": "AUTHOR-SIGNATURE",
+        "framework": "CISA-SBOM-2026",
+        "class": "SBOM-METADATA"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-signed.hjson",
-      "digest":  {
-        "sha256":  "521a2020e4c842eece69cfcbb6ed0908156850313c53564864b7eb1e4a02fbec",
-        "sha512":  "33e8e6fab86d1795515a516234f7193daee81fc773832936a2b69fad652fd2ca3375ca159b7dbb8056a73b46745809fbe21cc230e496fed11beecebf100a1c1b"
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-signed.hjson",
+      "digest": {
+        "sha256": "e3567e671967de5832e5d1b921ed00382611a10c38eaed46e4a779cf34f48a20",
+        "sha512": "d856c70b9fe3d4dea2bb1e2eb927b0b0a1b6e7ea0f7ff3b0345b286d69d28d99f929a46230e4c5ce2d37bd300bf8bf467a4038bf026f6f27169c81facf1094a8"
       }
     },
-    "name":  "SBOM Author Signature"
+    "name": "SBOM Author Signature"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "signed",
-      "code":  "size(predicates) > 0 && predicates.all(p, size(p.verification.signers) > 0)",
-      "error":  {
-        "message":  "The SBOM attestation is not signed or its signature could not be verified",
-        "guidance":  "Distribute the SBOM wrapped in a signed attestation (for example a sigstore bundle) attributable to the SBOM author"
+      "id": "signed",
+      "code": "size(predicates) > 0 && predicates.all(p, size(p.verification.signers) > 0)",
+      "error": {
+        "message": "The SBOM attestation is not signed or its signature could not be verified",
+        "guidance": "Distribute the SBOM wrapped in a signed attestation (for example a sigstore bundle) attributable to the SBOM author"
       },
-      "assessment":  {
-        "message":  "SBOM attestation signature verified"
+      "assessment": {
+        "message": "SBOM attestation signature verified"
       }
     }
   ]

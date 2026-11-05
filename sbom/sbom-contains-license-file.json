@@ -1,39 +1,40 @@
 {
-  "id":  "sbom-contains-license-file",
-  "meta":  {
-    "description":  "Looks through the files listed in the project's SBOM for a license file and fails when none is found.",
-    "assertMode":  "AND",
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "sbom-contains-license-file.hjson",
-      "digest":  {
-        "sha256":  "319de9713a6a7cc2ef8d482fe5042c98800cda360d8af21da2260345bac50202",
-        "sha512":  "acde0f50f044f61817fa791b2b45acb2cd0ea557011200aa782ddef212989f44d15dff9f1def1d89d051e2f2cc0a9179d4dad441b05e66efbe98ccb49c91d1f2"
+  "id": "sbom-contains-license-file",
+  "meta": {
+    "description": "Looks through the files listed in the project's SBOM for a license file and fails when none is found.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "sbom-contains-license-file.hjson",
+      "digest": {
+        "sha256": "e1ed7a78ecd7d4cdf9903b8371d13afe7ee225f8d4830659e79cebb84c7ff9ab",
+        "sha512": "963a413ffcadb6d4bcf02d8cc7b3e4043a65fb9af2f57533931cf1e538a07e301b6b53ad6d66bd2ba12daf550e51c7246a35b64d0a8bc2890853f8baf668131c"
       }
     },
-    "name":  "License File in SBOM"
+    "name": "License File in SBOM"
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "01-sbom",
-      "code":  "size(outputs[\"files\"]) > 0",
-      "predicates":  {
-        "types":  [
+      "id": "01-sbom",
+      "code": "size(outputs[\"files\"]) > 0",
+      "predicates": {
+        "types": [
           "https://spdx.dev/Document",
+          "https://spdx.dev/Document/v3",
           "https://cyclonedx.org/bom"
         ]
       },
-      "outputs":  {
-        "files":  {
-          "code":  "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'LICENSE' || n.name == 'LICENSE.txt' ))"
+      "outputs": {
+        "files": {
+          "code": "sboms[0].get_node_list().get_nodes().filter(n, (n.name == 'LICENSE' || n.name == 'LICENSE.txt' ))"
         }
       },
-      "error":  {
-        "message":  "Could not detect a license file in the SBOM.",
-        "guidance":  "Add a file named LICENSE to your project's codebase."
+      "error": {
+        "message": "Could not detect a license file in the SBOM.",
+        "guidance": "Add a file named LICENSE to your project's codebase."
       },
-      "assessment":  {
-        "message":  "Found a license file in the project's SBOM."
+      "assessment": {
+        "message": "Found a license file in the project's SBOM."
       }
     }
   ]

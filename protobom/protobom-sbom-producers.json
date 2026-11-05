@@ -1,46 +1,47 @@
 {
-  "id":  "PROTOBOM-SBOM-PRODUCERS",
-  "meta":  {
-    "description":  "Checks that the top level components of the SBOM identify the\nentity that created them. This implements the _Component Producer_\nelement of the CISA 2026 SBOM Minimum Elements, which replaces the\n2021 _Supplier Name_ element.\n\nThe check looks at each root component's originators and falls\nback to its suppliers, as most SBOM generators record the\nproducing entity in the supplier field.\n\nNote: protobom reads CycloneDX component suppliers since ampel\nv1.3.7. On older releases CycloneDX SBOMs fail this check even\nwhen the component supplier is set.",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "PROTOBOM-SBOM-PRODUCERS",
+  "meta": {
+    "description": "Checks that the top level components of the SBOM identify the\nentity that created them. This implements the _Component Producer_\nelement of the CISA 2026 SBOM Minimum Elements, which replaces the\n2021 _Supplier Name_ element.\n\nThe check looks at each root component's originators and falls\nback to its suppliers, as most SBOM generators record the\nproducing entity in the supplier field.\n\nNote: protobom reads CycloneDX component suppliers since ampel\nv1.3.7. On older releases CycloneDX SBOMs fail this check even\nwhen the component supplier is set.",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "PRODUCER",
-        "framework":  "CISA-SBOM-2026",
-        "class":  "COMPONENT-DATA"
+        "id": "PRODUCER",
+        "framework": "CISA-SBOM-2026",
+        "class": "COMPONENT-DATA"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-producers.hjson",
-      "digest":  {
-        "sha256":  "0554a7006899ba356899f026448dc4962e9fcaefec07327874d5f0599d2cc9dc",
-        "sha512":  "dbe2cd04e35674d7e45aceccc045355718b71ac662c2511a9aff2d003449c2a655d76541fb52f9efb25443d519cca2f2f27a0d4a96a6750bd137666532b482b5"
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-producers.hjson",
+      "digest": {
+        "sha256": "b07743bd56237d7657273d27bf5ac447132a6b4cea82979ee617977009984aab",
+        "sha512": "34a4f1757325d2ae5e951d482cae55b60315f0a90e3225e24dd2ead2abb9a07c8416581aad1a0d2113ef1e41e357eabb2335713318a1ed2cd327c247194f8fdf"
       }
     },
-    "name":  "Component Producer"
+    "name": "Component Producer"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "producers",
-      "code":  "size(outputs.producers) > 0 && outputs.producers.all(p, size(p) > 0 && p.all(e, e.name != ''))",
-      "outputs":  {
-        "producers":  {
-          "code":  "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.originators) > 0 ? n.originators : n.suppliers) : []"
+      "id": "producers",
+      "code": "size(outputs.producers) > 0 && outputs.producers.all(p, size(p) > 0 && p.all(e, e.name != ''))",
+      "outputs": {
+        "producers": {
+          "code": "size(sboms) > 0 ? sboms[0].get_node_list().get_root_nodes().map(n, size(n.originators) > 0 ? n.originators : n.suppliers) : []"
         }
       },
-      "error":  {
-        "message":  "One or more top level components do not identify the entity that produced them",
-        "guidance":  "Set the originator (SPDX) or supplier of each top level component, or explicitly mark it as of unknown provenance"
+      "error": {
+        "message": "One or more top level components do not identify the entity that produced them",
+        "guidance": "Set the originator (SPDX) or supplier of each top level component, or explicitly mark it as of unknown provenance"
       },
-      "assessment":  {
-        "message":  "All top level components identify their producer"
+      "assessment": {
+        "message": "All top level components identify their producer"
       }
     }
   ]

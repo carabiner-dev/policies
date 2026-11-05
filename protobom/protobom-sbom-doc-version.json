@@ -1,49 +1,56 @@
 {
-  "id":  "PROTOBOM-SBOM-DOC-VERSION",
-  "meta":  {
-    "description":  "Checks that the SBOM document itself is versioned, either through\na version identifier or through a unique document identifier\n(serial number). This implements the _SBOM Version_ element of the\nCISA 2026 SBOM Minimum Elements, which admits both semantic\nversions and RFC 9562 style unique identifiers.\n\nCycloneDX captures this in the document `version` and\n`serialNumber` fields. SPDX conveys it through the unique document\nnamespace.\n\nNot to be confused with PROTOBOM-SBOM-VERSIONS, which checks the\nversions of the components listed in the SBOM.",
-    "assertMode":  "AND",
-    "controls":  [
+  "id": "PROTOBOM-SBOM-DOC-VERSION",
+  "meta": {
+    "description": "Checks that the SBOM document itself is versioned, either through\na version identifier or through a unique document identifier\n(serial number). This implements the _SBOM Version_ element of the\nCISA 2026 SBOM Minimum Elements, which admits both semantic\nversions and RFC 9562 style unique identifiers.\n\nCycloneDX captures this in the document `version` and\n`serialNumber` fields, which must be stated explicitly: a document\nthat omits `version` is version 1 by the CycloneDX default, but it\ndoes not identify its revision. SPDX 2 conveys it through the unique\ndocument namespace, SPDX 3 through the `spdxId` of the document's\n`SpdxDocument` element.\n\nNot to be confused with PROTOBOM-SBOM-VERSIONS, which checks the\nversions of the components listed in the SBOM.",
+    "assertMode": "AND",
+    "controls": [
       {
-        "id":  "SBOM-VERSION",
-        "framework":  "CISA-SBOM-2026",
-        "class":  "SBOM-METADATA"
+        "id": "SBOM-VERSION",
+        "framework": "CISA-SBOM-2026",
+        "class": "SBOM-METADATA"
       }
     ],
-    "enforce":  "ON",
-    "origin":  {
-      "name":  "protobom-sbom-doc-version.hjson",
-      "digest":  {
-        "sha256":  "42f27472240ac1260ce27725e994147b3378b553d7ea09b45d5dc601b87fc0c1",
-        "sha512":  "9f15384e22d86f86c032d7fe252c296b0af5e4b4af52938ceacc79e55078e32ff8125bc61a05805bd4aa4d40c2625bbf89f4643b32eb7b6f0e0e12da28b94d6a"
+    "enforce": "ON",
+    "origin": {
+      "name": "protobom-sbom-doc-version.hjson",
+      "digest": {
+        "sha256": "9354f626bed7735b7230a2bfd5bb75bb6747df86b8108e36f79ea7825c8da199",
+        "sha512": "d0a722932b4c689145da48368b0a371daab12a2fa0ab6fce201c416018f6bd66427448dbbd375aa09170fe11382998bde95e9c028b7e7a1ea8f9e73b2fced2d3"
       }
     },
-    "name":  "SBOM Version"
+    "name": "SBOM Version"
   },
-  "predicates":  {
-    "types":  [
+  "predicates": {
+    "types": [
       "https://spdx.dev/Document",
+      "https://spdx.dev/Document/v3",
       "https://cyclonedx.org/bom"
     ]
   },
-  "tenets":  [
+  "tenets": [
     {
-      "id":  "doc-version",
-      "code":  "(outputs.version != '' && outputs.version != '0') || outputs.identifier != ''",
-      "outputs":  {
-        "identifier":  {
-          "code":  "size(sboms) > 0 ? sboms[0].get_metadata().id : ''"
+      "id": "doc-version",
+      "code": "outputs.version != '' || outputs.serial != '' || outputs.namespace != '' || outputs.spdxId != ''",
+      "outputs": {
+        "namespace": {
+          "code": "size(predicates) > 0 && has(predicates[0].data.documentNamespace) ? predicates[0].data.documentNamespace : ''"
         },
-        "version":  {
-          "code":  "size(sboms) > 0 ? sboms[0].get_metadata().version : ''"
+        "serial": {
+          "code": "size(predicates) > 0 && has(predicates[0].data.serialNumber) ? predicates[0].data.serialNumber : ''"
+        },
+        "spdxId": {
+          "code": "size(predicates) > 0 && '@graph' in predicates[0].data ? (predicates[0].data['@graph'].filter(e, has(e.type) && e.type == 'SpdxDocument' && has(e.spdxId) && e.spdxId != '').map(e, e.spdxId) + [''])[0] : ''"
+        },
+        "version": {
+          "code": "size(predicates) > 0 && has(predicates[0].data.version) ? string(predicates[0].data.version) : ''"
         }
       },
-      "error":  {
-        "message":  "The SBOM document has no version or unique identifier",
-        "guidance":  "Set the CycloneDX version/serialNumber or the SPDX document namespace to identify this revision of the SBOM"
+      "error": {
+        "message": "The SBOM document has no version or unique identifier",
+        "guidance": "Set the CycloneDX version/serialNumber, the SPDX 2 document namespace or the SPDX 3 SpdxDocument spdxId to identify this revision of the SBOM"
       },
-      "assessment":  {
-        "message":  "SBOM document is versioned"
+      "assessment": {
+        "message": "SBOM document is versioned"
       }
     }
   ]
