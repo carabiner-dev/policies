@@ -1,4 +1,4 @@
-# Expected Builder (Deprecated)
+# Policy: `SLSA-BUILDER-BASE`
 
 Deprecated, use `slsa/slsa-builder-id.json` instead.
 
@@ -28,7 +28,7 @@ flowchart TD
         A0["📄 https://slsa.dev/provenance/v1"]
         C0["⚙️ builderId: string (required)"]
     end
-    P["🛡️ Expected Builder (Deprecated)"]
+    P["🛡️ SLSA-BUILDER-BASE"]
     inputs --> P
     P --> P_T0["📋 tenet-1<br/>slsa.dev/provenance/v1"]
 ```

@@ -7,11 +7,10 @@
     "origin": {
       "name": "builderid-base.hjson",
       "digest": {
-        "sha256": "01e389f6342e8c5500020dd47663d2ab9da090cc6c8ef1b5c5866bfa446a8ce6",
-        "sha512": "9e0c873edf87baba98563d614652ba0abf640cffe8bfa303a75ab86abe96e3e9ad12109d33a3320d174df7cd3fdc3f3d6b05f895159f9b4600f4f385042cb34d"
+        "sha256": "92693b3ead90e4f18166947beaad3c50977c0352632ea9fb606a22f022c99e8f",
+        "sha512": "ebd78b96e22dfc07a1172c3a59751a93cd84a76c0dc268e6d95e8723166d7165f999e1cd069e0a047e9202ff73174fa4cf1971c48cbfa715c48f1af7c60d44ac"
       }
-    },
-    "name": "Expected Builder (Deprecated)"
+    }
   },
   "context": {
     "builderId": {

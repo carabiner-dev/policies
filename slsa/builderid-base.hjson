@@ -1,7 +1,13 @@
 {
     id: "SLSA-BUILDER-BASE"
     meta: {
-        name: "Expected Builder (Deprecated)"
+        // No name on this policy, on purpose. slsa-framework/source-actions
+        // (the legacy source provenance workflow) reads this file unpinned
+        // from main through an action that installs ampel v1.3.6, and
+        // ampel before v1.3.7 cannot parse `meta.name`: every run of that
+        // workflow fails with "unable to parse a policy, group or policySet".
+        // Restore the name once no consumer is left on an engine that old.
+        // name: "Expected Builder (Deprecated)"
         description:
             '''
             Deprecated, use `slsa/slsa-builder-id.json` instead.
