@@ -5,7 +5,7 @@
 <!-- policyctl:index:policies:begin -->
 | ID | Name | Version | Predicate types |
 |----|------|---------|-----------------|
-| [`SLSA-BUILDER-BASE`](builderid-base.md) | Expected Builder (Deprecated) |  | `https://slsa.dev/provenance/v1` |
+| [`SLSA-BUILDER-BASE`](builderid-base.md) |  |  | `https://slsa.dev/provenance/v1` |
 | [`slsa-build-point`](slsa-build-point.md) | Expected Build Point |  | `https://slsa.dev/provenance/v0.2`<br>`https://slsa.dev/provenance/v1` |
 | [`slsa-build-type`](slsa-build-type.md) | Expected Build Type |  | `https://slsa.dev/provenance/v0.2`<br>`https://slsa.dev/provenance/v1` |
 | [`slsa-builder-id`](slsa-builder-id.md) | Expected Builder |  | `https://slsa.dev/provenance/v0.2`<br>`https://slsa.dev/provenance/v1` |

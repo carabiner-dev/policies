@@ -1,4 +1,4 @@
-# Sigstore Signature Verification (dual-style)
+# Policy: `sigstore-dual-signatures`
 
 Passes when a release artifact carries a verified sigstore signature
 from an accepted signer, regardless of whether it was signed the
@@ -51,7 +51,7 @@ flowchart TD
     subgraph inputs["Inputs"]
         A0["📄 https://carabiner.dev/ampel/signature/v1"]
     end
-    P["🛡️ Sigstore Signature Verification (dual-style)"]
+    P["🛡️ sigstore-dual-signatures"]
     inputs --> P
     P --> P_T0["📋 has-verified-signature<br/>carabiner.dev/ampel/signature/v1"]
 ```

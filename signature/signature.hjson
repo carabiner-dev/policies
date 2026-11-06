@@ -1,7 +1,11 @@
 {
     id: "detached-signature"
     meta: {
-        name: "Detached Signature Verified"
+        // This policy has its name commented out as folks upstream are pulling
+        // it without a pin and older ampel versions break. Restore once no one
+        // is using ampel pre 1.3.7
+        //
+        // name: "Detached Signature Verified"
         description: "Checks that the artifact carries a verified detached signature or sigstore bundle from an accepted signer. The signer identity is matched by AMPEL against the identities given at verification time or declared in the policy."
     }
     tenets: [
