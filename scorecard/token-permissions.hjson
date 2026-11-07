@@ -8,7 +8,7 @@
     tenets: [
         {
             id: "01-scorecard"
-            code: "outputs.perms.all(c, c.score == 10)"
+            code: "size(outputs.perms) > 0 && outputs.perms.all(c, c.score == 10)"
             outputs: {
                 perms: {
                     code: "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Token-Permissions' && has(c.score)) : [] "

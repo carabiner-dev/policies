@@ -7,8 +7,8 @@
     "origin": {
       "name": "binary-artifacts.hjson",
       "digest": {
-        "sha256": "73843baa393f15ed7f085efd73cad8d82a2732362c23068004089df17df25c62",
-        "sha512": "91737629834416d1c022296fcd65a04ce25993484119fcbfc200058eb2463d847b4a684ca953059832c52f0fa020b5ec40f2fe6251dd13b1cfbfac35821a0c83"
+        "sha256": "8940219171d28d7ac48a3fb10b554412e9b8ca6455e9cc40e94980916dc205b0",
+        "sha512": "b8b89b202170ab5435e90287f329c070fdc545284fae77a311f65c629ab927970939c4bca08a3fb691a4f21ea630069aa64d338f97ee1f499c3050b3ec57ed68"
       }
     },
     "name": "No Binary Artifacts"
@@ -16,7 +16,7 @@
   "tenets": [
     {
       "id": "01-scorecard",
-      "code": "outputs.bin_artifacts_checks.all(c, c.score == 10)",
+      "code": "size(outputs.bin_artifacts_checks) > 0 && outputs.bin_artifacts_checks.all(c, c.score == 10)",
       "predicates": {
         "types": [
           "https://scorecard.dev/result/v0.1"

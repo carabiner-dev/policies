@@ -33,7 +33,7 @@ flowchart TD
 
 **Evaluation:**
 ```cel
-outputs.codereview.all(c, c.score == 10)
+size(outputs.codereview) > 0 && outputs.codereview.all(c, c.score == 10)
 ```
 
 **Outputs:**

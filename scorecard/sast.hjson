@@ -7,7 +7,7 @@
     tenets: [
         {
             id: "01-scorecard"
-            code: "outputs.sast.all(c, c.score == 10)"
+            code: "size(outputs.sast) > 0 && outputs.sast.all(c, c.score == 10)"
             outputs: {
                 sast: {
                     code: "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'SAST' && has(c.score)) : [] "
