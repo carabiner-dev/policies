@@ -33,7 +33,7 @@ flowchart TD
 
 **Evaluation:**
 ```cel
-outputs.bin_artifacts_checks.all(c, c.score == 10)
+size(outputs.bin_artifacts_checks) > 0 && outputs.bin_artifacts_checks.all(c, c.score == 10)
 ```
 
 **Outputs:**

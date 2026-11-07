@@ -7,8 +7,8 @@
     "origin": {
       "name": "token-permissions.hjson",
       "digest": {
-        "sha256": "ee834ea45e117f69527dc80e6615d7eace7251f3ae98931328e940e136def201",
-        "sha512": "2e1e5eec2c31d75e6bb08222908660dd6e1746c5cd18951b3b8470d9ad74079c97c6c3ea201d8854441fee8252507056f05bd1ccbe4ca3f247b3d417240a533f"
+        "sha256": "e379a72d1cf13fef9fc50176b239a6e0981b06243be4039826bd15e23f067ef1",
+        "sha512": "0d60850cc73446449a08163ec49fcdb7ba2bdf2f42fce86a309053bd479469ea3b59269b79b2c553d1e9b9c8cc132982bd3f6c9fe83b8da96f1ec02d7e79ce14"
       }
     },
     "name": "Least Privilege Tokens"
@@ -16,7 +16,7 @@
   "tenets": [
     {
       "id": "01-scorecard",
-      "code": "outputs.perms.all(c, c.score == 10)",
+      "code": "size(outputs.perms) > 0 && outputs.perms.all(c, c.score == 10)",
       "predicates": {
         "types": [
           "https://scorecard.dev/result/v0.1"

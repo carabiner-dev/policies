@@ -7,8 +7,8 @@
     "origin": {
       "name": "sast.hjson",
       "digest": {
-        "sha256": "d9235b00d928e27c4cb56e512bfd133fd9fcdd8d62b9f9f08a5206852de64874",
-        "sha512": "aa759049b0e34f1d922389ac61641729c0f72ba462f52d81c6af98365daf32b5ad26d8f84d8e3b8d844de93919d840f3c9e4b83a960cbb65545dea2791ae4037"
+        "sha256": "7f30dede29fc1fc4c6f3efa9de20acb9314a3a9f1f046a26977f3df296fef041",
+        "sha512": "f44ce7bd97288d1b82d09bb424bc4fa4f7485897449cec40c4e9e6c4f28498231312b4437f78fb856b1115e1373886b8c794622b08e156335bd2779539157dfb"
       }
     },
     "name": "SAST Tooling in Use"
@@ -16,7 +16,7 @@
   "tenets": [
     {
       "id": "01-scorecard",
-      "code": "outputs.sast.all(c, c.score == 10)",
+      "code": "size(outputs.sast) > 0 && outputs.sast.all(c, c.score == 10)",
       "predicates": {
         "types": [
           "https://scorecard.dev/result/v0.1"

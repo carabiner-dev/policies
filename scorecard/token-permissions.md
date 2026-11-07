@@ -33,7 +33,7 @@ flowchart TD
 
 **Evaluation:**
 ```cel
-outputs.perms.all(c, c.score == 10)
+size(outputs.perms) > 0 && outputs.perms.all(c, c.score == 10)
 ```
 
 **Outputs:**
