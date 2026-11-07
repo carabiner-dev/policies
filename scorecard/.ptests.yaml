@@ -1,0 +1,71 @@
+tests:
+  - name: binary-artifacts-passes-when-check-scores-10
+    policy: binary-artifacts.hjson
+    expect: PASS
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/all-checks-pass.intoto.json
+
+  # A result without the check is not evidence that it passed.
+  - name: binary-artifacts-fails-when-check-is-missing
+    policy: binary-artifacts.hjson
+    expect: FAIL
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/license-only.intoto.json
+
+  - name: code-review-passes-when-check-scores-10
+    policy: code-review.hjson
+    expect: PASS
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/all-checks-pass.intoto.json
+
+  # A result without the check is not evidence that it passed.
+  - name: code-review-fails-when-check-is-missing
+    policy: code-review.hjson
+    expect: FAIL
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/license-only.intoto.json
+
+  - name: dangerous-workflow-passes-when-check-scores-10
+    policy: dangerous-workflow.hjson
+    expect: PASS
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/all-checks-pass.intoto.json
+
+  # A result without the check is not evidence that it passed.
+  - name: dangerous-workflow-fails-when-check-is-missing
+    policy: dangerous-workflow.hjson
+    expect: FAIL
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/license-only.intoto.json
+
+  - name: sast-passes-when-check-scores-10
+    policy: sast.hjson
+    expect: PASS
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/all-checks-pass.intoto.json
+
+  # A result without the check is not evidence that it passed.
+  - name: sast-fails-when-check-is-missing
+    policy: sast.hjson
+    expect: FAIL
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/license-only.intoto.json
+
+  - name: token-permissions-passes-when-check-scores-10
+    policy: token-permissions.hjson
+    expect: PASS
+    subject: "gitCommit:0123456789abcdef0123456789abcdef01234567"
+    attestations:
+      - ../testdata/scorecard/all-checks-pass.intoto.json
+
+  # No missing-check test: this policy is enforce OFF, so its failure is a
+  # SOFTFAIL. The released-binary runners read the zero exit code as PASS
+  # while the HEAD runner reports FAIL, so no expectation holds on all.

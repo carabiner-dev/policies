@@ -33,7 +33,7 @@ flowchart TD
 
 **Evaluation:**
 ```cel
-outputs.sast.all(c, c.score == 10)
+size(outputs.sast) > 0 && outputs.sast.all(c, c.score == 10)
 ```
 
 **Outputs:**

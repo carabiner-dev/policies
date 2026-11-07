@@ -7,8 +7,8 @@
     "origin": {
       "name": "code-review.hjson",
       "digest": {
-        "sha256": "9b46d4dfdf8fd8861c104008d0b86f737360d3207f3a0d169c9f2a9824fa306e",
-        "sha512": "9f6e6859290ffd9007324f7fbc870016fa634608d7089a1cfc95fa4bbf65cd7363a4c1cab566aa3d39977ba1dcd9c641cf97f759ba12e5ab6510bfa5f9f8e09f"
+        "sha256": "db1bc3ee450eecefc5c6aaf8cc7fcbe0e1e96bb7a91f301ace8cdb4e775a2032",
+        "sha512": "a98d26f71ab481b935c51a2a73d5852a595b3598f01fbf968d5cb5360ebd720d617a2e055243e0dbab6425a2fdd9a3bf7daf9644c8d3407d1e556b398e719fc4"
       }
     },
     "name": "Code Review Required"
@@ -16,7 +16,7 @@
   "tenets": [
     {
       "id": "01-scorecard",
-      "code": "outputs.codereview.all(c, c.score == 10)",
+      "code": "size(outputs.codereview) > 0 && outputs.codereview.all(c, c.score == 10)",
       "predicates": {
         "types": [
           "https://scorecard.dev/result/v0.1"

@@ -7,7 +7,7 @@
     tenets: [
         {
             id: "01-scorecard"
-            code: "outputs.bin_artifacts_checks.all(c, c.score == 10)"
+            code: "size(outputs.bin_artifacts_checks) > 0 && outputs.bin_artifacts_checks.all(c, c.score == 10)"
             outputs: {
                 bin_artifacts_checks: {
                     code: "has(predicates[0].data.checks) ? predicates[0].data.checks.filter(c, c.name == 'Dangerous-Workflow' && has(c.score)) : [] "
