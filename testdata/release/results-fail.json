@@ -1,0 +1,15 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [{"name": "https://github.com/example/repo", "digest": {"sha1": "cccccccccccccccccccccccccccccccccccccccc", "gitCommit": "cccccccccccccccccccccccccccccccccccccccc"}}],
+  "predicateType": "https://carabiner.dev/ampel/resultset/v0",
+  "predicate": {
+    "policySet": {"id": "release"},
+    "status": "FAIL",
+    "dateStart": "2026-11-08T10:00:00Z",
+    "dateEnd": "2026-11-08T10:00:05Z",
+    "subject": {"digest": {"sha1": "cccccccccccccccccccccccccccccccccccccccc", "gitCommit": "cccccccccccccccccccccccccccccccccccccccc"}},
+    "results": [
+      {"id": "gitsign-commit-signature", "status": "FAIL", "dateStart": "2026-11-08T10:00:00Z", "dateEnd": "2026-11-08T10:00:05Z", "subject": {"digest": {"sha1": "cccccccccccccccccccccccccccccccccccccccc"}}}
+    ]
+  }
+}

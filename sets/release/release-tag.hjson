@@ -1,0 +1,39 @@
+{
+    id: "release-tag"
+    meta: {
+        name: "Release Tag"
+        description:
+            '''
+            Verifies a release tag cut on the commit a merge produced while the
+            release policies were evaluated on the pull request's head. The
+            tag's signed trailers are the link: the set checks the tag is
+            signed by the releaser, that its trailers are present and well
+            formed, and, following the `Evaluated-Commit` trailer, that the
+            evaluated commit carries a passing results attestation.
+
+            The remaining check, that the tagged commit and the evaluated
+            commit carry the tree the tag names, waits on AMPEL exposing the
+            chain it followed to the tenets; until then the releaser's signed
+            trailer is the assertion of it.
+
+            The subject is the tag object's sha. The evidence comes from the
+            carabiner git collector (`git:https://github.com/ORG/REPO@v1.2.0`
+            for the tag, and the evaluated commit's results through the
+            pull request's ref) with the releaser's identity as `--signer`.
+            '''
+    }
+    policies: [
+        {
+            id: "release-tag-signed"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json" } }
+        }
+        {
+            id: "release-tag-trailers"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tag-trailers.json" } }
+        }
+        {
+            id: "release-evaluated-commit-passed"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json" } }
+        }
+    ]
+}

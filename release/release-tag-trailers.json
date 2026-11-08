@@ -1,0 +1,78 @@
+{
+  "id": "release-tag-trailers",
+  "meta": {
+    "description": "Passes when the subject is an annotated git tag on a commit whose\nmessage carries the trailers a release tag needs to be verified\nback to the commit the policies were evaluated on.\n\nA release tag cut by a tagger such as miniprow lands on the commit\nthe merge produced, while the policies were evaluated on the pull\nrequest's head. The tag's trailers are the signed link between the\ntwo: `Evaluated-Commit` names the head, `Tree` the tree both\ncommits share, `Pull-Request` the pull request, and\n`Merge-Strategy` how the head reached the branch. This policy\nchecks the trailers are present and well formed; the other\npolicies in the `release-tag` set follow them.\n\nThe tag is described by a git tag attestation\n(`https://carabiner.dev/git/tag/v0`), synthesized by the carabiner\ngit collector from the tag object itself with the message's\ntrailers parsed as git defines them.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "release-tag-trailers.hjson",
+      "digest": {
+        "sha256": "4875b8e6d924ced4623f398229050c6e1c03f46f3fad0bc896208c64b4f640a4",
+        "sha512": "1d1ddec09d7676a22e9a1adbf8b8f85cd819e1de250c60db1ac890fb2f3af023aae237f3ef97bdec1aa4297f8a2ca0471bcd33c32933b3fabd871c53fbf108b2"
+      }
+    },
+    "name": "Release Tag Trailers"
+  },
+  "predicates": {
+    "types": [
+      "https://carabiner.dev/git/tag/v0"
+    ]
+  },
+  "tenets": [
+    {
+      "id": "tags-a-commit",
+      "code": "predicate.data.objectType == \"commit\"",
+      "error": {
+        "message": "The tag does not point at a commit",
+        "guidance": "A release tag must point at the commit the release is cut from, not at another tag, a tree or a blob."
+      },
+      "assessment": {
+        "message": "The tag points at a commit"
+      }
+    },
+    {
+      "id": "names-evaluated-commit",
+      "code": "has(predicate.data.trailers) &&\n\"Evaluated-Commit\" in predicate.data.trailers &&\npredicate.data.trailers[\"Evaluated-Commit\"].size() == 1 &&\npredicate.data.trailers[\"Evaluated-Commit\"][0].matches(\"^[0-9a-f]{40}$\")",
+      "error": {
+        "message": "The tag does not name the evaluated commit",
+        "guidance": "The tag message must end with exactly one `Evaluated-Commit: <sha>` trailer naming the commit the release policies were evaluated on, as a full 40-character sha."
+      },
+      "assessment": {
+        "message": "The tag names the commit the policies were evaluated on"
+      }
+    },
+    {
+      "id": "names-tree",
+      "code": "has(predicate.data.trailers) &&\n\"Tree\" in predicate.data.trailers &&\npredicate.data.trailers[\"Tree\"].size() == 1 &&\npredicate.data.trailers[\"Tree\"][0].matches(\"^[0-9a-f]{40}$\")",
+      "error": {
+        "message": "The tag does not name the released tree",
+        "guidance": "The tag message must end with exactly one `Tree: <sha>` trailer naming the tree both the tagged commit and the evaluated commit carry."
+      },
+      "assessment": {
+        "message": "The tag names the tree the tagged and the evaluated commits share"
+      }
+    },
+    {
+      "id": "names-pull-request",
+      "code": "has(predicate.data.trailers) &&\n\"Pull-Request\" in predicate.data.trailers &&\npredicate.data.trailers[\"Pull-Request\"].size() == 1 &&\npredicate.data.trailers[\"Pull-Request\"][0].matches(\"^[1-9][0-9]*$\")",
+      "error": {
+        "message": "The tag does not name the pull request",
+        "guidance": "The tag message must end with exactly one `Pull-Request: <number>` trailer. A squashed or rebased head is only reachable through the pull request's ref, so a verifier needs the number."
+      },
+      "assessment": {
+        "message": "The tag names the pull request the release came from"
+      }
+    },
+    {
+      "id": "names-merge-strategy",
+      "code": "has(predicate.data.trailers) &&\n\"Merge-Strategy\" in predicate.data.trailers &&\npredicate.data.trailers[\"Merge-Strategy\"][0] in [\"merge\", \"squash\", \"rebase\"]",
+      "error": {
+        "message": "The tag does not state a known merge strategy",
+        "guidance": "The tag message must end with a `Merge-Strategy: merge|squash|rebase` trailer."
+      },
+      "assessment": {
+        "message": "The tag states how the evaluated commit reached the branch"
+      }
+    }
+  ]
+}

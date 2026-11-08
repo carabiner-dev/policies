@@ -1,0 +1,42 @@
+{
+  "id": "release-evaluated-commit-passed",
+  "meta": {
+    "description": "Passes when the commit the subject tag names in its\n`Evaluated-Commit` trailer carries an AMPEL results attestation\nwhose verdict is PASS.\n\nThe policy follows the tag to the evaluated commit through the\ntag attestation (`https://carabiner.dev/git/tag/v0`): the chain's\nselector reads the trailer and the tenets then evaluate on that\ncommit, reading the results attestation\n(`https://carabiner.dev/ampel/resultset/v0`) the releaser stored\nfor it. The evaluated commit may no longer be on any branch (a\nsquash or a rebase leaves it behind), so the collector reading the\nresults must reach it, through the pull request's ref\n(`refs/pull/N/head` on GitHub) or by its sha.\n\nWhich releaser's results are trusted is AMPEL's decision, from\n`--signer` or the policy's `identities`.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "release-evaluated-commit-passed.hjson",
+      "digest": {
+        "sha256": "4d5868464ecffd9907d2e4bc02ab768798d930a173127f316d7a1a7774904907",
+        "sha512": "c06c6217aa6fced463ac0af2a5de8dde04770f3c59cae6379c6a90bb937897697c031db30b9c2568f7d84cd836f4ae3c15d3996fd10e9d6ba987ae35076203fb"
+      }
+    },
+    "name": "Release Policies Passed on the Evaluated Commit"
+  },
+  "chain": [
+    {
+      "predicate": {
+        "type": "https://carabiner.dev/git/tag/v0",
+        "selector": "\"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
+      }
+    }
+  ],
+  "predicates": {
+    "types": [
+      "https://carabiner.dev/ampel/resultset/v0"
+    ]
+  },
+  "tenets": [
+    {
+      "id": "results-pass",
+      "code": "predicates.exists(p, p.data.status == \"PASS\" && size(p.data.results) > 0)",
+      "error": {
+        "message": "No passing results attestation for the evaluated commit",
+        "guidance": "The commit the tag names as evaluated must carry a results attestation with at least one result and a PASS verdict, stored by the releaser at the time of the release."
+      },
+      "assessment": {
+        "message": "The release policies passed on the evaluated commit"
+      }
+    }
+  ]
+}

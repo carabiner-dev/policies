@@ -1,0 +1,44 @@
+tests:
+  - name: trailers-present-and-well-formed
+    policy: release-tag-trailers.hjson
+    expect: PASS
+    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/release/tag.json
+
+  - name: trailers-missing-tree-fails
+    policy: release-tag-trailers.hjson
+    expect: FAIL
+    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/release/tag-without-tree.json
+
+  - name: unsigned-tag-is-not-a-release
+    policy: release-tag-signed.hjson
+    expect: FAIL
+    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/release/tag.json
+
+  - name: evaluated-commit-passed
+    policy: release-evaluated-commit-passed.hjson
+    expect: PASS
+    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/release/tag.json
+      - ../testdata/release/results-pass.json
+
+  - name: evaluated-commit-failed
+    policy: release-evaluated-commit-passed.hjson
+    expect: FAIL
+    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/release/tag.json
+      - ../testdata/release/results-fail.json
+
+  - name: evaluated-commit-without-results-fails
+    policy: release-evaluated-commit-passed.hjson
+    expect: FAIL
+    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    attestations:
+      - ../testdata/release/tag.json
