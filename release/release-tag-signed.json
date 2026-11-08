@@ -1,14 +1,14 @@
 {
   "id": "release-tag-signed",
   "meta": {
-    "description": "Passes when the subject git tag carries a verified signature from\nan accepted signer: the releaser, such as miniprow's sigstore\nidentity.\n\nThe tag is the releaser's claim that the release policies passed\non the evaluated commit and that the tagged commit carries the\nevaluated tree. The claim is worth exactly as much as the\nsignature on it, so this policy requires the tag attestation's\nverification to be set, verified, and matched to a sigstore\nidentity. Which identity is accepted is AMPEL's decision, from\n`--signer` or the policy's `identities`; this tenet rejects an\nempty match and a key or reference identity.\n\nThe git tag attestation (`https://carabiner.dev/git/tag/v0`) is\nsynthesized by the carabiner git collector from the tag object;\nits verification is the tag's own signature, checked by the\ncollector.\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tag object sha> \\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\n    --signer 'sigstore::https://token.actions.githubusercontent.com::<releaser identity>'\n```",
+    "description": "Passes when the subject git tag carries a verified signature from\nan accepted signer: the releaser, such as miniprow's sigstore\nidentity.\n\nThe tag is the releaser's claim that the release policies passed\non the evaluated commit and that the tagged commit carries the\nevaluated tree. The claim is worth exactly as much as the\nsignature on it, so this policy requires the tag attestation's\nverification to be set, verified, and matched to a sigstore\nidentity. Which identity is accepted is AMPEL's decision, from\n`--signer` or the policy's `identities`; this tenet rejects an\nempty match and a key or reference identity.\n\nThe git tag attestation (`https://carabiner.dev/git/tag/v0`) is\nsynthesized by the carabiner git collector from the tag object;\nits verification is the tag's own signature, checked by the\ncollector: a sigstore signature against the Fulcio chain and the\nRekor log, or a PGP signature against the keys it holds.\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tag object sha> \\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\n    --signer 'sigstore::https://token.actions.githubusercontent.com::<releaser identity>'\n```",
     "assertMode": "AND",
     "enforce": "ON",
     "origin": {
       "name": "release-tag-signed.hjson",
       "digest": {
-        "sha256": "28db3cc81ddd3462f235c5c8b16e024d3491fafc80d83a2e1fb27499f4636de9",
-        "sha512": "a47afc362ac61c57b71d7ab9a7ec97fe461482f19d6da060def0425a43e235ee95b2ba7d176a58281e1324d9d900ff465c6dd2cb22a42eb687dcbb1f4e9bbe89"
+        "sha256": "399fc44b084dbccae19841fc83ac8b2adf1c156152d8f8bb17597aec77366963",
+        "sha512": "e0ddaaccd9effab067239064161089e156e80a3536ca935afaf378404194e47f625f356df7fc05271d20388640d0a537cb3e49359a6b3b2750340350a84f8b8e"
       }
     },
     "name": "Release Tag Signed by the Releaser"

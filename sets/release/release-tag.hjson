@@ -18,10 +18,13 @@
             commit's second parent; a squash or a rebase rewrites history, and
             only then is the `Evaluated-Commit` trailer load-bearing.
 
-            The subject is the tag object's sha. The evidence comes from the
-            carabiner git collector (`git:https://github.com/ORG/REPO@v1.2.0`
-            for the tag, and the evaluated commit's results through the
-            pull request's ref) with the releaser's identity as `--signer`.
+            The subject is the tag object's sha. The evidence comes from two
+            collectors: `git:https://github.com/ORG/REPO@v1.2.0` describes the
+            tag and the commits with their signatures verified (the evaluated
+            commit fetched on demand when no branch reaches it), and
+            `dnote:https://github.com/ORG/REPO` serves the evaluated commit's
+            results from its git note; the releaser's identity is the
+            `--signer`.
             '''
     }
     policies: [
