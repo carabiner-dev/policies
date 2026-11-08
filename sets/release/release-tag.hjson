@@ -11,10 +11,12 @@
             formed, and, following the `Evaluated-Commit` trailer, that the
             evaluated commit carries a passing results attestation.
 
-            The remaining check, that the tagged commit and the evaluated
-            commit carry the tree the tag names, waits on AMPEL exposing the
-            chain it followed to the tenets; until then the releaser's signed
-            trailer is the assertion of it.
+            Two more policies chain from the tag to the tagged commit and to
+            the evaluated commit and require each to carry the tree the tag
+            names, so what was released is what was evaluated. The evaluated
+            commit is derived from git where git can give it, a merge
+            commit's second parent; a squash or a rebase rewrites history, and
+            only then is the `Evaluated-Commit` trailer load-bearing.
 
             The subject is the tag object's sha. The evidence comes from the
             carabiner git collector (`git:https://github.com/ORG/REPO@v1.2.0`
@@ -34,6 +36,14 @@
         {
             id: "release-evaluated-commit-passed"
             source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json" } }
+        }
+        {
+            id: "release-tagged-commit-tree"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tagged-commit-tree.json" } }
+        }
+        {
+            id: "release-evaluated-commit-tree"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-tree.json" } }
         }
     ]
 }

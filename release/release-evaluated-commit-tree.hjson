@@ -1,0 +1,59 @@
+{
+    id: release-evaluated-commit-tree
+
+    meta: {
+        name: "Evaluated Commit Carries the Named Tree"
+        description:
+            '''
+            Passes when the commit the release policies were evaluated on
+            carries the tree the tag's `Tree` trailer names.
+
+            The evaluated commit is reached as `release-evaluated-commit-passed`
+            reaches it: the merge's second parent for a merge commit, the
+            `Evaluated-Commit` trailer for a squash or a rebase. Its tree,
+            read from its attestation (`https://carabiner.dev/git/commit/v0`),
+            must be the one the tag names. With `release-tagged-commit-tree`
+            this establishes that the tagged commit and the evaluated commit
+            carry the same tree: what was released is what was evaluated.
+            '''
+    }
+
+    chain: [
+        {
+            predicate: {
+                type: "https://carabiner.dev/git/tag/v0"
+                selector:
+                    '''
+                    predicate.data.trailers["Merge-Strategy"][0] == "merge"
+                        ? "sha1:" + predicate.data.object
+                        : "sha1:" + predicate.data.trailers["Evaluated-Commit"][0]
+                    '''
+            }
+        }
+        {
+            predicate: {
+                type: "https://carabiner.dev/git/commit/v0"
+                selector:
+                    '''
+                    chain[0].predicate.data.trailers["Merge-Strategy"][0] == "merge"
+                        ? "sha1:" + predicate.data.parents[1]
+                        : "sha1:" + subject.digest.sha1
+                    '''
+            }
+        }
+    ]
+
+    predicates: { types: ["https://carabiner.dev/git/commit/v0"] }
+
+    tenets: [
+        {
+            id: tree-matches
+            code: 'predicate.data.tree == chain[0].predicate.data.trailers["Tree"][0]'
+            assessment: { message: "The evaluated commit carries the tree the tag names" }
+            error: {
+                message: "The evaluated commit does not carry the tree the tag names"
+                guidance: "The release tag's Tree trailer must name the evaluated commit's tree, the content the policies passed on."
+            }
+        }
+    ]
+}

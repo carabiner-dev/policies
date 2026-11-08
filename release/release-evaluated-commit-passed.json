@@ -1,14 +1,14 @@
 {
   "id": "release-evaluated-commit-passed",
   "meta": {
-    "description": "Passes when the commit the subject tag names in its\n`Evaluated-Commit` trailer carries an AMPEL results attestation\nwhose verdict is PASS.\n\nThe policy follows the tag to the evaluated commit through the\ntag attestation (`https://carabiner.dev/git/tag/v0`): the chain's\nselector reads the trailer and the tenets then evaluate on that\ncommit, reading the results attestation\n(`https://carabiner.dev/ampel/resultset/v0`) the releaser stored\nfor it. The evaluated commit may no longer be on any branch (a\nsquash or a rebase leaves it behind), so the collector reading the\nresults must reach it, through the pull request's ref\n(`refs/pull/N/head` on GitHub) or by its sha.\n\nWhich releaser's results are trusted is AMPEL's decision, from\n`--signer` or the policy's `identities`.",
+    "description": "Passes when the commit the release policies were evaluated on, the\npull request's head, carries an AMPEL results attestation whose\nverdict is PASS.\n\nThe policy reaches that commit from the tag through git wherever\ngit can give it: for a merge commit the evaluated head is the\nmerge's second parent, read from the tagged commit's own\nattestation (`https://carabiner.dev/git/commit/v0`). A squash or\na rebase rewrites history and leaves no link, so for those the\nchain reads the tag's `Evaluated-Commit` trailer, the one place\nthe trailer is load-bearing. `Merge-Strategy` says which path\napplies. The tenets then evaluate on the head, reading the\nresults attestation (`https://carabiner.dev/ampel/resultset/v0`)\nthe releaser stored for it. The head may no longer be on any\nbranch, so the collector must reach it through the pull request's\nref (`refs/pull/N/head` on GitHub) or by its sha.\n\nWhich releaser's results are trusted is AMPEL's decision, from\n`--signer` or the policy's `identities`.",
     "assertMode": "AND",
     "enforce": "ON",
     "origin": {
       "name": "release-evaluated-commit-passed.hjson",
       "digest": {
-        "sha256": "4d5868464ecffd9907d2e4bc02ab768798d930a173127f316d7a1a7774904907",
-        "sha512": "c06c6217aa6fced463ac0af2a5de8dde04770f3c59cae6379c6a90bb937897697c031db30b9c2568f7d84cd836f4ae3c15d3996fd10e9d6ba987ae35076203fb"
+        "sha256": "c061197dd90869314cd0841f86493c73d16585b47e5b7ef313178c5c5381173c",
+        "sha512": "97b4b3235aa82b242ddbb1419a4daf515917820af99c531c7c6009e6405e6359cc5bb30314bcfaeeab810d467b1e460be126ac8f90e81ade3e8109a6a40b150c"
       }
     },
     "name": "Release Policies Passed on the Evaluated Commit"
@@ -17,7 +17,13 @@
     {
       "predicate": {
         "type": "https://carabiner.dev/git/tag/v0",
-        "selector": "\"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
+        "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + predicate.data.object\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
+      }
+    },
+    {
+      "predicate": {
+        "type": "https://carabiner.dev/git/commit/v0",
+        "selector": "chain[0].predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + predicate.data.parents[1]\n    : \"sha1:\" + subject.digest.sha1"
       }
     }
   ],
@@ -32,7 +38,7 @@
       "code": "predicates.exists(p, p.data.status == \"PASS\" && size(p.data.results) > 0)",
       "error": {
         "message": "No passing results attestation for the evaluated commit",
-        "guidance": "The commit the tag names as evaluated must carry a results attestation with at least one result and a PASS verdict, stored by the releaser at the time of the release."
+        "guidance": "The commit the release policies were evaluated on must carry a results attestation with at least one result and a PASS verdict, stored by the releaser at the time of the release."
       },
       "assessment": {
         "message": "The release policies passed on the evaluated commit"

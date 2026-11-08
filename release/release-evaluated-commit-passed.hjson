@@ -5,19 +5,22 @@
         name: "Release Policies Passed on the Evaluated Commit"
         description:
             '''
-            Passes when the commit the subject tag names in its
-            `Evaluated-Commit` trailer carries an AMPEL results attestation
-            whose verdict is PASS.
+            Passes when the commit the release policies were evaluated on, the
+            pull request's head, carries an AMPEL results attestation whose
+            verdict is PASS.
 
-            The policy follows the tag to the evaluated commit through the
-            tag attestation (`https://carabiner.dev/git/tag/v0`): the chain's
-            selector reads the trailer and the tenets then evaluate on that
-            commit, reading the results attestation
-            (`https://carabiner.dev/ampel/resultset/v0`) the releaser stored
-            for it. The evaluated commit may no longer be on any branch (a
-            squash or a rebase leaves it behind), so the collector reading the
-            results must reach it, through the pull request's ref
-            (`refs/pull/N/head` on GitHub) or by its sha.
+            The policy reaches that commit from the tag through git wherever
+            git can give it: for a merge commit the evaluated head is the
+            merge's second parent, read from the tagged commit's own
+            attestation (`https://carabiner.dev/git/commit/v0`). A squash or
+            a rebase rewrites history and leaves no link, so for those the
+            chain reads the tag's `Evaluated-Commit` trailer, the one place
+            the trailer is load-bearing. `Merge-Strategy` says which path
+            applies. The tenets then evaluate on the head, reading the
+            results attestation (`https://carabiner.dev/ampel/resultset/v0`)
+            the releaser stored for it. The head may no longer be on any
+            branch, so the collector must reach it through the pull request's
+            ref (`refs/pull/N/head` on GitHub) or by its sha.
 
             Which releaser's results are trusted is AMPEL's decision, from
             `--signer` or the policy's `identities`.
@@ -28,7 +31,23 @@
         {
             predicate: {
                 type: "https://carabiner.dev/git/tag/v0"
-                selector: '"sha1:" + predicate.data.trailers["Evaluated-Commit"][0]'
+                selector:
+                    '''
+                    predicate.data.trailers["Merge-Strategy"][0] == "merge"
+                        ? "sha1:" + predicate.data.object
+                        : "sha1:" + predicate.data.trailers["Evaluated-Commit"][0]
+                    '''
+            }
+        }
+        {
+            predicate: {
+                type: "https://carabiner.dev/git/commit/v0"
+                selector:
+                    '''
+                    chain[0].predicate.data.trailers["Merge-Strategy"][0] == "merge"
+                        ? "sha1:" + predicate.data.parents[1]
+                        : "sha1:" + subject.digest.sha1
+                    '''
             }
         }
     ]
@@ -45,7 +64,7 @@
             assessment: { message: "The release policies passed on the evaluated commit" }
             error: {
                 message: "No passing results attestation for the evaluated commit"
-                guidance: "The commit the tag names as evaluated must carry a results attestation with at least one result and a PASS verdict, stored by the releaser at the time of the release."
+                guidance: "The commit the release policies were evaluated on must carry a results attestation with at least one result and a PASS verdict, stored by the releaser at the time of the release."
             }
         }
     ]

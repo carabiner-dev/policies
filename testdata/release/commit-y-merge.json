@@ -1,0 +1,6 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [{"digest": {"sha1": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "gitCommit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}}, {"digest": {"gitTree": "dddddddddddddddddddddddddddddddddddddddd"}}],
+  "predicateType": "https://carabiner.dev/git/commit/v0",
+  "predicate": {"tree": "dddddddddddddddddddddddddddddddddddddddd", "parents": ["9999999999999999999999999999999999999999","cccccccccccccccccccccccccccccccccccccccc"], "message": "commit bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n"}
+}
