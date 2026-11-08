@@ -21,7 +21,8 @@
             The git tag attestation (`https://carabiner.dev/git/tag/v0`) is
             synthesized by the carabiner git collector from the tag object;
             its verification is the tag's own signature, checked by the
-            collector.
+            collector: a sigstore signature against the Fulcio chain and the
+            Rekor log, or a PGP signature against the keys it holds.
 
             ## Verifying
 
