@@ -1,0 +1,48 @@
+{
+  "id": "release-evaluated-commit-tree",
+  "meta": {
+    "description": "Passes when the commit the release policies were evaluated on\ncarries the tree the tag's `Tree` trailer names.\n\nThe evaluated commit is reached as `release-evaluated-commit-passed`\nreaches it: the merge's second parent for a merge commit, the\n`Evaluated-Commit` trailer for a squash or a rebase. Its tree,\nread from its attestation (`https://carabiner.dev/git/commit/v0`),\nmust be the one the tag names. With `release-tagged-commit-tree`\nthis establishes that the tagged commit and the evaluated commit\ncarry the same tree: what was released is what was evaluated.",
+    "assertMode": "AND",
+    "enforce": "ON",
+    "origin": {
+      "name": "release-evaluated-commit-tree.hjson",
+      "digest": {
+        "sha256": "8069f94182e5bfc7abe6a6e22988678aad1c09b38902fd6b9558a340b1216df8",
+        "sha512": "e083c3312e7d82d9337e8b0d88f1ad95c7b58e855659b59fcb8e54677ae91faadda7ab85c3aaf4f237c07275a8ff03b2c38712d65d9469ec329767dcba39c1f8"
+      }
+    },
+    "name": "Evaluated Commit Carries the Named Tree"
+  },
+  "chain": [
+    {
+      "predicate": {
+        "type": "https://carabiner.dev/git/tag/v0",
+        "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + predicate.data.object\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
+      }
+    },
+    {
+      "predicate": {
+        "type": "https://carabiner.dev/git/commit/v0",
+        "selector": "chain[0].predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + predicate.data.parents[1]\n    : \"sha1:\" + subject.digest.sha1"
+      }
+    }
+  ],
+  "predicates": {
+    "types": [
+      "https://carabiner.dev/git/commit/v0"
+    ]
+  },
+  "tenets": [
+    {
+      "id": "tree-matches",
+      "code": "predicate.data.tree == chain[0].predicate.data.trailers[\"Tree\"][0]",
+      "error": {
+        "message": "The evaluated commit does not carry the tree the tag names",
+        "guidance": "The release tag's Tree trailer must name the evaluated commit's tree, the content the policies passed on."
+      },
+      "assessment": {
+        "message": "The evaluated commit carries the tree the tag names"
+      }
+    }
+  ]
+}

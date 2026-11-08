@@ -7,7 +7,9 @@ POLICYCTL ?= go tool policyctl
 
 # Policy files that are neither compiled nor documented, as paths relative to
 # this file. Work in progress that does not parse yet goes here.
-EXCLUDE := sets/baseline/baseline-source-provenance.hjson
+# sets/release/release-tag.hjson references the release policies on main;
+# it compiles once they are merged there, then the exclusion goes.
+EXCLUDE := sets/baseline/baseline-source-provenance.hjson sets/release/release-tag.hjson
 
 # Policy sources: every .hjson file, plus every .json file without an .hjson
 # sibling (the .hjson version is the source of truth when both exist).

@@ -1,0 +1,49 @@
+{
+    id: "release-tag"
+    meta: {
+        name: "Release Tag"
+        description:
+            '''
+            Verifies a release tag cut on the commit a merge produced while the
+            release policies were evaluated on the pull request's head. The
+            tag's signed trailers are the link: the set checks the tag is
+            signed by the releaser, that its trailers are present and well
+            formed, and, following the `Evaluated-Commit` trailer, that the
+            evaluated commit carries a passing results attestation.
+
+            Two more policies chain from the tag to the tagged commit and to
+            the evaluated commit and require each to carry the tree the tag
+            names, so what was released is what was evaluated. The evaluated
+            commit is derived from git where git can give it, a merge
+            commit's second parent; a squash or a rebase rewrites history, and
+            only then is the `Evaluated-Commit` trailer load-bearing.
+
+            The subject is the tag object's sha. The evidence comes from the
+            carabiner git collector (`git:https://github.com/ORG/REPO@v1.2.0`
+            for the tag, and the evaluated commit's results through the
+            pull request's ref) with the releaser's identity as `--signer`.
+            '''
+    }
+    policies: [
+        {
+            id: "release-tag-signed"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json" } }
+        }
+        {
+            id: "release-tag-trailers"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tag-trailers.json" } }
+        }
+        {
+            id: "release-evaluated-commit-passed"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json" } }
+        }
+        {
+            id: "release-tagged-commit-tree"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tagged-commit-tree.json" } }
+        }
+        {
+            id: "release-evaluated-commit-tree"
+            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-tree.json" } }
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {"name": "https://github.com/example/repo", "digest": {"sha1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "gitTag": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}},
+    {"digest": {"sha1": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "gitCommit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}}
+  ],
+  "predicateType": "https://carabiner.dev/git/tag/v0",
+  "predicate": {
+    "object": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "objectType": "commit",
+    "name": "v1.2.0",
+    "tagger": {"name": "someone", "email": "someone@example.com", "date": "2026-11-08T10:02:00Z"},
+    "message": "Release v1.2.0\n\nEvaluated-Commit: cccccccccccccccccccccccccccccccccccccccc\nPull-Request: 7\nMerge-Strategy: squash\n",
+    "trailers": {"Evaluated-Commit": ["cccccccccccccccccccccccccccccccccccccccc"], "Pull-Request": ["7"], "Merge-Strategy": ["squash"]}
+  }
+}

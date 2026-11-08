@@ -23,6 +23,7 @@ and formats:
 - [OpenVEX](openvex/): Policies for OpenVEX exploitability data
 - [OSV](osv/): Policies for OSV vulnerability scan results
 - [protobom](protobom/): SBOM policies reading documents through the protobom API
+- [Release](release/): Policies for release tags cut on a merged commit and linked to the evaluated one
 - [SBOM](sbom/): Software Bill of Materials
 - [Scorecard](scorecard/): OpenSSF Scorecard
 - [Security Insights](security-insights/): Security Insights Specification

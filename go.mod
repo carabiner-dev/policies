@@ -7,7 +7,7 @@ require github.com/carabiner-dev/lexecutor v0.0.2-0.20261105032841-384d62044700
 require (
 	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.12-20260825204119-511051f7f437.2 // indirect
 	buf.build/go/protovalidate v1.4.0 // indirect
-	cel.dev/cel-go v0.33.1 // indirect
+	cel.dev/cel-go v0.33.2 // indirect
 	cel.dev/expr v0.25.3 // indirect
 	cloud.google.com/go v0.123.0 // indirect
 	cloud.google.com/go/auth v0.20.0 // indirect
@@ -97,8 +97,8 @@ require (
 	github.com/github/smimesign v0.2.0 // indirect
 	github.com/go-chi/chi/v5 v5.5.0 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
-	github.com/go-git/go-billy/v5 v5.9.1 // indirect
-	github.com/go-git/go-git/v5 v5.19.2 // indirect
+	github.com/go-git/go-billy/v5 v5.9.2 // indirect
+	github.com/go-git/go-git/v5 v5.19.3 // indirect
 	github.com/go-jose/go-jose/v4 v4.1.7 // indirect
 	github.com/go-logr/logr v1.4.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
@@ -157,7 +157,6 @@ require (
 	github.com/jellydator/ttlcache/v3 v3.4.1 // indirect
 	github.com/kevinburke/ssh_config v1.6.0 // indirect
 	github.com/klauspost/compress v1.19.2 // indirect
-	github.com/klauspost/cpuid/v2 v2.3.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.3.0 // indirect
 	github.com/mattn/go-colorable v0.1.15 // indirect
@@ -182,16 +181,16 @@ require (
 	github.com/ossf/osv-schema/bindings/go v0.0.0-20260730052020-9509daabeece // indirect
 	github.com/package-url/packageurl-go v0.1.7 // indirect
 	github.com/pandatix/go-cvss v0.6.4 // indirect
-	github.com/pjbgf/sha1cd v0.6.0 // indirect
+	github.com/pjbgf/sha1cd v0.7.0 // indirect
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/policylabs/ampel v1.5.0 // indirect
+	github.com/policylabs/ampel v1.5.1-0.20261108194937-48f8f042a69b // indirect
 	github.com/policylabs/attestation v0.3.0 // indirect
-	github.com/policylabs/collector v0.4.0 // indirect
+	github.com/policylabs/collector v0.4.1-0.20261108193334-fcc99c550723 // indirect
 	github.com/policylabs/policy v0.6.0 // indirect
 	github.com/policylabs/predicates v0.6.0 // indirect
-	github.com/policylabs/signer v0.6.5 // indirect
-	github.com/protobom/cel v0.1.3 // indirect
+	github.com/policylabs/signer v0.6.7 // indirect
+	github.com/protobom/cel v0.1.5 // indirect
 	github.com/protobom/protobom v0.7.0 // indirect
 	github.com/regclient/regclient v0.11.6 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
@@ -257,7 +256,7 @@ require (
 	google.golang.org/genproto v0.0.0-20260622175928-b703f567277d // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20260819154853-08b0e4226688 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260819154853-08b0e4226688 // indirect
-	google.golang.org/grpc v1.84.0 // indirect
+	google.golang.org/grpc v1.85.0 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

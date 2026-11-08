@@ -1,0 +1,6 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [{"digest": {"sha1": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "gitCommit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}}, {"digest": {"gitTree": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"}}],
+  "predicateType": "https://carabiner.dev/git/commit/v0",
+  "predicate": {"tree": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "parents": ["9999999999999999999999999999999999999999"], "message": "commit bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n"}
+}
