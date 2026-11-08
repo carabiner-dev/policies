@@ -184,9 +184,9 @@ require (
 	github.com/pjbgf/sha1cd v0.7.0 // indirect
 	github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/policylabs/ampel v1.5.1-0.20261108190038-18836a4d8072 // indirect
+	github.com/policylabs/ampel v1.5.1-0.20261108194937-48f8f042a69b // indirect
 	github.com/policylabs/attestation v0.3.0 // indirect
-	github.com/policylabs/collector v0.4.1-0.20261108171902-d5f3fd531bdc // indirect
+	github.com/policylabs/collector v0.4.1-0.20261108193334-fcc99c550723 // indirect
 	github.com/policylabs/policy v0.6.0 // indirect
 	github.com/policylabs/predicates v0.6.0 // indirect
 	github.com/policylabs/signer v0.6.7 // indirect

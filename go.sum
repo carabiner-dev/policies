@@ -511,12 +511,12 @@ github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10/go.mod h1
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 h1:Jamvg5psRIccs7FGNTlIRMkT8wgtp5eCXdBlqhYGL6U=
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/policylabs/ampel v1.5.1-0.20261108190038-18836a4d8072 h1:in0ot1EMm9uylbFIh1eRTvjXJjPGXOxvPXCjJwj0o34=
-github.com/policylabs/ampel v1.5.1-0.20261108190038-18836a4d8072/go.mod h1:z63K3mGTk0e2Gwkw2M+Akxo0qXrZRtyJmxLQMvHPaDw=
+github.com/policylabs/ampel v1.5.1-0.20261108194937-48f8f042a69b h1:oZnubrFZEywDvsgPeEWTaVVI/39Ymep+7em/JYfU5WI=
+github.com/policylabs/ampel v1.5.1-0.20261108194937-48f8f042a69b/go.mod h1:UZFxbX77luJkxxZQbvAu8E/0XtF2zGjBf3aI+DcXPJk=
 github.com/policylabs/attestation v0.3.0 h1:tutwsvbq/T5F0Hwt8+M4u42Egk1qP8YbNx4GQ1hnTTA=
 github.com/policylabs/attestation v0.3.0/go.mod h1:z5gJ2M2aAkByYxMLqoOIY31KvAOIX+Ys4ZW2HavM3/o=
-github.com/policylabs/collector v0.4.1-0.20261108171902-d5f3fd531bdc h1:+9UgCodgvBlWFlmMVOHPqpG6QkQh6FsCzmubuEcbY/E=
-github.com/policylabs/collector v0.4.1-0.20261108171902-d5f3fd531bdc/go.mod h1:J//jg0E5QnlyGoIVU/fYuwlYOx0D+Zxi9pRLHUwyPXY=
+github.com/policylabs/collector v0.4.1-0.20261108193334-fcc99c550723 h1:0W7Wf/GUq88l+bDmA9kCw0MPHyQQFyku2Wj61FX9duo=
+github.com/policylabs/collector v0.4.1-0.20261108193334-fcc99c550723/go.mod h1:J//jg0E5QnlyGoIVU/fYuwlYOx0D+Zxi9pRLHUwyPXY=
 github.com/policylabs/policy v0.6.0 h1:NUMtcAH3tC123HHZmXK8H2Xo6izaNovwF3XnHbskIKg=
 github.com/policylabs/policy v0.6.0/go.mod h1:a+8uNqhkyYL2EJsJlHFrUwAMt3iqb4jgjeWhIkQEeS0=
 github.com/policylabs/predicates v0.6.0 h1:PgM9/8X8p/i4+Mr+VkijTb2ukeykrHmmjBnk1GuSq+M=
