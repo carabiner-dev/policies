@@ -1,8 +1,8 @@
 # Release Tag Trailers
 
-Passes when the subject is an annotated git tag on a commit whose
-message carries the trailers a release tag needs to be verified
-back to the commit the policies were evaluated on.
+Passes when the subject commit is the target of an annotated tag
+whose message carries the trailers a release tag needs to be
+verified back to the commit the policies were evaluated on.
 
 A release tag cut by a tagger such as miniprow lands on the commit
 the merge produced, while the policies were evaluated on the pull
@@ -13,10 +13,11 @@ commits share, `Pull-Request` the pull request, and
 checks the trailers are present and well formed; the other
 policies in the `release-tag` set follow them.
 
-The tag is described by a git tag attestation
-(`https://carabiner.dev/git/tag/v0`), synthesized by the carabiner
-git collector from the tag object itself with the message's
-trailers parsed as git defines them.
+The subject is the tagged commit. The tag is described by a git
+tag attestation (`https://carabiner.dev/git/tag/v0`), synthesized
+by the carabiner git collector from the tag object with the
+message's trailers parsed as git defines them, naming both the tag
+object and the commit as subjects.
 
 ## Overview
 

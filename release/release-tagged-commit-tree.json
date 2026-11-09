@@ -1,35 +1,28 @@
 {
   "id": "release-tagged-commit-tree",
   "meta": {
-    "description": "Passes when the commit the release tag points at carries the tree\nthe tag's `Tree` trailer names.\n\nA release tag lands on the commit a merge produced while the\npolicies were evaluated on the pull request's head; what makes\nthe tag honest is that both commits carry the same tree. The tag\nnames that tree in its signed `Tree` trailer. This policy chains\nfrom the tag to the tagged commit and checks the commit's own\ntree, read from its attestation (`https://carabiner.dev/git/commit/v0`,\nsynthesized from the commit object), against the trailer. Its\nsibling `release-evaluated-commit-tree` does the same for the\nevaluated commit; together they establish the two trees are one.",
+    "description": "Passes when the subject commit, the one the release tag points at,\ncarries the tree the tag's `Tree` trailer names.\n\nA release tag lands on the commit a merge produced while the\npolicies were evaluated on the pull request's head; what makes\nthe tag honest is that both commits carry the same tree. The tag\nnames that tree in its signed `Tree` trailer. Both the tag\nattestation (`https://carabiner.dev/git/tag/v0`) and the commit's\nown attestation (`https://carabiner.dev/git/commit/v0`, synthesized\nfrom the commit object) are evidence about the subject, so the\ntenet compares them directly. Its sibling\n`release-evaluated-commit-tree` does the same for the evaluated\ncommit; together they establish the two trees are one.",
     "assertMode": "AND",
     "enforce": "ON",
     "origin": {
       "name": "release-tagged-commit-tree.hjson",
       "digest": {
-        "sha256": "ae14363eb6cdb0d7b7bb9616a99955150d413d7b7ff00745e39fa5aecb818772",
-        "sha512": "40762b4522899f400104affd25c88d8228bcfa339cdd2c33a317dd59f9a99c70693da0cf9bcb8b4ab9278fda69f3fb1868727e954d6d66cca10c7a5cd666d65d"
+        "sha256": "f00e185b3c8232a366d390b86c35bba51e1cb34fa79609d7baa29b4e4279ffbb",
+        "sha512": "70f74ac7f9f49a3d32623ac97a14f0b2e3247c0c86a7e08c37ae4a46d39049765514429a7c706a359207627210f247601c72762849b022275d2c29cd0eafed76"
       }
     },
     "name": "Tagged Commit Carries the Named Tree"
   },
-  "chain": [
-    {
-      "predicate": {
-        "type": "https://carabiner.dev/git/tag/v0",
-        "selector": "\"sha1:\" + predicate.data.object"
-      }
-    }
-  ],
   "predicates": {
     "types": [
+      "https://carabiner.dev/git/tag/v0",
       "https://carabiner.dev/git/commit/v0"
     ]
   },
   "tenets": [
     {
       "id": "tree-matches",
-      "code": "predicate.data.tree == chain[0].predicate.data.trailers[\"Tree\"][0]",
+      "code": "predicates.exists(t, t.predicate_type == \"https://carabiner.dev/git/tag/v0\" &&\n    predicates.exists(c, c.predicate_type == \"https://carabiner.dev/git/commit/v0\" &&\n        c.data.tree == t.data.trailers[\"Tree\"][0]))",
       "error": {
         "message": "The tagged commit does not carry the tree the tag names",
         "guidance": "The release tag's Tree trailer must name the tagged commit's tree. A tag whose target carries another tree was cut on content the policies never saw."

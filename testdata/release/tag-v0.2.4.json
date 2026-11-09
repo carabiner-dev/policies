@@ -1,0 +1,16 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [
+    {"name": "https://github.com/carabiner-dev/github", "digest": {"sha1": "4344c6e1df985457ba010823d7cfd81c47a24d54", "gitTag": "4344c6e1df985457ba010823d7cfd81c47a24d54"}},
+    {"digest": {"sha1": "5fb83bdcf53e7c8bc270d3341e829b9065d61411", "gitCommit": "5fb83bdcf53e7c8bc270d3341e829b9065d61411"}}
+  ],
+  "predicateType": "https://carabiner.dev/git/tag/v0",
+  "predicate": {
+    "object": "5fb83bdcf53e7c8bc270d3341e829b9065d61411",
+    "objectType": "commit",
+    "name": "v0.2.4",
+    "tagger": {"name": "miniprow", "email": "3418766+miniprow[bot]@users.noreply.github.com", "date": "2026-11-09T06:18:06Z"},
+    "message": "Release v0.2.4\n\nCut by miniprow from a patch release request.\n\nPolicies verified:\n- gitsign-commit-signature\n\nEvaluated-Commit: 9b2c338c1aab58f16cf819f61be9880d0adc8817\nPull-Request: 48\nTree: d41af39a57c0b7c725120bba58b89f6743bf48d3\nMerge-Strategy: merge\n",
+    "trailers": {"Evaluated-Commit": ["9b2c338c1aab58f16cf819f61be9880d0adc8817"], "Pull-Request": ["48"], "Tree": ["d41af39a57c0b7c725120bba58b89f6743bf48d3"], "Merge-Strategy": ["merge"]}
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [{"name": "https://github.com/carabiner-dev/github", "digest": {"sha1": "9b2c338c1aab58f16cf819f61be9880d0adc8817", "gitCommit": "9b2c338c1aab58f16cf819f61be9880d0adc8817"}}, {"digest": {"gitTree": "d41af39a57c0b7c725120bba58b89f6743bf48d3"}}],
+  "predicateType": "https://carabiner.dev/git/commit/v0",
+  "predicate": {"tree": "d41af39a57c0b7c725120bba58b89f6743bf48d3", "parents": ["c10be7fac22e5317b4a26131a54265b050ce2236"], "message": "Cut patch release\n\nTag-commit-as: patch\n"}
+}

@@ -1,17 +1,18 @@
 # Tagged Commit Carries the Named Tree
 
-Passes when the commit the release tag points at carries the tree
-the tag's `Tree` trailer names.
+Passes when the subject commit, the one the release tag points at,
+carries the tree the tag's `Tree` trailer names.
 
 A release tag lands on the commit a merge produced while the
 policies were evaluated on the pull request's head; what makes
 the tag honest is that both commits carry the same tree. The tag
-names that tree in its signed `Tree` trailer. This policy chains
-from the tag to the tagged commit and checks the commit's own
-tree, read from its attestation (`https://carabiner.dev/git/commit/v0`,
-synthesized from the commit object), against the trailer. Its
-sibling `release-evaluated-commit-tree` does the same for the
-evaluated commit; together they establish the two trees are one.
+names that tree in its signed `Tree` trailer. Both the tag
+attestation (`https://carabiner.dev/git/tag/v0`) and the commit's
+own attestation (`https://carabiner.dev/git/commit/v0`, synthesized
+from the commit object) are evidence about the subject, so the
+tenet compares them directly. Its sibling
+`release-evaluated-commit-tree` does the same for the evaluated
+commit; together they establish the two trees are one.
 
 ## Overview
 
@@ -29,7 +30,7 @@ evaluated commit; together they establish the two trees are one.
 flowchart TD
     subgraph inputs["Inputs"]
         A0["📄 https://carabiner.dev/git/commit/v0"]
-        L0["⛓️ https://carabiner.dev/git/tag/v0<br/>#quot;sha1:#quot; + predicate.data.object"]
+        A1["📄 https://carabiner.dev/git/tag/v0"]
     end
     P["🛡️ Tagged Commit Carries the Named Tree"]
     inputs --> P
@@ -42,7 +43,9 @@ flowchart TD
 
 **Evaluation:**
 ```cel
-predicate.data.tree == chain[0].predicate.data.trailers["Tree"][0]
+predicates.exists(t, t.predicate_type == "https://carabiner.dev/git/tag/v0" &&
+    predicates.exists(c, c.predicate_type == "https://carabiner.dev/git/commit/v0" &&
+        c.data.tree == t.data.trailers["Tree"][0]))
 ```
 
 **On pass:** The tagged commit carries the tree the tag names

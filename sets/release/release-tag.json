@@ -1,13 +1,13 @@
 {
   "id": "release-tag",
   "meta": {
-    "description": "Verifies a release tag cut on the commit a merge produced while the\nrelease policies were evaluated on the pull request's head. The\ntag's signed trailers are the link: the set checks the tag is\nsigned by the releaser, that its trailers are present and well\nformed, and, following the `Evaluated-Commit` trailer, that the\nevaluated commit carries a passing results attestation.\n\nTwo more policies chain from the tag to the tagged commit and to\nthe evaluated commit and require each to carry the tree the tag\nnames, so what was released is what was evaluated. The evaluated\ncommit is derived from git where git can give it, a merge\ncommit's second parent; a squash or a rebase rewrites history, and\nonly then is the `Evaluated-Commit` trailer load-bearing.\n\nThe subject is the tag object's sha. The evidence comes from two\ncollectors: `git:https://github.com/ORG/REPO@v1.2.0` describes the\ntag and the commits with their signatures verified (the evaluated\ncommit fetched on demand when no branch reaches it), and\n`dnote:https://github.com/ORG/REPO` serves the evaluated commit's\nresults from its git note; the releaser's identity is the\n`--signer`.",
+    "description": "Verifies a release tag cut on the commit a merge produced while the\nrelease policies were evaluated on the pull request's head. The\nsubject is the **tagged commit**, what a builder checks out at the\ntag, so a build at the tag can find the evaluation results and gate\non them. The tag's signed trailers are the link: the set checks the\ntag is signed by the releaser, that its trailers are present and\nwell formed, that the evaluated commit carries a passing results\nattestation signed by the releaser, and that both the tagged\ncommit and the evaluated commit carry the tree the tag names, so\nwhat was released is what was evaluated. The evaluated commit is\nderived from git where git can give it, a merge commit's second\nparent; a squash or a rebase rewrites history, and only then is the\n`Evaluated-Commit` trailer load-bearing.\n\nThe releaser is pinned by the `releaser` and `releaser_issuer`\ncontext values, matched by the tenets against the verified\nsigners, so the run passes no `--signer`: a signer constraint\nwould wrongly apply to the git objects the chains cross, which\nare proven by their hashes, not by who signed them.\n\nThe evidence comes from two collectors:\n`git:https://github.com/ORG/REPO@v1.2.0` describes the tag and the\ncommits with their signatures verified (the evaluated commit\nfetched on demand when no branch reaches it), and\n`dnote:https://github.com/ORG/REPO` serves the evaluated commit's\nresults from its git note.",
     "enforce": "ON",
     "origin": {
       "name": "release-tag.hjson",
       "digest": {
-        "sha256": "30bd3100eb4b869b92b9454a5afd77561f173dc15691f4f53f733e2914357a4f",
-        "sha512": "3eaee3674de1d5a5b671801f39aae6cc9799cc905a0f7134663da868a2276fb586b95d6da873ea48ebc0fd246ec1847f18794253ddc52219cd12d3d3a073b61b"
+        "sha256": "5605d5a4e13367fd6995978079ddcb09cf310349988710f8b2709d3d89a30705",
+        "sha512": "26bff5319c3083a67a862d337bb8241b7a4b67a289a08925c7421f4ec5f184869dadf21e2f08915782832c795f90a8231072f162a1a5b1b2e7da9555ca9eb977"
       }
     },
     "name": "Release Tag"
@@ -17,15 +17,15 @@
     {
       "id": "release-tag-signed",
       "meta": {
-        "description": "Passes when the subject git tag carries a verified signature from\nan accepted signer: the releaser, such as miniprow's sigstore\nidentity.\n\nThe tag is the releaser's claim that the release policies passed\non the evaluated commit and that the tagged commit carries the\nevaluated tree. The claim is worth exactly as much as the\nsignature on it, so this policy requires the tag attestation's\nverification to be set, verified, and matched to a sigstore\nidentity. Which identity is accepted is AMPEL's decision, from\n`--signer` or the policy's `identities`; this tenet rejects an\nempty match and a key or reference identity.\n\nThe git tag attestation (`https://carabiner.dev/git/tag/v0`) is\nsynthesized by the carabiner git collector from the tag object;\nits verification is the tag's own signature, checked by the\ncollector.\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tag object sha> \\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\n    --signer 'sigstore::https://token.actions.githubusercontent.com::<releaser identity>'\n```",
+        "description": "Passes when the subject git tag carries a verified signature from\nan accepted signer: the releaser, such as miniprow's sigstore\nidentity.\n\nThe tag is the releaser's claim that the release policies passed\non the evaluated commit and that the tagged commit carries the\nevaluated tree. The claim is worth exactly as much as the\nsignature on it, so this policy requires the tag attestation's\nverification to be set, verified, and matched to a sigstore\nidentity. Which identity is accepted is AMPEL's decision, from\n`--signer` or the policy's `identities`; this tenet rejects an\nempty match and a key or reference identity.\n\nThe git tag attestation (`https://carabiner.dev/git/tag/v0`) is\nsynthesized by the carabiner git collector from the tag object;\nits verification is the tag's own signature, checked by the\ncollector: a sigstore signature against the Fulcio chain and the\nRekor log, or a PGP signature against the keys it holds.\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tag object sha> \\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\n    --signer 'sigstore::https://token.actions.githubusercontent.com::<releaser identity>'\n```",
         "assertMode": "AND",
         "enforce": "ON",
         "origin": {
           "name": "release-tag-signed",
           "uri": "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json",
           "digest": {
-            "sha256": "bd3976144049dcadba50a7be25c3ab69924eafd40a8ea49869c96155baa68673",
-            "sha512": "b748f38e46a34867aa6e5cb44d58e585bd4cd6701050d5add8d61b562c19b40f0f993cdfdb0c00ad966e0663b2edd7bafbecc9d0797cc511fb7c1fc39abde27e"
+            "sha256": "e39f3bbb0a798154e3e66dd6a6e1e8b827030ebdce8541fc34586662bd7931d5",
+            "sha512": "406c21d93367281e0883d81993645580dd0860d3ae238ed4bc870b91e84b2a334c762840c8cb9eef18876419a8d50423e6e4e88be49729d4432a7159a8bbb6e1"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json"
         },

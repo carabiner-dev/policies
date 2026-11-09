@@ -2,25 +2,30 @@
 
 Verifies a release tag cut on the commit a merge produced while the
 release policies were evaluated on the pull request's head. The
-tag's signed trailers are the link: the set checks the tag is
-signed by the releaser, that its trailers are present and well
-formed, and, following the `Evaluated-Commit` trailer, that the
-evaluated commit carries a passing results attestation.
+subject is the **tagged commit**, what a builder checks out at the
+tag, so a build at the tag can find the evaluation results and gate
+on them. The tag's signed trailers are the link: the set checks the
+tag is signed by the releaser, that its trailers are present and
+well formed, that the evaluated commit carries a passing results
+attestation signed by the releaser, and that both the tagged
+commit and the evaluated commit carry the tree the tag names, so
+what was released is what was evaluated. The evaluated commit is
+derived from git where git can give it, a merge commit's second
+parent; a squash or a rebase rewrites history, and only then is the
+`Evaluated-Commit` trailer load-bearing.
 
-Two more policies chain from the tag to the tagged commit and to
-the evaluated commit and require each to carry the tree the tag
-names, so what was released is what was evaluated. The evaluated
-commit is derived from git where git can give it, a merge
-commit's second parent; a squash or a rebase rewrites history, and
-only then is the `Evaluated-Commit` trailer load-bearing.
+The releaser is pinned by the `releaser` and `releaser_issuer`
+context values, matched by the tenets against the verified
+signers, so the run passes no `--signer`: a signer constraint
+would wrongly apply to the git objects the chains cross, which
+are proven by their hashes, not by who signed them.
 
-The subject is the tag object's sha. The evidence comes from two
-collectors: `git:https://github.com/ORG/REPO@v1.2.0` describes the
-tag and the commits with their signatures verified (the evaluated
-commit fetched on demand when no branch reaches it), and
+The evidence comes from two collectors:
+`git:https://github.com/ORG/REPO@v1.2.0` describes the tag and the
+commits with their signatures verified (the evaluated commit
+fetched on demand when no branch reaches it), and
 `dnote:https://github.com/ORG/REPO` serves the evaluated commit's
-results from its git note; the releaser's identity is the
-`--signer`.
+results from its git note.
 
 ## Overview
 
@@ -73,7 +78,8 @@ empty match and a key or reference identity.
 The git tag attestation (`https://carabiner.dev/git/tag/v0`) is
 synthesized by the carabiner git collector from the tag object;
 its verification is the tag's own signature, checked by the
-collector.
+collector: a sigstore signature against the Fulcio chain and the
+Rekor log, or a PGP signature against the keys it holds.
 
 ## Verifying
 
