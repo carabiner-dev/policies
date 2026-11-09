@@ -1,89 +1,119 @@
+# The subject of every case is the tagged commit. The synthetic fixtures use
+# placeholder shas; the v0.2.4 fixtures mirror the first real release the new
+# tagger cut (carabiner-dev/github), with the head's results bundle as signed
+# by miniprow, so the releaser checks run against a real signature.
 tests:
   - name: trailers-present-and-well-formed
     policy: release-tag-trailers.hjson
     expect: PASS
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     attestations:
       - ../testdata/release/tag.json
 
   - name: trailers-missing-tree-fails
     policy: release-tag-trailers.hjson
     expect: FAIL
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     attestations:
       - ../testdata/release/tag-without-tree.json
 
+  # A tag attestation read from a file carries no verification: the tag is
+  # unsigned as far as the engine knows, so the releaser check fails.
   - name: unsigned-tag-is-not-a-release
     policy: release-tag-signed.hjson
     expect: FAIL
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:5fb83bdcf53e7c8bc270d3341e829b9065d61411"
     attestations:
-      - ../testdata/release/tag.json
-
-  # The chained policies read the chain from their selectors and tenets,
-  # which needs the engine's chain variable (AMPEL after v1.5.0; the floor is the first pre-release so a pseudo-version of main qualifies).
-  - name: squash-evaluated-commit-passed
-    policy: release-evaluated-commit-passed.hjson
-    ampel-version: v1.5.1-0
-    expect: PASS
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    attestations:
-      - ../testdata/release/tag.json
-      - ../testdata/release/commit-x.json
-      - ../testdata/release/results-pass.json
-
-  - name: squash-evaluated-commit-failed
-    policy: release-evaluated-commit-passed.hjson
-    ampel-version: v1.5.1-0
-    expect: FAIL
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    attestations:
-      - ../testdata/release/tag.json
-      - ../testdata/release/commit-x.json
-      - ../testdata/release/results-fail.json
-
-  - name: squash-evaluated-commit-without-results-fails
-    policy: release-evaluated-commit-passed.hjson
-    ampel-version: v1.5.1-0
-    expect: FAIL
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    attestations:
-      - ../testdata/release/tag.json
-      - ../testdata/release/commit-x.json
-
-  - name: merge-evaluated-commit-is-the-second-parent
-    policy: release-evaluated-commit-passed.hjson
-    ampel-version: v1.5.1-0
-    expect: PASS
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    attestations:
-      - ../testdata/release/tag-merge.json
-      - ../testdata/release/commit-y-merge.json
-      - ../testdata/release/results-pass.json
+      - ../testdata/release/tag-v0.2.4.json
+    context:
+      - name: releaser
+        value: miniprow-prod@carabiner-infra-prod.iam.gserviceaccount.com
+      - name: releaser_issuer
+        value: https://accounts.google.com
 
   - name: tagged-commit-carries-named-tree
     policy: release-tagged-commit-tree.hjson
-    ampel-version: v1.5.1-0
     expect: PASS
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     attestations:
       - ../testdata/release/tag.json
       - ../testdata/release/commit-y-squash.json
 
   - name: tagged-commit-with-other-tree-fails
     policy: release-tagged-commit-tree.hjson
-    ampel-version: v1.5.1-0
     expect: FAIL
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     attestations:
       - ../testdata/release/tag.json
       - ../testdata/release/commit-y-squash-othertree.json
+
+  # The chained policies read the chain from their selectors and tenets,
+  # which needs the engine's chain variable (AMPEL after v1.5.0; the floor is
+  # the first pre-release so a pseudo-version of main qualifies).
+  - name: merge-evaluated-commit-passed-as-released
+    policy: release-evaluated-commit-passed.hjson
+    ampel-version: v1.5.1-0
+    expect: PASS
+    subject: "sha1:5fb83bdcf53e7c8bc270d3341e829b9065d61411"
+    attestations:
+      - ../testdata/release/tag-v0.2.4.json
+      - ../testdata/release/commit-5fb83bd.json
+      - ../testdata/release/results-v0.2.4.jsonl
+    context:
+      - name: releaser
+        value: miniprow-prod@carabiner-infra-prod.iam.gserviceaccount.com
+      - name: releaser_issuer
+        value: https://accounts.google.com
+
+  - name: merge-evaluated-commit-results-by-another-releaser-fail
+    policy: release-evaluated-commit-passed.hjson
+    ampel-version: v1.5.1-0
+    expect: FAIL
+    subject: "sha1:5fb83bdcf53e7c8bc270d3341e829b9065d61411"
+    attestations:
+      - ../testdata/release/tag-v0.2.4.json
+      - ../testdata/release/commit-5fb83bd.json
+      - ../testdata/release/results-v0.2.4.jsonl
+    context:
+      - name: releaser
+        value: someone-else@example.iam.gserviceaccount.com
+      - name: releaser_issuer
+        value: https://accounts.google.com
+
+  - name: squash-evaluated-commit-unsigned-results-fail
+    policy: release-evaluated-commit-passed.hjson
+    ampel-version: v1.5.1-0
+    expect: FAIL
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/release/tag.json
+      - ../testdata/release/commit-x.json
+      - ../testdata/release/results-pass.json
+    context:
+      - name: releaser
+        value: miniprow-prod@carabiner-infra-prod.iam.gserviceaccount.com
+      - name: releaser_issuer
+        value: https://accounts.google.com
+
+  - name: squash-evaluated-commit-without-results-fails
+    policy: release-evaluated-commit-passed.hjson
+    ampel-version: v1.5.1-0
+    expect: FAIL
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    attestations:
+      - ../testdata/release/tag.json
+      - ../testdata/release/commit-x.json
+    context:
+      - name: releaser
+        value: miniprow-prod@carabiner-infra-prod.iam.gserviceaccount.com
+      - name: releaser_issuer
+        value: https://accounts.google.com
 
   - name: squash-evaluated-commit-carries-named-tree
     policy: release-evaluated-commit-tree.hjson
     ampel-version: v1.5.1-0
     expect: PASS
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     attestations:
       - ../testdata/release/tag.json
       - ../testdata/release/commit-x.json
@@ -92,7 +122,7 @@ tests:
     policy: release-evaluated-commit-tree.hjson
     ampel-version: v1.5.1-0
     expect: FAIL
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     attestations:
       - ../testdata/release/tag.json
       - ../testdata/release/commit-x-othertree.json
@@ -101,8 +131,8 @@ tests:
     policy: release-evaluated-commit-tree.hjson
     ampel-version: v1.5.1-0
     expect: PASS
-    subject: "sha1:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    subject: "sha1:5fb83bdcf53e7c8bc270d3341e829b9065d61411"
     attestations:
-      - ../testdata/release/tag-merge.json
-      - ../testdata/release/commit-y-merge.json
-      - ../testdata/release/commit-x.json
+      - ../testdata/release/tag-v0.2.4.json
+      - ../testdata/release/commit-5fb83bd.json
+      - ../testdata/release/commit-9b2c338.json

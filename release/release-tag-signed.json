@@ -1,17 +1,27 @@
 {
   "id": "release-tag-signed",
   "meta": {
-    "description": "Passes when the subject git tag carries a verified signature from\nan accepted signer: the releaser, such as miniprow's sigstore\nidentity.\n\nThe tag is the releaser's claim that the release policies passed\non the evaluated commit and that the tagged commit carries the\nevaluated tree. The claim is worth exactly as much as the\nsignature on it, so this policy requires the tag attestation's\nverification to be set, verified, and matched to a sigstore\nidentity. Which identity is accepted is AMPEL's decision, from\n`--signer` or the policy's `identities`; this tenet rejects an\nempty match and a key or reference identity.\n\nThe git tag attestation (`https://carabiner.dev/git/tag/v0`) is\nsynthesized by the carabiner git collector from the tag object;\nits verification is the tag's own signature, checked by the\ncollector: a sigstore signature against the Fulcio chain and the\nRekor log, or a PGP signature against the keys it holds.\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tag object sha> \\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\n    --signer 'sigstore::https://token.actions.githubusercontent.com::<releaser identity>'\n```",
+    "description": "Passes when the subject commit is the target of an annotated tag\nwhose signature verifies and whose signer is the releaser named\nin the context: miniprow's keyless identity, for a tag it cut.\n\nThe subject is the **tagged commit**, what a builder checks out at\nthe tag. The tag is the releaser's claim that the release policies\npassed on the evaluated commit and that the tagged commit carries\nthe evaluated tree; the claim is worth exactly as much as the\nsignature on it. The evidence is the git tag attestation\n(`https://carabiner.dev/git/tag/v0`) the carabiner git collector\nsynthesizes from the tag object, which names both the tag and the\ncommit it points at as subjects; its verification is the tag's own\nsignature, checked by the collector: sigstore against the Fulcio\nchain and the Rekor log, or PGP against the keys it holds. The\ntenet requires that verification and matches its signer against\nthe `releaser` and `releaser_issuer` context values, so the\nreleaser is pinned by whoever runs the verification, not baked\ninto the policy, and no `--signer` constraint is needed on the\nrun (one would wrongly constrain the git objects the sibling\npolicies chain through).\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tagged commit> \\\\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\\\n    --context releaser:<releaser identity> \\\\\n    --context releaser_issuer:<its OIDC issuer>\n```",
     "assertMode": "AND",
     "enforce": "ON",
     "origin": {
       "name": "release-tag-signed.hjson",
       "digest": {
-        "sha256": "399fc44b084dbccae19841fc83ac8b2adf1c156152d8f8bb17597aec77366963",
-        "sha512": "e0ddaaccd9effab067239064161089e156e80a3536ca935afaf378404194e47f625f356df7fc05271d20388640d0a537cb3e49359a6b3b2750340350a84f8b8e"
+        "sha256": "2f6721bb6f7032c7f2f335a713bb6d84e637b1f298652bee01fb6717da09b443",
+        "sha512": "f8e0b014e190385ddf5e115cb56bc326b7731cc14ae42b6977211b2df179d881501357ec4e95a52ef6bf2485e2b0435d981353ebf7d93f63bca9e6a99b4ba96f"
       }
     },
     "name": "Release Tag Signed by the Releaser"
+  },
+  "context": {
+    "releaser": {
+      "required": true,
+      "default": ""
+    },
+    "releaser_issuer": {
+      "required": true,
+      "default": ""
+    }
   },
   "predicates": {
     "types": [
@@ -20,14 +30,14 @@
   },
   "tenets": [
     {
-      "id": "has-verified-allowed-signer",
-      "code": "predicates.exists(p,\n    p.verification.verified &&\n    size(p.verification.identities) > 0 &&\n    p.verification.identities.all(i, has(i.sigstore))\n)",
+      "id": "signed-by-releaser",
+      "code": "predicates.exists(p, p.verification.verified &&\n    p.verification.signers.exists(s, has(s.sigstore) &&\n        s.sigstore.identity == context.releaser &&\n        s.sigstore.issuer == context.releaser_issuer))",
       "error": {
-        "message": "The tag is not signed by an accepted releaser",
-        "guidance": "The tag must carry a verified signature whose signer matches an accepted sigstore identity. Pass the releaser's identity with --signer 'sigstore::<issuer>::<identity>' or declare it in the policy; an unsigned tag, or one signed by a key or an unmatched identity, is rejected."
+        "message": "The tag is not signed by the releaser",
+        "guidance": "The tag on this commit must carry a verified signature whose sigstore identity and issuer are the releaser's, given as the releaser and releaser_issuer context values. An unsigned tag, a PGP-signed one, or another signer is not a release by this releaser."
       },
       "assessment": {
-        "message": "The tag is signed by an accepted releaser"
+        "message": "The tag is signed by the releaser"
       }
     }
   ]

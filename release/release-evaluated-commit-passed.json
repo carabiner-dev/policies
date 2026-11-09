@@ -1,23 +1,33 @@
 {
   "id": "release-evaluated-commit-passed",
   "meta": {
-    "description": "Passes when the commit the release policies were evaluated on, the\npull request's head, carries an AMPEL results attestation whose\nverdict is PASS.\n\nThe policy reaches that commit from the tag through git wherever\ngit can give it: for a merge commit the evaluated head is the\nmerge's second parent, read from the tagged commit's own\nattestation (`https://carabiner.dev/git/commit/v0`). A squash or\na rebase rewrites history and leaves no link, so for those the\nchain reads the tag's `Evaluated-Commit` trailer, the one place\nthe trailer is load-bearing. `Merge-Strategy` says which path\napplies. The tenets then evaluate on the head, reading the\nresults attestation (`https://carabiner.dev/ampel/resultset/v0`)\nthe releaser stored for it. The head may no longer be on any\nbranch, so the collector must reach it through the pull request's\nref (`refs/pull/N/head` on GitHub) or by its sha.\n\nWhich releaser's results are trusted is AMPEL's decision, from\n`--signer` or the policy's `identities`.",
+    "description": "Passes when the commit the release policies were evaluated on, the\npull request's head, carries an AMPEL results attestation whose\nverdict is PASS, signed by the releaser.\n\nThe subject is the tagged commit; the evaluation results live on\nthe head. The policy reaches the head through git wherever git can\ngive it: for a merge commit the evaluated head is the merge's\nsecond parent, read from the tagged commit's own attestation\n(`https://carabiner.dev/git/commit/v0`). A squash or a rebase\nrewrites history and leaves no link, so for those the chain reads\nthe tag's `Evaluated-Commit` trailer, the one place the trailer\nis load-bearing. `Merge-Strategy` says which path applies. The\ntenet then reads the results attestation\n(`https://carabiner.dev/ampel/resultset/v0`) the releaser stored\nfor the head and requires a PASS verdict signed by the releaser\nnamed in the `releaser` and `releaser_issuer` context values.\nThe head may no longer be on any branch, so the collectors must\nreach it: the git collector fetches it on demand, the dynamic note\ncollector serves its note by sha.",
     "assertMode": "AND",
     "enforce": "ON",
     "origin": {
       "name": "release-evaluated-commit-passed.hjson",
       "digest": {
-        "sha256": "c061197dd90869314cd0841f86493c73d16585b47e5b7ef313178c5c5381173c",
-        "sha512": "97b4b3235aa82b242ddbb1419a4daf515917820af99c531c7c6009e6405e6359cc5bb30314bcfaeeab810d467b1e460be126ac8f90e81ade3e8109a6a40b150c"
+        "sha256": "f0c063a612e0c043c5b1beffcee7beb48f22a9583dabc1baad83a883f42eaacc",
+        "sha512": "1ed195c62b1a07a7d5d351d723d7251f9ae8af66eadbd8586909553f32a55402a8cf24a0e4a065d9cf943dfe3c0bf70ced39459c973981adf185ac026baf77f1"
       }
     },
     "name": "Release Policies Passed on the Evaluated Commit"
+  },
+  "context": {
+    "releaser": {
+      "required": true,
+      "default": ""
+    },
+    "releaser_issuer": {
+      "required": true,
+      "default": ""
+    }
   },
   "chain": [
     {
       "predicate": {
         "type": "https://carabiner.dev/git/tag/v0",
-        "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + predicate.data.object\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
+        "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + subject.digest.sha1\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
       }
     },
     {
@@ -35,13 +45,13 @@
   "tenets": [
     {
       "id": "results-pass",
-      "code": "predicates.exists(p, p.data.status == \"PASS\" && size(p.data.results) > 0)",
+      "code": "predicates.exists(p, p.data.status == \"PASS\" && size(p.data.results) > 0 &&\n    p.verification.verified &&\n    p.verification.signers.exists(s, has(s.sigstore) &&\n        s.sigstore.identity == context.releaser &&\n        s.sigstore.issuer == context.releaser_issuer))",
       "error": {
-        "message": "No passing results attestation for the evaluated commit",
-        "guidance": "The commit the release policies were evaluated on must carry a results attestation with at least one result and a PASS verdict, stored by the releaser at the time of the release."
+        "message": "No passing results attestation from the releaser for the evaluated commit",
+        "guidance": "The commit the release policies were evaluated on must carry a results attestation with at least one result and a PASS verdict, signed by the releaser given as the releaser and releaser_issuer context values."
       },
       "assessment": {
-        "message": "The release policies passed on the evaluated commit"
+        "message": "The release policies passed on the evaluated commit, as the releaser recorded"
       }
     }
   ]

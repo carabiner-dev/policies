@@ -1,0 +1,6 @@
+{
+  "_type": "https://in-toto.io/Statement/v1",
+  "subject": [{"name": "https://github.com/carabiner-dev/github", "digest": {"sha1": "5fb83bdcf53e7c8bc270d3341e829b9065d61411", "gitCommit": "5fb83bdcf53e7c8bc270d3341e829b9065d61411"}}, {"digest": {"gitTree": "d41af39a57c0b7c725120bba58b89f6743bf48d3"}}],
+  "predicateType": "https://carabiner.dev/git/commit/v0",
+  "predicate": {"tree": "d41af39a57c0b7c725120bba58b89f6743bf48d3", "parents": ["c10be7fac22e5317b4a26131a54265b050ce2236", "9b2c338c1aab58f16cf819f61be9880d0adc8817"], "message": "Merge pull request #48 from carabiner-dev/cbn/tag-patch-20261109-061645\n\nCut patch release\n"}
+}

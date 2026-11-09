@@ -1,14 +1,14 @@
 {
   "id": "release-tag-trailers",
   "meta": {
-    "description": "Passes when the subject is an annotated git tag on a commit whose\nmessage carries the trailers a release tag needs to be verified\nback to the commit the policies were evaluated on.\n\nA release tag cut by a tagger such as miniprow lands on the commit\nthe merge produced, while the policies were evaluated on the pull\nrequest's head. The tag's trailers are the signed link between the\ntwo: `Evaluated-Commit` names the head, `Tree` the tree both\ncommits share, `Pull-Request` the pull request, and\n`Merge-Strategy` how the head reached the branch. This policy\nchecks the trailers are present and well formed; the other\npolicies in the `release-tag` set follow them.\n\nThe tag is described by a git tag attestation\n(`https://carabiner.dev/git/tag/v0`), synthesized by the carabiner\ngit collector from the tag object itself with the message's\ntrailers parsed as git defines them.",
+    "description": "Passes when the subject commit is the target of an annotated tag\nwhose message carries the trailers a release tag needs to be\nverified back to the commit the policies were evaluated on.\n\nA release tag cut by a tagger such as miniprow lands on the commit\nthe merge produced, while the policies were evaluated on the pull\nrequest's head. The tag's trailers are the signed link between the\ntwo: `Evaluated-Commit` names the head, `Tree` the tree both\ncommits share, `Pull-Request` the pull request, and\n`Merge-Strategy` how the head reached the branch. This policy\nchecks the trailers are present and well formed; the other\npolicies in the `release-tag` set follow them.\n\nThe subject is the tagged commit. The tag is described by a git\ntag attestation (`https://carabiner.dev/git/tag/v0`), synthesized\nby the carabiner git collector from the tag object with the\nmessage's trailers parsed as git defines them, naming both the tag\nobject and the commit as subjects.",
     "assertMode": "AND",
     "enforce": "ON",
     "origin": {
       "name": "release-tag-trailers.hjson",
       "digest": {
-        "sha256": "4875b8e6d924ced4623f398229050c6e1c03f46f3fad0bc896208c64b4f640a4",
-        "sha512": "1d1ddec09d7676a22e9a1adbf8b8f85cd819e1de250c60db1ac890fb2f3af023aae237f3ef97bdec1aa4297f8a2ca0471bcd33c32933b3fabd871c53fbf108b2"
+        "sha256": "3eaa1ec2ee94cc21f41f9652c19fdd07c5217e772bbcdee91382fe0b8f96cde8",
+        "sha512": "58997e6fdee7e38ae4009ae4c71b2a8d387c3bf33ed84ab5aa8358427904b2a3a70e8134d0d8affe5b4031c8a70979c62abd5bf29d80124a795a700ba2d71b8c"
       }
     },
     "name": "Release Tag Trailers"
