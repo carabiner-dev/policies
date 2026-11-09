@@ -17,19 +17,29 @@
     {
       "id": "release-tag-signed",
       "meta": {
-        "description": "Passes when the subject git tag carries a verified signature from\nan accepted signer: the releaser, such as miniprow's sigstore\nidentity.\n\nThe tag is the releaser's claim that the release policies passed\non the evaluated commit and that the tagged commit carries the\nevaluated tree. The claim is worth exactly as much as the\nsignature on it, so this policy requires the tag attestation's\nverification to be set, verified, and matched to a sigstore\nidentity. Which identity is accepted is AMPEL's decision, from\n`--signer` or the policy's `identities`; this tenet rejects an\nempty match and a key or reference identity.\n\nThe git tag attestation (`https://carabiner.dev/git/tag/v0`) is\nsynthesized by the carabiner git collector from the tag object;\nits verification is the tag's own signature, checked by the\ncollector: a sigstore signature against the Fulcio chain and the\nRekor log, or a PGP signature against the keys it holds.\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tag object sha> \\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\n    --signer 'sigstore::https://token.actions.githubusercontent.com::<releaser identity>'\n```",
+        "description": "Passes when the subject commit is the target of an annotated tag\nwhose signature verifies and whose signer is the releaser named\nin the context: miniprow's keyless identity, for a tag it cut.\n\nThe subject is the **tagged commit**, what a builder checks out at\nthe tag. The tag is the releaser's claim that the release policies\npassed on the evaluated commit and that the tagged commit carries\nthe evaluated tree; the claim is worth exactly as much as the\nsignature on it. The evidence is the git tag attestation\n(`https://carabiner.dev/git/tag/v0`) the carabiner git collector\nsynthesizes from the tag object, which names both the tag and the\ncommit it points at as subjects; its verification is the tag's own\nsignature, checked by the collector: sigstore against the Fulcio\nchain and the Rekor log, or PGP against the keys it holds. The\ntenet requires that verification and matches its signer against\nthe `releaser` and `releaser_issuer` context values, so the\nreleaser is pinned by whoever runs the verification, not baked\ninto the policy, and no `--signer` constraint is needed on the\nrun (one would wrongly constrain the git objects the sibling\npolicies chain through).\n\n## Verifying\n\n```\nampel verify --subject-hash sha1:<tagged commit> \\\\\n    -c git:https://github.com/ORG/REPO@v1.2.0 \\\\\n    -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\\\\n    --context releaser:<releaser identity> \\\\\n    --context releaser_issuer:<its OIDC issuer>\n```",
         "assertMode": "AND",
         "enforce": "ON",
         "origin": {
           "name": "release-tag-signed",
           "uri": "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json",
           "digest": {
-            "sha256": "e39f3bbb0a798154e3e66dd6a6e1e8b827030ebdce8541fc34586662bd7931d5",
-            "sha512": "406c21d93367281e0883d81993645580dd0860d3ae238ed4bc870b91e84b2a334c762840c8cb9eef18876419a8d50423e6e4e88be49729d4432a7159a8bbb6e1"
+            "sha256": "13558b163784acc5202171b417eb3ee8b33bd509ff9811f89452b5a40d80589b",
+            "sha512": "b9ae8aefd974f1b2f01fb02ed5c1cea694806f324ca5f0fdfb2aba334997264550fd2dbd184147065a78e721e46bd8e14170f9ae5dd44cbc5344774b92657b9b"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json"
         },
         "name": "Release Tag Signed by the Releaser"
+      },
+      "context": {
+        "releaser": {
+          "required": true,
+          "default": ""
+        },
+        "releaser_issuer": {
+          "required": true,
+          "default": ""
+        }
       },
       "predicates": {
         "types": [
@@ -38,14 +48,14 @@
       },
       "tenets": [
         {
-          "id": "has-verified-allowed-signer",
-          "code": "predicates.exists(p,\n    p.verification.verified &&\n    size(p.verification.identities) > 0 &&\n    p.verification.identities.all(i, has(i.sigstore))\n)",
+          "id": "signed-by-releaser",
+          "code": "predicates.exists(p, p.verification.verified &&\n    p.verification.signers.exists(s, has(s.sigstore) &&\n        s.sigstore.identity == context.releaser &&\n        s.sigstore.issuer == context.releaser_issuer))",
           "error": {
-            "message": "The tag is not signed by an accepted releaser",
-            "guidance": "The tag must carry a verified signature whose signer matches an accepted sigstore identity. Pass the releaser's identity with --signer 'sigstore::<issuer>::<identity>' or declare it in the policy; an unsigned tag, or one signed by a key or an unmatched identity, is rejected."
+            "message": "The tag is not signed by the releaser",
+            "guidance": "The tag on this commit must carry a verified signature whose sigstore identity and issuer are the releaser's, given as the releaser and releaser_issuer context values. An unsigned tag, a PGP-signed one, or another signer is not a release by this releaser."
           },
           "assessment": {
-            "message": "The tag is signed by an accepted releaser"
+            "message": "The tag is signed by the releaser"
           }
         }
       ]
@@ -53,15 +63,15 @@
     {
       "id": "release-tag-trailers",
       "meta": {
-        "description": "Passes when the subject is an annotated git tag on a commit whose\nmessage carries the trailers a release tag needs to be verified\nback to the commit the policies were evaluated on.\n\nA release tag cut by a tagger such as miniprow lands on the commit\nthe merge produced, while the policies were evaluated on the pull\nrequest's head. The tag's trailers are the signed link between the\ntwo: `Evaluated-Commit` names the head, `Tree` the tree both\ncommits share, `Pull-Request` the pull request, and\n`Merge-Strategy` how the head reached the branch. This policy\nchecks the trailers are present and well formed; the other\npolicies in the `release-tag` set follow them.\n\nThe tag is described by a git tag attestation\n(`https://carabiner.dev/git/tag/v0`), synthesized by the carabiner\ngit collector from the tag object itself with the message's\ntrailers parsed as git defines them.",
+        "description": "Passes when the subject commit is the target of an annotated tag\nwhose message carries the trailers a release tag needs to be\nverified back to the commit the policies were evaluated on.\n\nA release tag cut by a tagger such as miniprow lands on the commit\nthe merge produced, while the policies were evaluated on the pull\nrequest's head. The tag's trailers are the signed link between the\ntwo: `Evaluated-Commit` names the head, `Tree` the tree both\ncommits share, `Pull-Request` the pull request, and\n`Merge-Strategy` how the head reached the branch. This policy\nchecks the trailers are present and well formed; the other\npolicies in the `release-tag` set follow them.\n\nThe subject is the tagged commit. The tag is described by a git\ntag attestation (`https://carabiner.dev/git/tag/v0`), synthesized\nby the carabiner git collector from the tag object with the\nmessage's trailers parsed as git defines them, naming both the tag\nobject and the commit as subjects.",
         "assertMode": "AND",
         "enforce": "ON",
         "origin": {
           "name": "release-tag-trailers",
           "uri": "git+https://github.com/carabiner-dev/policies#release/release-tag-trailers.json",
           "digest": {
-            "sha256": "0530356c7754a5245cb81a793d81da5a7f80a1604734a25fcfad61f01cc8586e",
-            "sha512": "f00c3dd850b912aab4477388f59160ab2204945128bc09db1797fa939f84c02fde430e9cacadcdadd7b7d3721f3eb41775f09a02d8280c3b94941529a045ee61"
+            "sha256": "d05f19b6d368e43cd1be7dfa7b45fed54a21d67bea1dc444266fe22914994790",
+            "sha512": "6262e43171eedb8082e7abfe2ef816a82d3c5b36203ed57e0eb44ca90a08e7e5d313888555d1ee55efce8750075cda6c3c1673262f2ad8ef3645e36460c0b168"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-tag-trailers.json"
         },
@@ -133,25 +143,35 @@
     {
       "id": "release-evaluated-commit-passed",
       "meta": {
-        "description": "Passes when the commit the release policies were evaluated on, the\npull request's head, carries an AMPEL results attestation whose\nverdict is PASS.\n\nThe policy reaches that commit from the tag through git wherever\ngit can give it: for a merge commit the evaluated head is the\nmerge's second parent, read from the tagged commit's own\nattestation (`https://carabiner.dev/git/commit/v0`). A squash or\na rebase rewrites history and leaves no link, so for those the\nchain reads the tag's `Evaluated-Commit` trailer, the one place\nthe trailer is load-bearing. `Merge-Strategy` says which path\napplies. The tenets then evaluate on the head, reading the\nresults attestation (`https://carabiner.dev/ampel/resultset/v0`)\nthe releaser stored for it. The head may no longer be on any\nbranch, so the collector must reach it through the pull request's\nref (`refs/pull/N/head` on GitHub) or by its sha.\n\nWhich releaser's results are trusted is AMPEL's decision, from\n`--signer` or the policy's `identities`.",
+        "description": "Passes when the commit the release policies were evaluated on, the\npull request's head, carries an AMPEL results attestation whose\nverdict is PASS, signed by the releaser.\n\nThe subject is the tagged commit; the evaluation results live on\nthe head. The policy reaches the head through git wherever git can\ngive it: for a merge commit the evaluated head is the merge's\nsecond parent, read from the tagged commit's own attestation\n(`https://carabiner.dev/git/commit/v0`). A squash or a rebase\nrewrites history and leaves no link, so for those the chain reads\nthe tag's `Evaluated-Commit` trailer, the one place the trailer\nis load-bearing. `Merge-Strategy` says which path applies. The\ntenet then reads the results attestation\n(`https://carabiner.dev/ampel/resultset/v0`) the releaser stored\nfor the head and requires a PASS verdict signed by the releaser\nnamed in the `releaser` and `releaser_issuer` context values.\nThe head may no longer be on any branch, so the collectors must\nreach it: the git collector fetches it on demand, the dynamic note\ncollector serves its note by sha.",
         "assertMode": "AND",
         "enforce": "ON",
         "origin": {
           "name": "release-evaluated-commit-passed",
           "uri": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json",
           "digest": {
-            "sha256": "8d06a6caf4072a72b4607b7c503ff8e1fcfd58b306ab671fc4e45df6e8c38e3f",
-            "sha512": "97c0be796fe5cd2d5fcfdc949fd5cd6fa9b3e3e7c216d15aefcc24f0e9574fdd243a0fda237edbeee3ec24c1a86ef66601e1f56bb9775970006af8add7a58a22"
+            "sha256": "5927e2a38571869995452b01d6bb00212a1f5b413eb7b473a905c93c4991efcb",
+            "sha512": "873386ee34343ac0990c580516037b11f7171a03c4512d7ff8651c7765d955dcecf4eca02d8dad3e5ceb8184cf4cbf65b6be3dafebbef6c550c6d105b7706b3d"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json"
         },
         "name": "Release Policies Passed on the Evaluated Commit"
       },
+      "context": {
+        "releaser": {
+          "required": true,
+          "default": ""
+        },
+        "releaser_issuer": {
+          "required": true,
+          "default": ""
+        }
+      },
       "chain": [
         {
           "predicate": {
             "type": "https://carabiner.dev/git/tag/v0",
-            "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + predicate.data.object\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
+            "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + subject.digest.sha1\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
           }
         },
         {
@@ -169,13 +189,13 @@
       "tenets": [
         {
           "id": "results-pass",
-          "code": "predicates.exists(p, p.data.status == \"PASS\" && size(p.data.results) > 0)",
+          "code": "predicates.exists(p, p.data.status == \"PASS\" && size(p.data.results) > 0 &&\n    p.verification.verified &&\n    p.verification.signers.exists(s, has(s.sigstore) &&\n        s.sigstore.identity == context.releaser &&\n        s.sigstore.issuer == context.releaser_issuer))",
           "error": {
-            "message": "No passing results attestation for the evaluated commit",
-            "guidance": "The commit the release policies were evaluated on must carry a results attestation with at least one result and a PASS verdict, stored by the releaser at the time of the release."
+            "message": "No passing results attestation from the releaser for the evaluated commit",
+            "guidance": "The commit the release policies were evaluated on must carry a results attestation with at least one result and a PASS verdict, signed by the releaser given as the releaser and releaser_issuer context values."
           },
           "assessment": {
-            "message": "The release policies passed on the evaluated commit"
+            "message": "The release policies passed on the evaluated commit, as the releaser recorded"
           }
         }
       ]
@@ -183,37 +203,30 @@
     {
       "id": "release-tagged-commit-tree",
       "meta": {
-        "description": "Passes when the commit the release tag points at carries the tree\nthe tag's `Tree` trailer names.\n\nA release tag lands on the commit a merge produced while the\npolicies were evaluated on the pull request's head; what makes\nthe tag honest is that both commits carry the same tree. The tag\nnames that tree in its signed `Tree` trailer. This policy chains\nfrom the tag to the tagged commit and checks the commit's own\ntree, read from its attestation (`https://carabiner.dev/git/commit/v0`,\nsynthesized from the commit object), against the trailer. Its\nsibling `release-evaluated-commit-tree` does the same for the\nevaluated commit; together they establish the two trees are one.",
+        "description": "Passes when the subject commit, the one the release tag points at,\ncarries the tree the tag's `Tree` trailer names.\n\nA release tag lands on the commit a merge produced while the\npolicies were evaluated on the pull request's head; what makes\nthe tag honest is that both commits carry the same tree. The tag\nnames that tree in its signed `Tree` trailer. Both the tag\nattestation (`https://carabiner.dev/git/tag/v0`) and the commit's\nown attestation (`https://carabiner.dev/git/commit/v0`, synthesized\nfrom the commit object) are evidence about the subject, so the\ntenet compares them directly. Its sibling\n`release-evaluated-commit-tree` does the same for the evaluated\ncommit; together they establish the two trees are one.",
         "assertMode": "AND",
         "enforce": "ON",
         "origin": {
           "name": "release-tagged-commit-tree",
           "uri": "git+https://github.com/carabiner-dev/policies#release/release-tagged-commit-tree.json",
           "digest": {
-            "sha256": "27d3b6ff73c3978b4a7c12ce173dbcd305d6659b32f097cd8f2ddc280820aa8a",
-            "sha512": "bad0135ebbd1ca34ecb5ef84936d71bee5184d4dc14328a69550663290faa3c2b8a1b9f75bda0bfa053cd6e613d48d3de5f30830f67a5eb39747d49d2bb844d0"
+            "sha256": "8491c699346d0935674482d09768c88eab3f5861bd3a6f7fa14967d4af1b2825",
+            "sha512": "30ffa736d62231a35bee2213768aeb42f665c244d0d4f29613f65f06a04144c7ecea822b6970082063a3db693cdfc1e88deda96b4ab793dbd8254cbed11a9759"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-tagged-commit-tree.json"
         },
         "name": "Tagged Commit Carries the Named Tree"
       },
-      "chain": [
-        {
-          "predicate": {
-            "type": "https://carabiner.dev/git/tag/v0",
-            "selector": "\"sha1:\" + predicate.data.object"
-          }
-        }
-      ],
       "predicates": {
         "types": [
+          "https://carabiner.dev/git/tag/v0",
           "https://carabiner.dev/git/commit/v0"
         ]
       },
       "tenets": [
         {
           "id": "tree-matches",
-          "code": "predicate.data.tree == chain[0].predicate.data.trailers[\"Tree\"][0]",
+          "code": "predicates.exists(t, t.predicate_type == \"https://carabiner.dev/git/tag/v0\" &&\n    predicates.exists(c, c.predicate_type == \"https://carabiner.dev/git/commit/v0\" &&\n        c.data.tree == t.data.trailers[\"Tree\"][0]))",
           "error": {
             "message": "The tagged commit does not carry the tree the tag names",
             "guidance": "The release tag's Tree trailer must name the tagged commit's tree. A tag whose target carries another tree was cut on content the policies never saw."
@@ -227,15 +240,15 @@
     {
       "id": "release-evaluated-commit-tree",
       "meta": {
-        "description": "Passes when the commit the release policies were evaluated on\ncarries the tree the tag's `Tree` trailer names.\n\nThe evaluated commit is reached as `release-evaluated-commit-passed`\nreaches it: the merge's second parent for a merge commit, the\n`Evaluated-Commit` trailer for a squash or a rebase. Its tree,\nread from its attestation (`https://carabiner.dev/git/commit/v0`),\nmust be the one the tag names. With `release-tagged-commit-tree`\nthis establishes that the tagged commit and the evaluated commit\ncarry the same tree: what was released is what was evaluated.",
+        "description": "Passes when the commit the release policies were evaluated on\ncarries the tree the tag's `Tree` trailer names.\n\nThe subject is the tagged commit. The evaluated commit is reached\nas `release-evaluated-commit-passed` reaches it: the merge's\nsecond parent for a merge commit, the `Evaluated-Commit` trailer\nfor a squash or a rebase. Its tree, read from its attestation\n(`https://carabiner.dev/git/commit/v0`), must be the one the tag\nnames. With `release-tagged-commit-tree` this establishes that\nthe tagged commit and the evaluated commit carry the same tree:\nwhat was released is what was evaluated.",
         "assertMode": "AND",
         "enforce": "ON",
         "origin": {
           "name": "release-evaluated-commit-tree",
           "uri": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-tree.json",
           "digest": {
-            "sha256": "ac963c14b89bf4cd1e21334e25f5f17e5b9ce5b169f498a5afddec37d0117f58",
-            "sha512": "02bfb53cdee1bc770126f22c70a3f8563b16588595ca068cc77226b48ce9653dfe5b13fb72ba9dda318bf681c5a810c64f565f9db9a24975bdb9bd07cb524882"
+            "sha256": "814c0af750090bee15187bbf4d934e7f3955ee3186e3574e37a8010e03a88a2a",
+            "sha512": "d8896f0e0b0b5589ef67a71d556c3a85592f3ff3b4bd4cbaf5bbd4aaa82a83fd255bb76573cd0d8289d6490cf38232bf0ff25bcf2dcdd8f294a2ed1674e93812"
           },
           "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-tree.json"
         },
@@ -245,7 +258,7 @@
         {
           "predicate": {
             "type": "https://carabiner.dev/git/tag/v0",
-            "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + predicate.data.object\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
+            "selector": "predicate.data.trailers[\"Merge-Strategy\"][0] == \"merge\"\n    ? \"sha1:\" + subject.digest.sha1\n    : \"sha1:\" + predicate.data.trailers[\"Evaluated-Commit\"][0]"
           }
         },
         {
