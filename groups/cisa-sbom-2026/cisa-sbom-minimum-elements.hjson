@@ -41,7 +41,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json" }
                     }
                 }
             ]
@@ -60,7 +60,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson" }
                     }
                     meta: {
                         enforce: OFF
@@ -79,7 +79,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson" }
                     }
                 }
             ]
@@ -95,7 +95,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson" }
                     }
                 }
             ]
@@ -112,7 +112,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson" }
                     }
                 }
             ]
@@ -128,7 +128,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json" }
                     }
                 }
             ]
@@ -144,7 +144,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson" }
                     }
                 }
             ]
@@ -160,7 +160,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson" }
                     }
                 }
             ]
@@ -177,7 +177,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson" }
                     }
                 }
             ]
@@ -197,7 +197,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson" }
                     }
                 }
             ]
@@ -214,7 +214,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json" }
                     }
                 }
             ]
@@ -230,7 +230,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson" }
                     }
                 }
             ]
@@ -246,7 +246,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson" }
                     }
                 }
             ]
@@ -262,7 +262,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json" }
                     }
                 }
             ]
@@ -278,7 +278,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson" }
                     }
                 }
             ]
@@ -294,7 +294,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json" }
                     }
                 }
             ]
@@ -310,7 +310,7 @@
             policies: [
                 {
                     source: {
-                        location: { uri: "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json" }
+                        location: { uri: "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json" }
                     }
                 }
             ]
