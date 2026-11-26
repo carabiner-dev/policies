@@ -14,7 +14,7 @@ SPDX and CycloneDX documents are supported.
 
 Every block references its policy remotely from the standalone files under
 [`protobom/`](../../protobom), pinned at commit
-[`3c00b05`](https://github.com/carabiner-dev/policies/commit/3c00b05a78e32dd79385dcbfbdfa91b405e386c4).
+[`3c00b05`](https://github.com/policylabs/policies/commit/3c00b05a78e32dd79385dcbfbdfa91b405e386c4).
 
 ## Policy group
 

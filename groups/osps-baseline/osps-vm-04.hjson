@@ -10,7 +10,7 @@
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json" }
+                        "location": { "uri": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json" }
                     }
                 }
             ]
@@ -19,7 +19,7 @@
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson" }
+                        "location": { "uri": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson" }
                     }
                 }
             ]
@@ -28,7 +28,7 @@
             "policies": [
                 {
                     "source": {
-                        "location": { "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson" }
+                        "location": { "uri": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson" }
                     }
                 }
             ]
