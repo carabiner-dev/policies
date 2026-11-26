@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-gv-02.hjson",
       "digest": {
-        "sha256": "802e24785a38618b2cf16c34ab11a3638e6109a109b427ae9ce628b4f5b5aa74",
-        "sha512": "b58b5247041ab484cb6507793b329efe39181b5be5980c12fd344be922f0b5849f3a97dc7623f5a7756f07705eac7b96865bfb20102da3483ef52fd24456f716"
+        "sha256": "76cff7b462ff5fb3b5f7aeb473edeaa42b92fd739a563f97e4846f9cb0c6e7c3",
+        "sha512": "0060e53536ec1af27b23eb16624a5156a7a7b90f5e344c412fb8e04768df05b836c594129f53947c7dfe8851bbed7c4011a8cd25a6654df2537cc5342304858f"
       }
     },
     "name": "Public Discussion Mechanisms"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SNAPPY-REPO-HAS-ISSUES",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
               "digest": {
                 "sha256": "a682cb176442ee03ce75dbb8431bc7c7f65df42c94b93515b9ddfc2b6618cbcf",
                 "sha512": "790f86b3d00ab01f9fcbf6b2d844230b903c01a3ccf958f44e8a6345fe3c928d1ebffbd6f23ee5aff127be8a6e7f75395980876eabafa29859f53648d49b0988"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
             }
           },
           "tenets": [

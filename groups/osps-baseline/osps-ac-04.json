@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-ac-04.hjson",
       "digest": {
-        "sha256": "1cceba7ff1f85d83803497f682464ecce8ca31eb4289d1264043b6b43f581976",
-        "sha512": "cb7eaca68f1395bfd9f3ca8ab5cdce781ddec44c121fb0d16d0ba2e9f28f27c46694668d69b79a67e14c8245274c6fdd3648eb9f7f1a064aab18733b6f8cb838"
+        "sha256": "d2e0ac2a15305ce81ce98175caa519bdc1315b390b175ac9a874d3e4423a84d2",
+        "sha512": "155dadf577269f004c492c95dbb8931aaab2fe594752118fe1380b6f9e29822c28ded8308ea32113377f0fe849a6bfaebc3dfaef09b7ef2a6dcaa4485998b96e"
       }
     },
     "name": "Least Privilege for CI/CD Pipelines"
@@ -30,12 +30,12 @@
             "enforce": "OFF",
             "origin": {
               "name": "SCORECARD-TOKEN-PERMISSIONS",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
               "digest": {
                 "sha256": "60fade5bac5e0584dd284b8ffddd3aacc9647879e0ce12246d27ee522f3ee483",
                 "sha512": "dcf42d89f35599d42f24687b573b67e8e357429b639cd2aaec6e6cc5ba78fea6a4c68d53479257f1f6b8e8fcb88e6707f77691ede5d0beb76d8aff81d3d5e4fc"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
             }
           },
           "tenets": [

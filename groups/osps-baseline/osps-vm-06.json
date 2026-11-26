@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-vm-06.hjson",
       "digest": {
-        "sha256": "082705d273d71682d894c87ca8525a2e7583d9c55c7128f91adf8f0ebc800cd2",
-        "sha512": "7426725468f2e40bc01a1e6e73f7d16c8d8ff59284919529a88d07f5f4b03a635120883ccbd4aeadd74bfd9ee73af2d1f22397ad768ada5452fc3249cde76d9c"
+        "sha256": "3a955d721012f0ae617610ebe7ae5f9519a13e413784835688a2d7fa14c981d2",
+        "sha512": "90ca8c64cfb9513badb6b87da5d099de67211fcd51a8e89de20186571413f98d8a610640ea2d7fb3b900938a67e7a03e92d6151d18d9d3e09a95447d0f701686"
       }
     },
     "name": "Application Security Testing Enforced"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SCORECARD-SAST",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
               "digest": {
                 "sha256": "36bc11637352fa5e01d0599830ed24886c93e65187e1633336cb98d0d15d59be",
                 "sha512": "5f6c20ec7c15e40de5351e3d3944a5462570be58dd9306ebe85aeb0c3e7d63dd08506d8b7b24a49d6435821e9e1d312968b28ccf70943064a0a1e912df5cefdd"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
             }
           },
           "tenets": [

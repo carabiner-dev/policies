@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-qa-07.hjson",
       "digest": {
-        "sha256": "f9582afc10a962c9a85a263a38cbf4c008dd21468c0007a901d6fbcbe45ae0c0",
-        "sha512": "fdfc110ed517faf8270a5c3bf66caa0fd650d43011e6cf4f1473aa6db74f16c3252f3f6cfdf4bae0d377cbd11985a7a695ccdfbb00e09d8a93d17e27990f649d"
+        "sha256": "9487ef22b311421909b468cdf3fd455e4bc935d5f4c5c5f81967cd7fb3ed1dfd",
+        "sha512": "0304a30bfeda44867ecc3c7599dc298a3e2a48767b112eabef9fda7ce2de3272277b3501085365fbc8771314b0d25f1d532a1e99753a1ea7552c90b2b8b50f2a"
       }
     },
     "name": "Merge Approvals Required"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SCORECARD-CODE-REVIEW",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json",
               "digest": {
                 "sha256": "70f0cf629493b25cc847a3fdc7e1055160be08a67fce327d99fca27b992e053b",
                 "sha512": "2799a7bc363d89ed1edd0434dc4c82c3a4b47c9c49d30514316a5189761459e8e3fba2130d59698093f7255f533978410d21a42b9ba995305f7f64d09a7403e5"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json"
             }
           },
           "tenets": [

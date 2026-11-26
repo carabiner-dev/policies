@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-qa-06.hjson",
       "digest": {
-        "sha256": "636a086e6dc800922d23de220c0a830ab2fe74d15e29b8b9e361006b1fdc9da1",
-        "sha512": "dead3e26f7d7695c057ba436cb48d78fc89f29c02f7562bfbcba7d22fae2eeb727446bc396c4dc3c63af1a2c38b8a36810f8a2d8fd8f09f4dec4eeddf87368f5"
+        "sha256": "5011210ef0ed4af22bb9e561a5d43a5d3796f2de20c813b530d12d477e36145f",
+        "sha512": "55c8a130c8ce8c8522171ed4752f02e9cec194b0b96bd7563e3e818991a5e8d4f32458a8383bde8b7a18a7ad0a6212a65c9e5adc00013270a9ab091f75bcbd83"
       }
     },
     "name": "Automated Tests in CI/CD"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "test-results-pass",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json",
               "digest": {
                 "sha256": "cca9333f7705579e43f902673f21d7d00ad8006001ae7886964d5b1741d681ac",
                 "sha512": "4a339fdfa7a6adcb6752a1802de9ac24c536180d93691fa81089762315a6f75247898aa00b3a5d427634a7d3476d997fcd279daf37a306c523c14619853ca201"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json"
             }
           },
           "tenets": [

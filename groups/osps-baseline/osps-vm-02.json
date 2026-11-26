@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-vm-02.hjson",
       "digest": {
-        "sha256": "0563fd998f05fc538ed23f31298a57fc7c680bcd8ef09d9c66bb36384e25ad06",
-        "sha512": "e36565acb9ba6c9f0b828ee4b2aa4cff07884b9c7526109ee29e9d647667c3191e035c67a335cd936728b4fd6b3b1155095c131abaf8faa1fc6896b1bb4076df"
+        "sha256": "8c4013cd90338eee2c3f6f4f196544635d20b5aa5517f18a1b5131e8c7371e9a",
+        "sha512": "9559b5e8379d68aa179f465fe5637c5a0dede8163b700fef18acb77d538db9ed102b224d1f40fa645fac259adf4c3ecb55b833f29b9524d9f04a64fd62f8fe8e"
       }
     },
     "name": "Vulnerability Reporting Contacts"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SI-VULN-REP-CONTACT",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json",
               "digest": {
                 "sha256": "4fe2e497f56ca443394160b306c2519558e96ef07c930ac35072c40d3a923f57",
                 "sha512": "31b1d40412c4dceee80cf52545288026e1d7758c26231eba9181872c5927f5a3d2aaf9f7f156f6820149adcd2e818dcaefece2081cbb8631fc6e9ac3cf062f43"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json"
             }
           },
           "tenets": [

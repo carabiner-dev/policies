@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-qa-03.hjson",
       "digest": {
-        "sha256": "329ad5d43af672595c29ea0ad14a8a5ae113a34f1c445da3857ac8f8cdb141bc",
-        "sha512": "335c1bebd838b3b95a4b7819c264f9bc0ded1801c34fcfcf791b188559ba5cdc1786be70451e246d0bede3bb531ec76d9c49279c50ce3e5f4e481fa29b7ded93"
+        "sha256": "7957ce09a384dd7461aa52ed5dd8f942f297d275cc1cd3daef71ce349137e696",
+        "sha512": "2c7bb44b13e276e63717c16d86bd0ea74ede2f275490ae77b8b0c1dc88c4b866dce12dbb0499d4b814469c0658b10e477f78328c93ff7e380c45767538426e63"
       }
     },
     "name": "Status Checks Before Merging"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SNAPPY-BRANCH-STATUS-CHECKS",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json",
               "digest": {
                 "sha256": "10d7d82fd5cece57cc9d5e3c002125cf5b52f47388f646689e60bd6cefa1ac01",
                 "sha512": "9aebca98ac2d8c9a27427d96846352c2eb939ca94f89d2ddb7b21f3f8bdf8cd971ee0338d3da74f6476b089277d680f8cc6beb3427f43182abab83f9081b242c"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json"
             }
           },
           "tenets": [

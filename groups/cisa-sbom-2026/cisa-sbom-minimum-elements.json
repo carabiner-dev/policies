@@ -7,8 +7,8 @@
     "origin": {
       "name": "cisa-sbom-minimum-elements.hjson",
       "digest": {
-        "sha256": "113e6220a8e2dff1f9a92f125ed726bb38b47d39fde4079e53a30a180fa3450d",
-        "sha512": "2042db0d672a1070f589980197a86d4ca7bfecadbef4f977a7720c99aff429170195c865ab80e3f8b98ecbcd0c6c8deab4cace7d7cec6d0254f2a75fefae4d21"
+        "sha256": "24a1e9a28eaae3fdfa6c5fc81ce7fd1e246809067b98c5c9f4d0c956301d02ab",
+        "sha512": "2a9bd59453bedfe3e2f3b7ab9f2f1312654a614fb13d97988bae443075ed3cd69690ba558bcc669c7e356b79a4a7f9b1ecd03fe7f2253c68f1a6e1f4091649bc"
       }
     },
     "name": "CISA 2026 SBOM Minimum Elements"
@@ -35,12 +35,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-AUTHOR",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json",
               "digest": {
                 "sha256": "c107a8074467776fa90e6147707c147f661f7f42cf59e2218d1697d1f1cf6da6",
                 "sha512": "4a832ad3cae243fedb80448ce417f30f602ace639b722647211d253f95e01a2b11e182660f7a7148cf2a1129e7e4ee5881fbb36bcead3335c400440ac95be325"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-author.json"
             }
           },
           "predicates": {
@@ -93,12 +93,12 @@
             "enforce": "OFF",
             "origin": {
               "name": "PROTOBOM-SBOM-SIGNED",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson",
               "digest": {
                 "sha256": "eeba82acc9cea4363c82e9b7e726cecd5ffb4f79022afa6056b0d8c8496190c2",
                 "sha512": "0cbdb484b4837943d5680bcb14487827b7ee151ef5af11bcf5cce61cb5b0809951d4b34c7914e0823ab48fb10024c711184bd8817e5b51f76817e4ffec9b10e7"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-signed.hjson"
             }
           },
           "predicates": {
@@ -151,12 +151,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-FORMAT-NAME",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson",
               "digest": {
                 "sha256": "8fca34a6409d8e35297b819d8daf09330166aed97b790df2922df8eae1dae045",
                 "sha512": "e188cb03faa965c0d7e530ce9167319e27938b3952f33467eb763f068af2bbe11b2e6bc61e4e74e9f36b686a3f86770f81063d16dda2cb06761eabd23d576c59"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-name.hjson"
             }
           },
           "predicates": {
@@ -214,12 +214,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-FORMAT-VERSION",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson",
               "digest": {
                 "sha256": "25899a1f972e8dceb0ea34101df64465cc85927495ebe757069e610c889e16d9",
                 "sha512": "7645e3a7daff1dd78cb1340735adc639d4f582a9bdca76da90fecd4c33d33824d91afa86f8fba6ea325204968d217ef360a47a6179da724fbd4b7f7eda6687dd"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-format-version.hjson"
             }
           },
           "predicates": {
@@ -277,12 +277,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-GENERATION-CONTEXT",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson",
               "digest": {
                 "sha256": "76bd24f4ab20ed24eaa2b08f54b52ef2d147b9412e0149818e66c6d47fe2b3e4",
                 "sha512": "fbf545c5641644c1c5f10e1ce05941ac0035f16dcc7e24d00bddf65ec148a2a952e33e5c2e0a88eb8fc57e2ed855266b3b660e0a3d128df5679be984d550664a"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-generation-context.hjson"
             }
           },
           "predicates": {
@@ -346,12 +346,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-TIMESTAMP",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json",
               "digest": {
                 "sha256": "85dacc3b8259431844d66ce0a6a62ec045a755f4a5dac2bd9f3342f926fba60d",
                 "sha512": "ed64edf300d75af61462f73a69aa6b4985801aa75839733b74906d8c4b05ef350bd8ee73554ff5f85294fc29afd09ba8aaf0b0593e6fae2232fddd6ad427ed49"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-timestamp.json"
             }
           },
           "predicates": {
@@ -404,12 +404,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-TOOL-NAME",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson",
               "digest": {
                 "sha256": "cd128c93c1fcc8cb1f56b938311add7b1965b92e6909831dc3a2d919928795f8",
                 "sha512": "f3cb830fd6017855a4605df6ade4c792b9a0f901c30b6d9232704270b2d164ba092382d1435720eae71a25829a2cd0d4cd88ae454bb4e46c84f592592be7cd71"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-name.hjson"
             }
           },
           "predicates": {
@@ -477,12 +477,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-TOOL-VERSION",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson",
               "digest": {
                 "sha256": "a5da8d88a57abe18de7dcb4945c851b9aba8190b17fc198649ea7a2242610559",
                 "sha512": "30eb2e435e08810e32895013670e9a7055fbd1875ddffb254bf362881e80e2bc9df3420fbbaaf098799af2ea0d2ea258e0921d78f456992513d6432dbd0eeaa3"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-tool-version.hjson"
             }
           },
           "predicates": {
@@ -550,12 +550,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-DOC-VERSION",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson",
               "digest": {
                 "sha256": "b0e69147456734275fb8edbd411fd271980c11e71c187aedb3394af220806930",
                 "sha512": "46d4ec98b21c6e2e3ab508864fe743ac0ccf6603d840c19b5a98d2f69c46b8e2fcfe37210728c2dc08b55ee386b84162a07abdd7b7767b131ac2e352af895798"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-doc-version.hjson"
             }
           },
           "predicates": {
@@ -616,12 +616,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-PRODUCERS",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson",
               "digest": {
                 "sha256": "dc023e7df1f74a60e756ef47c133f78575e9e732fffc8e107973ae8366561bb5",
                 "sha512": "f45e78497bbf4a91f41b49dd2d7a715f5d9d0545d7186bd57b54570be5768dfaf485588ac7b0c8f0f533503394f605ce11fad6cef0c250adcf739c55fd1fe380"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-producers.hjson"
             }
           },
           "predicates": {
@@ -672,12 +672,12 @@
             "enforce": "OFF",
             "origin": {
               "name": "PROTOBOM-RELATONSHIPS",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json",
               "digest": {
                 "sha256": "5f1f779fa6b2d65af66434f7fdab4baf1211cfa4cdf313c2416c42580e2ae829",
                 "sha512": "a2d4b62bcc97643392f60b849071878d8b75be814d28d15d929f3ccc746a62a9484154ce97b1259ab0d31ebe47597320d687e3f5da20491a4e7c0604b19d54be"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-relationships.json"
             }
           },
           "predicates": {
@@ -730,12 +730,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-HASHES",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson",
               "digest": {
                 "sha256": "fca3d57f9d79d382c48ea12d71293fe278dc75d113d8674ea1c638c0813d84d2",
                 "sha512": "2f3f86dc0c103ec85b5ddaf71008d11b3a6969913b5f194fa85ec77bdb45a3cd80c5cd11a6f99882afaab2f7a2b5383861dc8cbb091d69b0f05756296af1a5b0"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hashes.hjson"
             }
           },
           "predicates": {
@@ -793,12 +793,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-HASH-ALGORITHMS",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson",
               "digest": {
                 "sha256": "096467b7901a3e227813e7786eff292bdfff62641f9b4380ef467bbeb25efcd1",
                 "sha512": "b9e41cde171f564f4bb18c5477a3c551f594ccd0bf74fc1dc241b868ccdd23b79aca32787919e79308062b344ae289fe9b2c5ac528d77a3dc4cbf10e137fda0f"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-hash-algorithms.hjson"
             }
           },
           "predicates": {
@@ -849,12 +849,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-IDENTIFIERS",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json",
               "digest": {
                 "sha256": "031a6a63fe82d9212525291e4d1d0e93fb6c0c3a0c57d5169d76b80a832a6920",
                 "sha512": "0eca1a84120ffac9d56827c1630b40c9dda8f3f0ea6db373951b446b758a138dde5e18e6877a515a10aa9c82dac0dba85f1705136c6f691d82c39e6d3946a9aa"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-identifiers.json"
             }
           },
           "predicates": {
@@ -907,12 +907,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-LICENSES",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson",
               "digest": {
                 "sha256": "38eec26cee6bd5d64ca624cf29d72c5d50fdedc4730d6baf1f99b80d46c3c984",
                 "sha512": "c2712e8f778e4943a096f277cb729395aca72059588e4fb84d254740193b8d06df69c33b435a24ec8a7c68c122cb5042940b2ea5b8337c12bd1bca705bd3b374"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-licenses.hjson"
             }
           },
           "predicates": {
@@ -963,12 +963,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-NAME",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json",
               "digest": {
                 "sha256": "d17a9e7c23e5ca39ff8b54e2b74e31debc0e7383ce999ff473c320d5d8ac3651",
                 "sha512": "4d14cec1ae03db2422c81faec5c80f551a761a31462e4a0184b35474b3e6e7aab43834654ee07b785e5814e4ed269afd0889276094c741acfdec2f9635da149c"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-names.json"
             }
           },
           "predicates": {
@@ -1014,12 +1014,12 @@
             "enforce": "ON",
             "origin": {
               "name": "PROTOBOM-SBOM-VERSIONS",
-              "uri": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json",
+              "uri": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json",
               "digest": {
                 "sha256": "768f54ba94b6df7a740ab2810ee214aff6d1e32f3a1c9a2db56e1bede99016e5",
                 "sha512": "910ec0342fd6aa498b4b3684de94762e1ef03ea18ddd35ae602d55badb3141aeb9be51b16938051dc0e94325de2772229a0f2f2a786cfed5f6fb6bd726d9b67a"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@3c00b05a78e32dd79385dcbfbdfa91b405e386c4#protobom/protobom-sbom-versions.json"
             }
           },
           "predicates": {

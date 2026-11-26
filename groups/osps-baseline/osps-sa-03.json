@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-sa-03.hjson",
       "digest": {
-        "sha256": "321a158757aa320e542555a6e27efc7defcf09e6f7601f41b1eb261f12f8bf90",
-        "sha512": "2e63126e958e89fdfe1ec49282c9ab0ca6d667d6bc94ac95c6dd77e40816354eea2d408996927cdefe6bfca1e460b3e99474e1d4d1b5fc5e615b6d0155850153"
+        "sha256": "3285c8592faabf9d738bb4643a5427977f1f5540da017c71a9e9e9d4378032b1",
+        "sha512": "fb2bf8d558301aba8501e0d8d2bb8ce0532ac0d1f7f4e81923b13f71671a5377677a229091a838a67ce813752175a30aeeba08a26b5485049ebf57539f9555b6"
       }
     },
     "name": "Security Assessment Maintained"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SI-ASSESSMENTS",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json",
               "digest": {
                 "sha256": "1df8a2358e8a5e03177c7f42fe832e3a04a0f0b4fa73cefd6128799fb47d49a1",
                 "sha512": "fc29be4fb4c918b620a75487ea8adfb3ce91595a3e1962b06130cda3d0c183c034a041e26e015377a0a2670b13cdd8db866271545f24a17e4945c81627ad0f3c"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json"
             }
           },
           "tenets": [

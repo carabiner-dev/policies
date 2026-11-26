@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-le-03.hjson",
       "digest": {
-        "sha256": "cc3809e8b704c54c85e92de38137402e5ad2df25bdb55585c25c21cd42ecd221",
-        "sha512": "adec25d8788e0bafdad48ccc3c734696878567b0e3e48c00ef85c4396572772abef58c0901e517fb0634cb2d250ba29c9b01a99240cfe941f192bd3add2614b4"
+        "sha256": "5787fdc60302d560fb811ba0acfe827910a71b1eb7fdf5dcf8865a074bd9e27d",
+        "sha512": "00b63c2919f6ae5e5ef48302c2887fb074035bf30cb5cb566a893bb5ab90d13086133e7b2baae3413547c21eed009f3dcedad497a8fd36b11a11407f65e69168"
       }
     },
     "name": "License in a Well Known Location"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "sbom-contains-license-file",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
               "digest": {
                 "sha256": "12aa24dd3dc64376e2231fe0e959b4de27bbbad64bdefa84e600f15693c97ed7",
                 "sha512": "c9eedc7763fc72f7810bd2cec70d606e71d52560507a29ca4ccf70e3741703f8f1b7aa9c4ff56e1fa9ff4e4910da0234b3ba3e9bc3cecdf7ec8de9b17cdb36e0"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
             }
           },
           "tenets": [
