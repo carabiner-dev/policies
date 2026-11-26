@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-br-04.hjson",
       "digest": {
-        "sha256": "403799d43312138d7ddd6500a8cd1d207ffe95d5f573fc3b7231643f43d622c9",
-        "sha512": "4df8b98454decbc43af73088065132b82aea492e5fd214f8f6c68e77f6569f477e3a102e09ff08a8a1f9bdcfa058a33d012d9c8a0b70a0c8bac6e235b9930e28"
+        "sha256": "0f8b8b258f380527b0073bce391e3ebbc01b30358536a0761325cdd55da7a2a8",
+        "sha512": "bb2e3ce41d7e5821b98d92512e85483074c530a2acadecb0224febfc06f93311b5f57aed194e9f0c720458717b7ac95d436200502644ce820081469e6d4f8fab"
       }
     },
     "name": "Change Log With Release"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "sbom-contains-changelog",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json",
               "digest": {
                 "sha256": "0d0c2e8097c2d126702e3f8ec84d0f8dabb35d73aae3f9b8759a9208440eb5f5",
                 "sha512": "35b5dffb04b04622e7a7639c9c0503ff6baa300c3ab11b88ebc9cb752b328b11e8aa877c414010f6afd4fd6a17dfe4738aad3355b5a084e2640cc6ed5758a448"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json"
             }
           },
           "tenets": [

@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-qa-01.hjson",
       "digest": {
-        "sha256": "c873e57aba05dbfeebc4ae46bfb68245590e5fbeb5bd904ff61fe78ed4c58e19",
-        "sha512": "83198c88870987eaaf66cf967f2567b7fcf3291bca45d8ba5e4f10c01925941c4f70f45b44078cf6aa1a9f706729ca35508a545fd1173ada043c1a87fe933501"
+        "sha256": "45bcc607a2bfa87786c5a7457c1f01ce4cbfa3752dea55a4377ff2c7853834ac",
+        "sha512": "dd1ed010b1cda4ee31090c6a64374b98cc7eab14f009bd8f6ab25cb1520d44cc022642065de5c78e65d4c5d33e90de2f99d16b474ff54ba2c9f5c5135316b547"
       }
     },
     "name": "Source Code Publicly Readable"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SNAPPY-REPO-PUBLIC-GIT",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
               "digest": {
                 "sha256": "23fcb7ceedde1175c8ad350211c79deb4b5d0c3b5760d478b461f46f57d87bb0",
                 "sha512": "a87c510c96e5686e651084695ad9bae4000b97b6f2bba42275bb52d5ad6217c3b2a0ddebef67a9604612c5ba4bbadd52f43d6ef549ce83eaffb379726b2f1867"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
             }
           },
           "tenets": [

@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-br-06.hjson",
       "digest": {
-        "sha256": "5e025adcfbec870fd14a5106a673094959601292a3ef2b8a0dfc130107f4db4b",
-        "sha512": "8136d7afc4f3a730091f161689359dc3e805e65792bbb2a539c2b25e2476e065027ddeb420912c8e4c5b0d3e52a2827e63840dd931cfc9505e48b48ef077e8bb"
+        "sha256": "53a735739bf4cf77cd5a869ece79cf66b4545ddf6c61548f2badeb09bb2e2220",
+        "sha512": "a168d18ab27f27b7b636bd1b76258318582ec689e64c792ada7c3913ce8ebb21b0d4d29b9b2ac485addcc1f9bacc67c003ee645acb021cd6720cf6eba19acbe9"
       }
     },
     "name": "Signed Releases"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "slsa-has-attestation",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json",
               "digest": {
                 "sha256": "b7f9731dbed37e8eb838afbe57fbba20d26270dc656b4d218541e11e00ba8193",
                 "sha512": "dbf56a2c60da7529a4d05e63304b48ed42863ef71e824d332fcf654dfd8915cf0612521c984bd0aba96aece51f69ccf616590313668368951fc1082942b2c278"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json"
             }
           },
           "tenets": [

@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-le-02.hjson",
       "digest": {
-        "sha256": "f3410e387d994a8aea4e7120580534799d86d71ccd53670c029d15a5028e08ed",
-        "sha512": "c4d6bdd433d3f210cee91590d6ba477d3f799fa331dae316d1c41a26d765b7747c4e60cfb4d3961be4cff8c3fcf3a7886093deb8e3724456bfd7c93fc81eaa4d"
+        "sha256": "46bb094f51019986c2353e35b537f565e0d97922c82474c40977f653cdb9d826",
+        "sha512": "8f19939b10af830d2d59e3076565071408c660d50abf655583160b073d2c0041fe7d9ca06d692b8f9c972657d8cecc2e25572569a020327c1a04bec69726a874"
       }
     },
     "name": "Fully Open Source Licenses"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "sbom-licenses-are-foss",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json",
               "digest": {
                 "sha256": "c8fa7dc665dc7d84f466a1dce255d95adc92894265d1ae44aea1ec6006778d0f",
                 "sha512": "f7acd1d0b12f941aeae3908540ae788350875054ba71c0f139e5517eee73c78fc7cf67159eb9d942e4cb5fd9bd30fe53d9dac8d34158ed6b611b88a58a9fa697"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json"
             }
           },
           "tenets": [

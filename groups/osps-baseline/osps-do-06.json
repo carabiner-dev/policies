@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-do-06.hjson",
       "digest": {
-        "sha256": "4de7d2cb60af17e5ffd3177a1f33611f43da6ee383201c7db7076d50a6ec0c82",
-        "sha512": "301eeb9ebc9663adbb846caea2abd1d4b4a12423fe8d896a6422e306aba7abb1a0e403f7283e5f61d28d6ce7e667109d9898a583b1cada648b192174b3f4cd26"
+        "sha256": "59cc750d05cae85427200001de193bc12964d425ff4415e106a91e44e5077262",
+        "sha512": "dd220af359da0024ee60a18b69939712a2102ef739309015ac87fd64dc341160cdd2a3f8ca9d21b9f5f7cdb9a792e4bd37187e4a839f000e235420c82578cf31"
       }
     },
     "name": "Dependency Management Policy"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SI-DEPENDENCY-POLICY",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
               "digest": {
                 "sha256": "5a4f470b74aec32f2610b0c441986c7f69195f8e6e771abb54cf6fe1e835d168",
                 "sha512": "217cc7aa5bb1946470de2d802a8662523b6e8c8e93cc5e517854d9c3228587c7c9e2bcbf39cd27f3f2cec24e6caf03340779e604bb566a3dceae6ca8610f2a02"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
             }
           },
           "tenets": [

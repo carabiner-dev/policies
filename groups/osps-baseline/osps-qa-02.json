@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-qa-02.hjson",
       "digest": {
-        "sha256": "0fa20058704ff6355cd87bc21c7558ae06126cbca4ad3ddb44d9ca794def493a",
-        "sha512": "8b404edf6c852d38ccd396fa3f6c53d544c662fdbda218491a0d42d659274fc0baa632519c1a026ba872b5ce3c07486b96e5fb5c6aa0baccc92f3ea1e5865a38"
+        "sha256": "087ac3baed83dbd8b0e4a8c82bb5574648ef23d697c0e75a4bd5a14a6c28a060",
+        "sha512": "1245bfc82b2a5e6d01e6260387a48877d871779222eca8c9ee0781cfe3149699ec50aeae0e24236e9a1daeb3ff0542cc4de188ea7eca474ff8cdc2f1d130917d"
       }
     },
     "name": "Software Dependencies Published"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "sbom-exists",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json",
               "digest": {
                 "sha256": "410e9390f24dabe1d74fb5330a55031dd07302ba01271a141d4cc5d94a143dad",
                 "sha512": "2189f01e0b452495c21e8397cf7b38c7c63ac287e40cda912cff404d0337bb8ede3c0beb1b170c6e51da0a31ebdbc9af7bdd7339ce0e352a22ff91eaffd25b2d"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json"
             }
           },
           "tenets": [

@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-do-03.hjson",
       "digest": {
-        "sha256": "73ea5c137fce5ee4a156d653fc2c3a1b7b2fe7454c6948bd89ebdc0c1b490280",
-        "sha512": "3bde5b4c925a15e179e37ac60a6714ac8753a1b1d478bc25d7f3e6ec11238e9fcecc26983deb05243a114b9d7176aa4ab374f95360a7dc49c5fb20cc3f5981d4"
+        "sha256": "2cc3b879d7d00e59abe3ef8a3cb919d3c0d65cb755dc566be00af4197cccf0a5",
+        "sha512": "b9a94df69edfcea4d13eb3a09586153bd21965d7cba90309572b2fe9ed4c50d052b5d0f5dd4a97b8ee3149c627b35f29e2be024315a3004563864831c8b969a1"
       }
     },
     "name": "Release Verification Instructions"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SI-SIGNATURE-VERIFY",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json",
               "digest": {
                 "sha256": "a83d7ed7e18b452dc80c116f548d54585c23dfa5af7b01383ccb8200866ec639",
                 "sha512": "1d53070a2650e55ea07a438067d2b2cd24ee7c4bd9ae524b03227bab6e04c4f0629a455e47ae0a7a3048359cfc40ac9b4f9e3495d1e5681f196e3ef207504639"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json"
             }
           },
           "tenets": [

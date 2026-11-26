@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-ac-02.hjson",
       "digest": {
-        "sha256": "d7acaf59c8f43b83bb2d247a947ec96c85f2890bbb60651066021fca4ef4b205",
-        "sha512": "6eb67b5edb1bb0683fc4de1a30ad0fff372c98f5c9c62c917ca49f9884f20417c9874c49e71c7e5acb759478f404a04138a7e78f9ed083966ca25599c3bbd35d"
+        "sha256": "3eff9109418a4d57ff5cf03e5586ff0b618c6f3eccd5c11f65d184e2279cbe66",
+        "sha512": "a17c33006537300058889d9126a69750cc571739618ced310bd715f67f5c576da8ae5d0e69f7eeba7b3d5a66008be5c0fb1a91f1cbc25320a8b8e6695978258d"
       }
     },
     "name": "Restrict Collaborator Permissions"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SNAPPY-ORG-EXISTS",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json",
               "digest": {
                 "sha256": "d4b0550256121db1e3ad8659756ac107199db51c482e04e504a4df44183f6b37",
                 "sha512": "23088190d5dc7347331b1a6f0f5df8a384f2c12fcc164fc9861d4706a9c48ba5f89e7ece37cab8de26b88d1e1f6bee24c955470cb64ea84f1bde4d5b872f6f55"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json"
             }
           },
           "tenets": [

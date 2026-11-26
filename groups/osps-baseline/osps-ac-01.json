@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-ac-01.hjson",
       "digest": {
-        "sha256": "bb3692b9bb8deb738a3836e3ff39378ac9ef19e60ef568b5bc3a55dd1769d411",
-        "sha512": "9a54a737e86515351b14f5a3b76cc785a9f202afdebb0784549e6e49244b478f00b548f886f1635a04852412c85e98b01b1d077f605f8366ea74f93884d9efb7"
+        "sha256": "3900740e04353cb0b168170174833a8be51d0162d1605f2d5a58d788861924e2",
+        "sha512": "305033316faa44c408676d32d648054e259c363d5ffdd7fad6c629616c6e5068839600d4a4160b39e68168463947d98bd20dc8f71c45568a70d8210fd2b7ad5e"
       }
     },
     "name": "Use MFA for Sensitive Actions"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "SLSA-SRC-GHORG",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json",
               "digest": {
                 "sha256": "da566b451637ae149ac648cfc80f59e0129bdfcbbc02403c440b62281e0bafd3",
                 "sha512": "fc09e14f2693ac3c543e12cb262904455598828377c59df366273593d5335b09ed4a28c4ae87eab876aa8bbd692380d6b43038ca8837415eccf9863bcc35be0d"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json"
             }
           },
           "tenets": [

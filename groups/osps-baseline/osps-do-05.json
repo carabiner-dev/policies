@@ -13,8 +13,8 @@
     "origin": {
       "name": "osps-do-05.hjson",
       "digest": {
-        "sha256": "8432eef8080b6010a3f2ed720554f06836d9cad9b529a5c896050fcaec83f197",
-        "sha512": "1f4c062342848c0c2d327eddbcc06ff22e58b87aabb0e7539b064f1634801a86115dc75fca42df294849e3942a96240e9f28ab0be594a1ef270f2dbe1c3094be"
+        "sha256": "0d12d50fbf54fcae185a348b62fd7ef7adbfba80ef4876fb7ef6964cf8bc5fdc",
+        "sha512": "73e9b6675b9f9a22953a33eef219c5edcae0ae0a9dcc3aaa7fe2343ee138ee5b7cf8f55f7b9a34c71d262a29bdcb52f5398ce945baa0a0527e6ebc4f1a69bc5a"
       }
     },
     "name": "Security Update Scope and Duration"
@@ -30,12 +30,12 @@
             "enforce": "ON",
             "origin": {
               "name": "OPENEOX-EXISTS",
-              "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
+              "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
               "digest": {
                 "sha256": "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
                 "sha512": "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
               },
-              "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
+              "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
             }
           },
           "tenets": [
