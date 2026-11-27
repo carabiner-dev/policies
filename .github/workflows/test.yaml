@@ -32,16 +32,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Set up Go
-        uses: actions/setup-go@d8cbb8045d7f43706b9177cceb36c1f91a6644d5 # v7.1.0
+      # The job runs the released policyctl binary, which the installer
+      # verifies against its SLSA provenance, in place of the go tool the
+      # Makefile defaults to: building it from source took minutes of every
+      # run. Keep the version in step with the one pinned in go.mod.
+      - name: Install policyctl
+        uses: carabiner-dev/actions/install/policyctl@2f56fd66c5ef961f72bca3dbacbbfbd9acc717ee # v1.3.2
         with:
-          go-version: stable
+          version: v0.1.3
 
       # Both the twins and the documents are built by compiling their source,
       # which clones the policies it references at their pinned commits. That
       # fetch fails now and then, so the files that failed are built a second
       # time before the job gives up on them.
       - name: Regenerate the JSON twins and the documentation
+        env:
+          POLICYCTL: policyctl
         run: |
           set -o pipefail
           log="$(mktemp)"
