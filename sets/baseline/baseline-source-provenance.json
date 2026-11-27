@@ -14,7 +14,7 @@
         "references": [
             {
                 "location": {
-                    "uri": "git+https://github.com/carabiner-dev/policies#sets/baseline/osps-baseline.policy.json",
+                    "uri": "git+https://github.com/policylabs/policies#sets/baseline/osps-baseline.policy.json",
                     "digest": {
                         "sha256": "ba069d6f37afff1aafa0b483949f7d05a4137cba50406875055d222fa138e99c"
                     }
@@ -48,7 +48,7 @@
         {
             "source": {
                 "location": {
-                    "uri": "git+https://github.com/carabiner-dev/policies#slsa-source/continuity.json ",
+                    "uri": "git+https://github.com/policylabs/policies#slsa-source/continuity.json ",
                     "digest": {
                         "sha256": "ba069d6f37afff1aafa0b483949f7d05a4137cba50406875055d222fa138e99c"
                     }

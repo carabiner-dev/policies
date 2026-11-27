@@ -73,7 +73,7 @@ flowchart TD
     G17_B0 --> G17_B0_P0["🛡️ sbom-contains-contributing-md"]
     S --> G18["📂 OSPS-GV-04"]
     G18 --> G18_B0["⚡ Block 1"]
-    G18_B0 --> G18_B0_P0["🛡️ (inline policy)"]
+    G18_B0 --> G18_B0_P0["🛡️ Not Implemented"]
     S --> G19["📂 OSPS-LE-02"]
     G19 --> G19_B0["⚡ Block 1"]
     G19_B0 --> G19_B0_P0["🛡️ sbom-licenses-are-foss"]
@@ -103,10 +103,10 @@ flowchart TD
     G27_B0 --> G27_B0_P0["🛡️ SCORECARD-CODE-REVIEW"]
     S --> G28["📂 OSPS-SA-01"]
     G28 --> G28_B0["⚡ Block 1"]
-    G28_B0 --> G28_B0_P0["🛡️ (inline policy)"]
+    G28_B0 --> G28_B0_P0["🛡️ Not Implemented"]
     S --> G29["📂 OSPS-SA-02"]
     G29 --> G29_B0["⚡ Block 1"]
-    G29_B0 --> G29_B0_P0["🛡️ (inline policy)"]
+    G29_B0 --> G29_B0_P0["🛡️ Not Implemented"]
     S --> G30["📂 OSPS-SA-03"]
     G30 --> G30_B0["⚡ Block 1"]
     G30_B0 --> G30_B0_P0["🛡️ SI-ASSESSMENTS"]
@@ -132,7 +132,11 @@ flowchart TD
     G35_B0 --> G35_B0_P0["🛡️ SCORECARD-SAST"]
 ```
 
-## PolicyGroup: `OSPS-AC-01`
+## Use MFA for Sensitive Actions
+
+The project's version control system MUST require multi-factor authentication for collaborators modifying the project repository settings or accessing sensitive data.
+
+Checked through the repository's SLSA source provenance with the `slsa-source/ghorg` policy, which establishes that the repository is hosted in a GitHub organization.
 
 ### Overview
 
@@ -186,7 +190,11 @@ outputs.org.name.indexOf('github.com') == 0
 **On pass:** GitHub organization found in SLSA provenance
 
 
-## PolicyGroup: `OSPS-AC-02`
+## Restrict Collaborator Permissions
+
+The project's version control system MUST restrict collaborator permissions to the lowest available privileges by default.
+
+Checked through the attested GitHub organization data with the `snappy/org-exists` policy.
 
 ### Overview
 
@@ -238,7 +246,11 @@ true
 **On pass:** Attested GitHub organization data found
 
 
-## PolicyGroup: `OSPS-AC-03`
+## Protect the Primary Branch
+
+The project's version control system MUST prevent unintentional modification of the primary branch.
+
+Checked through the attested branch protection rules with the `snappy/branch-branch-protection` policy, which requires force pushes to be disabled on the default branch.
 
 ### Overview
 
@@ -322,7 +334,11 @@ has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.typ
 **Guidance:** Create a branch ruleset protecting your default branch and enable "Restrict deletions"
 
 
-## PolicyGroup: `OSPS-AC-04`
+## Least Privilege for CI/CD Pipelines
+
+The project's permissions in CI/CD pipelines MUST follow the principle of least privilege.
+
+Checked through the attested OpenSSF Scorecard results with the `scorecard/token-permissions` policy.
 
 ### Overview
 
@@ -379,9 +395,11 @@ outputs.perms.all(c, c.score == 10)
 **Guidance:** Ensure workflows drop all privileges and only escalte when needed
 
 
-## PolicyGroup: `OSPS-BR-01`
+## No Untrusted Input in Build Pipelines
 
-The project's build and release pipelines MUST NOT permit untrusted input
+The project's build and release pipelines MUST NOT permit untrusted input that allows access to privileged resources.
+
+Checked through the attested OpenSSF Scorecard results with the `scorecard/dangerous-workflow` policy.
 
 ### Overview
 
@@ -438,9 +456,11 @@ outputs.bin_artifacts_checks.all(c, c.score == 10)
 **Guidance:** Review your workflow files and look for dangerous patterns
 
 
-## PolicyGroup: `OSPS-BR-02`
+## Unique Version Identifiers
 
-Releases and released software assets MUST be assigned a unique version identifier
+All releases and released software assets MUST be assigned a unique version identifier for each release intended to be used by users.
+
+Checked through the release SBOM with the `sbom/sbom-has-versions` policy, which requires a version on every top-level component.
 
 ### Overview
 
@@ -498,9 +518,11 @@ outputs.versions.all(s, s != "")
 **Guidance:** Ensure the SBOM generation tool is capturing the release version.
 
 
-## PolicyGroup: `OSPS-BR-04`
+## Change Log With Release
 
-When an official release is created, that release MUST contain a descriptive log of functional and security modifications
+All releases MUST provide a descriptive log of functional and security modifications.
+
+Checked through the release SBOM with the `sbom/sbom-contains-changelog` policy, which looks for a changelog among the project's files.
 
 ### Overview
 
@@ -558,9 +580,11 @@ size(outputs["files"]) > 0
 **Guidance:** Add a file named CHANGELOG to your project's codebase registering major changes.
 
 
-## PolicyGroup: `OSPS-BR-05`
+## Standardized Dependency Tooling
 
-All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time
+All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time.
+
+Checked through the release SBOM with the `sbom/sbom-contains-lockfile` policy, which looks for a language dependency lockfile among the project's files.
 
 ### Overview
 
@@ -618,9 +642,11 @@ size(outputs["files"]) > 0
 **Guidance:** Ensure your project uses go, pypy, npm or ruby gems tooling o handle dependencies
 
 
-## PolicyGroup: `OSPS-BR-06`
+## Signed Releases
 
-Release MUST be signed or accounted for in a signed manifest
+All releases MUST be signed or accounted for in a signed manifest including each asset's cryptographic hashes.
+
+Checked with the `slsa/has-attestation` policy, which requires signed SLSA provenance for the release.
 
 ### Overview
 
@@ -675,9 +701,11 @@ size(predicates) > 0
 **Guidance:** Capture the build process in a SLSA provenance attestation
 
 
-## PolicyGroup: `OSPS-DO-01`
+## User Guides Published
 
-The project documentation MUST provide user guides for all basic functionality
+The project documentation MUST provide user guides for all basic functionality.
+
+Checked through the project's Security Insights data with the `security-insights/has-documentation` policy.
 
 ### Overview
 
@@ -749,9 +777,11 @@ outputs["docs"] != ""
 **Guidance:** Add a security insights file to your repository and define a documentation link
 
 
-## PolicyGroup: `OSPS-DO-02`
+## Defect Reporting Mechanism
 
-The project MUST provide a mechanism for reporting defects
+The project documentation MUST include a guide for reporting defects.
+
+Checked through the project's Security Insights data with the `security-insights/vulnerability-reporting` policy.
 
 ### Overview
 
@@ -826,9 +856,11 @@ outputs["vulnerability-report-contact"]
 **Guidance:** Add contact data in the project's SECURITY_INSIGHTS.yml file, under vulnerability-reporting
 
 
-## PolicyGroup: `OSPS-DO-03`
+## Release Verification Instructions
 
-Instructions to verify the integrity and authenticity of the release assets
+The project documentation MUST provide instructions to verify the integrity and authenticity of release assets, including the expected identity of the person or process authoring the software release.
+
+Checked through the project's Security Insights data with the `security-insights/signature-verify` policy.
 
 ### Overview
 
@@ -885,9 +917,11 @@ outputs['verify'] != ''
 **Guidance:** Point to instructions to verify your signatures in SECURITY_INSIGHTS.aml
 
 
-## PolicyGroup: `OSPS-DO-04`
+## Support Scope and Duration
 
-the project documentation MUST include a descriptive statement about the scope and duration of support
+The project documentation MUST include a descriptive statement about the scope and duration of support for each release.
+
+Checked with the `openeox/has-openeox` policy, which requires an OpenEoX statement describing the release's end of support.
 
 ### Overview
 
@@ -942,9 +976,11 @@ size(predicates) > 0
 **Guidance:** Capture the project End of Support in an OpenEOX file.
 
 
-## PolicyGroup: `OSPS-DO-05`
+## Security Update Scope and Duration
 
-The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates
+The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates.
+
+Checked with the `openeox/has-openeox` policy, which requires an OpenEoX statement describing the release's end of support.
 
 ### Overview
 
@@ -999,9 +1035,11 @@ size(predicates) > 0
 **Guidance:** Capture the project End of Support in an OpenEOX file.
 
 
-## PolicyGroup: `OSPS-DO-06`
+## Dependency Management Policy
 
-The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.
+The project documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.
+
+Checked through the project's Security Insights data with the `security-insights/dependency-policy` policy.
 
 ### Overview
 
@@ -1058,7 +1096,11 @@ outputs.deppolicy != ''
 **Guidance:** Add a changelog entry to your SI file under repository.documentation.dependency-management-policy.
 
 
-## PolicyGroup: `OSPS-GV-01`
+## Roles and Responsibilities Published
+
+The project documentation MUST include the roles and responsibilities for members of the project.
+
+Checked through the project's Security Insights data with the `security-insights/roles` policy, which requires the project administrators to be listed.
 
 ### Overview
 
@@ -1115,9 +1157,11 @@ outputs.admins.found
 **Guidance:** List the project admins in your SI yaml under repository.administrators
 
 
-## PolicyGroup: `OSPS-GV-02`
+## Public Discussion Mechanisms
 
 The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.
+
+Checked through the attested repository data with the `snappy/repo-issues` policy, which requires issues to be enabled.
 
 ### Overview
 
@@ -1188,9 +1232,11 @@ outputs["issues"]
 **Guidance:** Turn on the issues setting in the repository
 
 
-## PolicyGroup: `OSPS-GV-03`
+## Contribution Guide Published
 
 The project documentation MUST include an explanation of the contribution process.
+
+Checked through the release SBOM with the `sbom/sbom-contains-contributing-md` policy, which looks for a `CONTRIBUTING.md` file.
 
 ### Overview
 
@@ -1248,9 +1294,11 @@ size(outputs['files']) > 0
 **Guidance:** Write up the project's contribution process into a CONTRIBUTING.md file and check it into the repository.
 
 
-## PolicyGroup: `OSPS-GV-04`
+## Formal Review of Permission Grants
 
-Policy that code contributors are reviewed prior to granting escalated permissions
+The project documentation MUST have a policy that code contributors are reviewed prior to granting escalated permissions to sensitive resources.
+
+Not implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.
 
 ### Overview
 
@@ -1267,12 +1315,14 @@ Policy that code contributors are reviewed prior to granting escalated permissio
 flowchart TD
     G["📂 OSPS-GV-04"]
     G --> G_B0["⚡ Block 1"]
-    G_B0 --> G_B0_P0["🛡️ (inline policy)"]
+    G_B0 --> G_B0_P0["🛡️ Not Implemented"]
 ```
 
 ### Block: `block-1` (assert: AND)
 
-#### Policy: `(inline policy)`
+#### Not Implemented
+
+Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.
 
 ##### Overview
 
@@ -1298,9 +1348,11 @@ false
 **Guidance:** We don't have a way to detect if contributors are reviewed
 
 
-## PolicyGroup: `OSPS-LE-02`
+## Fully Open Source Licenses
 
-All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition
+All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition.
+
+Checked through the release SBOM with the `sbom/sbom-licenses-are-foss` policy.
 
 ### Overview
 
@@ -1360,9 +1412,11 @@ outputs.licenses.all(license, license in outputs.license_list) && size(outputs.l
 **Guidance:** Ensure your SBOM has license info and that the licenses are OSI approved
 
 
-## PolicyGroup: `OSPS-LE-03`
+## License in a Well Known Location
 
-All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.
+All licenses for the project's source code MUST be maintained in a standard location within the project's repository.
+
+Checked through the release SBOM with the `sbom/sbom-contains-license-file` policy, which looks for a license file among the project's files.
 
 ### Overview
 
@@ -1420,9 +1474,11 @@ size(outputs["files"]) > 0
 **Guidance:** Add a file named LICENSE to your project's codebase.
 
 
-## PolicyGroup: `OSPS-QA-01`
+## Source Code Publicly Readable
 
-The project's source code and change history MUST be publicly readable at a static URL
+The project's source code and change history MUST be publicly readable and have a static URL.
+
+Checked through the attested repository data with the `snappy/repo-public-git` policy.
 
 ### Overview
 
@@ -1499,9 +1555,11 @@ outputs["git"] != ''
 **Guidance:** Ensure the project's code is available in git or other VCS
 
 
-## PolicyGroup: `OSPS-QA-02`
+## Software Dependencies Published
 
-The project MUST provide a list of dependencies used in the software
+The project MUST provide a list of dependencies used in the software.
+
+Checked with the `sbom/sbom-exists` policy, which requires an attested SBOM for the release.
 
 ### Overview
 
@@ -1570,9 +1628,11 @@ size(predicates) > 0
 **Guidance:** Generate a CycloneDX SBOM from your code
 
 
-## PolicyGroup: `OSPS-QA-03`
+## Status Checks Before Merging
 
-Automated status checks for commits MUST pass or be manually bypassed.
+Automated status checks for commits MUST pass or be manually bypassed prior to merging into the primary branch.
+
+Checked through the attested branch protection rules with the `snappy/branch-status-checks` policy.
 
 ### Overview
 
@@ -1627,9 +1687,11 @@ has(predicates[0].data.values) ? predicates[0].data.values.exists(rule, rule.typ
 **Guidance:** Enable "Require status checks to pass" in the repository branch rulesets
 
 
-## PolicyGroup: `OSPS-QA-04`
+## Security Requirements on All Codebases
 
-subproject code repositories MUST enforce the same security requirements
+Any additional subproject code repositories produced by the project and compiled into a release MUST enforce the same security requirements as the primary repository.
+
+Checked through the project's Security Insights data with the `security-insights/has-subprojects` policy.
 
 ### Overview
 
@@ -1686,9 +1748,11 @@ outputs.subprojects.found
 **Guidance:** Add a subprojects list (empty will do) to SI YAML under project.repositories
 
 
-## PolicyGroup: `OSPS-QA-05`
+## No Executables in the Codebase
 
-The version control system MUST NOT contain generated executable artifacts
+The version control system MUST NOT contain generated executable artifacts.
+
+Checked through the attested OpenSSF Scorecard results with the `scorecard/binary-artifacts` policy.
 
 ### Overview
 
@@ -1745,9 +1809,11 @@ outputs.bin_artifacts_checks.all(c, c.score == 10)
 **Guidance:** Check your codebase and remove any checked-in executables
 
 
-## PolicyGroup: `OSPS-QA-06`
+## Automated Tests in CI/CD
 
-The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations
+The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations.
+
+Checked with the `test-results/tests-pass` policy, which requires an attested test run with all tests passing.
 
 ### Overview
 
@@ -1819,9 +1885,11 @@ outputs.result == 'pass'
 **Guidance:** Check the output of your unit tests, ensure they are passing
 
 
-## PolicyGroup: `OSPS-QA-07`
+## Merge Approvals Required
 
-VCS MUST require at least one non-author approval of changes to the primary branch
+The version control system MUST require at least one non-author approval of changes before merging into the primary branch.
+
+Checked through the attested OpenSSF Scorecard results with the `scorecard/code-review` policy.
 
 ### Overview
 
@@ -1878,9 +1946,11 @@ outputs.codereview.all(c, c.score == 10)
 **Guidance:** Ensure your repo requires a review from another party for every pull request
 
 
-## PolicyGroup: `OSPS-SA-01`
+## System Design Documentation
 
-design documentation demonstrating all actions and actors within the system
+The project documentation MUST provide design documentation demonstrating all actions and actors within the system.
+
+Not implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.
 
 ### Overview
 
@@ -1897,12 +1967,14 @@ design documentation demonstrating all actions and actors within the system
 flowchart TD
     G["📂 OSPS-SA-01"]
     G --> G_B0["⚡ Block 1"]
-    G_B0 --> G_B0_P0["🛡️ (inline policy)"]
+    G_B0 --> G_B0_P0["🛡️ Not Implemented"]
 ```
 
 ### Block: `block-1` (assert: AND)
 
-#### Policy: `(inline policy)`
+#### Not Implemented
+
+Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.
 
 ##### Overview
 
@@ -1928,9 +2000,11 @@ false
 **Guidance:** We don't have a way to detect documentation about actors and actions in the system
 
 
-## PolicyGroup: `OSPS-SA-02`
+## External Interface Descriptions
 
-descriptions of all external software interfaces
+The project documentation MUST include descriptions of all external software interfaces of the released software assets.
+
+Not implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.
 
 ### Overview
 
@@ -1947,12 +2021,14 @@ descriptions of all external software interfaces
 flowchart TD
     G["📂 OSPS-SA-02"]
     G --> G_B0["⚡ Block 1"]
-    G_B0 --> G_B0_P0["🛡️ (inline policy)"]
+    G_B0 --> G_B0_P0["🛡️ Not Implemented"]
 ```
 
 ### Block: `block-1` (assert: AND)
 
-#### Policy: `(inline policy)`
+#### Not Implemented
+
+Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.
 
 ##### Overview
 
@@ -1978,9 +2054,11 @@ false
 **Guidance:** We don't have a way to detect documentation about the external interfaces
 
 
-## PolicyGroup: `OSPS-SA-03`
+## Security Assessment Maintained
 
-The project MUST assess the security posture of all software assets
+The project MUST assess the security posture of all software assets in the project.
+
+Checked through the project's Security Insights data with the `security-insights/assessments` policy.
 
 ### Overview
 
@@ -2037,9 +2115,11 @@ size(outputs.assessments) > 0
 **Guidance:** Perform a security assessment on your project and record it in SECURITY_INSIGHTS.yml
 
 
-## PolicyGroup: `OSPS-VM-01`
+## Coordinated Vulnerability Disclosure Policy
 
-Policy for coordinated vulnerability disclosure
+The project documentation MUST include a policy for coordinated vulnerability disclosure, with a clear timeframe for response.
+
+Checked through the release SBOM with the `sbom/sbom-contains-security-md` policy, which looks for a `SECURITY.md` file.
 
 ### Overview
 
@@ -2097,9 +2177,11 @@ size(outputs["files"]) > 0
 **Guidance:** Add a file named SECURITY.md to your project's vulnerability disclosure policy
 
 
-## PolicyGroup: `OSPS-VM-02`
+## Vulnerability Reporting Contacts
 
-The project MUST publish contacts and process for reporting vulnerabilities
+The project MUST publish contacts and process for reporting vulnerabilities.
+
+Checked through the project's Security Insights data with the `security-insights/vulnerability-reporting-contact` policy.
 
 ### Overview
 
@@ -2156,9 +2238,11 @@ outputs.contact != null
 **Guidance:** Add a vulnerability reporting contact under the project data in the SI yaml file
 
 
-## PolicyGroup: `OSPS-VM-04`
+## Discovered Vulnerabilities Published
 
-The project MUST publicly publish data about discovered vulnerabilities
+The project MUST publicly publish data about discovered vulnerabilities.
+
+Checked with the `openvex/project-is-vexing` policy, which requires an attested vulnerability report whose findings are addressed by OpenVEX statements.
 
 ### Overview
 
@@ -2315,9 +2399,11 @@ outputs.vulnCount == 0
 **Guidance:** Remediate or suppress the vulnerabilities reported by trivy before this policy can pass
 
 
-## PolicyGroup: `OSPS-VM-05`
+## No Exploitable Vulnerabilities
 
-Ensure the project has no exploitable vulnerabilities
+The project MUST publish and enforce a dependency remediation policy so released software carries no exploitable vulnerabilities.
+
+Checked with the `openvex/no-exploitable-vulns-osv` policy, which fails on findings not addressed by OpenVEX statements.
 
 ### Overview
 
@@ -2377,9 +2463,11 @@ outputs.vulnerabilities == null ? true : size(outputs.vulnerabilities) == 0
 **Guidance:** A scan of your source code found vulnerabilities. Ensure your dependencies are up to date or issue VEX documents to supress them.
 
 
-## PolicyGroup: `OSPS-VM-06`
+## Application Security Testing Enforced
 
-Enforce a policy that defines a threshold for remediation of SAST findings
+The project MUST publish and enforce an application security testing policy, with a threshold for the remediation of SAST findings.
+
+Checked through the attested OpenSSF Scorecard results with the `scorecard/sast` policy.
 
 ### Overview
 

@@ -15,7 +15,7 @@
             id: "slsa-builder-id"
             source: {
                 location: {
-                    uri: "git+https://github.com/carabiner-dev/policies#slsa/slsa-builder-id.json"
+                    uri: "git+https://github.com/policylabs/policies#slsa/slsa-builder-id.json"
                 }
             }
             meta: {
@@ -32,7 +32,7 @@
             id: "slsa-build-type"
             source: {
                 location: {
-                    uri: "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-type.json"
+                    uri: "git+https://github.com/policylabs/policies#slsa/slsa-build-type.json"
                 }
             }
             meta: {
@@ -49,7 +49,7 @@
             id: "slsa-build-point"
             source: {
                 location: {
-                    uri: "git+https://github.com/carabiner-dev/policies#slsa/slsa-build-point.json"
+                    uri: "git+https://github.com/policylabs/policies#slsa/slsa-build-point.json"
                 }
             }
             meta: {
