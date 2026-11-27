@@ -37,13 +37,47 @@ jobs:
         with:
           go-version: stable
 
-      - name: Regenerate the documentation
-        run: make -B docs
-
-      - name: Check for uncommitted changes
+      # Both the twins and the documents are built by compiling their source,
+      # which clones the policies it references at their pinned commits. That
+      # fetch fails now and then, so the files that failed are built a second
+      # time before the job gives up on them.
+      - name: Regenerate the JSON twins and the documentation
         run: |
-          if ! git diff --quiet; then
-            echo "::error::Generated documentation is stale. Run 'make docs' and commit the result."
-            git --no-pager diff --stat
+          set -o pipefail
+          log="$(mktemp)"
+          if make -B -k -j4 json docs 2>&1 | tee "$log"; then
+            exit 0
+          fi
+          failed="$(sed -n 's/^make: \*\*\* \[[^]]*: \(.*\)\] Error [0-9]*$/\1/p' "$log" | sort -u | paste -sd' ' -)"
+          if [ -z "$failed" ]; then
+            echo "::error::make failed before building any file. Its error is in this step's log. Reproduce it with 'make -B json docs'."
             exit 1
           fi
+          echo "::warning::Failed to generate: ${failed}. Building them a second time."
+          log="$(mktemp)"
+          if ! make -B -k $failed 2>&1 | tee "$log"; then
+            failed="$(sed -n 's/^make: \*\*\* \[[^]]*: \(.*\)\] Error [0-9]*$/\1/p' "$log" | sort -u | paste -sd' ' -)"
+            echo "::error::Could not generate: ${failed}. The source of each does not compile; the compiler's error is in this step's log. Reproduce it with 'make -B ${failed}', fix the source and commit the result."
+            exit 1
+          fi
+
+      - name: Check that the generated files are committed
+        run: |
+          stale="$(git status --porcelain)"
+          if [ -z "$stale" ]; then
+            echo "The JSON twins and the documentation match their sources."
+            exit 0
+          fi
+          echo "::error::Generated files do not match their sources. Run 'make -B json docs' and commit the result."
+          echo "The .hjson files are the sources; their .json twins and .md documents"
+          echo "are generated and must be committed with them. These files differ from"
+          echo "what the sources generate (??: generated but never committed):"
+          echo
+          echo "$stale"
+          echo
+          echo "To fix it, run this at the root of the repository and commit the changes:"
+          echo
+          echo "    make -B json docs"
+          echo
+          git --no-pager diff --stat
+          exit 1
