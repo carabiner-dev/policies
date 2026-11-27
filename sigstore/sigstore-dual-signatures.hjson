@@ -32,7 +32,7 @@
             ```
             ampel verify <artifact> \
                 -c release:github.com/ORG/REPO@vX.Y.Z \
-                -p git+https://github.com/carabiner-dev/policies#sigstore/sigstore-dual-signatures.hjson \
+                -p git+https://github.com/policylabs/policies#sigstore/sigstore-dual-signatures.hjson \
                 --signer 'sigstore::https://token.actions.githubusercontent.com::https://github.com/ORG/REPO/.github/workflows/release.yml@refs/tags/vX.Y.Z'
             ```
 

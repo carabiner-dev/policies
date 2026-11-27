@@ -23,7 +23,7 @@ supply the expected signer with `--signer`:
 ```
 ampel verify --subject-hash sha1:<commit-sha> \
     -c gitsign:git+https://github.com/ORG/REPO \
-    -p git+https://github.com/carabiner-dev/policies#sigstore/gitsign-commit-signature.hjson \
+    -p git+https://github.com/policylabs/policies#gitsign/gitsign-commit-signature.hjson \
     --signer 'sigstore::https://accounts.google.com::committer@example.com'
 ```
 
