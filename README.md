@@ -57,3 +57,6 @@ The `.hjson` files are the policy sources. Edit those, then run `make json` to
 refresh the compiled JSON twins and `make docs` to refresh the documentation
 and the directory indexes. Text outside the index markers of a README survives
 regeneration, so introductions can be hand written.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide: writing and
+referencing policies, testing them and what CI checks.
