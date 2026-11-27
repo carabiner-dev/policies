@@ -31,7 +31,7 @@
             ```
             ampel verify --subject-hash sha1:<tagged commit> \\
                 -c git:https://github.com/ORG/REPO@v1.2.0 \\
-                -p git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json \\
+                -p git+https://github.com/policylabs/policies#release/release-tag-signed.json \\
                 --context releaser:<releaser identity> \\
                 --context releaser_issuer:<its OIDC issuer>
             ```

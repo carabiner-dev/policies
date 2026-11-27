@@ -1,4 +1,4 @@
-module github.com/carabiner-dev/policies
+module github.com/policylabs/policies
 
 go 1.27.0
 
