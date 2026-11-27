@@ -35,23 +35,23 @@
     policies: [
         {
             id: "release-tag-signed"
-            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json" } }
+            source: { location: { uri: "git+https://github.com/policylabs/policies#release/release-tag-signed.json" } }
         }
         {
             id: "release-tag-trailers"
-            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tag-trailers.json" } }
+            source: { location: { uri: "git+https://github.com/policylabs/policies#release/release-tag-trailers.json" } }
         }
         {
             id: "release-evaluated-commit-passed"
-            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json" } }
+            source: { location: { uri: "git+https://github.com/policylabs/policies#release/release-evaluated-commit-passed.json" } }
         }
         {
             id: "release-tagged-commit-tree"
-            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-tagged-commit-tree.json" } }
+            source: { location: { uri: "git+https://github.com/policylabs/policies#release/release-tagged-commit-tree.json" } }
         }
         {
             id: "release-evaluated-commit-tree"
-            source: { location: { uri: "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-tree.json" } }
+            source: { location: { uri: "git+https://github.com/policylabs/policies#release/release-evaluated-commit-tree.json" } }
         }
     ]
 }

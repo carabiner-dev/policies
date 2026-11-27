@@ -6,8 +6,8 @@
     "origin": {
       "name": "release-tag.hjson",
       "digest": {
-        "sha256": "5605d5a4e13367fd6995978079ddcb09cf310349988710f8b2709d3d89a30705",
-        "sha512": "26bff5319c3083a67a862d337bb8241b7a4b67a289a08925c7421f4ec5f184869dadf21e2f08915782832c795f90a8231072f162a1a5b1b2e7da9555ca9eb977"
+        "sha256": "005b1d219ea9a5004ad3ab4da59cb7f9d28de39a142eced21a57c2c31475811c",
+        "sha512": "c3dace7c4b460a0dad4cd83a2493d2ac3999825677e5cdafade197b15946561dde1f44956c79968ae358c2eff94cf09d5855fa57696f1c61c50a9b856ef47c11"
       }
     },
     "name": "Release Tag"
@@ -22,12 +22,12 @@
         "enforce": "ON",
         "origin": {
           "name": "release-tag-signed",
-          "uri": "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json",
+          "uri": "git+https://github.com/policylabs/policies#release/release-tag-signed.json",
           "digest": {
             "sha256": "13558b163784acc5202171b417eb3ee8b33bd509ff9811f89452b5a40d80589b",
             "sha512": "b9ae8aefd974f1b2f01fb02ed5c1cea694806f324ca5f0fdfb2aba334997264550fd2dbd184147065a78e721e46bd8e14170f9ae5dd44cbc5344774b92657b9b"
           },
-          "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-tag-signed.json"
+          "downloadLocation": "git+https://github.com/policylabs/policies#release/release-tag-signed.json"
         },
         "name": "Release Tag Signed by the Releaser"
       },
@@ -68,12 +68,12 @@
         "enforce": "ON",
         "origin": {
           "name": "release-tag-trailers",
-          "uri": "git+https://github.com/carabiner-dev/policies#release/release-tag-trailers.json",
+          "uri": "git+https://github.com/policylabs/policies#release/release-tag-trailers.json",
           "digest": {
             "sha256": "d05f19b6d368e43cd1be7dfa7b45fed54a21d67bea1dc444266fe22914994790",
             "sha512": "6262e43171eedb8082e7abfe2ef816a82d3c5b36203ed57e0eb44ca90a08e7e5d313888555d1ee55efce8750075cda6c3c1673262f2ad8ef3645e36460c0b168"
           },
-          "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-tag-trailers.json"
+          "downloadLocation": "git+https://github.com/policylabs/policies#release/release-tag-trailers.json"
         },
         "name": "Release Tag Trailers"
       },
@@ -148,12 +148,12 @@
         "enforce": "ON",
         "origin": {
           "name": "release-evaluated-commit-passed",
-          "uri": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json",
+          "uri": "git+https://github.com/policylabs/policies#release/release-evaluated-commit-passed.json",
           "digest": {
             "sha256": "5927e2a38571869995452b01d6bb00212a1f5b413eb7b473a905c93c4991efcb",
             "sha512": "873386ee34343ac0990c580516037b11f7171a03c4512d7ff8651c7765d955dcecf4eca02d8dad3e5ceb8184cf4cbf65b6be3dafebbef6c550c6d105b7706b3d"
           },
-          "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-passed.json"
+          "downloadLocation": "git+https://github.com/policylabs/policies#release/release-evaluated-commit-passed.json"
         },
         "name": "Release Policies Passed on the Evaluated Commit"
       },
@@ -208,12 +208,12 @@
         "enforce": "ON",
         "origin": {
           "name": "release-tagged-commit-tree",
-          "uri": "git+https://github.com/carabiner-dev/policies#release/release-tagged-commit-tree.json",
+          "uri": "git+https://github.com/policylabs/policies#release/release-tagged-commit-tree.json",
           "digest": {
             "sha256": "8491c699346d0935674482d09768c88eab3f5861bd3a6f7fa14967d4af1b2825",
             "sha512": "30ffa736d62231a35bee2213768aeb42f665c244d0d4f29613f65f06a04144c7ecea822b6970082063a3db693cdfc1e88deda96b4ab793dbd8254cbed11a9759"
           },
-          "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-tagged-commit-tree.json"
+          "downloadLocation": "git+https://github.com/policylabs/policies#release/release-tagged-commit-tree.json"
         },
         "name": "Tagged Commit Carries the Named Tree"
       },
@@ -245,12 +245,12 @@
         "enforce": "ON",
         "origin": {
           "name": "release-evaluated-commit-tree",
-          "uri": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-tree.json",
+          "uri": "git+https://github.com/policylabs/policies#release/release-evaluated-commit-tree.json",
           "digest": {
             "sha256": "814c0af750090bee15187bbf4d934e7f3955ee3186e3574e37a8010e03a88a2a",
             "sha512": "d8896f0e0b0b5589ef67a71d556c3a85592f3ff3b4bd4cbaf5bbd4aaa82a83fd255bb76573cd0d8289d6490cf38232bf0ff25bcf2dcdd8f294a2ed1674e93812"
           },
-          "downloadLocation": "git+https://github.com/carabiner-dev/policies#release/release-evaluated-commit-tree.json"
+          "downloadLocation": "git+https://github.com/policylabs/policies#release/release-evaluated-commit-tree.json"
         },
         "name": "Evaluated Commit Carries the Named Tree"
       },

@@ -12,8 +12,8 @@
     "origin": {
       "name": "osps-baseline.policy.hjson",
       "digest": {
-        "sha256": "a64232dda73038599d215ac287b30f9921547424e79daccd7f5747b66636bd6a",
-        "sha512": "7aab95cb08fef2caa76b7c056d790ba8659d4fcaca68696b4b1643b09c965fb10b62b017036411ba97b2a3b8cfbf1ae2bf194516e762e6916d0cccf481003f9f"
+        "sha256": "138ef958bd4376b86825a9a421597ba9435a4d17d7c4083bf18e8a0761bab019",
+        "sha512": "f6f704c27689a88af9b19cfe29986729964cd16693fe5b777c45b55fcaeeeccdcdc3d5101080c4553571090268201452b5c450ed45df98a0c4e0d6b3b50e5d17"
       }
     },
     "name": "OpenSSF Security Baseline"
@@ -23,6 +23,7 @@
     {
       "id": "OSPS-AC-01",
       "meta": {
+        "description": "The project's version control system MUST require multi-factor authentication for collaborators modifying the project repository settings or accessing sensitive data.\n\nChecked through the repository's SLSA source provenance with the `slsa-source/ghorg` policy, which establishes that the repository is hosted in a GitHub organization.",
         "controls": [
           {
             "id": "01",
@@ -30,7 +31,8 @@
             "class": "AC"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Use MFA for Sensitive Actions"
       },
       "blocks": [
         {
@@ -43,12 +45,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SLSA-SRC-GHORG",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json",
                   "digest": {
                     "sha256": "da566b451637ae149ac648cfc80f59e0129bdfcbbc02403c440b62281e0bafd3",
                     "sha512": "fc09e14f2693ac3c543e12cb262904455598828377c59df366273593d5335b09ed4a28c4ae87eab876aa8bbd692380d6b43038ca8837415eccf9863bcc35be0d"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa-source/ghorg.json"
                 }
               },
               "tenets": [
@@ -78,6 +80,7 @@
     {
       "id": "OSPS-AC-02",
       "meta": {
+        "description": "The project's version control system MUST restrict collaborator permissions to the lowest available privileges by default.\n\nChecked through the attested GitHub organization data with the `snappy/org-exists` policy.",
         "controls": [
           {
             "id": "02",
@@ -85,7 +88,8 @@
             "class": "AC"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Restrict Collaborator Permissions"
       },
       "blocks": [
         {
@@ -98,12 +102,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SNAPPY-ORG-EXISTS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json",
                   "digest": {
                     "sha256": "d4b0550256121db1e3ad8659756ac107199db51c482e04e504a4df44183f6b37",
                     "sha512": "23088190d5dc7347331b1a6f0f5df8a384f2c12fcc164fc9861d4706a9c48ba5f89e7ece37cab8de26b88d1e1f6bee24c955470cb64ea84f1bde4d5b872f6f55"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/org-exists.json"
                 }
               },
               "tenets": [
@@ -138,6 +142,7 @@
     {
       "id": "OSPS-AC-03",
       "meta": {
+        "description": "The project's version control system MUST prevent unintentional modification of the primary branch.\n\nChecked through the attested branch protection rules with the `snappy/branch-branch-protection` policy, which requires force pushes to be disabled on the default branch.",
         "controls": [
           {
             "id": "03",
@@ -145,7 +150,8 @@
             "class": "AC"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Protect the Primary Branch"
       },
       "blocks": [
         {
@@ -158,12 +164,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SNAPPY-BRANCH-PROTECTION",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json",
                   "digest": {
                     "sha256": "f26d226bca6e23ad6b872783d75c008a3c3a74ce056d7b7d5ff7930eb313da12",
                     "sha512": "33fa1bafa3db28f6454e6f42cb31071d6a32a3b44d14d77f3c11cb9dd28b6e65c403bfd7cd2c722e8e9bb5c77bd536bb97b8f34a89553370b4c9eba00b4015e3"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-branch-protection.json"
                 }
               },
               "tenets": [
@@ -231,6 +237,7 @@
     {
       "id": "OSPS-AC-04",
       "meta": {
+        "description": "The project's permissions in CI/CD pipelines MUST follow the principle of least privilege.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/token-permissions` policy.",
         "controls": [
           {
             "id": "04",
@@ -238,7 +245,8 @@
             "class": "AC"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Least Privilege for CI/CD Pipelines"
       },
       "blocks": [
         {
@@ -251,12 +259,12 @@
                 "enforce": "OFF",
                 "origin": {
                   "name": "SCORECARD-TOKEN-PERMISSIONS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json",
                   "digest": {
                     "sha256": "60fade5bac5e0584dd284b8ffddd3aacc9647879e0ce12246d27ee522f3ee483",
                     "sha512": "dcf42d89f35599d42f24687b573b67e8e357429b639cd2aaec6e6cc5ba78fea6a4c68d53479257f1f6b8e8fcb88e6707f77691ede5d0beb76d8aff81d3d5e4fc"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/token-permissions.json"
                 }
               },
               "tenets": [
@@ -290,7 +298,7 @@
     {
       "id": "OSPS-BR-01",
       "meta": {
-        "description": "The project's build and release pipelines MUST NOT permit untrusted input",
+        "description": "The project's build and release pipelines MUST NOT permit untrusted input that allows access to privileged resources.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/dangerous-workflow` policy.",
         "controls": [
           {
             "id": "01",
@@ -298,7 +306,8 @@
             "class": "BR"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "No Untrusted Input in Build Pipelines"
       },
       "blocks": [
         {
@@ -311,12 +320,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SCORECARD-DANGEROURS-WF",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json",
                   "digest": {
                     "sha256": "32e62634fc89915554e0dff9f36e48bd15f641db9b5c363d99e89b02dcb65876",
                     "sha512": "4b94dda07da96061c3ec0b91ab88388b8507e2d0753afa05101bdb6369c18f7e9b5c29739a918f8bc7952d28a4de0c5c5299ff60e59c18a6188e7f763a2f3169"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/dangerous-workflow.json"
                 }
               },
               "tenets": [
@@ -350,7 +359,7 @@
     {
       "id": "OSPS-BR-02",
       "meta": {
-        "description": "Releases and released software assets MUST be assigned a unique version identifier",
+        "description": "All releases and released software assets MUST be assigned a unique version identifier for each release intended to be used by users.\n\nChecked through the release SBOM with the `sbom/sbom-has-versions` policy, which requires a version on every top-level component.",
         "controls": [
           {
             "id": "02",
@@ -358,7 +367,8 @@
             "class": "BR"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Unique Version Identifiers"
       },
       "blocks": [
         {
@@ -371,12 +381,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-has-versions",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json",
                   "digest": {
                     "sha256": "abed0f47da012f2c11c8b3156385ebd6a6cd998d032cf148db44c2aca85d35e8",
                     "sha512": "d75ea6eeeee1ba3301eb1470cd791aca1b9b60e8d3fad3fa2615accd399cb9bf3b20d717fc3a82143a0bd88a6535c9a96835bd813a7fa23636a289707deeeca1"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-has-versions.json"
                 }
               },
               "tenets": [
@@ -411,7 +421,7 @@
     {
       "id": "OSPS-BR-04",
       "meta": {
-        "description": "When an official release is created, that release MUST contain a descriptive log of functional and security modifications",
+        "description": "All releases MUST provide a descriptive log of functional and security modifications.\n\nChecked through the release SBOM with the `sbom/sbom-contains-changelog` policy, which looks for a changelog among the project's files.",
         "controls": [
           {
             "id": "04",
@@ -419,7 +429,8 @@
             "class": "BR"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Change Log With Release"
       },
       "blocks": [
         {
@@ -432,12 +443,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-contains-changelog",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json",
                   "digest": {
                     "sha256": "0d0c2e8097c2d126702e3f8ec84d0f8dabb35d73aae3f9b8759a9208440eb5f5",
                     "sha512": "35b5dffb04b04622e7a7639c9c0503ff6baa300c3ab11b88ebc9cb752b328b11e8aa877c414010f6afd4fd6a17dfe4738aad3355b5a084e2640cc6ed5758a448"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-changelog.json"
                 }
               },
               "tenets": [
@@ -472,7 +483,7 @@
     {
       "id": "OSPS-BR-05",
       "meta": {
-        "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time",
+        "description": "All build and release pipelines MUST use standardized tooling where available to ingest dependencies at build time.\n\nChecked through the release SBOM with the `sbom/sbom-contains-lockfile` policy, which looks for a language dependency lockfile among the project's files.",
         "controls": [
           {
             "id": "05",
@@ -480,7 +491,8 @@
             "class": "BR"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Standardized Dependency Tooling"
       },
       "blocks": [
         {
@@ -493,12 +505,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-contains-lockfile",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json",
                   "digest": {
                     "sha256": "b0f808b2e363b8e9129dccb1615664d5412542343bc3a3f6edff9038cfae6142",
                     "sha512": "ef9c37500265f0b0ed11eb3b07ccf0c2baacb36f7fa9ff3e5589b299c12971fe8a3ed10125d5ce6000a62899d12b8643ea0900082c17b66f2f3724f1bc002fba"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-lockfile.json"
                 }
               },
               "tenets": [
@@ -533,7 +545,7 @@
     {
       "id": "OSPS-BR-06",
       "meta": {
-        "description": "Release MUST be signed or accounted for in a signed manifest",
+        "description": "All releases MUST be signed or accounted for in a signed manifest including each asset's cryptographic hashes.\n\nChecked with the `slsa/has-attestation` policy, which requires signed SLSA provenance for the release.",
         "controls": [
           {
             "id": "06",
@@ -541,7 +553,8 @@
             "class": "BR"
           }
         ],
-        "enforce": "OFF"
+        "enforce": "OFF",
+        "name": "Signed Releases"
       },
       "blocks": [
         {
@@ -554,12 +567,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "slsa-has-attestation",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json",
                   "digest": {
                     "sha256": "b7f9731dbed37e8eb838afbe57fbba20d26270dc656b4d218541e11e00ba8193",
                     "sha512": "dbf56a2c60da7529a4d05e63304b48ed42863ef71e824d332fcf654dfd8915cf0612521c984bd0aba96aece51f69ccf616590313668368951fc1082942b2c278"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#slsa/has-attestation.json"
                 }
               },
               "tenets": [
@@ -589,7 +602,7 @@
     {
       "id": "OSPS-DO-01",
       "meta": {
-        "description": "The project documentation MUST provide user guides for all basic functionality",
+        "description": "The project documentation MUST provide user guides for all basic functionality.\n\nChecked through the project's Security Insights data with the `security-insights/has-documentation` policy.",
         "controls": [
           {
             "id": "01",
@@ -597,7 +610,8 @@
             "class": "DO"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "User Guides Published"
       },
       "blocks": [
         {
@@ -610,12 +624,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-HAS-DOCUMENTATION",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json",
                   "digest": {
                     "sha256": "17ec8ce85a8e3cbcda350b91f5f0cffd15fe856f5ce8c829caaeb7247f12df3b",
                     "sha512": "023b602eb0d7b4b04ad4956708dd655df544eac60db572306bccfc75fe031a76bbca726502167b723af62d469810ff89cff033c7e1526eec2fc54176d2d7e5a6"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-documentation.json"
                 }
               },
               "tenets": [
@@ -663,7 +677,7 @@
     {
       "id": "OSPS-DO-02",
       "meta": {
-        "description": "The project MUST provide a mechanism for reporting defects",
+        "description": "The project documentation MUST include a guide for reporting defects.\n\nChecked through the project's Security Insights data with the `security-insights/vulnerability-reporting` policy.",
         "controls": [
           {
             "id": "02",
@@ -671,7 +685,8 @@
             "class": "DO"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Defect Reporting Mechanism"
       },
       "blocks": [
         {
@@ -684,12 +699,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-VULN-REPORTING",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json",
                   "digest": {
                     "sha256": "ff9d39536704e3602379ed4eedbfdc1ef64662691ed42b8319a419f52ed7a0a1",
                     "sha512": "62b010abf3bfdbe27dad8317c988bb1d7bac4bfd3e674b16f6830af405913c8ce6455df7b19c0f10c462c9bd1b188a1d4865091789c25b7ed1cdfaa76275f25a"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting.json"
                 }
               },
               "tenets": [
@@ -742,7 +757,7 @@
     {
       "id": "OSPS-DO-03",
       "meta": {
-        "description": "Instructions to verify the integrity and authenticity of the release assets",
+        "description": "The project documentation MUST provide instructions to verify the integrity and authenticity of release assets, including the expected identity of the person or process authoring the software release.\n\nChecked through the project's Security Insights data with the `security-insights/signature-verify` policy.",
         "controls": [
           {
             "id": "03",
@@ -750,7 +765,8 @@
             "class": "DO"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Release Verification Instructions"
       },
       "blocks": [
         {
@@ -763,12 +779,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-SIGNATURE-VERIFY",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json",
                   "digest": {
                     "sha256": "a83d7ed7e18b452dc80c116f548d54585c23dfa5af7b01383ccb8200866ec639",
                     "sha512": "1d53070a2650e55ea07a438067d2b2cd24ee7c4bd9ae524b03227bab6e04c4f0629a455e47ae0a7a3048359cfc40ac9b4f9e3495d1e5681f196e3ef207504639"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/signature-verify.json"
                 }
               },
               "tenets": [
@@ -802,7 +818,7 @@
     {
       "id": "OSPS-DO-04",
       "meta": {
-        "description": "the project documentation MUST include a descriptive statement about the scope and duration of support",
+        "description": "The project documentation MUST include a descriptive statement about the scope and duration of support for each release.\n\nChecked with the `openeox/has-openeox` policy, which requires an OpenEoX statement describing the release's end of support.",
         "controls": [
           {
             "id": "04",
@@ -810,7 +826,8 @@
             "class": "DO"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Support Scope and Duration"
       },
       "blocks": [
         {
@@ -823,12 +840,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "OPENEOX-EXISTS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
                   "digest": {
                     "sha256": "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
                     "sha512": "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
                 }
               },
               "tenets": [
@@ -858,7 +875,7 @@
     {
       "id": "OSPS-DO-05",
       "meta": {
-        "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates",
+        "description": "The project documentation MUST provide a descriptive statement when releases or versions will no longer receive security updates.\n\nChecked with the `openeox/has-openeox` policy, which requires an OpenEoX statement describing the release's end of support.",
         "controls": [
           {
             "id": "05",
@@ -866,7 +883,8 @@
             "class": "DO"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Security Update Scope and Duration"
       },
       "blocks": [
         {
@@ -879,12 +897,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "OPENEOX-EXISTS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json",
                   "digest": {
                     "sha256": "d2dd585ced72194e2cf3b1c23d961bcd150dc838e309a1e9543065568f0a4894",
                     "sha512": "33b01d7332f0d935ad118c291c754a4c689e845e23d58af6a19a7cae9a37f3f00278b5eb6dec01cabcb2b7ad048f8958774f52c9e41f5058740ab2c1bc905c1e"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#openeox/has-openeox.json"
                 }
               },
               "tenets": [
@@ -914,7 +932,7 @@
     {
       "id": "OSPS-DO-06",
       "meta": {
-        "description": "The project's documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.",
+        "description": "The project documentation MUST include a description of how the project selects, obtains, and tracks its dependencies.\n\nChecked through the project's Security Insights data with the `security-insights/dependency-policy` policy.",
         "controls": [
           {
             "id": "06",
@@ -922,7 +940,8 @@
             "class": "DO"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Dependency Management Policy"
       },
       "blocks": [
         {
@@ -935,12 +954,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-DEPENDENCY-POLICY",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json",
                   "digest": {
                     "sha256": "5a4f470b74aec32f2610b0c441986c7f69195f8e6e771abb54cf6fe1e835d168",
                     "sha512": "217cc7aa5bb1946470de2d802a8662523b6e8c8e93cc5e517854d9c3228587c7c9e2bcbf39cd27f3f2cec24e6caf03340779e604bb566a3dceae6ca8610f2a02"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/dependency-policy.json"
                 }
               },
               "tenets": [
@@ -974,6 +993,7 @@
     {
       "id": "OSPS-GV-01",
       "meta": {
+        "description": "The project documentation MUST include the roles and responsibilities for members of the project.\n\nChecked through the project's Security Insights data with the `security-insights/roles` policy, which requires the project administrators to be listed.",
         "controls": [
           {
             "id": "01",
@@ -981,7 +1001,8 @@
             "class": "GV"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Roles and Responsibilities Published"
       },
       "blocks": [
         {
@@ -994,12 +1015,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-ROLES",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json",
                   "digest": {
                     "sha256": "13b05b25bc7bb37546cc7a3f7e34bde0e6e69e931870c0c415ab07340fc1d2bd",
                     "sha512": "6be46469187fd541c52e97f8aa065ce6f1687ec34cb9abd5e4a78413126dbb8a7160e57e46a9e8b4bcecc7a4d42bae2ea5857c900132258cc7cade86138f3126"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/roles.json"
                 }
               },
               "tenets": [
@@ -1033,7 +1054,7 @@
     {
       "id": "OSPS-GV-02",
       "meta": {
-        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.",
+        "description": "The project MUST have one or more mechanisms for public discussions about proposed changes and usage obstacles.\n\nChecked through the attested repository data with the `snappy/repo-issues` policy, which requires issues to be enabled.",
         "controls": [
           {
             "id": "02",
@@ -1041,7 +1062,8 @@
             "class": "GV"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Public Discussion Mechanisms"
       },
       "blocks": [
         {
@@ -1054,12 +1076,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SNAPPY-REPO-HAS-ISSUES",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json",
                   "digest": {
                     "sha256": "a682cb176442ee03ce75dbb8431bc7c7f65df42c94b93515b9ddfc2b6618cbcf",
                     "sha512": "790f86b3d00ab01f9fcbf6b2d844230b903c01a3ccf958f44e8a6345fe3c928d1ebffbd6f23ee5aff127be8a6e7f75395980876eabafa29859f53648d49b0988"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-issues.json"
                 }
               },
               "tenets": [
@@ -1115,7 +1137,7 @@
     {
       "id": "OSPS-GV-03",
       "meta": {
-        "description": "The project documentation MUST include an explanation of the contribution process.",
+        "description": "The project documentation MUST include an explanation of the contribution process.\n\nChecked through the release SBOM with the `sbom/sbom-contains-contributing-md` policy, which looks for a `CONTRIBUTING.md` file.",
         "controls": [
           {
             "id": "03",
@@ -1123,7 +1145,8 @@
             "class": "GV"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Contribution Guide Published"
       },
       "blocks": [
         {
@@ -1136,12 +1159,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-contains-contributing-md",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json",
                   "digest": {
                     "sha256": "867cd97c9a0abd1679141bbc6d7627267d362f4285eb054faf7e4b1af77d13d5",
                     "sha512": "449a022ee42c42aad13b078d96ecad0728eec13126c381913e91b5acb72b4ff89ffc3f2d97b1c6665874be3858fc329654e0b5592c96e3ba2f426bb05b5c61a0"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-contributing-md.json"
                 }
               },
               "tenets": [
@@ -1176,7 +1199,7 @@
     {
       "id": "OSPS-GV-04",
       "meta": {
-        "description": "Policy that code contributors are reviewed prior to granting escalated permissions",
+        "description": "The project documentation MUST have a policy that code contributors are reviewed prior to granting escalated permissions to sensitive resources.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
         "controls": [
           {
             "id": "04",
@@ -1184,12 +1207,17 @@
             "class": "GV"
           }
         ],
-        "enforce": "OFF"
+        "enforce": "OFF",
+        "name": "Formal Review of Permission Grants"
       },
       "blocks": [
         {
           "policies": [
             {
+              "meta": {
+                "description": "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.",
+                "name": "Not Implemented"
+              },
               "tenets": [
                 {
                   "id": "01",
@@ -1213,7 +1241,7 @@
     {
       "id": "OSPS-LE-02",
       "meta": {
-        "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition",
+        "description": "All licenses for the project MUST meet the OSI Open Source Definition or the FSF Free Software Definition.\n\nChecked through the release SBOM with the `sbom/sbom-licenses-are-foss` policy.",
         "controls": [
           {
             "id": "02",
@@ -1221,7 +1249,8 @@
             "class": "LE"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Fully Open Source Licenses"
       },
       "blocks": [
         {
@@ -1234,12 +1263,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-licenses-are-foss",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json",
                   "digest": {
                     "sha256": "c8fa7dc665dc7d84f466a1dce255d95adc92894265d1ae44aea1ec6006778d0f",
                     "sha512": "f7acd1d0b12f941aeae3908540ae788350875054ba71c0f139e5517eee73c78fc7cf67159eb9d942e4cb5fd9bd30fe53d9dac8d34158ed6b611b88a58a9fa697"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-licenses-are-foss.json"
                 }
               },
               "tenets": [
@@ -1280,7 +1309,7 @@
     {
       "id": "OSPS-LE-03",
       "meta": {
-        "description": "All licenses for the project's source code MUST be maintained in a standard location within the corresponding repository.",
+        "description": "All licenses for the project's source code MUST be maintained in a standard location within the project's repository.\n\nChecked through the release SBOM with the `sbom/sbom-contains-license-file` policy, which looks for a license file among the project's files.",
         "controls": [
           {
             "id": "03",
@@ -1288,7 +1317,8 @@
             "class": "LE"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "License in a Well Known Location"
       },
       "blocks": [
         {
@@ -1301,12 +1331,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-contains-license-file",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json",
                   "digest": {
                     "sha256": "12aa24dd3dc64376e2231fe0e959b4de27bbbad64bdefa84e600f15693c97ed7",
                     "sha512": "c9eedc7763fc72f7810bd2cec70d606e71d52560507a29ca4ccf70e3741703f8f1b7aa9c4ff56e1fa9ff4e4910da0234b3ba3e9bc3cecdf7ec8de9b17cdb36e0"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-license-file.json"
                 }
               },
               "tenets": [
@@ -1341,7 +1371,7 @@
     {
       "id": "OSPS-QA-01",
       "meta": {
-        "description": "The project's source code and change history MUST be publicly readable at a static URL",
+        "description": "The project's source code and change history MUST be publicly readable and have a static URL.\n\nChecked through the attested repository data with the `snappy/repo-public-git` policy.",
         "controls": [
           {
             "id": "01",
@@ -1349,7 +1379,8 @@
             "class": "QA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Source Code Publicly Readable"
       },
       "blocks": [
         {
@@ -1362,12 +1393,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SNAPPY-REPO-PUBLIC-GIT",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json",
                   "digest": {
                     "sha256": "23fcb7ceedde1175c8ad350211c79deb4b5d0c3b5760d478b461f46f57d87bb0",
                     "sha512": "a87c510c96e5686e651084695ad9bae4000b97b6f2bba42275bb52d5ad6217c3b2a0ddebef67a9604612c5ba4bbadd52f43d6ef549ce83eaffb379726b2f1867"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/repo-public-git.json"
                 }
               },
               "tenets": [
@@ -1433,7 +1464,7 @@
     {
       "id": "OSPS-QA-02",
       "meta": {
-        "description": "The project MUST provide a list of dependencies used in the software",
+        "description": "The project MUST provide a list of dependencies used in the software.\n\nChecked with the `sbom/sbom-exists` policy, which requires an attested SBOM for the release.",
         "controls": [
           {
             "id": "02",
@@ -1441,7 +1472,8 @@
             "class": "QA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Software Dependencies Published"
       },
       "blocks": [
         {
@@ -1454,12 +1486,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-exists",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json",
                   "digest": {
                     "sha256": "410e9390f24dabe1d74fb5330a55031dd07302ba01271a141d4cc5d94a143dad",
                     "sha512": "2189f01e0b452495c21e8397cf7b38c7c63ac287e40cda912cff404d0337bb8ede3c0beb1b170c6e51da0a31ebdbc9af7bdd7339ce0e352a22ff91eaffd25b2d"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-exists.json"
                 }
               },
               "tenets": [
@@ -1502,7 +1534,7 @@
     {
       "id": "OSPS-QA-03",
       "meta": {
-        "description": "Automated status checks for commits MUST pass or be manually bypassed.",
+        "description": "Automated status checks for commits MUST pass or be manually bypassed prior to merging into the primary branch.\n\nChecked through the attested branch protection rules with the `snappy/branch-status-checks` policy.",
         "controls": [
           {
             "id": "03",
@@ -1510,7 +1542,8 @@
             "class": "QA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Status Checks Before Merging"
       },
       "blocks": [
         {
@@ -1523,12 +1556,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SNAPPY-BRANCH-STATUS-CHECKS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json",
                   "digest": {
                     "sha256": "10d7d82fd5cece57cc9d5e3c002125cf5b52f47388f646689e60bd6cefa1ac01",
                     "sha512": "9aebca98ac2d8c9a27427d96846352c2eb939ca94f89d2ddb7b21f3f8bdf8cd971ee0338d3da74f6476b089277d680f8cc6beb3427f43182abab83f9081b242c"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#snappy/branch-status-checks.json"
                 }
               },
               "tenets": [
@@ -1567,7 +1600,7 @@
     {
       "id": "OSPS-QA-04",
       "meta": {
-        "description": "subproject code repositories MUST enforce the same security requirements",
+        "description": "Any additional subproject code repositories produced by the project and compiled into a release MUST enforce the same security requirements as the primary repository.\n\nChecked through the project's Security Insights data with the `security-insights/has-subprojects` policy.",
         "controls": [
           {
             "id": "04",
@@ -1575,7 +1608,8 @@
             "class": "QA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Security Requirements on All Codebases"
       },
       "blocks": [
         {
@@ -1588,12 +1622,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-HAS-SUBPROJECTS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json",
                   "digest": {
                     "sha256": "2be00d7c9110b5bbee5fe908c695db348534997beb1e248b6156304780abcbdc",
                     "sha512": "507acd5d733c5f5ae7c35e447e53f9c1ee89ba62b996cdf04f555b463e97aa70e3db8827d7213ba3103a98c30c7914ddf348fc78d82c890968e4200135b7c066"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/has-subprojects.json"
                 }
               },
               "tenets": [
@@ -1627,7 +1661,7 @@
     {
       "id": "OSPS-QA-05",
       "meta": {
-        "description": "The version control system MUST NOT contain generated executable artifacts",
+        "description": "The version control system MUST NOT contain generated executable artifacts.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/binary-artifacts` policy.",
         "controls": [
           {
             "id": "05",
@@ -1635,7 +1669,8 @@
             "class": "QA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "No Executables in the Codebase"
       },
       "blocks": [
         {
@@ -1648,12 +1683,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SCORECARD-BINARY-ARTIFACTS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json",
                   "digest": {
                     "sha256": "86b6298821197fbe4404ff1c675820cd78a927c01722455214d2c866571d4f55",
                     "sha512": "f2a6b4b55e7e4f4d3e56f195cf30579d643d991db4e9d02245c5758a15963224e3c1aabc1026964880ea15a45db16ecc754218f07338acdfbbe539527d256c75"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/binary-artifacts.json"
                 }
               },
               "tenets": [
@@ -1687,7 +1722,7 @@
     {
       "id": "OSPS-QA-06",
       "meta": {
-        "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations",
+        "description": "The project's CI/CD pipelines MUST run at least one automated test suite to ensure the changes meet expectations.\n\nChecked with the `test-results/tests-pass` policy, which requires an attested test run with all tests passing.",
         "controls": [
           {
             "id": "06",
@@ -1695,7 +1730,8 @@
             "class": "QA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Automated Tests in CI/CD"
       },
       "blocks": [
         {
@@ -1708,12 +1744,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "test-results-pass",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json",
                   "digest": {
                     "sha256": "cca9333f7705579e43f902673f21d7d00ad8006001ae7886964d5b1741d681ac",
                     "sha512": "4a339fdfa7a6adcb6752a1802de9ac24c536180d93691fa81089762315a6f75247898aa00b3a5d427634a7d3476d997fcd279daf37a306c523c14619853ca201"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#test-results/tests-pass.json"
                 }
               },
               "tenets": [
@@ -1763,7 +1799,7 @@
     {
       "id": "OSPS-QA-07",
       "meta": {
-        "description": "VCS MUST require at least one non-author approval of changes to the primary branch",
+        "description": "The version control system MUST require at least one non-author approval of changes before merging into the primary branch.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/code-review` policy.",
         "controls": [
           {
             "id": "07",
@@ -1771,7 +1807,8 @@
             "class": "QA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Merge Approvals Required"
       },
       "blocks": [
         {
@@ -1784,12 +1821,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SCORECARD-CODE-REVIEW",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json",
                   "digest": {
                     "sha256": "70f0cf629493b25cc847a3fdc7e1055160be08a67fce327d99fca27b992e053b",
                     "sha512": "2799a7bc363d89ed1edd0434dc4c82c3a4b47c9c49d30514316a5189761459e8e3fba2130d59698093f7255f533978410d21a42b9ba995305f7f64d09a7403e5"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/code-review.json"
                 }
               },
               "tenets": [
@@ -1823,7 +1860,7 @@
     {
       "id": "OSPS-SA-01",
       "meta": {
-        "description": "design documentation demonstrating all actions and actors within the system",
+        "description": "The project documentation MUST provide design documentation demonstrating all actions and actors within the system.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
         "controls": [
           {
             "id": "01",
@@ -1831,12 +1868,17 @@
             "class": "SA"
           }
         ],
-        "enforce": "OFF"
+        "enforce": "OFF",
+        "name": "System Design Documentation"
       },
       "blocks": [
         {
           "policies": [
             {
+              "meta": {
+                "description": "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.",
+                "name": "Not Implemented"
+              },
               "tenets": [
                 {
                   "id": "01",
@@ -1860,7 +1902,7 @@
     {
       "id": "OSPS-SA-02",
       "meta": {
-        "description": "descriptions of all external software interfaces",
+        "description": "The project documentation MUST include descriptions of all external software interfaces of the released software assets.\n\nNot implemented yet: AMPEL has no evidence source for this requirement, so the group is not enforced.",
         "controls": [
           {
             "id": "02",
@@ -1868,12 +1910,17 @@
             "class": "SA"
           }
         ],
-        "enforce": "OFF"
+        "enforce": "OFF",
+        "name": "External Interface Descriptions"
       },
       "blocks": [
         {
           "policies": [
             {
+              "meta": {
+                "description": "Placeholder: AMPEL has no evidence source for this requirement yet, so this block always fails.",
+                "name": "Not Implemented"
+              },
               "tenets": [
                 {
                   "id": "01",
@@ -1897,7 +1944,7 @@
     {
       "id": "OSPS-SA-03",
       "meta": {
-        "description": "The project MUST assess the security posture of all software assets",
+        "description": "The project MUST assess the security posture of all software assets in the project.\n\nChecked through the project's Security Insights data with the `security-insights/assessments` policy.",
         "controls": [
           {
             "id": "03",
@@ -1905,7 +1952,8 @@
             "class": "SA"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Security Assessment Maintained"
       },
       "blocks": [
         {
@@ -1918,12 +1966,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-ASSESSMENTS",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json",
                   "digest": {
                     "sha256": "1df8a2358e8a5e03177c7f42fe832e3a04a0f0b4fa73cefd6128799fb47d49a1",
                     "sha512": "fc29be4fb4c918b620a75487ea8adfb3ce91595a3e1962b06130cda3d0c183c034a041e26e015377a0a2670b13cdd8db866271545f24a17e4945c81627ad0f3c"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/assessments.json"
                 }
               },
               "tenets": [
@@ -1957,7 +2005,7 @@
     {
       "id": "OSPS-VM-01",
       "meta": {
-        "description": "Policy for coordinated vulnerability disclosure",
+        "description": "The project documentation MUST include a policy for coordinated vulnerability disclosure, with a clear timeframe for response.\n\nChecked through the release SBOM with the `sbom/sbom-contains-security-md` policy, which looks for a `SECURITY.md` file.",
         "controls": [
           {
             "id": "01",
@@ -1965,7 +2013,8 @@
             "class": "VM"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Coordinated Vulnerability Disclosure Policy"
       },
       "blocks": [
         {
@@ -1978,12 +2027,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "sbom-contains-security-md",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json",
                   "digest": {
                     "sha256": "6cd2cc69489e37917ef91a8a3285bf9c9fa78a9c4f15457ec937521537083204",
                     "sha512": "1734c904b5bcc7ccbcfb62f75a8929ab426f2701c26899147e19fb3ed263f39190738f35bbc1b47320e107b3a97107d04ae72f46ea943dfb0919152888afd9a3"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#sbom/sbom-contains-security-md.json"
                 }
               },
               "tenets": [
@@ -2018,7 +2067,7 @@
     {
       "id": "OSPS-VM-02",
       "meta": {
-        "description": "The project MUST publish contacts and process for reporting vulnerabilities",
+        "description": "The project MUST publish contacts and process for reporting vulnerabilities.\n\nChecked through the project's Security Insights data with the `security-insights/vulnerability-reporting-contact` policy.",
         "controls": [
           {
             "id": "02",
@@ -2026,7 +2075,8 @@
             "class": "VM"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Vulnerability Reporting Contacts"
       },
       "blocks": [
         {
@@ -2039,12 +2089,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SI-VULN-REP-CONTACT",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json",
                   "digest": {
                     "sha256": "4fe2e497f56ca443394160b306c2519558e96ef07c930ac35072c40d3a923f57",
                     "sha512": "31b1d40412c4dceee80cf52545288026e1d7758c26231eba9181872c5927f5a3d2aaf9f7f156f6820149adcd2e818dcaefece2081cbb8631fc6e9ac3cf062f43"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#security-insights/vulnerability-reporting-contact.json"
                 }
               },
               "tenets": [
@@ -2078,7 +2128,7 @@
     {
       "id": "OSPS-VM-04",
       "meta": {
-        "description": "The project MUST publicly publish data about discovered vulnerabilities",
+        "description": "The project MUST publicly publish data about discovered vulnerabilities.\n\nChecked with the `openvex/project-is-vexing` policy, which requires an attested vulnerability report whose findings are addressed by OpenVEX statements.",
         "controls": [
           {
             "id": "04",
@@ -2087,7 +2137,8 @@
           }
         ],
         "enforce": "ON",
-        "assertMode": "OR"
+        "assertMode": "OR",
+        "name": "Discovered Vulnerabilities Published"
       },
       "blocks": [
         {
@@ -2100,12 +2151,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "OPENVEX-VULNS-ARE-VEXED",
-                  "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json",
+                  "uri": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json",
                   "digest": {
                     "sha256": "de38d63a3c2833f9ac3ffb4980fb1db5e7ad897b2b9ed54d39c7b6b044d0630e",
                     "sha512": "2fb4b2ff6a7d75e94eb6764aaeccaa2d90c6c2c2f9b8795e0e447be1f4e9d70a45224aca637baaa4e9a0a79bca855e2925b6983ba79a594b12afd20415a736fe"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#openvex/project-is-vexing.json"
                 }
               },
               "tenets": [
@@ -2170,12 +2221,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "grype-no-vulns",
-                  "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson",
+                  "uri": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson",
                   "digest": {
                     "sha256": "0c302ef8882a61f191bac541d4a84c7b4470712aa3ba9f8d9930a61cf3c2151a",
                     "sha512": "ff5b94d8a69b23a9b73f0f692d57ce27c8279c89f14937204de983c554e362c26df135941cadaf7a22765f73ebc54edee5577d159a3acf5ed717f00047fea640"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#grype/grype-no-vulns.hjson"
                 }
               },
               "tenets": [
@@ -2213,12 +2264,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "trivy-no-vulns",
-                  "uri": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson",
+                  "uri": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson",
                   "digest": {
                     "sha256": "e2dd020bcd3c9ec9616eaf33c17e655ee9b39fa8be44034c2fe92fb7a9256176",
                     "sha512": "50bf04040594da9113938b10d36a4817d6a23001a2bcce52e466de1f1cd5092ac47c2b2825be02216d3451ebb998057fd2487bc965b96af6adeacd628660db15"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@f013fe5c22d051c17329d7b41ecb5c3df2e59b92#trivy/trivy-no-vulns.hjson"
                 }
               },
               "tenets": [
@@ -2251,7 +2302,7 @@
     {
       "id": "OSPS-VM-05",
       "meta": {
-        "description": "Ensure the project has no exploitable vulnerabilities",
+        "description": "The project MUST publish and enforce a dependency remediation policy so released software carries no exploitable vulnerabilities.\n\nChecked with the `openvex/no-exploitable-vulns-osv` policy, which fails on findings not addressed by OpenVEX statements.",
         "controls": [
           {
             "id": "05",
@@ -2259,7 +2310,8 @@
             "class": "VM"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "No Exploitable Vulnerabilities"
       },
       "blocks": [
         {
@@ -2272,12 +2324,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "openvex-no-exploitable-vulns",
-                  "uri": "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json",
+                  "uri": "git+https://github.com/policylabs/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json",
                   "digest": {
                     "sha256": "83e07778ab0e94ac1c0581a041a6cadd923e2123d22a683978d5567cb342304b",
                     "sha512": "5a3cf67e11fe42539eadf3bade9f09feb763a26d1d73d71f2fb4bc027880247e4d8f96dea09aa3c528524ed7b008583d6e92ce07cc4737a5e0f66c22a7199710"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@7d4728aad32c265459cb6d33e3cba0be61d5da28#openvex/no-exploitable-vulns-osv.json"
                 }
               },
               "transformers": [
@@ -2319,7 +2371,7 @@
     {
       "id": "OSPS-VM-06",
       "meta": {
-        "description": "Enforce a policy that defines a threshold for remediation of SAST findings",
+        "description": "The project MUST publish and enforce an application security testing policy, with a threshold for the remediation of SAST findings.\n\nChecked through the attested OpenSSF Scorecard results with the `scorecard/sast` policy.",
         "controls": [
           {
             "id": "VM-06",
@@ -2327,7 +2379,8 @@
             "class": "VM"
           }
         ],
-        "enforce": "ON"
+        "enforce": "ON",
+        "name": "Application Security Testing Enforced"
       },
       "blocks": [
         {
@@ -2340,12 +2393,12 @@
                 "enforce": "ON",
                 "origin": {
                   "name": "SCORECARD-SAST",
-                  "uri": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
+                  "uri": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json",
                   "digest": {
                     "sha256": "36bc11637352fa5e01d0599830ed24886c93e65187e1633336cb98d0d15d59be",
                     "sha512": "5f6c20ec7c15e40de5351e3d3944a5462570be58dd9306ebe85aeb0c3e7d63dd08506d8b7b24a49d6435821e9e1d312968b28ccf70943064a0a1e912df5cefdd"
                   },
-                  "downloadLocation": "git+https://github.com/carabiner-dev/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
+                  "downloadLocation": "git+https://github.com/policylabs/policies@99012828fd251a3ed12a561479f677bedd3e9bf9#scorecard/sast.json"
                 }
               },
               "tenets": [
